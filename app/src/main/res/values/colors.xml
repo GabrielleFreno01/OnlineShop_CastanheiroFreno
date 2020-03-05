@@ -2,8 +2,8 @@
 
 
     <resources>
-        <color name="colorPrimary">#F5CF07</color>
-        <color name="colorPrimaryDark">#F5CF07</color>
-        <color name="colorAccent">#F5CF07</color>
+        <color name="colorTitle">#000000</color>
+        <color name="colorAccent">#000000</color>
         <color name="orange">#F5CF07</color>
+        <color name="orangeBackground">#FFE9C5</color>
     </resources>

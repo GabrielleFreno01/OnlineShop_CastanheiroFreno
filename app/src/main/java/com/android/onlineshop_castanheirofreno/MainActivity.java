@@ -33,10 +33,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void seeCategories (View view){
-        Intent intent = new Intent(this, CategoryActivity.class);
-        startActivity(intent);
-    }
+
 
 
     public void seeDescriptions (View view){

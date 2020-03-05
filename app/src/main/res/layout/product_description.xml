@@ -10,6 +10,11 @@
     android:orientation="vertical"
     tools:context=".ProductDescriptionActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orangeBackground">
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -17,17 +22,21 @@
         android:layout_height="178dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="80dp"
         android:src="@drawable/acer_aspire_5_599"/>
 
+    </LinearLayout>
 
     <TextView
         android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/productname"
-        android:textSize="24sp"
         android:layout_gravity="center"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:text="@string/productname"
+        android:textSize="@dimen/basicTextSize"
+        android:textStyle="bold"
+        android:textColor="@color/orange"/>
 
     <TextView
         android:id="@+id/productPrice"

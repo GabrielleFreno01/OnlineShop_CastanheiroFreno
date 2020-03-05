@@ -13,5 +13,15 @@ public class CartActivity extends Activity {
         setContentView(R.layout.cart);
     }
 
+    public void seeConfirmation (View view){
+        Intent intent = new Intent(this, ConfirmationActivity.class);
+        startActivity(intent);
+    }
+
+    public void goShopping (View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="@dimen/products_list_image_width"
+        android:layout_height="@dimen/products_list_image_height"
+        android:src="@drawable/acer_aspire_5_599" />
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Product name"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/basicTextSize" />
+
+    <TextView
+        android:id="@+id/item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="CHF 000.00"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/basicTextSize" />
+
+</LinearLayout>

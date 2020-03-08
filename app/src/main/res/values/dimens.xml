@@ -9,6 +9,13 @@
     <dimen name="text_margin">16dp</dimen>
 
     <!--Size basic Text-->
-    <dimen name="basicTextSize">20dp</dimen>
+    <dimen name="basicTextSize">20sp</dimen>
+
+    <!-- Product Images -->
+    <dimen name="products_list_image_height">100dp</dimen>
+    <dimen name="products_list_image_width">100dp</dimen>
+
+
+
 
 </resources>

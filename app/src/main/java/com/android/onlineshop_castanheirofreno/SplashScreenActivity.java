@@ -14,7 +14,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.splash_screen);
 
 
-        //redirection vers la page principale après 3 secondes
+        //redirection vers la page principale après 2 secondes
         Runnable run = new Runnable() {
             @Override
             public void run() {
@@ -24,6 +24,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         };
 
-        new Handler().postDelayed(run, 3000);
+        new Handler().postDelayed(run, 2000);
     }
 }

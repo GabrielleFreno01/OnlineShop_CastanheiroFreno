@@ -50,7 +50,7 @@ public class CategoryListAdapter extends BaseAdapter {
         String tag = currentCategory.getTag();
 
         ImageView categoryImageView = convertView.findViewById(R.id.category_image);
-        String ressourceName = "icone_" + tag ;
+        String ressourceName = "ic_" + tag ;
         int resId = context.getResources().getIdentifier(ressourceName, "drawable", context.getPackageName());
         categoryImageView.setImageResource(resId);
 

@@ -5,5 +5,8 @@
         <color name="colorTitle">#000000</color>
         <color name="colorAccent">#000000</color>
         <color name="orange">#F5CF07</color>
+        <color name="white">#FFFFFF</color>
+        <color name="colorAccentGrey">#60615E</color>
         <color name="orangeBackground">#FFE9C5</color>
+        <color name="colorText">#000000</color>
     </resources>

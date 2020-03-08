@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="30dp">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="20dp"
-        android:src="@drawable/icone_audio" />
+        android:src="@drawable/ic_audio" />
 
     <TextView
         android:id="@+id/category_name"
@@ -21,7 +21,7 @@
         android:text="@string/default_name"
         android:textSize="@dimen/basicTextSize"
         android:textStyle="bold"
-        android:textColor="@color/orange"
+        android:textColor="@color/colorText"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="40dp"
         />

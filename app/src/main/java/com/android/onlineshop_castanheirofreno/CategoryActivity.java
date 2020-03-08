@@ -1,6 +1,9 @@
 package com.android.onlineshop_castanheirofreno;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,8 +32,20 @@ public class CategoryActivity extends AppCompatActivity {
         categoryList.add(new CategoryListModel("TV","tv"));
 
 
-        //get la listView
+        //get listView
         ListView categoryListView = findViewById(R.id.category_list);
         categoryListView.setAdapter(new CategoryListAdapter(this, categoryList));
+
+        categoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                seeItemsList(view);
+            }
+        });
+    }
+
+    public void seeItemsList (View view){
+        Intent intent = new Intent(this, ItemsListActivity.class);
+        startActivity(intent);
     }
 }

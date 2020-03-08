@@ -52,5 +52,9 @@ public class ItemsListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ProductDescriptionActivity.class);
         startActivity(intent);
     }
+    public void seeAddNewItem (View view){
+        Intent intent = new Intent(this, AddNewItemActivity.class);
+        startActivity(intent);
+    }
 
 }

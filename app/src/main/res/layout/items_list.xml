@@ -7,9 +7,34 @@
     tools:context=".ItemsListActivity">
 
     <GridView
+        android:id="@+id/items_gv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/items_gv"
-        android:numColumns="2"/>
+        android:layout_marginTop="60dp"
+        android:numColumns="2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/category_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="?android:selectableItemBackground"
+        android:onClick="seeAddNewItem"
+        android:src="@drawable/ic_add_new_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

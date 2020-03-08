@@ -9,4 +9,5 @@
         <color name="colorAccentGrey">#60615E</color>
         <color name="orangeBackground">#FFE9C5</color>
         <color name="colorText">#000000</color>
+        <color name="validate">#1ED618</color>
     </resources>

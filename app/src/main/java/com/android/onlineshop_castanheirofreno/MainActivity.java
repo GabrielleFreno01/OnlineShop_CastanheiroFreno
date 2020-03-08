@@ -1,13 +1,12 @@
 package com.android.onlineshop_castanheirofreno;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.Button;
 
 import com.android.onlineshop_castanheirofreno.adapter.NewItemsAdapter;
@@ -15,12 +14,12 @@ import com.android.onlineshop_castanheirofreno.model.ItemModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button cat;
+    Button categoryButton;
+    Button cartButton;
+    Button ordersButton;
 
     ViewPager viewPager;
     NewItemsAdapter newItemsAdapter;
@@ -31,9 +30,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.cat = findViewById(R.id.btn_category);
+        //Finding all button in the view
+        this.categoryButton = findViewById(R.id.btn_category);
+        this.cartButton = findViewById(R.id.btn_cart);
+        this.ordersButton = findViewById(R.id.btn_orders);
 
-        cat.setOnClickListener(new View.OnClickListener(){
+
+        //Setting the Listeners for the buttons
+        categoryButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -42,7 +46,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
+
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         //Adding products to the List containing the new products
         models = new ArrayList<>();
@@ -56,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.newProducts_viewPager);
         viewPager.setAdapter(newItemsAdapter);
         viewPager.setPadding(150,0,150,0);
-
     }
 
 

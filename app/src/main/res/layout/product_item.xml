@@ -21,7 +21,8 @@
         android:layout_marginTop="5dp"
         android:text="Product name"
         android:textColor="@color/colorText"
-        android:textSize="@dimen/basicTextSize" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/item_price"
@@ -29,7 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="CHF 000.00"
-        android:textColor="@color/colorText"
-        android:textSize="@dimen/basicTextSize" />
+        android:textSize="14sp" />
 
 </LinearLayout>

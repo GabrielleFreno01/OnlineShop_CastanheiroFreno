@@ -1,8 +1,6 @@
 package com.android.onlineshop_castanheirofreno;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
         //Adding products to the List containing the new products
         models = new ArrayList<>();
@@ -62,5 +61,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-}
 
+}

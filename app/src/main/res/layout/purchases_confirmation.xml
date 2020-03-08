@@ -24,6 +24,14 @@
         android:text="@string/confirmation_message2"
         android:textSize="30dp"/>
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/title_home"
+        android:onClick="goShopping"/>
 
 
 </LinearLayout>

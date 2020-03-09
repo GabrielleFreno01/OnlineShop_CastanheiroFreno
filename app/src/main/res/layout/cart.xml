@@ -1,71 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/item_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="230dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="1dp"
-        android:orientation="vertical"
-        android:background="@color/orangeBackground">
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="25dp"
+            android:layout_gravity="center">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="30dp">
 
-        <ImageView
-            android:id="@+id/image_description"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/acer_aspire_5_599" />
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:id="@+id/new_item_image"
+                    android:src="@drawable/acer_aspire_5_599"
+                    android:scaleType="fitCenter"
+                    android:gravity="center_horizontal"/>
+                <TextView
+                    android:id="@+id/new_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/basicTextSize"
+                    android:text="Product name"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/basicTextSize"
+                    android:id="@+id/new_item_price"
+                    android:text="CHF 000.00"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="160dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@+id/image_description"
-            android:text="@string/productname"
-            android:textSize="@dimen/basicTextSize"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="160dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@+id/image_description"
-            android:text="@string/price"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="160dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@+id/image_description"
-            android:text="@string/cart_quantity"
-            android:textSize="15dp" />
-
-    </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btn_buy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/item_cart"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:text="Buy"
-        android:onClick="seeConfirmation"/>
+        android:onClick="seeConfirmation"
+        android:layout_gravity="center"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -74,7 +63,8 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:text="Go shopping"
-        android:onClick="goShopping"/>
+        android:onClick="goShopping"
+        android:layout_gravity="center"/>
 
 
-</RelativeLayout>
+</LinearLayout>

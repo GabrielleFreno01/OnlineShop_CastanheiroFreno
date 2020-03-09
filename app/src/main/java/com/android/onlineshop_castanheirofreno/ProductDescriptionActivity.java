@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class ProductDescriptionActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ProductDescriptionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

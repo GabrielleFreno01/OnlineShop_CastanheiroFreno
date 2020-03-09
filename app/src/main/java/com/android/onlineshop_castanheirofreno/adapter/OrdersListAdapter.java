@@ -23,6 +23,7 @@ public class OrdersListAdapter extends BaseAdapter {
     public OrdersListAdapter(List<OrderModel> models, Context context){
         this.context = context;
         this.ordersList = models;
+        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class OrdersListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public OrderModel getItem(int position) {
         return ordersList.get(position);
     }
 
@@ -42,23 +43,19 @@ public class OrdersListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (inflater == null){
-            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-        if (convertView == null){
-            convertView = inflater.inflate(R.layout.order, null);
-        }
+        convertView = inflater.inflate(R.layout.order, null);
+
+        OrderModel orderModel = getItem(position);
 
         TextView textView_orderId = convertView.findViewById(R.id.textView_orderId);
         TextView textView_creationDate = convertView.findViewById(R.id.textView_creationDate);
         TextView textView_productName = convertView.findViewById(R.id.textView_productName);
         TextView textView_status = convertView.findViewById(R.id.textView_status);
 
-        textView_orderId.setText(ordersList.get(position).getIdOrder());
-        textView_creationDate.setText(ordersList.get(position).getCreationDate().toString());
+
+        textView_orderId.setText(Integer.toString(orderModel.getIdOrder()));
+        textView_creationDate.setText(orderModel.getCreationDate());
         //textView_productName.setText(ordersList.get(position).get);
-
-
         return convertView;
     }
 }

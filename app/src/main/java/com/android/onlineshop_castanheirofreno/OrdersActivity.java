@@ -12,10 +12,11 @@ import com.android.onlineshop_castanheirofreno.adapter.ItemsListAdapter;
 import com.android.onlineshop_castanheirofreno.adapter.OrdersListAdapter;
 import com.android.onlineshop_castanheirofreno.model.OrderModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrdersActivity extends AppCompatActivity {
-    private List<OrderModel> ordersList;
+    private List<OrderModel> ordersList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,7 @@ public class OrdersActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listView_orders);
 
-        OrdersListAdapter adapter = new OrdersListAdapter( ordersList, OrdersActivity.this);
-        listView.setAdapter(adapter);
+        listView.setAdapter(new OrdersListAdapter(ordersList, this));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

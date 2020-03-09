@@ -132,4 +132,5 @@
     <string name="id_order">N°0000</string>
     <string name="order_creation_date">06.03.2020</string>
     <string name="order_status">In progress</string>
+    <string name="title_orders">Orders</string>
 </resources>

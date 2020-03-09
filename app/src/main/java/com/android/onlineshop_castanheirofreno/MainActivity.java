@@ -55,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ordersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OrdersActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         //Adding products to the List containing the new products
         models = new ArrayList<>();

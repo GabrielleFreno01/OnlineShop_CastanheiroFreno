@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Finding all button in the view
-        this.categoryButton = findViewById(R.id.btn_category);
+        /*this.categoryButton = findViewById(R.id.btn_category);
         this.cartButton = findViewById(R.id.btn_cart);
-        this.ordersButton = findViewById(R.id.btn_orders);
+        this.ordersButton = findViewById(R.id.btn_orders);*/
 
 
         //Setting the Listeners for the buttons
-        categoryButton.setOnClickListener(new View.OnClickListener(){
+       /* categoryButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+*/
 
         //Adding products to the List containing the new products
         models = new ArrayList<>();

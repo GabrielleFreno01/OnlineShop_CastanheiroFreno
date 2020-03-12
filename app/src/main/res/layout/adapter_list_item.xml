@@ -12,7 +12,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="20dp"
-        android:src="@drawable/ic_audio" />
+        android:srcCompat="@drawable/ic_audio" />
 
     <TextView
         android:id="@+id/category_name"
@@ -23,7 +23,7 @@
         android:text="@string/default_name"
         android:textColor="@color/colorText"
         android:textSize="@dimen/basicTextSize"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
 
 </LinearLayout>

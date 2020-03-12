@@ -1,6 +1,7 @@
 package com.android.onlineshop_castanheirofreno;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.solver.widgets.WidgetContainer;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.android.onlineshop_castanheirofreno.adapter.NewItemsAdapter;
 import com.android.onlineshop_castanheirofreno.model.ItemModel;
@@ -17,9 +19,9 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button categoryButton;
-    Button cartButton;
-    Button ordersButton;
+    ImageButton categoryButton;
+    ImageButton cartButton;
+    ImageButton ordersButton;
 
     ViewPager viewPager;
     NewItemsAdapter newItemsAdapter;

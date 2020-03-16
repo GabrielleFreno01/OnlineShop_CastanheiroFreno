@@ -10,14 +10,15 @@ import android.widget.TextView;
 
 import com.android.onlineshop_castanheirofreno.R;
 
-public class ItemsListAdapter extends BaseAdapter {
+
+public class ItemListAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
     private String[][] itemsList;
     private int[] imagesList;
 
-    public ItemsListAdapter(Context context, int[] imagesList, String[][] itemsList){
+    public ItemListAdapter(Context context, int[] imagesList, String[][] itemsList){
         this.context = context;
         this.itemsList = itemsList;
         this.imagesList = imagesList;

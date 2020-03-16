@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreenActivity">
+    tools:context="com.android.onlineshop_castanheirofreno.SplashScreenActivity">
 
 
     <ImageView
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:indeterminate="true"
-        android:layout_marginTop="200px"/>
+        android:layout_marginTop="200px" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

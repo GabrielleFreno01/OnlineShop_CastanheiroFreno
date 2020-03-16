@@ -1,5 +1,6 @@
 package com.android.onlineshop_castanheirofreno;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,7 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.android.onlineshop_castanheirofreno.adapter.ItemsListAdapter;
+import com.android.onlineshop_castanheirofreno.adapter.ItemListAdapter;
+
 
 public class ItemsListActivity extends AppCompatActivity {
 
@@ -37,7 +39,7 @@ public class ItemsListActivity extends AppCompatActivity {
 
         gridView = findViewById(R.id.items_gv);
 
-        ItemsListAdapter adapter = new ItemsListAdapter(ItemsListActivity.this, imagesList, itemsList);
+        ItemListAdapter adapter = new ItemListAdapter(ItemsListActivity.this, imagesList, itemsList);
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -11,30 +11,31 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
-        android:text="@string/id_order"
+        android:text="id_order"
         android:id="@+id/textView_orderId"
         android:gravity="center_vertical"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
-        android:text="@string/order_creation_date"
+        android:text="order_creation_date"
         android:id="@+id/textView_creationDate"
         android:gravity="center_vertical"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
-        android:text="@string/productname"
+        android:text="productname"
         android:id="@+id/textView_productName"
         android:gravity="center_vertical"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
-        android:text="@string/order_status"
+        android:text="order_status"
         android:id="@+id/textView_status"
         android:gravity="center_vertical"/>
 
 
 </LinearLayout>
+

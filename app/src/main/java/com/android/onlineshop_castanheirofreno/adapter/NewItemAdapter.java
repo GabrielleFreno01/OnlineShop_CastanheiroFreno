@@ -18,12 +18,12 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.model.ItemModel;
 import java.util.List;
 
-public class NewItemsAdapter extends PagerAdapter {
+public class NewItemAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater inflater;
     private List<ItemModel> models;
 
-    public NewItemsAdapter(List<ItemModel> models, Context context){
+    public NewItemAdapter(List<ItemModel> models, Context context){
         this.context = context;
         this.models = models;
     }

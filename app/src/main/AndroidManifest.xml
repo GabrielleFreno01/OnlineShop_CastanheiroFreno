@@ -11,25 +11,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OrderDetailsActivity" />
-        <activity android:name=".OrdersActivity" />
-        <activity android:name=".ItemsListActivity" />
-        <activity android:name=".SplashScreenActivity">
+
+        <activity android:name="com.android.onlineshop_castanheirofreno.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".CategoryActivity"
-            android:label="Categories" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ProductDescriptionActivity" />
+            android:name="com.android.onlineshop_castanheirofreno.MainActivity"
+            android:label="main_activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
-            android:name=".CartActivity"
-            android:label="My Cart" />
-        <activity android:name=".ConfirmationActivity" />
+            android:name="com.android.onlineshop_castanheirofreno.AddNewItemActivity"
+            android:label="add_item"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name="com.android.onlineshop_castanheirofreno.ConfirmationActivity"
+            android:label="confirmation"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name="com.android.onlineshop_castanheirofreno.ItemsListActivity"
+            android:label="item_list"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name="com.android.onlineshop_castanheirofreno.OrderDetailsActivity"
+            android:label="order_details"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name="com.android.onlineshop_castanheirofreno.ProductDescriptionActivity"
+            android:label="@string/product_description"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+
+
     </application>
 
 </manifest>

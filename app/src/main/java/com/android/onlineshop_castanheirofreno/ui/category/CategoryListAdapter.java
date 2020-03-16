@@ -1,4 +1,5 @@
-package com.android.onlineshop_castanheirofreno.adapter;
+package com.android.onlineshop_castanheirofreno.ui.category;
+
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,19 +9,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.onlineshop_castanheirofreno.R;
-import com.android.onlineshop_castanheirofreno.model.CategoryListModel;
 
+import com.android.onlineshop_castanheirofreno.R;
 
 import java.util.List;
 
 public class CategoryListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<CategoryListModel> categoryList;
+    private List<CategoryViewModel> categoryList;
     private LayoutInflater inflater;
 
-    public CategoryListAdapter(Context context, List<CategoryListModel> categoryList){
+    public CategoryListAdapter(Context context, List<CategoryViewModel> categoryList){
         this.context = context;
         this.categoryList = categoryList ;
         this.inflater = LayoutInflater.from(context);
@@ -32,7 +32,7 @@ public class CategoryListAdapter extends BaseAdapter {
     }
 
     @Override
-    public CategoryListModel getItem(int position) {
+    public CategoryViewModel getItem(int position) {
         return categoryList.get(position);
     }
 
@@ -45,7 +45,7 @@ public class CategoryListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         convertView = inflater.inflate(R.layout.adapter_list_item, null);
-        CategoryListModel currentCategory = getItem(position);
+        CategoryViewModel currentCategory = getItem(position);
         String categoryName = currentCategory.getCategoryName();
         String tag = currentCategory.getTag();
 

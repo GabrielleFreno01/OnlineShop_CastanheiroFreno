@@ -1,8 +1,10 @@
-package com.android.onlineshop_castanheirofreno.model;
+package com.android.onlineshop_castanheirofreno.ui.orders;
+
+import androidx.lifecycle.ViewModel;
 
 import java.util.Date;
 
-public class OrderModel {
+public class OrderViewModel extends ViewModel {
 
     private int idOrder;
     private double totalPrice;
@@ -11,7 +13,7 @@ public class OrderModel {
     private String status;
     private Date deliveryDate;
 
-    public OrderModel(int idOrder, double totalPrice, String creationDate, int idItem, String status, Date deliveryDate) {
+    public OrderViewModel(int idOrder, double totalPrice, String creationDate, int idItem, String status, Date deliveryDate) {
         this.idOrder = idOrder;
         this.totalPrice = totalPrice;
         this.creationDate = creationDate;
@@ -68,3 +70,5 @@ public class OrderModel {
         this.deliveryDate = deliveryDate;
     }
 }
+
+

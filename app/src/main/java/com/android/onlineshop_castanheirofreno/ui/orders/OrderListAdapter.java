@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.adapter;
+package com.android.onlineshop_castanheirofreno.ui.orders;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,20 +7,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 
 import com.android.onlineshop_castanheirofreno.R;
-import com.android.onlineshop_castanheirofreno.model.OrderModel;
 
 import java.util.List;
 
-public class OrdersListAdapter extends BaseAdapter {
+public class OrderListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<OrderModel> ordersList;
+    private List<OrderViewModel> ordersList;
     private LayoutInflater inflater;
 
-    public OrdersListAdapter(List<OrderModel> models, Context context){
+    public OrderListAdapter(List<OrderViewModel> models, Context context){
         this.context = context;
         this.ordersList = models;
         this.inflater = LayoutInflater.from(context);
@@ -32,7 +30,7 @@ public class OrdersListAdapter extends BaseAdapter {
     }
 
     @Override
-    public OrderModel getItem(int position) {
+    public OrderViewModel getItem(int position) {
         return ordersList.get(position);
     }
 
@@ -43,9 +41,9 @@ public class OrdersListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = inflater.inflate(R.layout.order, null);
+        convertView = inflater.inflate(R.layout.fragment_orders, null);
 
-        OrderModel orderModel = getItem(position);
+        OrderViewModel orderModel = getItem(position);
 
         TextView textView_orderId = convertView.findViewById(R.id.textView_orderId);
         TextView textView_creationDate = convertView.findViewById(R.id.textView_creationDate);

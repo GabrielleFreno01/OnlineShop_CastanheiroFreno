@@ -53,7 +53,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:text="Buy"
-        android:onClick="seeConfirmation"
+        android:onClick="see"
         android:layout_gravity="center"/>
 
     <Button

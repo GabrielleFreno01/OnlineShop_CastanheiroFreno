@@ -15,8 +15,14 @@ import androidx.fragment.app.Fragment;
 
 
 
-public class ConfirmationActivity extends Fragment {
+public class ConfirmationActivity extends Activity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.purchase_confirmation);
+    }
+    /*
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -24,12 +30,13 @@ public class ConfirmationActivity extends Fragment {
         View root = inflater.inflate(R.layout.purchase_confirmation, container, false);
 
         return root;
-    }
-
-
-
-    /*public void goShopping (View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }*/
+
+
+
+    public void goShopping (View view){
+        /*Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);*/
+        onBackPressed();
+    }
 }

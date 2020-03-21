@@ -1,6 +1,7 @@
 package com.android.onlineshop_castanheirofreno.ui.home;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,18 @@ import com.android.onlineshop_castanheirofreno.model.ItemModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
 
 
-    ViewPager viewPager;
-    NewItemAdapter newItemsAdapter;
-    List<ItemModel> models;
+    private ViewPager viewPager;
+    private NewItemAdapter newItemsAdapter;
+    private List<ItemModel> models;
+    private Timer timer;
+    private int current_position;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +47,30 @@ public class HomeFragment extends Fragment {
         viewPager.setAdapter(newItemsAdapter);
         viewPager.setPadding(150,0,150,0);
 
-
+        autoScroll();
         return root;
+    }
+
+    private void autoScroll(){
+
+        //Scroll automatically the cards
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if(current_position==models.size()){
+                    current_position = 0 ;
+                }
+                viewPager.setCurrentItem(current_position++, true);
+            }
+        };
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(runnable);
+            }
+        }, 3500, 5000);
     }
 }

@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.android.onlineshop_castanheirofreno.SplashScreenActivity">
+        <activity android:name="com.android.onlineshop_castanheirofreno.SplashScreenActivity"
+            android:theme="@style/AppTheme.ActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,38 +23,38 @@
 
         <activity
             android:name="com.android.onlineshop_castanheirofreno.MainActivity"
-            android:label="main_activity"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
             android:name="com.android.onlineshop_castanheirofreno.AddNewItemActivity"
-            android:label="add_item"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.ActionBar">
         </activity>
 
         <activity
             android:name="com.android.onlineshop_castanheirofreno.ConfirmationActivity"
-            android:label="confirmation"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.ActionBar">
         </activity>
 
         <activity
             android:name="com.android.onlineshop_castanheirofreno.ItemsListActivity"
-            android:label="item_list"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.ActionBar">
         </activity>
 
         <activity
             android:name="com.android.onlineshop_castanheirofreno.OrderDetailsActivity"
-            android:label="order_details"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.ActionBar">
         </activity>
 
         <activity
             android:name="com.android.onlineshop_castanheirofreno.ProductDescriptionActivity"
-            android:label="@string/product_description"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.ActionBar">
         </activity>
 
 

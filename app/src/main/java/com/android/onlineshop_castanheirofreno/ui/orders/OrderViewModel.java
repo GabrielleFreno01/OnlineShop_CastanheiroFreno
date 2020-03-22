@@ -11,9 +11,9 @@ public class OrderViewModel extends ViewModel {
     private String creationDate;
     private int idItem;
     private String status;
-    private Date deliveryDate;
+    private String deliveryDate;
 
-    public OrderViewModel(int idOrder, double totalPrice, String creationDate, int idItem, String status, Date deliveryDate) {
+    public OrderViewModel(int idOrder, double totalPrice, String creationDate, int idItem, String status, String deliveryDate) {
         this.idOrder = idOrder;
         this.totalPrice = totalPrice;
         this.creationDate = creationDate;
@@ -62,11 +62,11 @@ public class OrderViewModel extends ViewModel {
         this.status = status;
     }
 
-    public Date getDeliveryDate() {
+    public String getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
+    public void setDeliveryDate(String deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 }

@@ -1,5 +1,6 @@
 package com.android.onlineshop_castanheirofreno.ui.home;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -36,10 +37,10 @@ public class HomeFragment extends Fragment {
 
         //Adding products to the List containing the new products
         models = new ArrayList<>();
-        models.add(new ItemModel(R.drawable.acer_aspire_5_599, "Acer Aspire 5", "CHF 599.00"));
-        models.add(new ItemModel(R.drawable.apple_imac_1499, "Apple iMac", "CHF 1499.00"));
-        models.add(new ItemModel(R.drawable.acer_aspire_5_599, "Acer Aspire 5", "CHF 599.00"));
-        models.add(new ItemModel(R.drawable.apple_imac_1499, "Apple iMac", "CHF 1499.00"));
+        models.add(new ItemModel(1, R.drawable.acer_aspire_5_599, "Acer Aspire 5", 599.00));
+        models.add(new ItemModel(2, R.drawable.apple_imac_1499, "Apple iMac", 1499.00));
+        models.add(new ItemModel(3, R.drawable.acer_aspire_5_599, "Acer Aspire 5", 599.00));
+        models.add(new ItemModel(4, R.drawable.apple_imac_1499, "Apple iMac", 1499.00));
 
         newItemsAdapter = new NewItemAdapter(models, getContext());
 
@@ -71,6 +72,6 @@ public class HomeFragment extends Fragment {
             public void run() {
                 handler.post(runnable);
             }
-        }, 3500, 5000);
+        }, 3500, 3500);
     }
 }

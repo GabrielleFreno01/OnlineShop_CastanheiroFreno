@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.onlineshop_castanheirofreno.AddNewItemActivity">
-
+    tools:context="com.android.onlineshop_castanheirofreno.ModifyProductActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,14 +15,39 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_item_number"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textview_id_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
             <ImageButton
                 android:id="@+id/imagebtn_addImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:scaleType="fitCenter"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:background="?android:selectableItemBackground"
-                android:src="@drawable/ic_add_a_photo_blue_24dp" />
+                android:src="@drawable/ic_add_a_photo_blue_24dp"/>
 
             <TextView
                 android:id="@+id/textView_productName"
@@ -159,7 +183,4 @@
                 android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

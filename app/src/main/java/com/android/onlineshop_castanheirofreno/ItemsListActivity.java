@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.android.onlineshop_castanheirofreno.adapter.ItemListAdapter;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryFragment;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryViewModel;
-import com.android.onlineshop_castanheirofreno.ui.orders.OrderViewModel;
 
 
 public class ItemsListActivity extends AppCompatActivity {
@@ -35,7 +34,7 @@ public class ItemsListActivity extends AppCompatActivity {
             R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
             R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
             R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
-            R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,};
+            R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

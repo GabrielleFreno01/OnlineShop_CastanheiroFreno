@@ -53,7 +53,7 @@ public class NewItemAdapter extends PagerAdapter {
 
         imageView.setImageResource(models.get(position).getImage());
         productName.setText(models.get(position).getProductName());
-        price.setText(models.get(position).getPrice());
+        price.setText("CHF "+models.get(position).getPrice());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

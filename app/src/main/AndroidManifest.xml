@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.android.onlineshop_castanheirofreno">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -10,9 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="LockedOrientationActivity">
 
-        <activity android:name="com.android.onlineshop_castanheirofreno.SplashScreenActivity"
+        <activity
+            android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,45 +24,40 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ModifyProductActivity"
+            android:label="@string/title_modify_product"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"/>
         <activity
-            android:name="com.android.onlineshop_castanheirofreno.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name="com.android.onlineshop_castanheirofreno.AddNewItemActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.ActionBar">
-        </activity>
-
+            android:name=".AddNewItemActivity"
+            android:label="@string/title_add_new_item"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"></activity>
         <activity
-            android:name="com.android.onlineshop_castanheirofreno.ConfirmationActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.ActionBar">
-        </activity>
-
+            android:name=".ConfirmationActivity"
+            android:label="@string/title_purchase_confirmation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"></activity>
         <activity
-            android:name="com.android.onlineshop_castanheirofreno.ItemsListActivity"
+            android:name=".ItemsListActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.ActionBar">
-        </activity>
-
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"></activity>
         <activity
-            android:name="com.android.onlineshop_castanheirofreno.OrderDetailsActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.ActionBar">
-        </activity>
-
+            android:name=".OrderDetailsActivity"
+            android:label="@string/title_order_details"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"></activity>
         <activity
-            android:name="com.android.onlineshop_castanheirofreno.ProductDescriptionActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.ActionBar">
-        </activity>
-
-
-
+            android:name=".ProductDescriptionActivity"
+            android:label="@string/title_product_description"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ActionBar"></activity>
     </application>
 
 </manifest>

@@ -19,22 +19,21 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.ItemsListActivity;
 import com.android.onlineshop_castanheirofreno.R;
+import com.android.onlineshop_castanheirofreno.ui.orders.OrderViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryFragment extends Fragment {
 
-    private CategoryViewModel galleryViewModel;
-
+    private List<CategoryViewModel> categoryList = new ArrayList<>();
+    public static final String EXTRA_MESSSAGE ="om.android.onlineshop_castanheirofreno.ui.category";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
         View root = inflater.inflate(R.layout.fragment_category, container, false);
 
-                //Category List
-                List<CategoryViewModel> categoryList = new ArrayList<>();
 
                 categoryList.add(new CategoryViewModel("Audio","audio"));
                 categoryList.add(new CategoryViewModel("Camera", "camera"));
@@ -52,7 +51,7 @@ public class CategoryFragment extends Fragment {
         categoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                seeItemsList(view);
+                seeItemsList(view, categoryList.get(position).getCategoryName());
             }
         });
 
@@ -61,8 +60,12 @@ public class CategoryFragment extends Fragment {
 
 
         }
-    public void seeItemsList (View view){
+    public void seeItemsList (View view, String categoryName){
         Intent intent = new Intent(getContext(), ItemsListActivity.class);
+        TextView name = (TextView) view.findViewById(R.id.category_name);
+        String cat_name = name.getText().toString();
+        intent.putExtra(EXTRA_MESSSAGE, cat_name);
+
         startActivity(intent);
     }
 

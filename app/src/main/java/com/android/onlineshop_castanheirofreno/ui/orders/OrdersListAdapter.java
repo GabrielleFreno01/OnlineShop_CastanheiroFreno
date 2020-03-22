@@ -12,13 +12,13 @@ import com.android.onlineshop_castanheirofreno.R;
 
 import java.util.List;
 
-public class OrderListAdapter extends BaseAdapter {
+public class OrdersListAdapter extends BaseAdapter {
 
     private Context context;
     private List<OrderViewModel> ordersList;
     private LayoutInflater inflater;
 
-    public OrderListAdapter(List<OrderViewModel> models, Context context){
+    public OrdersListAdapter(List<OrderViewModel> models, Context context){
         this.context = context;
         this.ordersList = models;
         this.inflater = LayoutInflater.from(context);
@@ -41,7 +41,7 @@ public class OrderListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = inflater.inflate(R.layout.fragment_orders, null);
+        convertView = inflater.inflate(R.layout.order_list_item, null);
 
         OrderViewModel orderModel = getItem(position);
 

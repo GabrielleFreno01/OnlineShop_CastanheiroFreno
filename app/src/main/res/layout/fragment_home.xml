@@ -15,7 +15,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:actionBarNavMode="standard"
-    tools:context="com.android.onlineshop_castanheirofreno.MainActivity">
+    tools:context="com.android.onlineshop_castanheirofreno.ui.MainActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/newProducts_viewPager"

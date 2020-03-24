@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno;
+package com.android.onlineshop_castanheirofreno.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.model.ItemModel;
 
 

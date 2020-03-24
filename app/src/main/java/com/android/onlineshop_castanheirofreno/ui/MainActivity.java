@@ -1,8 +1,9 @@
-package com.android.onlineshop_castanheirofreno;
+package com.android.onlineshop_castanheirofreno.ui;
 
 import android.os.Bundle;
 import android.view.Menu;
 
+import com.android.onlineshop_castanheirofreno.R;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.core.view.GravityCompat;

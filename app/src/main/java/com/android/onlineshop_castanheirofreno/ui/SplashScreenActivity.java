@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno;
+package com.android.onlineshop_castanheirofreno.ui;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.android.onlineshop_castanheirofreno.R;
 
 
 public class SplashScreenActivity extends AppCompatActivity {

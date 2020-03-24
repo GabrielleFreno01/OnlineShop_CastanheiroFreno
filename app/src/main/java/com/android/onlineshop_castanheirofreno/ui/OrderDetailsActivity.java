@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno;
+package com.android.onlineshop_castanheirofreno.ui;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.model.ItemModel;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrderViewModel;
 

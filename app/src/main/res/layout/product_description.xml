@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.android.onlineshop_castanheirofreno.ProductDescriptionActivity">
+    tools:context="com.android.onlineshop_castanheirofreno.ui.ProductDescriptionActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:onClick="seeShoppingCart"
+                <android:onClick="seeShoppingCart"
                 android:id="@+id/btn_add_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:background="?android:selectableItemBackground"
-                android:src="@drawable/ic_edit_blue_24dp"/>
+                android:src="@drawable/ic_edit_blue_24dp" />
             <TextView
                 android:id="@+id/productDescription"
                 android:layout_width="wrap_content"

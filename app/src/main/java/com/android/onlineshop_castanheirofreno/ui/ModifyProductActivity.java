@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno;
+package com.android.onlineshop_castanheirofreno.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.model.ItemModel;
 import com.google.android.material.textfield.TextInputEditText;
 

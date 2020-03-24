@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno;
+package com.android.onlineshop_castanheirofreno.ui;
 
 
 import android.app.Activity;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-
+import com.android.onlineshop_castanheirofreno.R;
 
 
 public class ConfirmationActivity extends Activity {

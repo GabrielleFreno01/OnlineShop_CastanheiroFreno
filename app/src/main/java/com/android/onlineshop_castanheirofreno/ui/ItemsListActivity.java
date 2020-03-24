@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno;
+package com.android.onlineshop_castanheirofreno.ui;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.adapter.ItemListAdapter;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryFragment;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryViewModel;

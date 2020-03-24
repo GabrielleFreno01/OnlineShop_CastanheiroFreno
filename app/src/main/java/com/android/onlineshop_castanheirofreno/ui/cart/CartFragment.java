@@ -10,7 +10,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import com.android.onlineshop_castanheirofreno.ConfirmationActivity;
+import com.android.onlineshop_castanheirofreno.ui.ConfirmationActivity;
 import com.android.onlineshop_castanheirofreno.R;
 
 

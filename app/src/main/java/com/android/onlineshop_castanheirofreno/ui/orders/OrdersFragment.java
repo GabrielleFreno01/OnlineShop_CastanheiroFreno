@@ -24,7 +24,7 @@ public class OrdersFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_order_list, container, false);
+        View root = inflater.inflate(R.layout.order_list_item, container, false);
 
         ordersList.add(new OrderViewModel(1, 599.00, "03.03.2020", 1, "In Progress", null));
         ordersList.add(new OrderViewModel(2, 599.00, "03.03.2020", 1, "In Progress", null));

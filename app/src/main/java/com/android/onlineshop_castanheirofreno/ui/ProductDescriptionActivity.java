@@ -27,7 +27,7 @@ public class ProductDescriptionActivity extends AppCompatActivity {
         //Replace by a function that gets the item with the idItem
         itemModel = new ItemModel(2, R.drawable.apple_imac_1499, "Apple iMac", 1499.00);
 
-        btn_add_cart = findViewById(R.id.btn_add_cart);
+        //btn_add_cart = findViewById(R.id.btn_add_cart);
         btn_modify_product = findViewById(R.id.btn_modify_product);
 
        btn_modify_product.setOnClickListener(new View.OnClickListener() {

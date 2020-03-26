@@ -52,7 +52,6 @@ public class CustomerEntity {
 
     }
 
-    //getters & setters
     public Long getIdCustomer() {
         return idCustomer;
     }

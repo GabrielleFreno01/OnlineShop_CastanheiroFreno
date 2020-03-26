@@ -1,6 +1,7 @@
 package com.android.onlineshop_castanheirofreno.ui.cart;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,5 +40,11 @@ public class CartFragment extends Fragment {
     public void seeConfirmation (View view) {
         Intent intent = new Intent(this.getContext(), ConfirmationActivity.class);
         startActivity(intent);
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(View view) ;
+
+
     }
 }

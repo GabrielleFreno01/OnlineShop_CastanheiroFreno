@@ -71,7 +71,7 @@ public class ItemViewModel extends AndroidViewModel {
     /**
      * Expose the LiveData ClientEntity query so the UI can observe it.
      */
-    public LiveData<ItemEntity> getCItem() {
+    public LiveData<ItemEntity> getItem() {
         return observableItem;
     }
 

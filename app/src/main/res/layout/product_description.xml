@@ -53,6 +53,12 @@
             </androidx.cardview.widget.CardView>
 
 
+            <Button
+                android:id="@+id/btn_add_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add to the cart"
+                android:layout_marginLeft="130dp" />
 
             <ImageButton
                 android:id="@+id/btn_modify_product"
@@ -62,6 +68,7 @@
                 android:layout_margin="5dp"
                 android:background="?android:selectableItemBackground"
                 android:src="@drawable/ic_edit_blue_24dp" />
+
             <TextView
                 android:id="@+id/productDescription"
                 android:layout_width="wrap_content"

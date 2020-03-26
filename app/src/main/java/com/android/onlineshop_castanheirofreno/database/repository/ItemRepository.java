@@ -25,7 +25,7 @@ public class ItemRepository {
 
     public static ItemRepository getInstance() {
         if (instance == null) {
-            synchronized (OrderRepository.class) {
+            synchronized (ItemRepository.class) {
                 if (instance == null) {
                     instance = new ItemRepository();
                 }

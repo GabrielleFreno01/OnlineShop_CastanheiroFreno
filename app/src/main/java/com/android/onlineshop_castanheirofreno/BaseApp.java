@@ -5,13 +5,11 @@ package com.android.onlineshop_castanheirofreno;
 import android.app.Application;
 
 import com.android.onlineshop_castanheirofreno.database.AppDatabase;
+import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.ItemRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.OrderRepository;
 
 
-/**
- * Android Application class. Used for accessing singletons.
- */
 public class BaseApp extends Application {
 
     @Override
@@ -23,11 +21,11 @@ public class BaseApp extends Application {
         return AppDatabase.getInstance(this);
     }
 
-    public ItemRepository getAccountRepository() {
-        return ItemRepository.getInstance();
+    public OrderRepository getOrderRepository() {
+        return OrderRepository.getInstance();
     }
 
-    public OrderRepository getClientRepository() {
-        return OrderRepository.getInstance();
+    public CustomerRepository getClientRepository() {
+        return CustomerRepository.getInstance();
     }
 }

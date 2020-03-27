@@ -1,74 +1,80 @@
 package com.android.onlineshop_castanheirofreno.ui.orders;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
-import java.util.Date;
+import com.android.onlineshop_castanheirofreno.BaseApp;
+import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
+import com.android.onlineshop_castanheirofreno.database.repository.OrderRepository;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
-public class OrderViewModel extends ViewModel {
+import java.util.List;
 
-    private int idOrder;
-    private double totalPrice;
-    private String creationDate;
-    private int idItem;
-    private String status;
-    private String deliveryDate;
+public class OrderViewModel extends AndroidViewModel {
 
-    public OrderViewModel(int idOrder, double totalPrice, String creationDate, int idItem, String status, String deliveryDate) {
-        this.idOrder = idOrder;
-        this.totalPrice = totalPrice;
-        this.creationDate = creationDate;
-        this.idItem = idItem;
-        this.status = status;
-        this.deliveryDate = deliveryDate;
+    private Application application;
+
+    private OrderRepository repository;
+
+    // MediatorLiveData can observe other LiveData objects and react on their emissions.
+    private final MediatorLiveData<OrderEntity> observableOrder;
+
+    public OrderViewModel(@NonNull Application application,
+                          final Long orderId, OrderRepository orderRepository) {
+        super(application);
+
+        this.application = application;
+
+        repository = orderRepository;
+
+        observableOrder = new MediatorLiveData<>();
+        // set by default null, until we get data from the database.
+        observableOrder.setValue(null);
+
+        LiveData<List<OrderEntity>> order = repository.getOrders(application);
+
+        // observe the changes of the account entity from the database and forward them
+        //observableOrder.addSource(order, observableOrder::setValue);
     }
 
-    public int getIdOrder() {
-        return idOrder;
+    public static class Factory extends ViewModelProvider.NewInstanceFactory {
+
+        @NonNull
+        private final Application application;
+
+        private final Long orderId;
+
+        private final OrderRepository repository;
+
+        public Factory(@NonNull Application application, Long orderId) {
+            this.application = application;
+            this.orderId = orderId;
+            repository = ((BaseApp) application).getOrderRepository();
+        }
+
+        @Override
+        public <T extends ViewModel> T create(Class<T> modelClass) {
+            //noinspection unchecked
+            return (T) new OrderViewModel(application, orderId, repository);
+        }
     }
 
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
+
+    public LiveData<OrderEntity> getOrder() {
+        return observableOrder;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public void createOrder(OrderEntity order, OnAsyncEventListener callback) {
+        repository.insert(order, callback, application);
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public String getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public int getIdItem() {
-        return idItem;
-    }
-
-    public void setIdItem(int idItem) {
-        this.idItem = idItem;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
+    public void updateOrder(OrderEntity order, OnAsyncEventListener callback) {
+        repository.update(order, callback, application);
     }
 }
-
-

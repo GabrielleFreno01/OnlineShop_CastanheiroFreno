@@ -6,7 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
@@ -14,23 +16,36 @@ import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import java.util.List;
 
 @Dao
-public interface OrderDao {
+public abstract class OrderDao {
 
     @Query("SELECT * FROM orders WHERE idOrder = :id")
-    LiveData<OrderEntity> getById(Long id);
+    public abstract LiveData<OrderEntity> getById(Long id);
 
     @Query("SELECT * FROM orders")
-    LiveData<List<OrderEntity>> getAll();
+    public abstract LiveData<List<OrderEntity>> getAll();
+
+    @Query("SELECT * FROM orders WHERE owner=:owner")
+    public abstract LiveData<List<OrderEntity>> getOwned(String owner);
 
     @Insert
-    void insert(OrderEntity order) throws SQLiteConstraintException;
+    public abstract long insert(OrderEntity order);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public abstract void insertAll(List<OrderEntity> orders);
 
     @Update
-    void update(OrderEntity order);
+    public abstract void update(OrderEntity order);
 
     @Delete
-    void delete(OrderEntity order);
+    public abstract void delete(OrderEntity order);
 
     @Query("DELETE FROM orders")
-    void deleteAll();
+    public abstract void deleteAll();
+
+
+    @Transaction
+    public void transaction(OrderEntity sender, OrderEntity recipient) {
+        update(sender);
+        update(recipient);
+    }
 }

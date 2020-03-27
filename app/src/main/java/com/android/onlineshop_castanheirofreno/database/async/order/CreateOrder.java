@@ -1,28 +1,31 @@
 package com.android.onlineshop_castanheirofreno.database.async.order;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.AppDatabase;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 public class CreateOrder extends AsyncTask<OrderEntity, Void, Void> {
 
-    private AppDatabase database;
+    private Application application;
     private OnAsyncEventListener callback;
     private Exception exception;
 
-    public CreateOrder(Context context, OnAsyncEventListener callback) {
-        database = AppDatabase.getInstance(context);
+    public CreateOrder(Application application, OnAsyncEventListener callback) {
+        this.application = application;
         this.callback = callback;
     }
 
     @Override
     protected Void doInBackground(OrderEntity... params) {
         try {
-            for (OrderEntity client : params)
-                database.orderDao().insert(client);
+            for (OrderEntity order : params)
+                ((BaseApp) application).getDatabase().orderDao()
+                        .insert(order);
         } catch (Exception e) {
             exception = e;
         }

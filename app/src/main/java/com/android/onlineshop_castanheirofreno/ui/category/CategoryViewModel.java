@@ -10,18 +10,16 @@ public class CategoryViewModel extends ViewModel {
 
     public CategoryViewModel(String categoryName, String tag) {
 
-            this.categoryName = categoryName;
-            this.tag = tag ;
+        this.categoryName = categoryName;
+        this.tag = tag ;
 
-        }
-
-        public String getCategoryName(){
-            return categoryName;
-        }
-
-        public String getTag(){
-            return tag;
-        }
     }
 
+    public String getCategoryName(){
+        return categoryName;
+    }
 
+    public String getTag(){
+        return tag;
+    }
+}

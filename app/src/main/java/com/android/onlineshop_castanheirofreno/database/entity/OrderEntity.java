@@ -4,15 +4,28 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 
-@Entity(tableName = "orders")// , foreignKeys = {@ForeignKey(entity = CustomerEntity.class, parentColumns = "idOrder", childColumns = "idCustomer"),
-                               //               @ForeignKey(entity = ItemEntity.class, parentColumns = "idOrder", childColumns = "idItem")})
+@Entity(tableName = "orders",
+        foreignKeys =
+        @ForeignKey(
+                entity = CustomerEntity.class,
+                parentColumns = "email",
+                childColumns = "owner",
+                onDelete = ForeignKey.CASCADE
+        ),
+        indices = {
+                @Index(
+                        value = {"owner"}
+                )}
+)
+
 public class OrderEntity {
 
         @PrimaryKey(autoGenerate = true)
-        private Long idOrder;
+        private int idOrder;
 
         @ColumnInfo(name = "price")
         private double price;
@@ -23,8 +36,8 @@ public class OrderEntity {
         @ColumnInfo(name = "idItem")
         private long idItem;
 
-        @ColumnInfo(name = "idCustomer")
-        private long idCustomer;
+        @ColumnInfo(name = "owner")
+        private String owner;
 
         @ColumnInfo(name = "status")
         private String status;
@@ -36,23 +49,21 @@ public class OrderEntity {
         public OrderEntity() {
         }
 
-        public OrderEntity(double price, String creation_date,String delivery_date, long idItem, String status, long idCustomer) {
+        public OrderEntity(double price, String creation_date,String delivery_date, long idItem, String status, String owner) {
                 this.price = price;
                 this.creation_date = creation_date;
                 this.delivery_date = delivery_date;
                 this.idItem = idItem;
                 this.status = status;
-                this.idCustomer = idCustomer;
+                this.owner = owner;
 
         }
 
-        //getters & setters
-
-        public Long getIdOrder() {
+        public int getIdOrder() {
                 return idOrder;
         }
 
-        public void setIdOrder(Long id) {
+        public void setIdOrder(int id) {
                 this.idOrder = id;
         }
 
@@ -76,9 +87,9 @@ public class OrderEntity {
 
         public void setDelivery_date(String delivery_date) { this.delivery_date = delivery_date; }
 
-        public long getIdCustomer() { return idCustomer; }
+        public String getOwner() { return owner; }
 
-        public void setIdCustomer(long idCustomer) { this.idCustomer = idCustomer; }
+        public void setOwner(String owner) { this.owner = owner; }
 
 
 

@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="@string/menu_home" />
+            android:title="Home" />
+
         <item
             android:id="@+id/nav_category"
             android:icon="@drawable/ic_categories"
             android:title="Categories" />
-        <item
-            android:id="@+id/nav_orders"
-            android:icon="@drawable/ic_orders"
-            android:title="Orders" />
 
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_order"
+            android:title="Orders" />
         <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_cart"
-            android:title="My cart" />
+            android:title="My Cart" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_lock"
+            android:title="@string/action_logout"/>
+
+
     </group>
+
 </menu>

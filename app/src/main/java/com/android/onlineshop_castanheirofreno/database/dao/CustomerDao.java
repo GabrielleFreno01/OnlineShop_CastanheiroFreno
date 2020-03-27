@@ -4,23 +4,45 @@ import android.database.sqlite.SQLiteConstraintException;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
+import androidx.room.Update;
 
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
+import com.android.onlineshop_castanheirofreno.database.pojo.ClientWithOrders;
 
 import java.util.List;
+
 @Dao
 public interface CustomerDao {
 
-    @Query("SELECT * FROM customers WHERE idCustomer= :id")
-    LiveData<CustomerEntity> getById(Long id);
+    @Query("SELECT * FROM customer WHERE email = :id")
+    LiveData<CustomerEntity> getById(String id);
 
-    @Query("SELECT * FROM customers")
+    @Query("SELECT * FROM customer")
     LiveData<List<CustomerEntity>> getAll();
 
+    @Transaction
+    @Query("SELECT * FROM customer WHERE email != :id")
+    LiveData<List<ClientWithOrders>> getOtherClientsWithOrders(String id);
+
     @Insert
-    void insert(CustomerEntity customer) throws SQLiteConstraintException;
+    long insert(CustomerEntity client) throws SQLiteConstraintException;
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<CustomerEntity> clients);
+
+    @Update
+    void update(CustomerEntity client);
+
+    @Delete
+    void delete(CustomerEntity client);
+
+    @Query("DELETE FROM customer")
+    void deleteAll();
 }

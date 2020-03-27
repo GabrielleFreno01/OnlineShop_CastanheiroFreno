@@ -1,9 +1,11 @@
 package com.android.onlineshop_castanheirofreno.database.repository;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
+import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.AppDatabase;
 import com.android.onlineshop_castanheirofreno.database.async.order.CreateOrder;
 import com.android.onlineshop_castanheirofreno.database.async.order.DeleteOrder;
@@ -17,7 +19,9 @@ public class OrderRepository {
 
     private static OrderRepository instance;
 
-    private OrderRepository() {}
+    private OrderRepository() {
+
+    }
 
     public static OrderRepository getInstance() {
         if (instance == null) {
@@ -30,23 +34,32 @@ public class OrderRepository {
         return instance;
     }
 
-    public LiveData<OrderEntity> getOrder(final long id, Context context) {
-        return AppDatabase.getInstance(context).orderDao().getById(id);
-}
-
-    public LiveData<List<OrderEntity>> getAllOrders(Context context) {
-        return AppDatabase.getInstance(context).orderDao().getAll();
+    public LiveData<OrderEntity> getOrder(final Long orderId, Application application) {
+        return ((BaseApp) application).getDatabase().orderDao().getById(orderId);
     }
 
-    public void insert(final OrderEntity order, OnAsyncEventListener callback, Context context) {
-        new CreateOrder(context, callback).execute(order);
+    public LiveData<List<OrderEntity>> getOrders(Application application) {
+        return ((BaseApp) application).getDatabase().orderDao().getAll();
     }
 
-    public void update(final OrderEntity order, OnAsyncEventListener callback, Context context) {
-        new UpdateOrder(context, callback).execute(order);
+    public LiveData<List<OrderEntity>> getByOwner(final String owner, Application application) {
+        return ((BaseApp) application).getDatabase().orderDao().getOwned(owner);
     }
 
-    public void delete(final OrderEntity order, OnAsyncEventListener callback, Context context) {
-        new DeleteOrder(context, callback).execute(order);
+    public void insert(final OrderEntity order, OnAsyncEventListener callback,
+                       Application application) {
+        new CreateOrder(application, callback).execute(order);
     }
+
+    public void update(final OrderEntity order, OnAsyncEventListener callback,
+                       Application application) {
+        new UpdateOrder(application, callback).execute(order);
+    }
+
+    public void delete(final OrderEntity order, OnAsyncEventListener callback,
+                       Application application) {
+        new DeleteOrder(application, callback).execute(order);
+    }
+
+
 }

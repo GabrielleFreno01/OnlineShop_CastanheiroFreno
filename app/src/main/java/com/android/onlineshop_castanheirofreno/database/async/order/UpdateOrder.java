@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.database.async;
+package com.android.onlineshop_castanheirofreno.database.async.order;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -8,13 +8,13 @@ import com.android.onlineshop_castanheirofreno.database.AppDatabase;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
-public class DeleteOrder extends AsyncTask<OrderEntity, Void, Void> {
+public class UpdateOrder extends AsyncTask<OrderEntity, Void, Void> {
 
     private AppDatabase database;
     private OnAsyncEventListener callback;
     private Exception exception;
 
-    public DeleteOrder(Context context, OnAsyncEventListener callback) {
+    public UpdateOrder(Context context, OnAsyncEventListener callback) {
         database = AppDatabase.getInstance(context);
         this.callback = callback;
     }
@@ -22,8 +22,8 @@ public class DeleteOrder extends AsyncTask<OrderEntity, Void, Void> {
     @Override
     protected Void doInBackground(OrderEntity... params) {
         try {
-            for (OrderEntity client : params)
-                database.orderDao().delete(client);
+            for (OrderEntity order : params)
+                database.orderDao().update(order);
         } catch (Exception e) {
             exception = e;
         }

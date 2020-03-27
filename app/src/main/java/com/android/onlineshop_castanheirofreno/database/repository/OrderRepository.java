@@ -5,9 +5,9 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.android.onlineshop_castanheirofreno.database.AppDatabase;
-import com.android.onlineshop_castanheirofreno.database.async.CreateOrder;
-import com.android.onlineshop_castanheirofreno.database.async.DeleteOrder;
-import com.android.onlineshop_castanheirofreno.database.async.UpdateOrder;
+import com.android.onlineshop_castanheirofreno.database.async.order.CreateOrder;
+import com.android.onlineshop_castanheirofreno.database.async.order.DeleteOrder;
+import com.android.onlineshop_castanheirofreno.database.async.order.UpdateOrder;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 

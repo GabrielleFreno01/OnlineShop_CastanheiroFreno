@@ -1,29 +1,28 @@
-package com.android.onlineshop_castanheirofreno.database.async;
+package com.android.onlineshop_castanheirofreno.database.async.order;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
 import com.android.onlineshop_castanheirofreno.database.AppDatabase;
-import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
-public class CreateItem extends AsyncTask<ItemEntity, Void, Void> {
+public class CreateOrder extends AsyncTask<OrderEntity, Void, Void> {
 
     private AppDatabase database;
     private OnAsyncEventListener callback;
     private Exception exception;
 
-    public CreateItem(Context context, OnAsyncEventListener callback) {
+    public CreateOrder(Context context, OnAsyncEventListener callback) {
         database = AppDatabase.getInstance(context);
         this.callback = callback;
     }
 
     @Override
-    protected Void doInBackground(ItemEntity... params) {
+    protected Void doInBackground(OrderEntity... params) {
         try {
-            for (ItemEntity item : params)
-                database.itemDao().insert(item);
+            for (OrderEntity client : params)
+                database.orderDao().insert(client);
         } catch (Exception e) {
             exception = e;
         }

@@ -7,8 +7,8 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
-@Entity(tableName = "orders")//, foreignKeys = {@ForeignKey(entity = CustomerEntity.class, parentColumns = "idOrder", childColumns = "idCustomer"),
-                               //         @ForeignKey(entity = ItemEntity.class, parentColumns = "idOrder", childColumns = "idItem")})
+@Entity(tableName = "orders")// , foreignKeys = {@ForeignKey(entity = CustomerEntity.class, parentColumns = "idOrder", childColumns = "idCustomer"),
+                               //               @ForeignKey(entity = ItemEntity.class, parentColumns = "idOrder", childColumns = "idItem")})
 public class OrderEntity {
 
         @PrimaryKey(autoGenerate = true)

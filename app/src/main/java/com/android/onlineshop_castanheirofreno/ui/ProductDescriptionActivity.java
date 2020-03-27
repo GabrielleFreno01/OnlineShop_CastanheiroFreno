@@ -16,8 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.model.ItemModel;
-import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
-import com.android.onlineshop_castanheirofreno.ui.cart.CartFragment;
+
 
 
 public class ProductDescriptionActivity extends AppCompatActivity {
@@ -35,9 +34,9 @@ public class ProductDescriptionActivity extends AppCompatActivity {
         return root;
     }
 
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.product_description);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.product_description);
         //Replace by a function that gets the item with the idItem
         itemModel = new ItemModel(2, R.drawable.apple_imac_1499, "Apple iMac", 1499.00);
 
@@ -67,13 +66,10 @@ public class ProductDescriptionActivity extends AppCompatActivity {
         intent.putExtra("ID_ITEM", itemModel.getIdItem());
         startActivity(intent);
     }
-        public void seeShoppingCart(){
-            Intent intent = new Intent(this, CartActivity.class);
-            startActivity(intent);
-        }
-    }
-
-
-
+    /*public void seeShoppingCart(){
+        Intent intent = new Intent(this, CartActivity.class);
+        startActivity(intent);
+    }*/
+}
 
 

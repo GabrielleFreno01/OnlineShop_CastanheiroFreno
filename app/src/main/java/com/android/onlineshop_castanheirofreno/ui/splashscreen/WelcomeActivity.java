@@ -29,9 +29,6 @@ public class WelcomeActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
 
-
-
-
         //redirection vers la page principale après 2 secondes
         Runnable run = new Runnable() {
             @Override
@@ -42,7 +39,7 @@ public class WelcomeActivity  extends AppCompatActivity {
             }
         };
 
-        new Handler().postDelayed(run, 1500);
+        new Handler().postDelayed(run, 1000);
     }
 
 }

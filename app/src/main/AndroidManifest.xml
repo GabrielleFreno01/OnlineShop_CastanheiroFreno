@@ -116,6 +116,11 @@
             android:label="Item description"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".ui.splashscreen.WelcomeActivity"
+            android:label="Item description"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

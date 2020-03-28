@@ -15,11 +15,7 @@ import androidx.room.PrimaryKey;
                 parentColumns = "email",
                 childColumns = "owner",
                 onDelete = ForeignKey.CASCADE
-        ),
-        indices = {
-                @Index(
-                        value = {"owner"}
-                )}
+        )
 )
 
 public class OrderEntity {

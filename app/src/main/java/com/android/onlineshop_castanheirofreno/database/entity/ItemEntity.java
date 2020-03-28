@@ -8,8 +8,8 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "items")//, foreignKeys = {@ForeignKey(entity = CategoryEntity.class, parentColumns = "idItem", childColumns = "idCategory"),
-                             //@ForeignKey(entity = ImageEntity.class, parentColumns = "idItem", childColumns = "idImage")})
+@Entity(tableName = "items", foreignKeys = {@ForeignKey(entity = CategoryEntity.class, parentColumns = "idCategory", childColumns = "idItem"),
+                             @ForeignKey(entity = ImageEntity.class, parentColumns = "idImage", childColumns = "idItem")})
 
 public class ItemEntity {
 

@@ -26,7 +26,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-@Database(entities = {OrderEntity.class, CustomerEntity.class, ItemEntity.class, ImageEntity.class, CategoryEntity.class}, version = 6)
+@Database(entities = {OrderEntity.class, CustomerEntity.class, ItemEntity.class, ImageEntity.class, CategoryEntity.class}, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";
@@ -40,6 +40,10 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CustomerDao customerDao();
 
     public abstract ItemDao itemDao();
+
+    public abstract CategoryDao categoryDao();
+
+    public abstract ImageDao imageDao();
 
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 

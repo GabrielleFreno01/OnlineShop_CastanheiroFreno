@@ -38,6 +38,7 @@ public class OrderRepository {
         return ((BaseApp) application).getDatabase().orderDao().getById(orderId);
     }
 
+
     public LiveData<List<OrderEntity>> getOrders(Application application) {
         return ((BaseApp) application).getDatabase().orderDao().getAll();
     }
@@ -60,6 +61,7 @@ public class OrderRepository {
                        Application application) {
         new DeleteOrder(application, callback).execute(order);
     }
+
 
 
 }

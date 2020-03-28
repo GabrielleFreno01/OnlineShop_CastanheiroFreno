@@ -28,8 +28,8 @@ public interface CustomerDao {
     LiveData<List<CustomerEntity>> getAll();
 
     @Transaction
-    @Query("SELECT * FROM customer WHERE email != :id")
-    LiveData<List<ClientWithOrders>> getOtherClientsWithOrders(String id);
+    @Query("SELECT * FROM customer WHERE email != :owner")
+    LiveData<List<ClientWithOrders>> getOtherClientsWithOrders(String owner);
 
     @Insert
     long insert(CustomerEntity client) throws SQLiteConstraintException;

@@ -30,7 +30,7 @@ public class OrderListViewModel extends AndroidViewModel {
     private final MediatorLiveData<List<OrderEntity>> observableOwnOrder;
 
     public OrderListViewModel(@NonNull Application application,
-                              final String ownerId,
+                              final String owner,
                               CustomerRepository customerRepository,
                               OrderRepository orderRepository) {
         super(application);
@@ -46,8 +46,8 @@ public class OrderListViewModel extends AndroidViewModel {
         observableOwnOrder.setValue(null);
 
         LiveData<List<ClientWithOrders>> clientOrders =
-                customerRepository.getOtherClientsWithOrders(ownerId, application);
-        LiveData<List<OrderEntity>> ownOrders = repository.getByOwner(ownerId, application);
+                customerRepository.getOtherClientsWithOrders(owner, application);
+        LiveData<List<OrderEntity>> ownOrders = repository.getByOwner(owner, application);
 
         // observe the changes of the entities from the database and forward them
         observableOrderCustomer.addSource(clientOrders, observableOrderCustomer::setValue);
@@ -60,15 +60,15 @@ public class OrderListViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final String ownerId;
+        private final String orderId;
 
         private final CustomerRepository customerRepository;
 
         private final OrderRepository orderRepository;
 
-        public Factory(@NonNull Application application, String ownerId) {
+        public Factory(@NonNull Application application, String orderId) {
             this.application = application;
-            this.ownerId = ownerId;
+            this.orderId = orderId;
             customerRepository = ((BaseApp) application).getClientRepository();
             orderRepository = ((BaseApp) application).getOrderRepository();
         }
@@ -76,7 +76,7 @@ public class OrderListViewModel extends AndroidViewModel {
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new OrderListViewModel(application, ownerId, customerRepository, orderRepository);
+            return (T) new OrderListViewModel(application, orderId, customerRepository, orderRepository);
         }
     }
 

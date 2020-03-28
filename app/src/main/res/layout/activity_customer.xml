@@ -9,6 +9,10 @@
     android:orientation="vertical"
     tools:context="com.android.onlineshop_castanheirofreno.ui.customer.CustomerActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -22,109 +26,57 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginLeft="120dp"/>
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="30dp"/>
 
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
+            <EditText
                 android:id="@+id/firstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/client_firstName"
-                android:inputType="textPersonName"
-                android:focusable="false"
-                android:enabled="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="@string/client_firstName"
+                android:layout_marginBottom="20dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TextView
+            <EditText
                 android:id="@+id/lastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/client_name"
-                android:inputType="textPersonName"
-                android:focusable="false"
-                android:enabled="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="@string/client_name"
+                android:layout_marginBottom="20dp"/>
 
-
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
-            android:background="@android:color/darker_gray" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
+            <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:focusable="false"
-                android:enabled="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="@string/prompt_email"
+                android:layout_marginBottom="20dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TextView
+            <EditText
                 android:id="@+id/customer_telephone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Telephone"
-                android:inputType="phone"
-                android:focusable="false"
-                android:enabled="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="Telephone"
+                android:layout_marginBottom="20dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
+            <EditText
                 android:id="@+id/customer_city_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="City Code"
-                android:inputType="number"
-                android:focusable="false"
-                android:enabled="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="City Code"
+                android:layout_marginBottom="20dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TextView
+            <EditText
                 android:id="@+id/customer_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="City"
-                android:inputType="text"
-                android:focusable="false"
-                android:enabled="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="City"
+                android:layout_marginBottom="20dp"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -135,38 +87,30 @@
             android:orientation="vertical"
             tools:context="ch.hevs.aislab.demo.ui.client.ClientActivity">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@android:color/darker_gray" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:hint="@string/prompt_password"
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="20dp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/passwordRep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/client_repeat_password"
-                    android:inputType="textPassword"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="@string/client_repeat_password" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save_button"
+                android:layout_marginLeft="120dp"/>
         </LinearLayout>
+
+
     </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

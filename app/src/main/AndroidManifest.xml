@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.onlineshop_castanheirofreno">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".BaseApp"
         android:allowBackup="true"
@@ -111,11 +113,6 @@
 
         <activity
             android:name=".ui.item.ItemDescriptionActivity"
-            android:label="Item description"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name=".ui.customer.CustomerActivity"
             android:label="Item description"
             android:theme="@style/AppTheme.NoActionBar" />
 

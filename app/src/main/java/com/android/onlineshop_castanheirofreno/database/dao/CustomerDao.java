@@ -20,7 +20,10 @@ import java.util.List;
 public interface CustomerDao {
 
     @Query("SELECT * FROM customer WHERE email = :id")
-    LiveData<CustomerEntity> getById(String id);
+    LiveData<CustomerEntity> getById(long id);
+
+    @Query("SELECT * FROM customer WHERE email = :id")
+    LiveData<CustomerEntity> getByEmail(String id);
 
     @Query("SELECT * FROM customer")
     LiveData<List<CustomerEntity>> getAll();

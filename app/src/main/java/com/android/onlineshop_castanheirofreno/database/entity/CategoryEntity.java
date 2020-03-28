@@ -14,6 +14,8 @@ public class CategoryEntity {
     @ColumnInfo(name = "name")
     private String name;
 
+    @ColumnInfo(name = "tag")
+    private String tag;
 
     @Ignore
     public CategoryEntity() {
@@ -41,5 +43,11 @@ public class CategoryEntity {
             this.name = name;
         }
 
+    public String getTag() {
+        return tag;
+    }
 
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 }

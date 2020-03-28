@@ -32,8 +32,16 @@ public class CustomerRepository {
         return instance;
     }
 
-    public LiveData<CustomerEntity> getCustomer(final String customerId, Application application) {
+    public LiveData<CustomerEntity> getCustomer(final long customerId, Application application) {
         return ((BaseApp) application).getDatabase().customerDao().getById(customerId);
+    }
+
+    public LiveData<CustomerEntity> getCustomerUser(final String user, Application application) {
+        return ((BaseApp) application).getDatabase().customerDao().getByEmail(user);
+    }
+
+    public LiveData<CustomerEntity> getCustomerByEmail(final String email, Application application) {
+        return ((BaseApp) application).getDatabase().customerDao().getByEmail(email);
     }
 
     public LiveData<List<CustomerWithOrders>> getCustomerWithOrders(final String owner,

@@ -70,11 +70,6 @@ public class DatabaseInitializer {
 
         addOrder(db, 429, "23.03.2020", "23.03.2020", 0, "Delivered", "t@t.com");
 
-        //Items
-        addItem(db, "Acer Aspire VX", "Magnifique ordinateur", 950, 2, 3, 1);
-
-        addItem(db, "Apple IMac" , "Parfait pour travailler", 1020, 3, 3, 0);
-
         //Categories
         addCategory(db, "Audio");
 
@@ -87,6 +82,13 @@ public class DatabaseInitializer {
         addCategory(db, "Smartphone");
 
         addCategory(db, "TV");
+
+        //Items
+        addItem(db, "Acer Aspire VX", "Magnifique ordinateur", 950, 2, 3, 1);
+
+        addItem(db, "Apple IMac" , "Parfait pour travailler", 1020, 3, 3, 0);
+
+
 
 
         //Images

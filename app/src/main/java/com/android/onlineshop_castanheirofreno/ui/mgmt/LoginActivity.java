@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             focusView.requestFocus();
         } else {
             progressBar.setVisibility(View.VISIBLE);
-            repository.getCustomer(email, getApplication()).observe(LoginActivity.this, clientEntity -> {
+            repository.getCustomerByEmail(email, getApplication()).observe(LoginActivity.this, clientEntity -> {
                 if (clientEntity != null) {
                     if (clientEntity.getPassword().equals(password)) {
                         // We need an Editor object to make preference changes.

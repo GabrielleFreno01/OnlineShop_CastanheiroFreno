@@ -1,31 +1,34 @@
 package com.android.onlineshop_castanheirofreno.ui.customer;
 
+
+
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.appcompat.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.view.GravityCompat;
-import androidx.lifecycle.ViewModelProviders;
-
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.ui.MainActivity;
+import com.android.onlineshop_castanheirofreno.ui.confirmation.ConfirmationActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
+
 public class CustomerActivity extends BaseActivity {
 
-    private static final int EDIT_CUSTOMER = 1;
-    private static final int DELETE_CUSTOMER = 2;
+    private static final int EDIT_CLIENT = 1;
+    private static final int DELETE_CLIENT = 2;
 
     private Toast toast;
 
@@ -40,16 +43,17 @@ public class CustomerActivity extends BaseActivity {
     private EditText etCity;
     private EditText etCity_code;
 
+    private Button btn_save;
 
     private CustomerViewModel viewModel;
 
-    private CustomerEntity customer;
+    private CustomerEntity client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle(R.string.title_activity_client);
+        setTitle("My account");
         navigationView.setCheckedItem(position);
 
         getLayoutInflater().inflate(R.layout.activity_customer, frameLayout);
@@ -61,12 +65,42 @@ public class CustomerActivity extends BaseActivity {
 
         CustomerViewModel.Factory factory = new CustomerViewModel.Factory(getApplication(), user);
         viewModel = ViewModelProviders.of(this, factory).get(CustomerViewModel.class);
-        viewModel.getCustomer().observe(this, customertEntity -> {
-            if (customertEntity != null) {
-                customer = customertEntity;
+        viewModel.getCustomer().observe(this, customerEntity -> {
+            if (customerEntity != null) {
+                client = customerEntity;
                 updateContent();
             }
         });
+
+        btn_save = (Button) findViewById(R.id.btn_save);
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save(v);
+            }
+        });
+
+    }
+    public void save (View view) {
+        saveChanges(
+                etFirstName.getText().toString(),
+                etLastName.getText().toString(),
+                etEmail.getText().toString(),
+                etPwd1.getText().toString(),
+                etPwd2.getText().toString(),
+                etTelephone.getText().toString(),
+                etCity.getText().toString(),
+                Integer.parseInt(etCity_code.getText().toString())
+        );
+
+        LinearLayout linearLayout = findViewById(R.id.clientPasswordLayout);
+        linearLayout.setVisibility(View.GONE);
+        etFirstName.setFocusable(false);
+        etFirstName.setEnabled(false);
+        etLastName.setFocusable(false);
+        etLastName.setEnabled(false);
+        etEmail.setFocusable(false);
+        etEmail.setEnabled(false);
     }
 
     @Override
@@ -75,7 +109,6 @@ public class CustomerActivity extends BaseActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
             return false;
         }
-
         finish();
         return super.onNavigationItemSelected(item);
     }
@@ -83,10 +116,10 @@ public class CustomerActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, EDIT_CUSTOMER, Menu.NONE, getString(R.string.action_edit))
+        menu.add(0, EDIT_CLIENT, Menu.NONE, getString(R.string.action_edit))
                 .setIcon(R.drawable.ic_edit)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        menu.add(0, EDIT_CUSTOMER, Menu.NONE, getString(R.string.action_delete))
+        menu.add(0, DELETE_CLIENT, Menu.NONE, getString(R.string.action_delete))
                 .setIcon(R.drawable.ic_delete)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return true;
@@ -94,22 +127,18 @@ public class CustomerActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == EDIT_CUSTOMER) {
-            if (isEditable) {
-                item.setIcon(R.drawable.ic_edit);
-                switchEditableMode();
-            } else {
-                item.setIcon(R.drawable.ic_done_white_24dp);
-                switchEditableMode();
-            }
+        if (item.getItemId() == EDIT_CLIENT) {
+            item.setIcon(R.drawable.ic_edit);
+            switchEditableMode();
+
         }
-        if (item.getItemId() == DELETE_CUSTOMER) {
+        if (item.getItemId() == DELETE_CLIENT) {
             final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle(getString(R.string.action_delete));
             alertDialog.setCancelable(false);
             alertDialog.setMessage(getString(R.string.delete_msg));
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_delete), (dialog, which) -> {
-                viewModel.deleteCustomer(customer, new OnAsyncEventListener() {
+                viewModel.deleteCustomer(client, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
                         logout();
@@ -136,10 +165,14 @@ public class CustomerActivity extends BaseActivity {
         etCity = findViewById(R.id.customer_city);
         etCity_code = findViewById(R.id.customer_city_code);
 
+
+
     }
+
 
     private void switchEditableMode() {
         if (!isEditable) {
+
             LinearLayout linearLayout = findViewById(R.id.clientPasswordLayout);
             linearLayout.setVisibility(View.VISIBLE);
             etFirstName.setFocusable(true);
@@ -154,6 +187,14 @@ public class CustomerActivity extends BaseActivity {
             etEmail.setEnabled(true);
             etEmail.setFocusableInTouchMode(true);
 
+            etPwd1.setFocusable(true);
+            etPwd1.setEnabled(true);
+            etPwd1.setFocusableInTouchMode(true);
+
+            etPwd2.setFocusable(true);
+            etPwd2.setEnabled(true);
+            etPwd2.setFocusableInTouchMode(true);
+
             etTelephone.setFocusable(true);
             etTelephone.setEnabled(true);
             etTelephone.setFocusableInTouchMode(true);
@@ -165,8 +206,9 @@ public class CustomerActivity extends BaseActivity {
             etCity_code.setFocusable(true);
             etCity_code.setEnabled(true);
             etCity_code.setFocusableInTouchMode(true);
-            etCity_code.requestFocus();
 
+
+            isEditable = true;
         } else {
             saveChanges(
                     etFirstName.getText().toString(),
@@ -175,9 +217,10 @@ public class CustomerActivity extends BaseActivity {
                     etPwd1.getText().toString(),
                     etPwd2.getText().toString(),
                     etTelephone.getText().toString(),
-                    etCity.getText().toString()
-                    //Integer.parseInt(etCity_code.toString())
+                    etCity.getText().toString(),
+                    Integer.parseInt(etCity_code.getText().toString())
             );
+
             LinearLayout linearLayout = findViewById(R.id.clientPasswordLayout);
             linearLayout.setVisibility(View.GONE);
             etFirstName.setFocusable(false);
@@ -186,49 +229,47 @@ public class CustomerActivity extends BaseActivity {
             etLastName.setEnabled(false);
             etEmail.setFocusable(false);
             etEmail.setEnabled(false);
-            etTelephone.setFocusable(false);
-            etTelephone.setEnabled(false);
-            etCity.setFocusable(false);
-            etCity.setEnabled(false);
-            etCity_code.setFocusable(false);
-            etCity_code.setEnabled(false);
         }
         isEditable = !isEditable;
     }
 
     private void updateContent() {
-        if (customer != null) {
-            etFirstName.setText(customer.getFirstName());
-            etLastName.setText(customer.getLastName());
-            etEmail.setText(customer.getEmail());
-            etTelephone.setText(customer.getTelephone());
-            etCity.setText(customer.getCity());
-            //etCity_code.setText(customer.getCity_code());
+        if (client != null) {
+            etFirstName.setText(client.getFirstName());
+            etLastName.setText(client.getLastName());
+            etEmail.setText(client.getEmail());
+            etCity.setText(client.getCity());
+            etCity_code.setText(String.valueOf(client.getCity_code()));
+            etTelephone.setText(client.getTelephone());
+
+
         }
     }
 
-    private void saveChanges(String firstName, String lastName, String email, String pwd, String pwd2, String telephone, String city){//, int city_code) {
-        if (!pwd.equals(pwd2) || pwd.length() < 5) {
-            toast = Toast.makeText(this, getString(R.string.error_edit_invalid_password), Toast.LENGTH_LONG);
-            toast.show();
-            etPwd1.setText("");
-            etPwd2.setText("");
-            return;
+    private void saveChanges(String firstName, String lastName, String email, String pwd, String pwd2, String telephone, String city, int city_code) {
+        if(!(pwd.equals("Password")) && !(pwd2.equals("Repeat Password"))) {
+            if (!pwd.equals(pwd2) || pwd.length() < 5) {
+                toast = Toast.makeText(this, getString(R.string.error_edit_invalid_password), Toast.LENGTH_LONG);
+                toast.show();
+                etPwd1.setText("");
+                etPwd2.setText("");
+                return;
+            }
         }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError(getString(R.string.error_invalid_email));
             etEmail.requestFocus();
             return;
         }
-        customer.setEmail(email);
-        customer.setFirstName(firstName);
-        customer.setLastName(lastName);
-        customer.setPassword(pwd);
-        customer.setCity(city);
-        //customer.setCity_code(city_code);
-        customer.setTelephone(telephone);
+        client.setEmail(email);
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setPassword(pwd);
+        client.setTelephone(telephone);
+        client.setCity(city);
+        client.setCity_code(city_code);
 
-        viewModel.updateCustomer(customer, new OnAsyncEventListener() {
+        viewModel.updateCustomer(client, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
                 setResponse(true);

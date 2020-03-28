@@ -25,4 +25,6 @@ public interface CategoryDao {
     @Insert
     void insert(CategoryEntity category) throws SQLiteConstraintException;
 
+
+
 }

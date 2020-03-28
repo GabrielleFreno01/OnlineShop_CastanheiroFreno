@@ -18,10 +18,13 @@ import java.util.List;
 public interface ItemDao {
 
     @Query("SELECT * FROM items WHERE idItem = :id")
-    LiveData<ItemEntity> getById(Long id);
+    LiveData<ItemEntity> getById(long id);
 
     @Query("SELECT * FROM items")
     LiveData<List<ItemEntity>> getAll();
+
+    @Query("SELECT * FROM items WHERE idCategory =:id")
+    LiveData<List<ItemEntity>> getItemsByCategory(long id);
 
     @Insert
     void insert(ItemEntity item) throws SQLiteConstraintException;

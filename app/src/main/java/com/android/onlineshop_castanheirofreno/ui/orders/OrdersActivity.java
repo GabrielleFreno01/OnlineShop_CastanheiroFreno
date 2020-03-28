@@ -47,7 +47,6 @@ public class OrdersActivity extends BaseActivity {
         RecyclerView recyclerView = findViewById(R.id.OrderRecyclerView);
 
 
-
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

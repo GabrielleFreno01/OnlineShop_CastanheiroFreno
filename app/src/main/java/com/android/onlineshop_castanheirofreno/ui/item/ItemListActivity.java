@@ -40,6 +40,8 @@ public class ItemListActivity extends BaseActivity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,7 @@ public class ItemListActivity extends BaseActivity {
         });
 
         Intent intent =  getIntent();
-        String name = intent.getStringExtra(CategoryActivity.EXTRA_MESSSAGE);
+        String name = intent.getStringExtra("message");
 
 
         //Replace by a function that gets the order with the idOrder
@@ -73,10 +75,7 @@ public class ItemListActivity extends BaseActivity {
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
                     Intent intent2 = new Intent(ItemListActivity.this, AddItemActivity.class);
-                    intent.setFlags(
-                            Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                                    Intent.FLAG_ACTIVITY_NO_HISTORY
-                    );
+
                     startActivity(intent2);
                 }
         );

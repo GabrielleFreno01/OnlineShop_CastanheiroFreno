@@ -1,5 +1,6 @@
 package com.android.onlineshop_castanheirofreno.database.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -18,7 +19,7 @@ import androidx.room.PrimaryKey;
         )
 )
 
-public class OrderEntity {
+public class OrderEntity implements Comparable{
 
         @PrimaryKey(autoGenerate = true)
         private int idOrder;
@@ -86,6 +87,16 @@ public class OrderEntity {
         public String getOwner() { return owner; }
 
         public void setOwner(String owner) { this.owner = owner; }
+
+        @Override
+        public String toString() {
+                return idOrder + " " + price;
+        }
+
+        @Override
+        public int compareTo(@NonNull Object o) {
+                return toString().compareTo(o.toString());
+        }
 
 
 

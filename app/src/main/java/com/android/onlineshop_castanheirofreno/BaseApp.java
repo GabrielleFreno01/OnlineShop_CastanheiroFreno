@@ -5,6 +5,7 @@ package com.android.onlineshop_castanheirofreno;
 import android.app.Application;
 
 import com.android.onlineshop_castanheirofreno.database.AppDatabase;
+import com.android.onlineshop_castanheirofreno.database.repository.CategoryRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.ItemRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.OrderRepository;
@@ -31,6 +32,10 @@ public class BaseApp extends Application {
 
     public CustomerRepository getCustomerRepository() {
         return CustomerRepository.getInstance();
+    }
+
+    public CategoryRepository getCategoryRepository() {
+        return CategoryRepository.getInstance();
     }
 
 

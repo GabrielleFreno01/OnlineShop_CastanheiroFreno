@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
-import com.android.onlineshop_castanheirofreno.database.pojo.ClientWithOrders;
+import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.OrderRepository;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
@@ -26,7 +26,7 @@ public class OrderListViewModel extends AndroidViewModel {
     private OrderRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<ClientWithOrders>> observableOrderCustomer;
+    private final MediatorLiveData<List<CustomerWithOrders>> observableOrderCustomer;
     private final MediatorLiveData<List<OrderEntity>> observableOwnOrder;
 
     public OrderListViewModel(@NonNull Application application,
@@ -45,8 +45,8 @@ public class OrderListViewModel extends AndroidViewModel {
         observableOrderCustomer.setValue(null);
         observableOwnOrder.setValue(null);
 
-        LiveData<List<ClientWithOrders>> clientOrders =
-                customerRepository.getOtherClientsWithOrders(owner, application);
+        LiveData<List<CustomerWithOrders>> clientOrders =
+                customerRepository.getCustomerWithOrders(owner, application);
         LiveData<List<OrderEntity>> ownOrders = repository.getByOwner(owner, application);
 
         // observe the changes of the entities from the database and forward them
@@ -69,7 +69,7 @@ public class OrderListViewModel extends AndroidViewModel {
         public Factory(@NonNull Application application, String orderId) {
             this.application = application;
             this.orderId = orderId;
-            customerRepository = ((BaseApp) application).getClientRepository();
+            customerRepository = ((BaseApp) application).getCustomerRepository();
             orderRepository = ((BaseApp) application).getOrderRepository();
         }
 
@@ -81,7 +81,7 @@ public class OrderListViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<List<ClientWithOrders>> getClientOrders() {
+    public LiveData<List<CustomerWithOrders>> getClientOrders() {
         return observableOrderCustomer;
     }
 

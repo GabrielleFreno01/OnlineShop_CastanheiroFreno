@@ -29,7 +29,9 @@ public class BaseApp extends Application {
         return ItemRepository.getInstance();
     }
 
-    public CustomerRepository getClientRepository() {
+    public CustomerRepository getCustomerRepository() {
         return CustomerRepository.getInstance();
     }
+
+
 }

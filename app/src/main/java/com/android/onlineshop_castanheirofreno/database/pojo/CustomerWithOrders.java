@@ -8,7 +8,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 
 import java.util.List;
 
-public class ClientWithOrders {
+public class CustomerWithOrders {
     @Embedded
     public CustomerEntity client;
 

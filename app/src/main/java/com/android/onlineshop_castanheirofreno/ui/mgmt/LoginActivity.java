@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        repository = ((BaseApp) getApplication()).getClientRepository();
+        repository = ((BaseApp) getApplication()).getCustomerRepository();
         progressBar = findViewById(R.id.progress);
 
         // Set up the login form.
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             focusView.requestFocus();
         } else {
             progressBar.setVisibility(View.VISIBLE);
-            repository.getClient(email, getApplication()).observe(LoginActivity.this, clientEntity -> {
+            repository.getCustomer(email, getApplication()).observe(LoginActivity.this, clientEntity -> {
                 if (clientEntity != null) {
                     if (clientEntity.getPassword().equals(password)) {
                         // We need an Editor object to make preference changes.

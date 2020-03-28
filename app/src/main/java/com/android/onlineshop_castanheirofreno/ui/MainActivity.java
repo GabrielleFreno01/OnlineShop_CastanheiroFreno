@@ -10,7 +10,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("My Cart");
+        setTitle("Home");
         navigationView.setCheckedItem(position);
         getLayoutInflater().inflate(R.layout.activity_welcome, frameLayout);
     }
@@ -19,7 +19,7 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         setTitle("Home");
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_none);
     }
 
     @Override

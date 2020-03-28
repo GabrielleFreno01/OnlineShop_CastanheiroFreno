@@ -7,8 +7,9 @@ import androidx.lifecycle.LiveData;
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.async.customer.CreateCustomer;
 import com.android.onlineshop_castanheirofreno.database.async.customer.DeleteCustomer;
+import com.android.onlineshop_castanheirofreno.database.async.customer.UpdateCustomer;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
-import com.android.onlineshop_castanheirofreno.database.pojo.ClientWithOrders;
+import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.util.List;
@@ -31,23 +32,29 @@ public class CustomerRepository {
         return instance;
     }
 
-    public LiveData<CustomerEntity> getClient(final String clientId, Application application) {
-        return ((BaseApp) application).getDatabase().customerDao().getById(clientId);
+    public LiveData<CustomerEntity> getCustomer(final String customerId, Application application) {
+        return ((BaseApp) application).getDatabase().customerDao().getById(customerId);
     }
 
-    public LiveData<List<ClientWithOrders>> getOtherClientsWithOrders(final String owner,
-                                                                        Application application) {
-        return ((BaseApp) application).getDatabase().customerDao().getOtherClientsWithOrders(owner);
+    public LiveData<List<CustomerWithOrders>> getCustomerWithOrders(final String owner,
+                                                                  Application application) {
+        return ((BaseApp) application).getDatabase().customerDao().getOtherCustomersWithOrders(owner);
     }
 
-    public void insert(final CustomerEntity client, OnAsyncEventListener callback,
+    public void insert(final CustomerEntity customer, OnAsyncEventListener callback,
                        Application application) {
-        new CreateCustomer(application, callback).execute(client);
+        new CreateCustomer(application, callback).execute(customer);
     }
 
-
-    public void delete(final CustomerEntity client, OnAsyncEventListener callback,
+    public void update(final CustomerEntity customer, OnAsyncEventListener callback,
                        Application application) {
-        new DeleteCustomer(application, callback).execute(client);
+        new UpdateCustomer(application, callback).execute(customer);
     }
+
+    public void delete(final CustomerEntity customer, OnAsyncEventListener callback,
+                       Application application) {
+        new DeleteCustomer(application, callback).execute(customer);
+    }
+
+
 }

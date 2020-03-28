@@ -11,10 +11,8 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
-import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
-import com.android.onlineshop_castanheirofreno.database.pojo.ClientWithOrders;
+import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 
 import java.util.List;
 
@@ -29,20 +27,24 @@ public interface CustomerDao {
 
     @Transaction
     @Query("SELECT * FROM customer WHERE email != :owner")
-    LiveData<List<ClientWithOrders>> getOtherClientsWithOrders(String owner);
+    LiveData<List<CustomerWithOrders>> getOtherClientsWithOrders(String owner);
 
     @Insert
-    long insert(CustomerEntity client) throws SQLiteConstraintException;
+    long insert(CustomerEntity customer) throws SQLiteConstraintException;
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<CustomerEntity> clients);
 
     @Update
-    void update(CustomerEntity client);
+    void update(CustomerEntity customer);
 
     @Delete
-    void delete(CustomerEntity client);
+    void delete(CustomerEntity customer);
 
     @Query("DELETE FROM customer")
     void deleteAll();
+
+    @Transaction
+    @Query("SELECT * FROM customer WHERE email != :id")
+    LiveData<List<CustomerWithOrders>> getOtherCustomersWithOrders(String id);
 }

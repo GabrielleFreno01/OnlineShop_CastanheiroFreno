@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import com.android.onlineshop_castanheirofreno.R;
+import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryViewModel;
@@ -34,6 +35,10 @@ public class ItemListActivity extends BaseActivity {
             R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
             R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
             R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499};
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -13,9 +13,12 @@ import android.widget.Toast;
 import com.android.onlineshop_castanheirofreno.R;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.AppDatabase;
+import com.android.onlineshop_castanheirofreno.database.DatabaseInitializer;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;

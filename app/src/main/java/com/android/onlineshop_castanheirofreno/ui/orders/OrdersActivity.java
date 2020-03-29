@@ -18,8 +18,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.onlineshop_castanheirofreno.adapter.RecyclerAdapter;
+import com.android.onlineshop_castanheirofreno.adapter.OrdersAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
+import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
@@ -32,8 +33,8 @@ public class OrdersActivity extends BaseActivity {
 
     private static final String TAG = "OrdersActivity";
 
-    private List<OrderEntity> orders;
-    private RecyclerAdapter<OrderEntity> adapter;
+    private List<OrderWithItem> orders;
+    private OrdersAdapter adapter;
     private OrderListViewModel viewModel;
 
     @Override
@@ -61,7 +62,7 @@ public class OrdersActivity extends BaseActivity {
         //New list of orders
         orders = new ArrayList<>();
 
-        adapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {
+        adapter = new OrdersAdapter( this, orders , new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 //get the details
@@ -70,7 +71,7 @@ public class OrdersActivity extends BaseActivity {
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
-                intent.putExtra("orderId", orders.get(position).getIdOrder());
+                intent.putExtra("orderId", orders.get(position).order.getIdOrder());
                 startActivity(intent);
             }
 
@@ -82,14 +83,12 @@ public class OrdersActivity extends BaseActivity {
             }
         });
 
-
-
         OrderListViewModel.Factory factory = new OrderListViewModel.Factory(
                 getApplication(), user);
         viewModel = ViewModelProviders.of(this, factory).get(OrderListViewModel.class);
-        viewModel.getOwnOrders().observe(this, ordersEntities -> {
-            if (ordersEntities != null) {
-                orders = ordersEntities;
+        viewModel.getOwnOrders().observe(this, ordersWithItem -> {
+            if (ordersWithItem != null) {
+                orders = ordersWithItem;
                 adapter.setData(orders);
             }
         });
@@ -109,7 +108,7 @@ public class OrdersActivity extends BaseActivity {
     }
 
     private void createDeleteDialog(final int position) {
-        final OrderEntity order = orders.get(position);
+        final OrderWithItem orderWithItem = orders.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);
         final View view = inflater.inflate(R.layout.row_delete_item, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -117,11 +116,11 @@ public class OrdersActivity extends BaseActivity {
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format("Do you to delete the order " + order.getIdOrder() + " ?"));
+        deleteMessage.setText(String.format("Do you to delete the order " + orderWithItem.order.getIdOrder() + " ?"));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, "Order deleted", Toast.LENGTH_LONG);
-            viewModel.deleteOrder(order, new OnAsyncEventListener() {
+            viewModel.deleteOrder(orderWithItem, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
                     Log.d(TAG, "deleteOrder: success");

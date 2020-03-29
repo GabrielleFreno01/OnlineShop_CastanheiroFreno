@@ -50,7 +50,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
         T item = mData.get(position);
         if (item.getClass().equals(OrderEntity.class))
-            holder.mTextView.setText(((OrderEntity) item).getOwner());
+            holder.mTextView.setText(Long.toString(((OrderEntity) item).getIdOrder()));
         if (item.getClass().equals(CustomerEntity.class))
             holder.mTextView.setText(((CustomerEntity) item).getFirstName() + " " + ((CustomerEntity) item).getLastName());
     }

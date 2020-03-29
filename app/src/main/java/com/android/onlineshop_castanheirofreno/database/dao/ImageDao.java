@@ -21,6 +21,9 @@ public interface ImageDao {
     @Query("SELECT * FROM images")
     LiveData<List<ImageEntity>> getAll();
 
+    @Query("DELETE FROM images")
+    void deleteAll();
+
     @Insert
-    void insert(ImageEntity image) throws SQLiteConstraintException;
+    long insert(ImageEntity image) throws SQLiteConstraintException;
 }

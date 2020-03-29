@@ -26,7 +26,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-@Database(entities = {OrderEntity.class, CustomerEntity.class, ItemEntity.class, ImageEntity.class, CategoryEntity.class}, version = 8)
+@Database(entities = {OrderEntity.class, CustomerEntity.class, ItemEntity.class, ImageEntity.class, CategoryEntity.class}, version = 6, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";
@@ -82,8 +82,13 @@ public abstract class AppDatabase extends RoomDatabase {
         Executors.newSingleThreadExecutor().execute(() -> {
             database.runInTransaction(() -> {
                 Log.i(TAG, "Wipe database.");
-                database.customerDao().deleteAll();
                 database.orderDao().deleteAll();
+                database.itemDao().deleteAll();
+                database.customerDao().deleteAll();
+                database.categoryDao().deleteAll();
+                database.imageDao().deleteAll();
+
+                database.clearAllTables();
 
                 DatabaseInitializer.populateDatabase(database);
             });

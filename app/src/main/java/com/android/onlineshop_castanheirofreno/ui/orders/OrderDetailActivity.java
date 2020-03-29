@@ -114,8 +114,8 @@ public class OrderDetailActivity extends BaseActivity {
             tvProductId.setText(defaultFormat.format(order.getIdItem()));
             //tvProductName.setText(defaultFormat.format(order.getIdOrder()));
             tvProductPrice.setText(defaultFormat.format(order.getPrice()));
-            tvOrderDate.setText(defaultFormat.format(order.getCreation_date()));
-            tvDeliveryDate.setText(defaultFormat.format(order.getDelivery_date()));
+            tvOrderDate.setText(defaultFormat.format(order.getCreationDate()));
+            tvDeliveryDate.setText(defaultFormat.format(order.getDeliveryDate()));
 
         }
     }

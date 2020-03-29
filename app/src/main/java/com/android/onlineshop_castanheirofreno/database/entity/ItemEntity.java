@@ -6,10 +6,16 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "items", foreignKeys = {@ForeignKey(entity = CategoryEntity.class, parentColumns = "idCategory", childColumns = "idItem"),
-                             @ForeignKey(entity = ImageEntity.class, parentColumns = "idImage", childColumns = "idItem")})
+@Entity(tableName = "items", foreignKeys = {@ForeignKey(entity = CategoryEntity.class, parentColumns = "idCategory", childColumns = "idCategory"),
+                             @ForeignKey(entity = ImageEntity.class, parentColumns = "idImage", childColumns = "idImage")},
+        indices = {
+                @Index( value = {"idCategory"}),
+                @Index( value = {"idImage"})
+}
+                             )
 
 public class ItemEntity {
 

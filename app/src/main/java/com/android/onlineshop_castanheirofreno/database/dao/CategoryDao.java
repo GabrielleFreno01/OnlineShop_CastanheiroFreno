@@ -17,13 +17,16 @@ import java.util.List;
 public interface CategoryDao {
 
     @Query("SELECT * FROM categories WHERE idCategory = :id")
-    LiveData<CategoryEntity> getById(Long id);
+    LiveData<CategoryEntity> getById(long id);
 
     @Query("SELECT * FROM categories")
     LiveData<List<CategoryEntity>> getAll();
 
+    @Query("DELETE FROM categories")
+    void deleteAll();
+
     @Insert
-    void insert(CategoryEntity category) throws SQLiteConstraintException;
+    long insert(CategoryEntity category) throws SQLiteConstraintException;
 
 
 

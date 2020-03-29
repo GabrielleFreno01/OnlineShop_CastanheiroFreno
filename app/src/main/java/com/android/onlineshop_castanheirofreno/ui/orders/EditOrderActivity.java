@@ -57,7 +57,7 @@ public class EditOrderActivity extends BaseActivity {
             viewModel.getOrder().observe(this, orderEntity -> {
                 if (orderEntity != null) {
                     order = orderEntity;
-                    etDeliver.setText(order.getIdOrder());
+                    etDeliver.setText(Long.toString(order.getIdOrder()));
                 }
             });
         }

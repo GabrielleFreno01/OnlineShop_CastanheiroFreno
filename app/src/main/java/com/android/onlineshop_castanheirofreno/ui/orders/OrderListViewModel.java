@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
+import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.OrderRepository;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
@@ -27,10 +28,10 @@ public class OrderListViewModel extends AndroidViewModel {
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<CustomerWithOrders>> observableOrderCustomer;
-    private final MediatorLiveData<List<OrderEntity>> observableOwnOrder;
+    private final MediatorLiveData<List<OrderWithItem>> observableOwnOrder;
 
     public OrderListViewModel(@NonNull Application application,
-                              final String owner,
+                              final String ownerId,
                               CustomerRepository customerRepository,
                               OrderRepository orderRepository) {
         super(application);
@@ -46,8 +47,8 @@ public class OrderListViewModel extends AndroidViewModel {
         observableOwnOrder.setValue(null);
 
         LiveData<List<CustomerWithOrders>> clientOrders =
-                customerRepository.getCustomerWithOrders(owner, application);
-        LiveData<List<OrderEntity>> ownOrders = repository.getByOwner(owner, application);
+                customerRepository.getCustomerWithOrders(ownerId, application);
+        LiveData<List<OrderWithItem>> ownOrders = repository.getOwnedOrdersWithItem(ownerId, application);
 
         // observe the changes of the entities from the database and forward them
         observableOrderCustomer.addSource(clientOrders, observableOrderCustomer::setValue);
@@ -86,12 +87,12 @@ public class OrderListViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<List<OrderEntity>> getOwnOrders() {
+    public LiveData<List<OrderWithItem>> getOwnOrders() {
         return observableOwnOrder;
     }
 
-    public void deleteOrder(OrderEntity order, OnAsyncEventListener callback) {
-        repository.delete(order, callback, application);
+    public void deleteOrder(OrderWithItem orderWithItem, OnAsyncEventListener callback) {
+        repository.delete(orderWithItem.order, callback, application);
     }
 
 

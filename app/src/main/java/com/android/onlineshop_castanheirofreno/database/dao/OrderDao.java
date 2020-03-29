@@ -12,6 +12,8 @@ import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
+import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
+import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 
 import java.util.List;
 
@@ -27,6 +29,10 @@ public abstract class OrderDao {
     @Query("SELECT * FROM orders WHERE owner=:owner")
     public abstract LiveData<List<OrderEntity>> getOwned(String owner);
 
+    @Transaction
+    @Query("SELECT * FROM orders WHERE owner=:owner")
+    public abstract LiveData<List<OrderWithItem>> getOwnedOrdersWithItem(String owner);
+
     @Insert
     public abstract long insert(OrderEntity order);
 
@@ -41,6 +47,7 @@ public abstract class OrderDao {
 
     @Query("DELETE FROM orders")
     public abstract void deleteAll();
+
 
 
     @Transaction

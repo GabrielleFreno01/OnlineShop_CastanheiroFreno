@@ -27,7 +27,7 @@ public interface ItemDao {
     LiveData<List<ItemEntity>> getItemsByCategory(long id);
 
     @Insert
-    void insert(ItemEntity item) throws SQLiteConstraintException;
+    long insert(ItemEntity item) throws SQLiteConstraintException;
 
     @Update
     void update(ItemEntity item);

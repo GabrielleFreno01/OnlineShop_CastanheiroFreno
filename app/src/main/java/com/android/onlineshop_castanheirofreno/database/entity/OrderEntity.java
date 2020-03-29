@@ -10,25 +10,34 @@ import androidx.room.PrimaryKey;
 
 
 @Entity(tableName = "orders",
-        foreignKeys =
+        foreignKeys = {
         @ForeignKey(
                 entity = CustomerEntity.class,
                 parentColumns = "email",
                 childColumns = "owner",
                 onDelete = ForeignKey.CASCADE
-        )
+        ),
+        @ForeignKey(
+                entity = ItemEntity.class,
+                parentColumns = "idItem",
+                childColumns = "idItem",
+                onDelete = ForeignKey.CASCADE
+        )},
+        indices = {
+        @Index(value = {"owner"}),
+        @Index(value = {"idItem"})
+        }
 )
-
 public class OrderEntity implements Comparable{
 
         @PrimaryKey(autoGenerate = true)
-        private int idOrder;
+        private long idOrder;
 
         @ColumnInfo(name = "price")
         private double price;
 
         @ColumnInfo(name = "creation_date")
-        private String creation_date;
+        private String creationDate;
 
         @ColumnInfo(name = "idItem")
         private long idItem;
@@ -40,27 +49,27 @@ public class OrderEntity implements Comparable{
         private String status;
 
         @ColumnInfo(name = "delivery_date")
-        private String delivery_date;
+        private String deliveryDate;
 
         @Ignore
         public OrderEntity() {
         }
 
-        public OrderEntity(double price, String creation_date,String delivery_date, long idItem, String status, String owner) {
+        public OrderEntity(double price, String creationDate,String deliveryDate, long idItem, String status, String owner) {
                 this.price = price;
-                this.creation_date = creation_date;
-                this.delivery_date = delivery_date;
+                this.creationDate = creationDate;
+                this.deliveryDate = deliveryDate;
                 this.idItem = idItem;
                 this.status = status;
                 this.owner = owner;
 
         }
 
-        public int getIdOrder() {
+        public long getIdOrder() {
                 return idOrder;
         }
 
-        public void setIdOrder(int id) {
+        public void setIdOrder(long id) {
                 this.idOrder = id;
         }
 
@@ -68,9 +77,9 @@ public class OrderEntity implements Comparable{
 
         public void setPrice(double price) { this.price = price; }
 
-        public String getCreation_date() { return creation_date; }
+        public String getCreationDate() { return creationDate; }
 
-        public void setCreation_date(String creation_date) { this.creation_date = creation_date; }
+        public void setCreationDate(String creationDate) { this.creationDate = creationDate; }
 
         public long getIdItem() { return idItem; }
 
@@ -80,9 +89,9 @@ public class OrderEntity implements Comparable{
 
         public void setStatus(String status) { this.status = status; }
 
-        public String getDelivery_date() { return delivery_date; }
+        public String getDeliveryDate() { return deliveryDate; }
 
-        public void setDelivery_date(String delivery_date) { this.delivery_date = delivery_date; }
+        public void setDeliveryDate(String deliveryDate) { this.deliveryDate = deliveryDate; }
 
         public String getOwner() { return owner; }
 

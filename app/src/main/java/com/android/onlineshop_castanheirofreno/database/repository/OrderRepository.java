@@ -11,6 +11,7 @@ import com.android.onlineshop_castanheirofreno.database.async.order.CreateOrder;
 import com.android.onlineshop_castanheirofreno.database.async.order.DeleteOrder;
 import com.android.onlineshop_castanheirofreno.database.async.order.UpdateOrder;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
+import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.util.List;
@@ -41,6 +42,9 @@ public class OrderRepository {
 
     public LiveData<List<OrderEntity>> getOrders(Application application) {
         return ((BaseApp) application).getDatabase().orderDao().getAll();
+    }
+    public LiveData<List<OrderWithItem>> getOwnedOrdersWithItem(final String owner, Application application) {
+        return((BaseApp) application).getDatabase().orderDao().getOwnedOrdersWithItem(owner);
     }
 
     public LiveData<List<OrderEntity>> getByOwner(final String owner, Application application) {

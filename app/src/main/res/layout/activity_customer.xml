@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,8 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
@@ -22,12 +22,14 @@
         android:orientation="vertical"
         tools:context="ch.hevs.aislab.demo.ui.client.ClientActivity">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginLeft="120dp"
-            android:layout_marginBottom="30dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_gravity="top|center_horizontal"/>
+
 
 
             <EditText
@@ -36,7 +38,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:text="@string/client_firstName"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:inputType="text"/>
 
 
             <EditText
@@ -45,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:text="@string/client_name"
+                android:inputType="text"
                 android:layout_marginBottom="20dp"/>
 
             <EditText
@@ -53,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:text="@string/prompt_email"
+                android:inputType="textEmailAddress"
                 android:layout_marginBottom="20dp"/>
 
 
@@ -61,13 +66,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Telephone"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:inputType="phone"/>
 
             <EditText
                 android:id="@+id/customer_city_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="City Code"
+                android:inputType="textPostalAddress"
                 android:layout_marginBottom="20dp"/>
 
 
@@ -76,6 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="City"
+                android:inputType="text"
                 android:layout_marginBottom="20dp"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -87,11 +95,18 @@
             android:orientation="vertical"
             tools:context="ch.hevs.aislab.demo.ui.client.ClientActivity">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modify Password"
+                android:textSize="20dp"/>
+
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
+                    android:inputType="textPassword"
                     android:layout_marginBottom="20dp"/>
 
 
@@ -99,7 +114,8 @@
                     android:id="@+id/passwordRep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/client_repeat_password" />
+                    android:hint="@string/client_repeat_password"
+                    android:inputType="textPassword"/>
 
             <Button
                 android:id="@+id/btn_save"

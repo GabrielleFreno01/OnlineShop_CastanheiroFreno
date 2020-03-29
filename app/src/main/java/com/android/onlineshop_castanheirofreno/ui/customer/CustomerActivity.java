@@ -77,6 +77,7 @@ public class CustomerActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 save(v);
+
             }
         });
 
@@ -95,12 +96,12 @@ public class CustomerActivity extends BaseActivity {
 
         LinearLayout linearLayout = findViewById(R.id.clientPasswordLayout);
         linearLayout.setVisibility(View.GONE);
-        etFirstName.setFocusable(false);
         etFirstName.setEnabled(false);
-        etLastName.setFocusable(false);
         etLastName.setEnabled(false);
-        etEmail.setFocusable(false);
         etEmail.setEnabled(false);
+        etTelephone.setEnabled(false);
+        etCity.setEnabled(false);
+        etCity_code.setEnabled(false);
     }
 
     @Override
@@ -129,8 +130,7 @@ public class CustomerActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == EDIT_CLIENT) {
             item.setIcon(R.drawable.ic_edit);
-            switchEditableMode();
-
+            EditableMode();
         }
         if (item.getItemId() == DELETE_CLIENT) {
             final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -165,13 +165,20 @@ public class CustomerActivity extends BaseActivity {
         etCity = findViewById(R.id.customer_city);
         etCity_code = findViewById(R.id.customer_city_code);
 
+        etFirstName.setEnabled(false);
+        etLastName.setEnabled(false);
+        etEmail.setEnabled(false);
+        etTelephone.setEnabled(false);
+        etCity.setEnabled(false);
+        etCity_code.setEnabled(false);
+
 
 
     }
 
 
-    private void switchEditableMode() {
-        if (!isEditable) {
+    private void EditableMode() {
+       // if (!isEditable) {
 
             LinearLayout linearLayout = findViewById(R.id.clientPasswordLayout);
             linearLayout.setVisibility(View.VISIBLE);
@@ -207,30 +214,8 @@ public class CustomerActivity extends BaseActivity {
             etCity_code.setEnabled(true);
             etCity_code.setFocusableInTouchMode(true);
 
-
-            isEditable = true;
-        } else {
-            saveChanges(
-                    etFirstName.getText().toString(),
-                    etLastName.getText().toString(),
-                    etEmail.getText().toString(),
-                    etPwd1.getText().toString(),
-                    etPwd2.getText().toString(),
-                    etTelephone.getText().toString(),
-                    etCity.getText().toString(),
-                    Integer.parseInt(etCity_code.getText().toString())
-            );
-
-            LinearLayout linearLayout = findViewById(R.id.clientPasswordLayout);
-            linearLayout.setVisibility(View.GONE);
-            etFirstName.setFocusable(false);
-            etFirstName.setEnabled(false);
-            etLastName.setFocusable(false);
-            etLastName.setEnabled(false);
-            etEmail.setFocusable(false);
-            etEmail.setEnabled(false);
-        }
-        isEditable = !isEditable;
+       // }
+       // isEditable = !isEditable;
     }
 
     private void updateContent() {
@@ -241,13 +226,14 @@ public class CustomerActivity extends BaseActivity {
             etCity.setText(client.getCity());
             etCity_code.setText(String.valueOf(client.getCity_code()));
             etTelephone.setText(client.getTelephone());
-
+            etPwd1.setText("");
+            etPwd2.setText("");
 
         }
     }
 
     private void saveChanges(String firstName, String lastName, String email, String pwd, String pwd2, String telephone, String city, int city_code) {
-        if(!(pwd.equals("Password")) && !(pwd2.equals("Repeat Password"))) {
+        if(!(pwd.equals("")) && !(pwd2.equals(""))) {
             if (!pwd.equals(pwd2) || pwd.length() < 5) {
                 toast = Toast.makeText(this, getString(R.string.error_edit_invalid_password), Toast.LENGTH_LONG);
                 toast.show();
@@ -255,19 +241,31 @@ public class CustomerActivity extends BaseActivity {
                 etPwd2.setText("");
                 return;
             }
+
+            client.setEmail(email);
+            client.setFirstName(firstName);
+            client.setLastName(lastName);
+            client.setPassword(pwd);
+            client.setTelephone(telephone);
+            client.setCity(city);
+            client.setCity_code(city_code);
         }
+
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError(getString(R.string.error_invalid_email));
             etEmail.requestFocus();
             return;
         }
-        client.setEmail(email);
-        client.setFirstName(firstName);
-        client.setLastName(lastName);
-        client.setPassword(pwd);
-        client.setTelephone(telephone);
-        client.setCity(city);
-        client.setCity_code(city_code);
+        else {
+            client.setEmail(email);
+            client.setFirstName(firstName);
+            client.setLastName(lastName);
+            client.setTelephone(telephone);
+            client.setCity(city);
+            client.setCity_code(city_code);
+        }
+
+
 
         viewModel.updateCustomer(client, new OnAsyncEventListener() {
             @Override

@@ -121,6 +121,11 @@
             android:label="Item description"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".ui.customer.CustomerActivity"
+            android:label="Item description"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

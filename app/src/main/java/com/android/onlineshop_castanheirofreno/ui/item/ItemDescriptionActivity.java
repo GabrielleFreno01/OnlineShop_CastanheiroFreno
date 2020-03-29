@@ -39,9 +39,7 @@ public class ItemDescriptionActivity extends BaseActivity {
 
         btn_modify_product.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                modifyProduct();
-            }
+            public void onClick(View v) { modifyProduct();}
         });
 
         btn_add_cart.setOnClickListener(new View.OnClickListener() {
@@ -53,15 +51,15 @@ public class ItemDescriptionActivity extends BaseActivity {
 
         //ImageView productImage = (ImageView) this.findViewById(R.id.imageView);
     }
-    public void modifyProduct() {
-        Intent intent = new Intent(this, AddItemActivity.class);
-        intent.putExtra("ID_ITEM", itemModel.getIdItem());
-        startActivity(intent);
-    }
-
 
     public void addToCart() {
         Intent intent = new Intent(this, CartActivity.class);
+        startActivity(intent);
+    }
+
+    public void modifyProduct() {
+        Intent intent = new Intent(this, AddItemActivity.class);
+        //intent.putExtra("ID_ITEM", itemModel.getIdItem());
         startActivity(intent);
     }
 }

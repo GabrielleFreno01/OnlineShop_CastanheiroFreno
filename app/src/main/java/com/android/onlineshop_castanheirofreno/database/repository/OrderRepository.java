@@ -39,6 +39,9 @@ public class OrderRepository {
         return ((BaseApp) application).getDatabase().orderDao().getById(orderId);
     }
 
+    public LiveData<OrderWithItem> getOrderWithItem(final Long orderId, Application application) {
+        return ((BaseApp) application).getDatabase().orderDao().getOrderWithItem(orderId);
+    }
 
     public LiveData<List<OrderEntity>> getOrders(Application application) {
         return ((BaseApp) application).getDatabase().orderDao().getAll();

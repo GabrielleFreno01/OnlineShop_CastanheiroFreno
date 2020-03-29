@@ -23,6 +23,10 @@ public abstract class OrderDao {
     @Query("SELECT * FROM orders WHERE idOrder = :id")
     public abstract LiveData<OrderEntity> getById(Long id);
 
+    @Transaction
+    @Query("SELECT * FROM orders WHERE idOrder = :id")
+    public abstract LiveData<OrderWithItem> getOrderWithItem(Long id);
+
     @Query("SELECT * FROM orders")
     public abstract LiveData<List<OrderEntity>> getAll();
 

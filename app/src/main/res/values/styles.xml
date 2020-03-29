@@ -1,9 +1,10 @@
 <resources>
 
-
+    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorBackgroundOrange">@color/orange</item>
-        <item name="colorTextBlack">@color/colorText</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <!-- Light Day theme. -->
@@ -24,6 +25,11 @@
     </style>-->
 
 
+    </style>
+    <style name="AppTheme.DatePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/orange</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

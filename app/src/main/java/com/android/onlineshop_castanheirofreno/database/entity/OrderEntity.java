@@ -11,21 +11,21 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "orders",
         foreignKeys = {
-        @ForeignKey(
-                entity = CustomerEntity.class,
-                parentColumns = "email",
-                childColumns = "owner",
-                onDelete = ForeignKey.CASCADE
-        ),
-        @ForeignKey(
-                entity = ItemEntity.class,
-                parentColumns = "idItem",
-                childColumns = "idItem",
-                onDelete = ForeignKey.CASCADE
-        )},
+                @ForeignKey(
+                        entity = CustomerEntity.class,
+                        parentColumns = "email",
+                        childColumns = "owner",
+                        onDelete = ForeignKey.CASCADE
+                ),
+                @ForeignKey(
+                        entity = ItemEntity.class,
+                        parentColumns = "idItem",
+                        childColumns = "idItem",
+                        onDelete = ForeignKey.CASCADE
+                )},
         indices = {
-        @Index(value = {"owner"}),
-        @Index(value = {"idItem"})
+                @Index(value = {"owner"}),
+                @Index(value = {"idItem"})
         }
 )
 public class OrderEntity implements Comparable{

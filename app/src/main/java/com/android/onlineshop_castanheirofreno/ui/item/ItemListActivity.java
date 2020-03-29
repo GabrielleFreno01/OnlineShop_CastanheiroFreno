@@ -1,6 +1,7 @@
 package com.android.onlineshop_castanheirofreno.ui.item;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +16,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ItemListActivity extends BaseActivity {
 
+    public static final String PREFS_ITEM = "item";
 
+    ItemEntity item;
 
     GridView gridView;
     TextView cat_name ;
@@ -57,6 +60,9 @@ public class ItemListActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 seeProductDescription(view);
+                SharedPreferences.Editor editor = getSharedPreferences(PREFS_ITEM, 0).edit();
+                editor.putLong(PREFS_ITEM, item.getIdItem());
+                editor.apply();
             }
         });
 

@@ -45,8 +45,8 @@ public class EditOrderActivity extends BaseActivity {
             toast.show();
         });
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ORDER, 0);
-        String owner = settings.getString(PREFS_ORDER, null);
+        //SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ORDER, 0);
+        //String owner = settings.getString(PREFS_ORDER, null);
 
         OrderViewModel.Factory factory = new OrderViewModel.Factory(getApplication(), owner);
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);

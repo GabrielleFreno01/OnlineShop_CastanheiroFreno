@@ -45,12 +45,12 @@ public class OrderDetailActivity extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
-        initiateView();
+        //initiateView();
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ORDER, 0);
-        String owner = settings.getString(PREFS_ORDER, null);
+        //SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ORDER, 0);
+        //String owner = settings.getString(PREFS_ORDER, null);
 
-        OrderViewModel.Factory factory = new OrderViewModel.Factory(getApplication(), owner);
+       /* OrderViewModel.Factory factory = new OrderViewModel.Factory(getApplication(), owner);
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
         viewModel.getOrder().observe(this, OrderEntity -> {
             if (OrderEntity != null) {
@@ -58,8 +58,8 @@ public class OrderDetailActivity extends BaseActivity {
                 updateContent();
             }
         });
+    }*/
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);

@@ -30,7 +30,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- Light Day theme. -->
-    <style name="AppTheme.DarkNoActionBar">
+    <style name="DarkModeApp">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorBackgroundOrange">@color/orangeDark</item>

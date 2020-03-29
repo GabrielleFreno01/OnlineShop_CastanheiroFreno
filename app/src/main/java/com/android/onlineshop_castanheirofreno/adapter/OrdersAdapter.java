@@ -108,15 +108,15 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                        OrderWithItem newOrder = (OrderWithItem) data.get(newItemPosition);
-                        OrderWithItem oldOrder = (OrderWithItem) orders.get(newItemPosition);
-                        return newOrder.order.getIdOrder()== oldOrder.order.getIdOrder()
-                                && newOrder.order.getCreationDate() == oldOrder.order.getCreationDate()
-                                && newOrder.order.getDeliveryDate() == oldOrder.order.getDeliveryDate()
-                                && newOrder.order.getOwner().equals(oldOrder.order.getOwner())
-                                && newOrder.order.getIdItem() == oldOrder.order.getIdItem()
-                                && newOrder.order.getPrice() == oldOrder.order.getPrice()
-                                && newOrder.order.getStatus() == oldOrder.order.getStatus();
+                    OrderWithItem newOrder = (OrderWithItem) data.get(newItemPosition);
+                    OrderWithItem oldOrder = (OrderWithItem) orders.get(newItemPosition);
+                    return newOrder.order.getIdOrder()== oldOrder.order.getIdOrder()
+                            && newOrder.order.getCreationDate() == oldOrder.order.getCreationDate()
+                            && newOrder.order.getDeliveryDate() == oldOrder.order.getDeliveryDate()
+                            && newOrder.order.getOwner().equals(oldOrder.order.getOwner())
+                            && newOrder.order.getIdItem() == oldOrder.order.getIdItem()
+                            && newOrder.order.getPrice() == oldOrder.order.getPrice()
+                            && newOrder.order.getStatus() == oldOrder.order.getStatus();
                 }
             });
             orders = data;
@@ -125,4 +125,3 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
     }
 
 }
-

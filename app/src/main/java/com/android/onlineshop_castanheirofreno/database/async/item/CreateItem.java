@@ -4,10 +4,10 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
-import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
+import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
-public class CreateItem extends AsyncTask<OrderEntity, Void, Void> {
+public class CreateItem extends AsyncTask<ItemEntity, Void, Void> {
 
     private Application application;
     private OnAsyncEventListener callback;
@@ -19,11 +19,11 @@ public class CreateItem extends AsyncTask<OrderEntity, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(OrderEntity... params) {
+    protected Void doInBackground(ItemEntity... params) {
         try {
-            for (OrderEntity order : params)
-                ((BaseApp) application).getDatabase().orderDao()
-                        .insert(order);
+            for (ItemEntity item : params)
+                ((BaseApp) application).getDatabase().itemDao()
+                        .insert(item);
         } catch (Exception e) {
             exception = e;
         }

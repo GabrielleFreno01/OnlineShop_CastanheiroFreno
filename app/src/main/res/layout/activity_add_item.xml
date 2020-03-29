@@ -37,24 +37,18 @@
                 android:textColor="@color/colorText"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayout_productName"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/input_product_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_productName"
-                    android:textSize="@dimen/basicTextSize"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/hint_product_name"
-                    android:inputType="text"
-                    android:textColor="@color/colorHint"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/hint_product_name"
+                android:inputType="text"
+                android:textColor="@color/colorHint"/>
 
             <TextView
                 android:id="@+id/textView_price"
@@ -64,6 +58,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/price"
+                android:inputType="numberDecimal"
                 android:textSize="@dimen/basicTextSize"
                 android:textStyle="bold"
                 android:textColor="@color/colorText"/>
@@ -78,7 +73,7 @@
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/hint_price"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:textColor="@color/colorHint"/>
 
             <TextView

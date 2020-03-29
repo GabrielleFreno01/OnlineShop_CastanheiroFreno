@@ -39,17 +39,17 @@ public class ItemRepository {
 
     public void insert(final ItemEntity item, OnAsyncEventListener callback,
                        Application application) {
-        new CreateItem(application, callback).execute((Runnable) item);
+        new CreateItem(application, callback).execute(item);
     }
 
     public void update(final ItemEntity item, OnAsyncEventListener callback,
                        Application application) {
-        new UpdateItem(application, callback).execute((Runnable) item);
+        new UpdateItem(application, callback).execute(item);
     }
 
     public void delete(final ItemEntity item, OnAsyncEventListener callback,
                        Application application) {
-        new DeleteItem(application, callback).execute((Runnable) item);
+        new DeleteItem(application, callback).execute(item);
     }
 
 }

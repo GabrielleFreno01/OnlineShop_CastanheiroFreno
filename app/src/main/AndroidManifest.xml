@@ -118,6 +118,11 @@
             android:label="Item description"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".ui.mgmt.SettingsActivity"
+            android:label="Item description"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

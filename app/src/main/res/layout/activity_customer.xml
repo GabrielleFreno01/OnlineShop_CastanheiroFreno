@@ -23,13 +23,13 @@
         tools:context="ch.hevs.aislab.demo.ui.client.ClientActivity">
 
 
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_gravity="top|center_horizontal"/>
-
 
 
             <EditText

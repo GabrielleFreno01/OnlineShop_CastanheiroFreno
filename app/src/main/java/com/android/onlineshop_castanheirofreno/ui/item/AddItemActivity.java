@@ -37,6 +37,8 @@ public class AddItemActivity extends BaseActivity {
     EditText etquantity;
     EditText etdescription;
 
+    private Toast toast;
+
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
     private static final String TAG = "AddItemActivity";
@@ -51,6 +53,8 @@ public class AddItemActivity extends BaseActivity {
 
         setTitle("Add item");
         navigationView.setCheckedItem(position);
+
+        initiateView();
 
         spinner = findViewById(R.id.spinner_category);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_list, android.R.layout.simple_spinner_item);
@@ -85,12 +89,22 @@ public class AddItemActivity extends BaseActivity {
                 etdescription.getText().toString(),
                 Integer.parseInt(etprice.getText().toString()),
                 Integer.parseInt(etquantity.getText().toString()),
-                Integer.parseInt(spinner.getSelectedItem().toString()),
+                spinner.getSelectedItemId(),
                 imageButton.getId()
         ));
         Intent intent = new Intent(getApplicationContext(), ItemDescriptionActivity.class);
         startActivity(intent);
 
+
+    }
+
+    private void initiateView() {
+        etproductName = findViewById(R.id.input_product_name);
+        etdescription = findViewById(R.id.input_description);
+        etprice = findViewById(R.id.input_price);
+        etquantity = findViewById(R.id.input_quantity);
+        spinner = findViewById(R.id.spinner_category);
+        imageButton = findViewById(R.id.imagebtn_addImage);
 
     }
 
@@ -122,24 +136,28 @@ public class AddItemActivity extends BaseActivity {
 
     private void saveChanges(String name, String description, int price, int quantity_in_stock, long idCategory, long idImage) {
 
-        ItemEntity newItem = new ItemEntity();
-        newItem.setName(name);
-        newItem.setDescription(description);
-        newItem.setPrice(price);
-        newItem.setQuantity_in_stock(quantity_in_stock);
-        newItem.setIdCategory(idCategory);
-        newItem.setIdImage(idImage);
-        viewModel.createAccount(newItem, new OnAsyncEventListener() {
+        ItemEntity newItem = new ItemEntity(name, description, price, quantity_in_stock, idCategory, idImage);
+
+        new CreateItem(getApplication(), new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-                Log.d(TAG, "createItem: success");
+                Log.d(TAG, "createItme: success");
+                setResponse(true);
             }
 
             @Override
             public void onFailure(Exception e) {
                 Log.d(TAG, "createItem: failure", e);
+                setResponse(false);
             }
-        });
+        }).execute(newItem);
+    }
+
+    private void setResponse(Boolean response) {
+        if (response) {
+            toast = Toast.makeText(this, "Item created", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
 }

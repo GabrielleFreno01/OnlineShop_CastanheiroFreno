@@ -1,3 +1,4 @@
+
 package com.android.onlineshop_castanheirofreno.database.entity;
 
 import androidx.room.ColumnInfo;
@@ -32,16 +33,16 @@ public class CategoryEntity {
     }
 
     public void setIdCategory(long id) {
-            this.idCategory = id;
-        }
+        this.idCategory = id;
+    }
 
     public String getName() {
-            return name;
-        }
+        return name;
+    }
 
     public void setName(String name) {
-            this.name = name;
-        }
+        this.name = name;
+    }
 
     public String getTag() {
         return tag;

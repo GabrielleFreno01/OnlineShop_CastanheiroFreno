@@ -28,6 +28,8 @@ public class ItemDescriptionActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_product_description, frameLayout);
 
 
+
+
         navigationView.setCheckedItem(position);
         //Replace by a function that gets the item with the idItem
         itemModel = new ItemModel(2, R.drawable.apple_imac_1499, "Apple iMac", 1499.00);

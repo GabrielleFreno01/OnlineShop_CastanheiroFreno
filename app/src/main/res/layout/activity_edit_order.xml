@@ -25,7 +25,8 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/basicTextSize"
+                        android:textColor="@color/colorText"
                         android:textStyle="bold" />
 
                     <TextView
@@ -33,18 +34,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="8"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/basicTextSize"
+                        android:textColor="@color/colorText"
                         android:textStyle="bold"
                         android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/textView_order_status"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/colorText"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:layout_weight="2"
                         android:text="@string/order_status"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/basicTextSize" />
                 </LinearLayout>
             </TableRow>
 
@@ -73,7 +76,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_item_number"
-                    android:textSize="18sp"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/basicTextSize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -81,8 +85,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
+                    android:textColor="@color/colorText"
                     android:text="2"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/basicTextSize" />
 
             </TableRow>
 
@@ -94,10 +99,11 @@
                 <TextView
                     android:id="@+id/label_product_name"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/colorText"
                     android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:text="@string/productname"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/basicTextSize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -106,8 +112,9 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_marginLeft="30dp"
+                    android:textColor="@color/colorText"
                     android:text="Apple IMac"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/basicTextSize" />
             </TableRow>
             <TableRow
                 android:layout_width="wrap_content"
@@ -118,9 +125,10 @@
                     android:id="@+id/label_product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorText"
                     android:layout_column="0"
                     android:text="@string/price"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/basicTextSize"
                     android:textStyle="bold"/>
 
                 <EditText
@@ -129,8 +137,9 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_marginLeft="30dp"
+                    android:textColor="@color/colorText"
                     android:text="CHF 1499.00"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/basicTextSize" />
             </TableRow>
             <TableRow
                 android:layout_width="wrap_content"
@@ -143,8 +152,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="0"
+                    android:textColor="@color/colorText"
                     android:text="@string/creation_date"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/basicTextSize"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -154,7 +164,8 @@
                     android:layout_column="1"
                     android:layout_marginLeft="30dp"
                     android:text="03.03.2020"
-                    android:textSize="18sp" />
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/basicTextSize" />
             </TableRow>
             <TableRow
                 android:layout_width="wrap_content"
@@ -166,10 +177,12 @@
                     android:id="@+id/label_delivery_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorText"
                     android:layout_column="0"
                     android:text="@string/delivery_date"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/basicTextSize"
                     android:textStyle="bold"/>
+
 
                 <EditText
                     android:id="@+id/textView_delivery_date"
@@ -177,14 +190,17 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_marginLeft="30dp"
+                    android:textColor="@color/colorText"
                     android:text="To be delivered"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/basicTextSize" />
             </TableRow>
 
             <Button
                 android:id="@+id/btnSave"
                 android:text="@string/save_button"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/btnTextSize"/>
 
         </TableLayout>
     </ScrollView>

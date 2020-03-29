@@ -19,14 +19,16 @@ import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.customer.CustomerActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.ui.mgmt.LoginActivity;
-import com.android.onlineshop_castanheirofreno.ui.mgmt.SettingsActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
+import com.android.onlineshop_castanheirofreno.ui.settings.SettingsActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String PREFS_NAME = "SharedPrefs";
     public static final String PREFS_USER = "LoggedIn";
+    public static final String PREFS_ORDER = "Orders";
+
 
     protected FrameLayout frameLayout;
 
@@ -84,8 +86,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         if (item.getItemId() == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -117,6 +118,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             logout();
         }else if (id == R.id.nav_account) {
             intent = new Intent(this, CustomerActivity.class);
+        }
+        else if (id == R.id.nav_settings) {
+            intent = new Intent(this, SettingsActivity.class);
         }
         if (intent != null) {
             intent.setFlags(

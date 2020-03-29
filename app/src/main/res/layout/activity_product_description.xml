@@ -40,12 +40,14 @@
                         android:id="@+id/new_item_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18dp"
+                        android:textSize="@dimen/productNameSize"
+                        android:textColor="@color/colorText"
                         android:text="@string/productname"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18dp"
+                        android:textSize="@dimen/basicTextSize"
+                        android:textColor="@color/colorText"
                         android:id="@+id/new_item_price"
                         android:text="@string/chf_price"
                         android:layout_marginTop="5dp"/>
@@ -58,7 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_to_the_cart"
-                android:layout_marginLeft="130dp" />
+                android:textColor="@color/colorText"
+                android:layout_gravity="center"
+                android:textSize="@dimen/btnTextSize"/>
 
             <ImageButton
                 android:id="@+id/btn_modify_product"
@@ -67,18 +71,19 @@
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:background="?android:selectableItemBackground"
-                android:src="@drawable/ic_edit_blue_24dp" />
+                android:src="@drawable/ic_edit_orange" />
 
             <TextView
                 android:id="@+id/productDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:textColor="@color/colorText"
                 android:layout_marginRight="15dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="15dp"
                 android:text="@string/product_description"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/longTextSize"/>
 
         </LinearLayout>
     </ScrollView>

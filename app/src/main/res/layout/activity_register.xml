@@ -35,6 +35,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/prompt_email"
+                android:textSize="@dimen/basicTextSize"
+                android:textColor="@color/colorHint"
                 android:inputType="textEmailAddress"
                 android:layout_marginBottom="20dp"/>
 
@@ -45,6 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textSize="@dimen/basicTextSize"
+                android:textColor="@color/colorHint"
                 android:hint="@string/client_firstName"
                 android:inputType="textPersonName"
                 android:layout_marginBottom="20dp"/>
@@ -54,8 +58,10 @@
                 android:id="@+id/lastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/basicTextSize"
                 android:ems="10"
                 android:hint="@string/client_name"
+                android:textColor="@color/colorHint"
                 android:inputType="textPersonName"
                 android:layout_marginBottom="20dp"/>
 
@@ -63,9 +69,11 @@
             <EditText
                 android:id="@+id/city"
                 android:layout_width="match_parent"
+                android:textSize="@dimen/basicTextSize"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="City"
+                android:textColor="@color/colorHint"
                 android:inputType="textPersonName"
                 android:layout_marginBottom="20dp"/>
 
@@ -74,8 +82,10 @@
                 android:id="@+id/city_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/basicTextSize"
                 android:ems="10"
                 android:hint="City_code"
+                android:textColor="@color/colorHint"
                 android:inputType="number"
                 android:layout_marginBottom="20dp"/>
 
@@ -84,7 +94,9 @@
                 android:id="@+id/telephone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorHint"
                 android:ems="10"
+                android:textSize="@dimen/basicTextSize"
                 android:hint="Telephone"
                 android:inputType="number"
                 android:layout_marginBottom="20dp"/>
@@ -93,9 +105,11 @@
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
+                android:textSize="@dimen/basicTextSize"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/prompt_password"
+                android:textColor="@color/colorHint"
                 android:inputType="textPassword"
                 android:layout_marginBottom="20dp"/>
 
@@ -106,6 +120,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/client_repeat_password"
+                android:textSize="@dimen/basicTextSize"
+                android:textColor="@color/colorHint"
                 android:inputType="textPassword"
                 android:layout_marginBottom="20dp"/>
 
@@ -113,6 +129,9 @@
         <Button
             android:id="@+id/editButton"
             android:layout_width="match_parent"
+            android:textSize="@dimen/btnTextSize"
+            android:textColor="@color/colorText"
+
             android:layout_height="wrap_content"
             android:text="@string/action_register" />
 

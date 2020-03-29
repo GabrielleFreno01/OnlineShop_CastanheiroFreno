@@ -1,6 +1,7 @@
 package com.android.onlineshop_castanheirofreno.ui.orders;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -44,16 +45,16 @@ public class OrderDetailActivity extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
-        Long orderId = getIntent().getLongExtra("orderId", 0L);
-
         initiateView();
 
-        OrderViewModel.Factory factory = new OrderViewModel.Factory(
-                getApplication(), orderId);
+        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ORDER, 0);
+        String owner = settings.getString(PREFS_ORDER, null);
+
+        OrderViewModel.Factory factory = new OrderViewModel.Factory(getApplication(), owner);
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
-        viewModel.getOrder().observe(this, orderEntity -> {
-            if (orderEntity != null) {
-                order = orderEntity;
+        viewModel.getOrder().observe(this, OrderEntity -> {
+            if (OrderEntity != null) {
+                order = OrderEntity;
                 updateContent();
             }
         });
@@ -63,7 +64,7 @@ public class OrderDetailActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         menu.add(0, EDIT_ORDER, Menu.NONE, getString(R.string.title_activity_edit_order))
-                .setIcon(R.drawable.ic_edit_blue_24dp)
+                .setIcon(R.drawable.ic_edit)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return true;
     }

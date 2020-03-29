@@ -169,5 +169,6 @@
     <string name="creation_date">Creation Date</string>
     <string name="delivery_date">Delivery Date</string>
     <string name="save_button">Save</string>
+    <string name="switch_dark_mode">Switch to dark mode</string>
 
 </resources>

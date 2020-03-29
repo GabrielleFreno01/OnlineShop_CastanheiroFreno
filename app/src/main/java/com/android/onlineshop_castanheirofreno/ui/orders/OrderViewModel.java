@@ -26,7 +26,7 @@ public class OrderViewModel extends AndroidViewModel {
     private final MediatorLiveData<OrderEntity> observableOrder;
 
     public OrderViewModel(@NonNull Application application,
-                          final Long orderId, OrderRepository orderRepository) {
+                          final String owner, OrderRepository orderRepository) {
         super(application);
 
         this.application = application;
@@ -48,20 +48,20 @@ public class OrderViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final Long orderId;
+        private final String owner;
 
         private final OrderRepository repository;
 
-        public Factory(@NonNull Application application, Long orderId) {
+        public Factory(@NonNull Application application, String owner) {
             this.application = application;
-            this.orderId = orderId;
+            this.owner = owner;
             repository = ((BaseApp) application).getOrderRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new OrderViewModel(application, orderId, repository);
+            return (T) new OrderViewModel(application, owner, repository);
         }
     }
 

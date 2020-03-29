@@ -45,6 +45,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
+                    android:textColor="@color/colorHint"
+                    android:textSize="@dimen/basicTextSize"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
 
@@ -59,6 +61,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
+                    android:textColor="@color/colorHint"
+                    android:textSize="@dimen/basicTextSize"
                     android:inputType="textPassword"
                     android:maxLines="1"/>
 
@@ -70,8 +74,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/colorText"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                android:textSize="@dimen/btnTextSize"/>
 
             <Button
                 android:id="@+id/register_button"
@@ -80,23 +85,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_register"
-                android:textStyle="bold" />
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/btnTextSize"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@android:color/darker_gray" />
 
-            <Button
-                android:id="@+id/demo_data_button"
-                style="@android:style/TextAppearance.Small"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_demo_data"
-                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

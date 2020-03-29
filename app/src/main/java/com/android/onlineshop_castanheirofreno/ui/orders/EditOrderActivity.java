@@ -34,8 +34,6 @@ public class EditOrderActivity extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
-        owner = settings.getString(BaseActivity.PREFS_USER, null);
 
         etPrice = findViewById(R.id.textView_product_price);
         etDeliver = findViewById(R.id.textView_delivery_date);
@@ -47,21 +45,19 @@ public class EditOrderActivity extends BaseActivity {
             toast.show();
         });
 
-        Long orderId = getIntent().getLongExtra("orderId", 0L);
+        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ORDER, 0);
+        String owner = settings.getString(PREFS_ORDER, null);
 
-
-        OrderViewModel.Factory factory = new OrderViewModel.Factory(
-                getApplication(), orderId);
+        OrderViewModel.Factory factory = new OrderViewModel.Factory(getApplication(), owner);
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
-        if (isEditMode) {
-            viewModel.getOrder().observe(this, orderEntity -> {
-                if (orderEntity != null) {
-                    order = orderEntity;
-                    etDeliver.setText(Long.toString(order.getIdOrder()));
-                }
-            });
-        }
+        viewModel.getOrder().observe(this, OrderEntity -> {
+            if (OrderEntity != null) {
+                order = OrderEntity;
+
+            }
+        });
     }
+
 
     private void saveChanges(String deliver_date, int price) {
         if (isEditMode) {

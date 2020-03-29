@@ -38,8 +38,10 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:text="@string/client_firstName"
+                android:textSize="@dimen/basicTextSize"
                 android:layout_marginBottom="20dp"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:textColor="@color/colorText"/>
 
 
             <EditText
@@ -49,21 +51,27 @@
                 android:ems="10"
                 android:text="@string/client_name"
                 android:inputType="text"
+                android:textSize="@dimen/basicTextSize"
+                android:textColor="@color/colorText"
                 android:layout_marginBottom="20dp"/>
 
             <EditText
                 android:id="@+id/email"
+                android:textSize="@dimen/basicTextSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:text="@string/prompt_email"
+                android:textColor="@color/colorText"
                 android:inputType="textEmailAddress"
                 android:layout_marginBottom="20dp"/>
 
 
             <EditText
                 android:id="@+id/customer_telephone"
+                android:textSize="@dimen/basicTextSize"
                 android:layout_width="match_parent"
+                android:textColor="@color/colorText"
                 android:layout_height="wrap_content"
                 android:text="Telephone"
                 android:layout_marginBottom="20dp"
@@ -71,9 +79,11 @@
 
             <EditText
                 android:id="@+id/customer_city_code"
+                android:textSize="@dimen/basicTextSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="City Code"
+                android:textColor="@color/colorText"
                 android:inputType="textPostalAddress"
                 android:layout_marginBottom="20dp"/>
 
@@ -83,7 +93,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="City"
+                android:textColor="@color/colorText"
                 android:inputType="text"
+                android:textSize="@dimen/basicTextSize"
                 android:layout_marginBottom="20dp"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -99,15 +111,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Modify Password"
-                android:textSize="20dp"/>
+                android:textSize="@dimen/basicTextSize"/>
 
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
+                    android:textColor="@color/colorText"
                     android:inputType="textPassword"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="20dp"
+                    android:textSize="@dimen/basicTextSize"/>
 
 
                 <EditText
@@ -115,6 +129,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/client_repeat_password"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/basicTextSize"
                     android:inputType="textPassword"/>
 
             <Button
@@ -122,7 +138,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save_button"
-                android:layout_marginLeft="120dp"/>
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/btnTextSize"
+                android:layout_gravity="center"/>
         </LinearLayout>
 
 

@@ -33,13 +33,15 @@
                 android:id="@+id/new_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
+                android:textSize="@dimen/productNameSize"
+                android:textColor="@color/colorText"
                 android:text="@string/productname"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="@dimen/basicTextSize"
                 android:id="@+id/new_item_price"
+                android:textColor="@color/colorText"
                 android:text="@string/chf_price"
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
@@ -54,7 +56,8 @@
         android:layout_marginTop="10dp"
         android:text="@string/bye_button"
         android:onClick="see"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textSize="@dimen/btnTextSize"/>
 
     <Button
         android:id="@+id/btn_go"
@@ -65,7 +68,8 @@
         android:layout_marginTop="10dp"
         android:text="@string/go_shopping_button"
         android:onClick="goShopping"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textSize="@dimen/btnTextSize"/>
 
 
 </LinearLayout>

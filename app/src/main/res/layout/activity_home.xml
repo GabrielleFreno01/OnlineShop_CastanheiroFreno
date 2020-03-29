@@ -26,11 +26,12 @@
         android:id="@+id/newProducts_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="28dp"
         android:text="@string/title_new_products"
-        android:textSize="24dp"
+        android:textSize="@dimen/titleTextSize"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

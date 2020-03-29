@@ -5,10 +5,12 @@
         <color name="colorTitle">#000000</color>
         <color name="colorAccent">#000000</color>
         <color name="orange">#F5CF07</color>
+        <color name="orangeDark">#302E28</color>
         <color name="white">#FFFFFF</color>
-        <color name="colorAccentGrey">#60615E</color>
+        <color name="black">#000000</color>
+        <color name="colorHint">#60615E</color>
         <color name="orangeBackground">#FFE9C5</color>
-        <color name="colorText">#000000</color>
+        <color name="colorText">#555555</color>
         <color name="validate">#1ED618</color>
         <color name="cancel">#DD1E1E</color>
         <color name="inprogress">#EA8110</color>

@@ -30,12 +30,14 @@
                 android:id="@+id/new_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="@dimen/productNameSize"
+                android:textColor="@color/colorText"
                 android:text="@string/productname"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="@dimen/basicTextSize"
+                android:textColor="@color/colorText"
                 android:id="@+id/new_item_price"
                 android:text="@string/chf_price"
                 android:layout_marginTop="5dp"/>

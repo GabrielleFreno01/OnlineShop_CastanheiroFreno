@@ -1,25 +1,43 @@
 <resources>
 
-    <!-- Base application theme. -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/orange</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorBackgroundOrange">@color/orange</item>
+        <item name="colorTextBlack">@color/colorText</item>
     </style>
 
+    <!-- Light Day theme. -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorBackgroundOrange">@color/orange</item>
+        <item name="colorTextBlack">@color/colorText</item>
+        <item name="colorHint">@color/colorHint</item>
+        <item name="background">@color/white</item>
+
     </style>
 
-    <style name="AppTheme.ActionBar">
+    <!--<style name="AppTheme.ActionBar">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
         <item name="titleTextColor">@color/white</item>
+    </style>-->
+
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Light Day theme. -->
+    <style name="AppTheme.DarkNoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorBackgroundOrange">@color/orangeDark</item>
+        <item name="colorTextBlack">@color/white</item>
+        <item name="colorHint">@color/white</item>
+        <item name="background">@color/black</item>
     </style>
 
-<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

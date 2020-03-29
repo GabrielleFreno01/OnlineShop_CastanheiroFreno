@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/productname"
-        android:textSize="18sp"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/basicTextSize"
         android:textStyle="bold" />
 
     <TextView
@@ -28,7 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:textColor="@color/colorText"
         android:text="@string/chf_price"
-        android:textSize="14sp" />
+        android:textSize="@dimen/smallbasicTextSize" />
 
 </LinearLayout>

@@ -10,6 +10,13 @@
 
     <!--Size basic Text-->
     <dimen name="basicTextSize">20sp</dimen>
+    <dimen name="productNameSize">24sp</dimen>
+    <dimen name="btnTextSize">18sp</dimen>
+    <dimen name="smallTextSize">30dp</dimen>
+    <dimen name="titleTextSize">25dp</dimen>
+    <dimen name="longTextSize">14sp</dimen>
+    <dimen name="smallbasicTextSize">18sp</dimen>
+    <dimen name="welcomeSize">50sp</dimen>
 
     <!-- Product Images -->
     <dimen name="products_list_image_height">100dp</dimen>

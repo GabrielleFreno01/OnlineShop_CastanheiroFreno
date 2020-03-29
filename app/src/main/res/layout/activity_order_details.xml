@@ -26,15 +26,17 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/basicTextSize"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:id="@+id/textview_id_order"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textSize="20sp"
+                        android:textSize="@dimen/basicTextSize"
+                        android:textColor="@color/colorText"
                         android:textStyle="bold"
                         android:layout_weight="1"/>
 
@@ -42,10 +44,11 @@
                         android:id="@+id/textView_order_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorText"
                         android:layout_marginLeft="30dp"
                         android:layout_weight="2"
                         android:text=""
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/basicTextSize" />
                 </LinearLayout>
             </TableRow>
 
@@ -74,16 +77,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_item_number"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/basicTextSize"
+                    android:textColor="@color/colorText"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView_product_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorText"
                     android:layout_marginLeft="30dp"
                     android:text=""
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/basicTextSize" />
 
             </TableRow>
 
@@ -95,10 +100,11 @@
                 <TextView
                     android:id="@+id/label_product_name"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/colorText"
                     android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:text="@string/productname"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/basicTextSize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -107,8 +113,9 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_marginLeft="30dp"
+                    android:textColor="@color/colorText"
                     android:text=""
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/basicTextSize" />
             </TableRow>
             <TableRow
                 android:layout_width="wrap_content"
@@ -119,9 +126,10 @@
                     android:id="@+id/label_product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorText"
                     android:layout_column="0"
                     android:text="@string/price"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/basicTextSize"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -129,9 +137,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:textColor="@color/colorText"
                     android:layout_marginLeft="30dp"
                     android:text=""
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/basicTextSize" />
             </TableRow>
             <TableRow
                 android:layout_width="wrap_content"
@@ -145,17 +154,19 @@
                     android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:text="@string/creation_date"
-                    android:textSize="18sp"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/basicTextSize"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/textView_order_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorText"
                     android:layout_column="1"
                     android:layout_marginLeft="30dp"
                     android:text=""
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/basicTextSize" />
             </TableRow>
             <TableRow
                 android:layout_width="wrap_content"
@@ -166,10 +177,11 @@
                 <TextView
                     android:id="@+id/label_delivery_date"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/colorText"
                     android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:text="@string/delivery_date"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/basicTextSize"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -178,8 +190,9 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_marginLeft="30dp"
+                    android:textColor="@color/colorText"
                     android:text=""
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/basicTextSize" />
             </TableRow>
 
             <TableRow
@@ -194,9 +207,11 @@
                     android:id="@+id/button_deliver"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textColor="@color/colorText"
                     android:layout_column="0"
-                    android:text="deliver"
-                    android:textSize="18sp"/>
+                    android:background="@color/validate"
+                    android:text="@string/button_deliver"
+                    android:textSize="@dimen/btnTextSize"/>
 
             </TableRow>
 
@@ -213,8 +228,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_column="0"
-                    android:text="changeProduct"
-                    android:textSize="18sp"/>
+                    android:textColor="@color/colorText"
+                    android:text="@string/button_changeProduct"
+
+                    android:textSize="@dimen/btnTextSize"/>
             </TableRow>
 
             <TableRow
@@ -230,9 +247,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_column="0"
-                    android:text="cancel"
-                    android:textSize="18sp"
-                    />
+                    android:background="@color/cancel"
+                    android:textColor="@color/colorText"
+                    android:text="@string/button_cancel"
+                    android:textSize="@dimen/btnTextSize" />
             </TableRow>
         </TableLayout>
     </ScrollView>

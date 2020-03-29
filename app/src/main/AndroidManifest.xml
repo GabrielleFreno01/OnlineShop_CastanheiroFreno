@@ -42,15 +42,6 @@
         </activity>
 
         <activity
-            android:name=".ui.mgmt.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".ui.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.onlineshop_castanheirofreno.ui.MainActivity" />
-        </activity>
-
-        <activity
             android:name=".ui.mgmt.RegisterActivity"
             android:label="@string/action_register"
             android:parentActivityName=".ui.mgmt.LoginActivity">

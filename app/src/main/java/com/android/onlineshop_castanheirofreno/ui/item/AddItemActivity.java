@@ -34,7 +34,6 @@ public class AddItemActivity extends BaseActivity {
     Button validateButton;
     EditText etproductName;
     EditText etprice;
-    EditText etquantity;
     EditText etdescription;
 
     private Toast toast;
@@ -88,7 +87,6 @@ public class AddItemActivity extends BaseActivity {
                 etproductName.getText().toString(),
                 etdescription.getText().toString(),
                 Integer.parseInt(etprice.getText().toString()),
-                Integer.parseInt(etquantity.getText().toString()),
                 spinner.getSelectedItemId()
                 //imageButton.getId()
         ));
@@ -100,7 +98,6 @@ public class AddItemActivity extends BaseActivity {
         etproductName = findViewById(R.id.input_product_name);
         etdescription = findViewById(R.id.input_description);
         etprice = findViewById(R.id.input_price);
-        etquantity = findViewById(R.id.input_quantity);
         spinner = findViewById(R.id.spinner_category);
         //imageButton = findViewById(R.id.imagebtn_addImage);
 
@@ -132,9 +129,9 @@ public class AddItemActivity extends BaseActivity {
         }
     }
 
-    private void saveChanges(String name, String description, int price, int quantity_in_stock, long idCategory){//, long idImage) {
+    private void saveChanges(String name, String description, int price, long idCategory){//, long idImage) {
 
-        ItemEntity newItem = new ItemEntity(name, description, price, quantity_in_stock, idCategory);//), idImage);
+        ItemEntity newItem = new ItemEntity(name, description, price, idCategory);//), idImage);
 
         new CreateItem(getApplication(), new OnAsyncEventListener() {
             @Override

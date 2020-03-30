@@ -6,14 +6,12 @@ public class ItemModel {
     private double price;
     private int idItem;
     private String description;
-    private int quantity;
 
-    public ItemModel(int idItem, int image, String productName, double price, int quantity, String description) {
+    public ItemModel(int idItem, int image, String productName, double price, String description) {
         this.idItem = idItem;
         this.image = image;
         this.productName = productName;
         this.price = price;
-        this.quantity = quantity;
         this.description = description;
     }
     public ItemModel(int idItem, int image, String productName, double price) {
@@ -22,16 +20,9 @@ public class ItemModel {
         this.productName = productName;
         this.price = price;
         this.description = "Description";
-        this.quantity = 20;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
     public int getIdItem() {
         return idItem;
     }

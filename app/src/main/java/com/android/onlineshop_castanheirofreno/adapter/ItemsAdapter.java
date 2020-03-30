@@ -112,7 +112,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
                             && newItem.getName() == oldItem.getName()
                             && newItem.getPrice() == oldItem.getPrice()
                             && newItem.getIdCategory() == oldItem.getIdCategory()
-                            && newItem.getQuantity_in_stock() == oldItem.getQuantity_in_stock()
                             && newItem.getDescription() == oldItem.getDescription();
                 }
             });

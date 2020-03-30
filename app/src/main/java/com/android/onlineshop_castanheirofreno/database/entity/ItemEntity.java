@@ -31,9 +31,6 @@ public class ItemEntity {
     @ColumnInfo(name = "price")
     private int price;
 
-    @ColumnInfo(name = "quantity_in_stock")
-    private int quantity_in_stock;
-
     @ColumnInfo(name = "idCategory")
     private long idCategory;
 
@@ -46,11 +43,10 @@ public class ItemEntity {
     public ItemEntity() {
     }
 
-    public ItemEntity(String name, String description,int price, int quantity_in_stock, long idCategory){//, long idImage) {
+    public ItemEntity(String name, String description,int price, long idCategory){//, long idImage) {
         this.name = name ;
         this.description = description;
         this.price = price;
-        this.quantity_in_stock = quantity_in_stock;
         this.idCategory = idCategory;
         //this.idImage = idImage;
     }
@@ -73,10 +69,6 @@ public class ItemEntity {
     public int getPrice() { return price; }
 
     public void setPrice(int price) { this.price = price; }
-
-    public int getQuantity_in_stock() { return quantity_in_stock; }
-
-    public void setQuantity_in_stock(int quantity_in_stock) { this.quantity_in_stock = quantity_in_stock; }
 
     public long getIdCategory() { return idCategory; }
 

@@ -40,7 +40,6 @@ public class EditItemActivity extends BaseActivity {
     Button validateButton;
     EditText etproductName;
     EditText etprice;
-    EditText etquantity;
     EditText etdescription;
 
     ItemViewModel viewModel;
@@ -91,7 +90,6 @@ public class EditItemActivity extends BaseActivity {
         if (item != null) {
             etproductName.setText(item.getName());
             etprice.setText(String.valueOf(item.getPrice()));
-            etquantity.setText(String.valueOf(item.getQuantity_in_stock()));
             etdescription.setText(item.getDescription());
             //spinner.setSelection(item.getIdCategory());
 
@@ -119,7 +117,6 @@ public class EditItemActivity extends BaseActivity {
         saveChanges(
                 etproductName.getText().toString(),
                 Integer.parseInt(etprice.getText().toString()),
-                Integer.parseInt(etquantity.getText().toString()),
                 etdescription.getText().toString(),
                 //imageButton.getId(),
                 spinner.getSelectedItemId()
@@ -129,10 +126,9 @@ public class EditItemActivity extends BaseActivity {
     }
 
 
-    private void saveChanges(String name, int price, int quantity, String description, long idCategory) {
+    private void saveChanges(String name, int price, String description, long idCategory) {
         item.setName(name);
         item.setPrice(price);
-        item.setQuantity_in_stock(quantity);
         item.setDescription(description);
         //item.setIdImage(idImage);
         item.setIdCategory(idCategory);
@@ -175,7 +171,6 @@ public class EditItemActivity extends BaseActivity {
         //imageButton = findViewById(R.id.imagebtn_addImage);
         etproductName = findViewById(R.id.input_product_name);
         etprice = findViewById(R.id.input_price);
-        etquantity = findViewById(R.id.input_quantity);
         etdescription = findViewById(R.id.input_description);
 
     }

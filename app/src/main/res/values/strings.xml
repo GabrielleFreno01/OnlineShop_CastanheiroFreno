@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Technospot</string>
-    <string name="productname">ProductName</string>
+    <string name="productname">Product Name</string>
     <string name="add_to_the_cart">Add to the cart</string>
     <string name="price">Price</string>
     <string name="product_description">Fuerit toto in consulatu sine provincia, cui fuerit, antequam Fuerit toto in consulatu sine provincia, cui fuerit, antequam designatus est, decreta provincia. Sortietur an non? Nam et non sortiri absurdum est, et, quod sortitus sis, non habere. Proficiscetur paludatus? Quo? Quo pervenire ante certam diem non licebit. ianuario, Februario, provinciam non habebit; Kalendis ei denique Martiis nascetur repente provincia. Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt. Altera sententia est, quae definit amicitiam paribus officiis ac voluntatibus. Hoc quidem est nimis exigue et exiliter ad calculos vocare amicitiam, ut par sit ratio acceptorum et datorum. Divitior mihi et affluentior videtur esse vera amicitia nec observare restricte, ne plus reddat quam acceperit; neque enim verendum est, ne quid excidat, aut ne quid in terram defluat, aut ne plus aequo quid in amicitiam congeratur.designatus est, decreta provincia. Sortietur an non? Nam et non sortiri absurdum est, et, quod sortitus sis, non habere. Proficiscetur paludatus? Quo? Quo pervenire ante certam diem non licebit. ianuario, Februario, provinciam non habebit; Kalendis ei denique Martiis nascetur repente provincia. Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt. Altera sententia est, quae definit amicitiam paribus officiis ac voluntatibus. Hoc quidem est nimis exigue et exiliter ad calculos vocare amicitiam, ut par sit ratio acceptorum et datorum. Divitior mihi et affluentior videtur esse vera amicitia nec observare restricte, ne plus reddat quam acceperit; neque enim verendum est, ne quid excidat, aut ne quid in terram defluat, aut ne plus aequo quid in amicitiam congeratur.</string>
@@ -39,6 +39,12 @@
         <item>Gaming</item>
         <item>Smartphone</item>
         <item>TV</item>
+    </string-array>
+
+    <string-array name="array_status">
+        <item>In progress</item>
+        <item>Delivered</item>
+        <item>Canceled</item>
     </string-array>
 
     <string name="add_new_product">Add the product</string>
@@ -170,5 +176,8 @@
     <string name="delivery_date">Delivery Date</string>
     <string name="save_button">Save</string>
     <string name="switch_dark_mode">Switch to dark mode</string>
+    <string name="label_status">Status</string>
+    <string name="hint_date">Select a date</string>
+    <string name="OrderEdited">Order successfully edited</string>
 
 </resources>

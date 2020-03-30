@@ -101,8 +101,8 @@ public class DatabaseInitializer {
         addOrder(db, 429, "23.03.2020", "23.03.2020", 2, "Delivered", "g@g.com");
         addOrder(db, 429, "23.03.2020", "23.03.2020", 2, "Delivered", "g@g.com");
         addOrder(db, 429, "23.03.2020", "23.03.2020", 2, "Delivered", "t@t.com");
-        addOrder(db, 429, "25.05.2020", "23.03.2020", 1, "In progress", "t@t.com");
-        addOrder(db, 429, "26.03.2020", "23.03.2020", 1, "In progress", "t@t.com");
+        addOrder(db, 429, "25.05.2020", "", 1, "In progress", "t@t.com");
+        addOrder(db, 429, "26.03.2020", "", 1, "In progress", "t@t.com");
 
     }
 

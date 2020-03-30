@@ -3,6 +3,7 @@ package com.android.onlineshop_castanheirofreno.ui.item;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -13,8 +14,12 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
+import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EditItemActivity extends BaseActivity {
 
@@ -31,6 +36,8 @@ public class EditItemActivity extends BaseActivity {
     ItemViewModel viewModel;
 
     ItemEntity item;
+
+    List<CategoryEntity> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,10 @@ public class EditItemActivity extends BaseActivity {
                 item = customerEntity;
                 updateContent();
             }
+
         });
+
+
 
         validateButton = (Button) findViewById(R.id.btn_edit_product);
         validateButton.setOnClickListener(new View.OnClickListener() {
@@ -73,8 +83,24 @@ public class EditItemActivity extends BaseActivity {
             etdescription.setText(item.getDescription());
             //spinner.setSelection(item.getIdCategory());
 
+            viewModel.getCategories().observe(this, categoriesEntity -> {
+                if (categoriesEntity != null) {
+                    categories = categoriesEntity;
+                    System.out.println(categories.size());
+                }
 
+            });
+
+
+            ArrayList<String> categoriesArray = new ArrayList<String>();
+            for (CategoryEntity categoryEntity : categories) {
+                categoriesArray.add(categoryEntity.getName());
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, categoriesArray);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
         }
+
     }
 
     public void save(View view) {

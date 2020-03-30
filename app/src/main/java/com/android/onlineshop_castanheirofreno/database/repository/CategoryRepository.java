@@ -25,7 +25,9 @@ public class CategoryRepository  {
     }
 
     public LiveData<List<CategoryEntity>> getCategories(Application application) {
-        return ((BaseApp) application).getDatabase().categoryDao().getAll();
+        LiveData<List<CategoryEntity>> category = ((BaseApp) application).getDatabase().categoryDao().getAll();
+        System.out.println(category.getValue().get(1));
+        return category;
     }
 
     public LiveData<CategoryEntity> getCategory(final Long categoryId, Application application) {

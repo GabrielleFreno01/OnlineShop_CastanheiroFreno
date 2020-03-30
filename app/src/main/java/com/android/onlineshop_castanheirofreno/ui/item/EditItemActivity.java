@@ -46,16 +46,16 @@ public class EditItemActivity extends BaseActivity {
         SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
         long itemid = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
 
-       /* ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), user);
+       ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemid);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
-        viewModel.getCustomer().observe(this, customerEntity -> {
+        viewModel.getItem().observe(this, customerEntity -> {
             if (customerEntity != null) {
-                client = customerEntity;
+                item = customerEntity;
                 updateContent();
             }
         });
-*/
-        validateButton = (Button) findViewById(R.id.btn_save);
+
+        validateButton = (Button) findViewById(R.id.btn_edit_product);
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +63,18 @@ public class EditItemActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private void updateContent() {
+        if (item != null) {
+            etproductName.setText(item.getName());
+            etprice.setText(String.valueOf(item.getPrice()));
+            etquantity.setText(String.valueOf(item.getQuantity_in_stock()));
+            etdescription.setText(item.getDescription());
+            //spinner.setSelection(item.getIdCategory());
+
+
+        }
     }
 
     public void save(View view) {
@@ -84,14 +96,14 @@ public class EditItemActivity extends BaseActivity {
         item.setPrice(price);
         item.setQuantity_in_stock(quantity);
         item.setDescription(description);
-        item.setIdImage(idImage);
+        //item.setIdImage(idImage);
         item.setIdCategory(idCategory);
         }
 
 
     private void initiateView() {
         spinner = findViewById(R.id.spinner_category);
-        imageButton = findViewById(R.id.imagebtn_addImage);
+        //imageButton = findViewById(R.id.imagebtn_addImage);
         etproductName = findViewById(R.id.input_product_name);
         etprice = findViewById(R.id.input_price);
         etquantity = findViewById(R.id.input_quantity);

@@ -123,6 +123,12 @@
             android:label="Item description"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".ui.item.EditItemActivity"
+            android:label="Item description"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
     </application>
 
 </manifest>

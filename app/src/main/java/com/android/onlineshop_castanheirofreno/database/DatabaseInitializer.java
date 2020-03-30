@@ -33,8 +33,8 @@ public class DatabaseInitializer {
         long id = db.orderDao().insert(order);
     }
 
-    private static void addItem(final AppDatabase db, final String name, final String description, final int price, final int quantity_in_stock, final long idCategory, final long idImage) {
-        ItemEntity item = new ItemEntity(name, description, price,  quantity_in_stock, idCategory, idImage );
+    private static void addItem(final AppDatabase db, final String name, final String description, final int price, final int quantity_in_stock, final long idCategory){//, final long idImage) {
+        ItemEntity item = new ItemEntity(name, description, price,  quantity_in_stock, idCategory);//, idImage );
         long id = db.itemDao().insert(item);
 
     }
@@ -85,9 +85,9 @@ public class DatabaseInitializer {
 
         //Items
         db.itemDao().deleteAll();
-        addItem(db, "Acer Aspire VX", "Wonderful computer", 950, 2, 4, 2);
+        addItem(db, "Acer Aspire VX", "Wonderful computer", 950, 2, 4);//;, 2);
 
-        addItem(db, "Apple IMac" , "Perfect for work", 1020, 3, 4, 1);
+        addItem(db, "Apple IMac" , "Perfect for work", 1020, 3, 4);//, 1);
 
         try {
             // Let's ensure that the items are already stored in the database before we continue.

@@ -16,14 +16,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageButton
+            <!--<ImageButton
                 android:id="@+id/imagebtn_addImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:background="?android:selectableItemBackground"
-                android:src="@drawable/ic_add_a_photo_blue_24dp" />
+                android:src="@drawable/ic_add_a_photo_blue_24dp" />-->
 
             <TextView
                 android:id="@+id/textView_productName"

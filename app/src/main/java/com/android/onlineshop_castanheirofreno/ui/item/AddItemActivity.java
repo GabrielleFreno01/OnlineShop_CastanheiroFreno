@@ -30,7 +30,7 @@ import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 public class AddItemActivity extends BaseActivity {
 
     Spinner spinner;
-    ImageButton imageButton;
+    //ImageButton imageButton;
     Button validateButton;
     EditText etproductName;
     EditText etprice;
@@ -61,9 +61,9 @@ public class AddItemActivity extends BaseActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        imageButton = findViewById(R.id.imagebtn_addImage);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-
+        //imageButton = findViewById(R.id.imagebtn_addImage);
+        //imageButton.setOnClickListener(new View.OnClickListener() {
+/*
             @Override
             public void onClick(View v) {
                 //Check runtime permission
@@ -82,15 +82,15 @@ public class AddItemActivity extends BaseActivity {
 
             }
         });
-
+*/
         validateButton = findViewById(R.id.btn_add_new_product);
         validateButton.setOnClickListener(view -> saveChanges(
                 etproductName.getText().toString(),
                 etdescription.getText().toString(),
                 Integer.parseInt(etprice.getText().toString()),
                 Integer.parseInt(etquantity.getText().toString()),
-                spinner.getSelectedItemId(),
-                imageButton.getId()
+                spinner.getSelectedItemId()
+                //imageButton.getId()
         ));
         Intent intent = new Intent(getApplicationContext(), ItemDescriptionActivity.class);
         startActivity(intent);
@@ -104,7 +104,7 @@ public class AddItemActivity extends BaseActivity {
         etprice = findViewById(R.id.input_price);
         etquantity = findViewById(R.id.input_quantity);
         spinner = findViewById(R.id.spinner_category);
-        imageButton = findViewById(R.id.imagebtn_addImage);
+        //imageButton = findViewById(R.id.imagebtn_addImage);
 
     }
 
@@ -119,7 +119,7 @@ public class AddItemActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            imageButton.setImageURI(data.getData());
+            //imageButton.setImageURI(data.getData());
         }
     }
 
@@ -134,9 +134,9 @@ public class AddItemActivity extends BaseActivity {
         }
     }
 
-    private void saveChanges(String name, String description, int price, int quantity_in_stock, long idCategory, long idImage) {
+    private void saveChanges(String name, String description, int price, int quantity_in_stock, long idCategory){//, long idImage) {
 
-        ItemEntity newItem = new ItemEntity(name, description, price, quantity_in_stock, idCategory, idImage);
+        ItemEntity newItem = new ItemEntity(name, description, price, quantity_in_stock, idCategory);//), idImage);
 
         new CreateItem(getApplication(), new OnAsyncEventListener() {
             @Override

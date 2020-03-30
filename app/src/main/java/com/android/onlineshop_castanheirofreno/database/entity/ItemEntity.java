@@ -9,11 +9,11 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "items", foreignKeys = {@ForeignKey(entity = CategoryEntity.class, parentColumns = "idCategory", childColumns = "idCategory"),
-        @ForeignKey(entity = ImageEntity.class, parentColumns = "idImage", childColumns = "idImage")},
+@Entity(tableName = "items", foreignKeys = {@ForeignKey(entity = CategoryEntity.class, parentColumns = "idCategory", childColumns = "idCategory")},
+        //@ForeignKey(entity = ImageEntity.class, parentColumns = "idImage", childColumns = "idImage")},
         indices = {
                 @Index( value = {"idCategory"}),
-                @Index( value = {"idImage"})
+                //@Index( value = {"idImage"})
         }
 )
 
@@ -37,8 +37,8 @@ public class ItemEntity {
     @ColumnInfo(name = "idCategory")
     private long idCategory;
 
-    @ColumnInfo(name = "idImage")
-    private long idImage;
+    /*@ColumnInfo(name = "idImage")
+    private long idImage;*/
 
 
 

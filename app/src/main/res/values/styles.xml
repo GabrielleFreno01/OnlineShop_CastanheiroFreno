@@ -25,7 +25,7 @@
     </style>-->
 
 
-    </style>
+
     <style name="AppTheme.DatePicker" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/orange</item>
         <item name="android:textColorPrimary">@color/colorAccent</item>

@@ -60,7 +60,7 @@ public class ItemDescriptionActivity extends BaseActivity {
     }
 
     public void modifyProduct() {
-        Intent intent = new Intent(this, AddItemActivity.class);
+        Intent intent = new Intent(this, EditItemActivity.class);
         //intent.putExtra("ID_ITEM", itemModel.getIdItem());
         startActivity(intent);
     }

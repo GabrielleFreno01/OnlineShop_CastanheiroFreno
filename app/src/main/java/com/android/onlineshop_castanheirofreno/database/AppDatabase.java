@@ -26,7 +26,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-@Database(entities = {OrderEntity.class, CustomerEntity.class, ItemEntity.class, ImageEntity.class, CategoryEntity.class}, version = 6, exportSchema = false)
+@Database(entities = {OrderEntity.class, CustomerEntity.class, ItemEntity.class, ImageEntity.class, CategoryEntity.class}, version = 7, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";

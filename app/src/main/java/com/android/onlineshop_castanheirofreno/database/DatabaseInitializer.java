@@ -44,10 +44,10 @@ public class DatabaseInitializer {
         long id = db.categoryDao().insert(category);
     }
 
-    private static void addImage(final AppDatabase db, final String lien) {
+    /*private static void addImage(final AppDatabase db, final String lien) {
         ImageEntity image = new ImageEntity(lien);
         long id = db.imageDao().insert(image);
-    }
+    }*/
 
     private static void populateWithTestData(AppDatabase db) {
         db.customerDao().deleteAll();
@@ -70,11 +70,11 @@ public class DatabaseInitializer {
 
         addCategory(db, "TV");
 
-        //Images
+       /* //Images
         db.imageDao().deleteAll();
         addImage(db, ".\\OnlineShop_CastanheiroFreno\\app\\src\\main\\res\\drawable\\acer_aspire_5_599.PNG");
 
-        addImage(db, ".\\OnlineShop_CastanheiroFreno\\app\\src\\main\\res\\drawable\\apple_imac_1499.PNG");
+        addImage(db, ".\\OnlineShop_CastanheiroFreno\\app\\src\\main\\res\\drawable\\apple_imac_1499.PNG");*/
 
         try {
             // Let's ensure that the clients, categories and images are already stored in the database before we continue.

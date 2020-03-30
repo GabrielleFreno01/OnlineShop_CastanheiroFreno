@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="os">
+        <attr name="colorBackgroundOrange" format="color"/>
+        <attr name="colorTextBlack" format="color"/>
+        <attr name="colorHint" format="color"/>
+        <attr name="backgroundWhite" format="color"/>
+        <attr name="basicTextSize" format="dimension"/>
+    </declare-styleable>
+
+</resources>

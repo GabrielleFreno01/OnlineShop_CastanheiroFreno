@@ -60,9 +60,9 @@ public class ItemListActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 seeProductDescription(view);
-                SharedPreferences.Editor editor = getSharedPreferences(PREFS_ITEM, 0).edit();
+               /* SharedPreferences.Editor editor = getSharedPreferences(PREFS_ITEM, 0).edit();
                 editor.putLong(PREFS_ITEM, item.getIdItem());
-                editor.apply();
+                editor.apply();*/
             }
         });
 

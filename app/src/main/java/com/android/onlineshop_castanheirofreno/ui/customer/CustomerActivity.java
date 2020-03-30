@@ -32,7 +32,7 @@ public class CustomerActivity extends BaseActivity {
 
     private Toast toast;
 
-    private boolean isEditable;
+
 
     private EditText etFirstName;
     private EditText etLastName;
@@ -155,7 +155,6 @@ public class CustomerActivity extends BaseActivity {
     }
 
     private void initiateView() {
-        isEditable = false;
         etFirstName = findViewById(R.id.firstName);
         etLastName = findViewById(R.id.lastName);
         etEmail = findViewById(R.id.email);
@@ -214,8 +213,7 @@ public class CustomerActivity extends BaseActivity {
             etCity_code.setEnabled(true);
             etCity_code.setFocusableInTouchMode(true);
 
-       // }
-       // isEditable = !isEditable;
+
     }
 
     private void updateContent() {

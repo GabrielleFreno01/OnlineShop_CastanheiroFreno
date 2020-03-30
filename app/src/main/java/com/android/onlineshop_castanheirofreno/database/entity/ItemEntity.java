@@ -46,13 +46,13 @@ public class ItemEntity {
     public ItemEntity() {
     }
 
-    public ItemEntity(String name, String description,int price, int quantity_in_stock, long idCategory, long idImage) {
+    public ItemEntity(String name, String description,int price, int quantity_in_stock, long idCategory){//, long idImage) {
         this.name = name ;
         this.description = description;
         this.price = price;
         this.quantity_in_stock = quantity_in_stock;
         this.idCategory = idCategory;
-        this.idImage = idImage;
+        //this.idImage = idImage;
     }
 
     //getters & setters
@@ -82,9 +82,9 @@ public class ItemEntity {
 
     public void setIdCategory(long idCategory) { this.idCategory = idCategory; }
 
-    public long getIdImage() { return idImage; }
+    //public long getIdImage() { return idImage; }
 
-    public void setIdImage(long image) { this.idImage = image; }
+    //public void setIdImage(long image) { this.idImage = image; }
 
 
 }

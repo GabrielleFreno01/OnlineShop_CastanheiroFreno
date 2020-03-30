@@ -18,6 +18,7 @@ import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.customer.CustomerActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
+import com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity;
 import com.android.onlineshop_castanheirofreno.ui.mgmt.LoginActivity;
 import com.android.onlineshop_castanheirofreno.ui.mgmt.SettingsActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;

@@ -2,6 +2,8 @@ package com.android.onlineshop_castanheirofreno.ui.item;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,17 +13,23 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EditItemActivity extends BaseActivity {
+
+
 
     private Toast toast;
 
@@ -55,9 +63,9 @@ public class EditItemActivity extends BaseActivity {
 
        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemid);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
-        viewModel.getItem().observe(this, customerEntity -> {
-            if (customerEntity != null) {
-                item = customerEntity;
+        viewModel.getItem().observe(this, itemEntity -> {
+            if (itemEntity != null) {
+                item = itemEntity;
                 updateContent();
             }
 
@@ -75,6 +83,10 @@ public class EditItemActivity extends BaseActivity {
         });
     }
 
+
+
+
+
     private void updateContent() {
         if (item != null) {
             etproductName.setText(item.getName());
@@ -83,7 +95,7 @@ public class EditItemActivity extends BaseActivity {
             etdescription.setText(item.getDescription());
             //spinner.setSelection(item.getIdCategory());
 
-            viewModel.getCategories().observe(this, categoriesEntity -> {
+            /*viewModel.getCategories().observe(this, categoriesEntity -> {
                 if (categoriesEntity != null) {
                     categories = categoriesEntity;
                     System.out.println(categories.size());
@@ -98,7 +110,7 @@ public class EditItemActivity extends BaseActivity {
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, categoriesArray);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
+            spinner.setAdapter(adapter);*/
         }
 
     }

@@ -64,14 +64,7 @@
                 android:layout_gravity="center"
                 android:textSize="@dimen/btnTextSize"/>
 
-            <ImageButton
-                android:id="@+id/btn_modify_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:background="?android:selectableItemBackground"
-                android:src="@drawable/ic_edit_orange" />
+
 
             <TextView
                 android:id="@+id/productDescription"

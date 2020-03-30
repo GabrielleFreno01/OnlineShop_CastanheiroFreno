@@ -60,7 +60,7 @@ public class ItemListActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 seeProductDescription(view);
-                //TODO
+                //TODO remplacer par idItem
                SharedPreferences.Editor editor = getSharedPreferences(PREFS_ITEM, 0).edit();
                 editor.putLong(PREFS_ITEM, 1);
                 editor.apply();
@@ -77,7 +77,7 @@ public class ItemListActivity extends BaseActivity {
         cat_name = findViewById(R.id.cat_name_tv);
         cat_name.setText(cat_v_model.getCategoryName());
 
-        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        FloatingActionButton fab = findViewById(R.id.floatingActionButtonAddItem);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

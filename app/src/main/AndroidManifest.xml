@@ -54,6 +54,9 @@
             android:name=".ui.orders.OrdersActivity"
             android:label="Orders"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.onlineshop_castanheirofreno.ui.home.HomeActivity" />
         </activity>
 
         <activity
@@ -61,74 +64,118 @@
             android:label="Edit Order"
             android:parentActivityName=".ui.orders.OrdersActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.onlineshop_castanheirofreno.ui.orders.OrderDetailActivity" />
         </activity>
 
         <activity
             android:name=".ui.BaseActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
 
         <activity
             android:name=".ui.orders.OrderDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.orders.OrdersActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity" />
         </activity>
 
         <activity
             android:name=".ui.home.HomeActivity"
             android:label="Home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
 
         <activity
             android:name=".ui.cart.CartActivity"
             android:label="Cart"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.android.onlineshop_castanheirofreno.ui.home.HomeActivity" />
+        </activity>
+
 
         <activity
             android:name=".ui.confirmation.ConfirmationActivity"
             android:label="Confirmation"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.android.onlineshop_castanheirofreno.ui.cart.CartActivity" />
+        </activity>
+
 
         <activity
             android:name=".ui.category.CategoryActivity"
             android:label="Cart"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.android.onlineshop_castanheirofreno.ui.home.HomeActivity" />
+        </activity>
 
         <activity
             android:name=".ui.item.ItemListActivity"
             android:label="Item List"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity" />
+        </activity>
         <activity
             android:name=".ui.item.AddItemActivity"
             android:label="Add Item"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity" />
+        </activity>
+
 
         <activity
             android:name=".ui.item.ItemDescriptionActivity"
             android:label="Item description"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity" />
+        </activity>
         <activity
             android:name=".ui.splashscreen.WelcomeActivity"
             android:label="Item description"
             android:theme="@style/AppTheme.NoActionBar" />
 
+
         <activity
             android:name=".ui.customer.CustomerActivity"
             android:label="Item description"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.android.onlineshop_castanheirofreno.ui.home.HomeActivity"/>
+            </activity>
 
         <activity
             android:name=".ui.mgmt.SettingsActivity"
             android:label="Item description"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.android.onlineshop_castanheirofreno.ui.home.HomeActivity" />
+        </activity>
         <activity
             android:name=".ui.item.EditItemActivity"
             android:label="Item description"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity" />
 
-
+        </activity>
     </application>
 
 </manifest>

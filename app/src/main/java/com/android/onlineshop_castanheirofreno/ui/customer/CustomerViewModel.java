@@ -57,6 +57,7 @@ public class CustomerViewModel extends AndroidViewModel {
             repository = ((BaseApp) application).getCustomerRepository();
         }
 
+
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked

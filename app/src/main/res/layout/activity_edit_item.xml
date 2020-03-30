@@ -25,6 +25,7 @@
                 android:background="?android:selectableItemBackground"
                 android:src="@drawable/ic_add_a_photo_blue_24dp" />-->
 
+
             <TextView
                 android:id="@+id/textView_productName"
                 android:layout_width="wrap_content"
@@ -36,6 +37,7 @@
                 android:textSize="@dimen/basicTextSize"
                 android:textColor="@color/colorText"
                 android:textStyle="bold" />
+
 
             <EditText
                 android:id="@+id/input_product_name"

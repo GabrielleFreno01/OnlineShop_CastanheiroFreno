@@ -27,7 +27,7 @@
         android:textSize="@dimen/smallTextSize"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_go"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"

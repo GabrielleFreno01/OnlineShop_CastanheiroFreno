@@ -89,6 +89,12 @@ public class ItemViewModel  extends AndroidViewModel {
         return observableCategories;
     }
 
+
+    public void deleteItem(ItemEntity item, OnAsyncEventListener callback) {
+        repository.delete(item, callback, application);
+
+    }
+
     public void createItem(ItemEntity item, OnAsyncEventListener callback) {
         repository.insert(item, callback, application);
     }

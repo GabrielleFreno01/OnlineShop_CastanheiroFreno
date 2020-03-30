@@ -70,7 +70,7 @@ public class CategoryActivity extends BaseActivity {
         TextView name = (TextView) view.findViewById(R.id.category_name);
         String cat_name = name.getText().toString();
         intent.putExtra(EXTRA_MESSSAGE, cat_name);
-
+        onBackPressed();
         startActivity(intent);
     }
 }

@@ -13,14 +13,14 @@
 
 
     <Switch
-        android:id="@+id/switch_dark_mode"
+        android:id="@+id/switch_stay_connected"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
         android:layout_weight="1"
-        android:text="Dark Mode"
+        android:text="Stay connected"
         android:textColor="@color/colorText"
-        android:textSize="@dimen/basicTextSize"
-        android:layout_marginBottom="20dp"/>
+        android:textSize="@dimen/basicTextSize" />
 
     <View
         android:layout_width="fill_parent"

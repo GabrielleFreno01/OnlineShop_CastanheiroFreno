@@ -44,9 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress);
 
         // Set up the login form.
-        emailView = findViewById(R.id.email);
+        emailView = findViewById(R.id.email_login);
 
-        passwordView = findViewById(R.id.password);
+        passwordView = findViewById(R.id.password_login);
 
         Button emailSignInButton = findViewById(R.id.email_sign_in_button);
         emailSignInButton.setOnClickListener(view -> attemptLogin());

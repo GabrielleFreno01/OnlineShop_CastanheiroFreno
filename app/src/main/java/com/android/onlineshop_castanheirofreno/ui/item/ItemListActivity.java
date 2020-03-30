@@ -65,7 +65,7 @@ public class ItemListActivity extends BaseActivity {
 
         Intent intent = getIntent();
         long categoryId = intent.getLongExtra("categoryId", 0L);
-        String name = "Computer";
+        String name = intent.getStringExtra("categoryName");
         cat_name = findViewById(R.id.cat_name_tv);
         cat_name.setText(name);
 

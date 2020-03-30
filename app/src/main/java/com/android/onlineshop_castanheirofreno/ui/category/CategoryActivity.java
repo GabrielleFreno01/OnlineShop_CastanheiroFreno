@@ -67,6 +67,7 @@ public class CategoryActivity extends BaseActivity {
                         Intent.FLAG_ACTIVITY_NO_ANIMATION
                 );
                 intent.putExtra("categoryId", categoryList.get(position).getIdCategory());
+                intent.putExtra("categoryName", categoryList.get(position).getName());
                 startActivity(intent);
             }
 

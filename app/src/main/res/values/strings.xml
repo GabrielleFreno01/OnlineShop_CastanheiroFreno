@@ -170,7 +170,7 @@
     <string name="action_demo_data">Reset Demo Data</string>
     <string name="demo_data_initiated">Demo data initiated</string>
     <string name="chf_price">CHF 000</string>
-    <string name="bye_button">Bye</string>
+    <string name="bye_button">Buy</string>
     <string name="go_shopping_button">Go shopping</string>
     <string name="creation_date">Creation Date</string>
     <string name="delivery_date">Delivery Date</string>

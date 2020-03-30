@@ -66,7 +66,7 @@ public class CartActivity extends BaseActivity {
         SharedPreferences settingsUser = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         String user = settingsUser.getString(PREFS_USER, null);
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemid);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemid, 0L);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {

@@ -58,7 +58,7 @@ public class ItemDescriptionActivity extends BaseActivity {
         SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
         long itemid = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemid);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemid, 0L);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {

@@ -117,6 +117,9 @@ public class LoginActivity extends AppCompatActivity {
                         editor.apply();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.setFlags(
+                                Intent.FLAG_ACTIVITY_NO_ANIMATION
+                        );
                         startActivity(intent);
                         emailView.setText("");
                         passwordView.setText("");

@@ -33,6 +33,10 @@ public class ItemRepository {
         return AppDatabase.getInstance(context).itemDao().getById(id);
     }
 
+    public LiveData<List<ItemEntity>> getItemsByCategory(final long id, Context context) {
+        return AppDatabase.getInstance(context).itemDao().getItemsByCategory(id);
+    }
+
     public LiveData<List<ItemEntity>> getAllItems(Context context) {
         return AppDatabase.getInstance(context).itemDao().getAll();
     }

@@ -50,7 +50,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(@NonNull CategoriesViewHolder holder, int position) {
         CategoryEntity categoryEntity = categories.get(position);
         String name = categoryEntity.getTag();
-        System.out.println("");
 
         int resId = context.getResources().getIdentifier(name, "drawable", context.getPackageName());
         holder.categoryImageView.setImageResource(resId);
@@ -100,11 +99,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    CategoryEntity newOrder = (CategoryEntity) data.get(newItemPosition);
-                    CategoryEntity oldOrder = (CategoryEntity) categories.get(newItemPosition);
-                    return newOrder.getIdCategory()== oldOrder.getIdCategory()
-                            && newOrder.getName() == oldOrder.getName()
-                            && newOrder.getTag() == oldOrder.getTag();
+                    CategoryEntity newCategory = (CategoryEntity) data.get(newItemPosition);
+                    CategoryEntity oldCategory = (CategoryEntity) categories.get(newItemPosition);
+                    return newCategory.getIdCategory()== oldCategory.getIdCategory()
+                            && newCategory.getName() == oldCategory.getName()
+                            && newCategory.getTag() == oldCategory.getTag();
                 }
             });
             categories = data;

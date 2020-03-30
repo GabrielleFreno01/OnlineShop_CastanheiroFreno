@@ -92,8 +92,6 @@ public class AddItemActivity extends BaseActivity {
                 spinner.getSelectedItemId()
                 //imageButton.getId()
         ));
-        Intent intent = new Intent(getApplicationContext(), ItemDescriptionActivity.class);
-        startActivity(intent);
 
 
     }

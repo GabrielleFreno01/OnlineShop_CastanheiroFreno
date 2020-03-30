@@ -64,8 +64,7 @@ public class CategoryActivity extends BaseActivity {
                 //get the details
                 Intent intent = new Intent(CategoryActivity.this, ItemListActivity.class);
                 intent.setFlags(
-                        Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                                Intent.FLAG_ACTIVITY_NO_HISTORY
+                        Intent.FLAG_ACTIVITY_NO_ANIMATION
                 );
                 intent.putExtra("categoryId", categoryList.get(position).getIdCategory());
                 startActivity(intent);

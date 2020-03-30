@@ -7,12 +7,27 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.onlineshop_castanheirofreno.R;
+import com.android.onlineshop_castanheirofreno.adapter.ItemsAdapter;
+import com.android.onlineshop_castanheirofreno.adapter.OrdersAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
+import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryViewModel;
+import com.android.onlineshop_castanheirofreno.ui.orders.OrderListViewModel;
+import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemListActivity extends BaseActivity {
 
@@ -20,24 +35,11 @@ public class ItemListActivity extends BaseActivity {
 
     ItemEntity item;
 
-    GridView gridView;
     TextView cat_name ;
 
-    String [][] itemsList = {{"Acer Aspire 5", "599.00"},{"Apple iMac", "1499.00"},
-            {"Acer Aspire 5", "599.00"},
-            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
-            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
-            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
-            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
-            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
-            {"Apple iMac", "1499.00"}};
-
-    int[] imagesList = {R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
-            R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
-            R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
-            R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
-            R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
-            R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499};
+    private List<ItemEntity> items;
+    private ItemsAdapter adapter;
+    private ItemViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,32 +49,58 @@ public class ItemListActivity extends BaseActivity {
         setTitle("Items List");
         navigationView.setCheckedItem(position);
 
-        gridView = findViewById(R.id.items_gv);
+        RecyclerView recyclerView = findViewById(R.id.itemsRecyclerView);
 
-        ItemListAdapter adapter = new ItemListAdapter(ItemListActivity.this, imagesList, itemsList);
-        gridView.setAdapter(adapter);
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // use a grid layout manager
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
+
+        DividerItemDecoration verticalDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                GridLayoutManager.VERTICAL);
+        DividerItemDecoration horizontalDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                GridLayoutManager.HORIZONTAL);
+        recyclerView.addItemDecoration(verticalDividerItemDecoration);
+        recyclerView.addItemDecoration(horizontalDividerItemDecoration);
+
+        Intent intent = getIntent();
+        long categoryId = intent.getLongExtra("categoryId", 0L);
+        String name = "Computer";
+        cat_name = findViewById(R.id.cat_name_tv);
+        cat_name.setText(name);
+
+        items = new ArrayList<>();
+
+        adapter = new ItemsAdapter( this, items , new RecyclerViewItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                seeProductDescription(view);
-                //TODO remplacer par idItem
-               SharedPreferences.Editor editor = getSharedPreferences(PREFS_ITEM, 0).edit();
-                editor.putLong(PREFS_ITEM, 1);
-                editor.apply();
+            public void onItemClick(View v, int position) {
+                //get the details
+                Intent intent = new Intent(ItemListActivity.this, ItemDescriptionActivity.class);
+                intent.setFlags(
+                        Intent.FLAG_ACTIVITY_NO_ANIMATION
+                );
+                intent.putExtra("itemId", items.get(position).getIdItem());
+                startActivity(intent);
+            }
+
+
+            //Delete an order
+            @Override
+            public void onItemLongClick(View v, int position) {
+                onItemClick(v, position);
             }
         });
 
-        Intent intent =  getIntent();
-        intent.getLongExtra("categoryId",0L);
-        String name = "Computer";
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), 0L, categoryId);
+        viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
+        viewModel.getItemsByCategory().observe(this, itemEntity -> {
+            if (itemEntity != null) {
+                items = itemEntity;
+                adapter.setData(items);
+            }
+        });
 
-
-        //Replace by a function that gets the order with the idOrder
-        //ItemViewModel viewModel = new ItemViewModel(getApplication());
-
-        cat_name = findViewById(R.id.cat_name_tv);
-        cat_name.setText(name);
+        recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButtonAddItem);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +111,11 @@ public class ItemListActivity extends BaseActivity {
         });
 
     }
-    public void seeProductDescription (View view){
-        Intent intent = new Intent(this, ItemDescriptionActivity.class);
-        startActivity(intent);
-    }
     public void seeAddNewItem (View view){
-        Intent intent = new Intent(this, AddItemActivity.class);
+        Intent intent = new Intent(ItemListActivity.this, AddItemActivity.class);
+        intent.setFlags(
+                Intent.FLAG_ACTIVITY_NO_ANIMATION
+        );
         startActivity(intent);
     }
 

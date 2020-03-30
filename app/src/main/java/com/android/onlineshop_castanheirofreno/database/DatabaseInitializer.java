@@ -85,9 +85,9 @@ public class DatabaseInitializer {
 
         //Items
         db.itemDao().deleteAll();
-        addItem(db, "Acer Aspire VX", "Wonderful computer", 950, 2, 4);//;, 2);
+        addItem(db, "Acer Aspire VX", "Wonderful computer", 950, 2, 3);//;, 2);
 
-        addItem(db, "Apple IMac" , "Perfect for work", 1020, 3, 4);//, 1);
+        addItem(db, "Apple IMac" , "Perfect for work", 1020, 3, 3);//, 1);
 
         try {
             // Let's ensure that the items are already stored in the database before we continue.

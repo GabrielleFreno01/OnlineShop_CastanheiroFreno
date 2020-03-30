@@ -29,11 +29,12 @@ public class ItemViewModel  extends AndroidViewModel {
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<ItemEntity> observableItem;
+    private final MediatorLiveData<List<ItemEntity>> observableItems;
     private final MediatorLiveData<List<CategoryEntity>> observableCategories;
 
 
     public ItemViewModel(@NonNull Application application,
-                            final long idItem, ItemRepository itemRepository, CategoryRepository catRepository) {
+                            final long idItem, final long categoryId, ItemRepository itemRepository, CategoryRepository catRepository) {
         super(application);
 
         this.application = application;
@@ -48,12 +49,17 @@ public class ItemViewModel  extends AndroidViewModel {
         observableCategories = new MediatorLiveData<>();
         observableCategories.setValue(null);
 
+        observableItems = new MediatorLiveData<>();
+        observableItems.setValue(null);
+
         LiveData<ItemEntity> item = repository.getItem(idItem, application);
+        LiveData<List<ItemEntity>> items = repository.getItemsByCategory(categoryId, application);
         LiveData<List<CategoryEntity>> listCategory = catRepository.getCategories(application);
 
         // observe the changes of the account entity from the database and forward them
         observableItem.addSource(item, observableItem::setValue);
         observableCategories.addSource(listCategory, observableCategories::setValue);
+        observableItems.addSource(items, observableItems::setValue);
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
@@ -63,26 +69,34 @@ public class ItemViewModel  extends AndroidViewModel {
 
         private final long itemId;
 
+        private final long categoryId;
+
         private final ItemRepository repository;
 
         private final CategoryRepository catRepository;
 
-        public Factory(@NonNull Application application, long itemId) {
+        public Factory(@NonNull Application application, long itemId, long categoryId) {
             this.application = application;
             this.itemId = itemId;
+            this.categoryId = categoryId;
             repository = ((BaseApp) application).getItemRepository();
             catRepository = ((BaseApp) application).getCategoryRepository();
         }
 
+
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new ItemViewModel(application, itemId, repository, catRepository);
+            return (T) new ItemViewModel(application, itemId, categoryId, repository, catRepository);
         }
     }
 
     public LiveData<ItemEntity> getItem() {
         return observableItem;
+    }
+
+    public LiveData<List<ItemEntity>> getItemsByCategory() {
+        return observableItems;
     }
 
     public LiveData<List<CategoryEntity>> getCategories() {

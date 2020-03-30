@@ -19,6 +19,9 @@ public class MainActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_base, frameLayout);
 
         Intent intent = new Intent(this, WelcomeActivity.class);
+        intent.setFlags(
+                Intent.FLAG_ACTIVITY_NO_ANIMATION
+        );
         startActivity(intent);
     }
 

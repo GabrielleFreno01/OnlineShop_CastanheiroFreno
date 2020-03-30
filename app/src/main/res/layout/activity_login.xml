@@ -11,13 +11,7 @@
     tools:context="com.android.onlineshop_castanheirofreno.ui.mgmt.LoginActivity">
 
     <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+
 
     <ScrollView
         android:id="@+id/main_form"
@@ -67,6 +61,14 @@
                     android:maxLines="1"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/email_sign_in_button"

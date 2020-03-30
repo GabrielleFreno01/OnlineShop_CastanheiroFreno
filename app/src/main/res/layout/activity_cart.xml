@@ -42,7 +42,7 @@
                 android:textSize="@dimen/basicTextSize"
                 android:id="@+id/new_item_price"
                 android:textColor="@color/colorText"
-                android:text="@string/chf_price"
+                android:text="000"
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
 

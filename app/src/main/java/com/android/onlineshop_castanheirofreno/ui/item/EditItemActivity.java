@@ -1,5 +1,6 @@
 package com.android.onlineshop_castanheirofreno.ui.item;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.util.ArrayList;
@@ -78,13 +80,11 @@ public class EditItemActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 save(v);
+                onBackPressed();
 
             }
         });
     }
-
-
-
 
 
     private void updateContent() {
@@ -121,7 +121,7 @@ public class EditItemActivity extends BaseActivity {
                 Integer.parseInt(etprice.getText().toString()),
                 Integer.parseInt(etquantity.getText().toString()),
                 etdescription.getText().toString(),
-                imageButton.getId(),
+                //imageButton.getId(),
                 spinner.getSelectedItemId()
 
         );
@@ -129,14 +129,45 @@ public class EditItemActivity extends BaseActivity {
     }
 
 
-    private void saveChanges(String name, int price, int quantity, String description, long idImage, long idCategory) {
+    private void saveChanges(String name, int price, int quantity, String description, long idCategory) {
         item.setName(name);
         item.setPrice(price);
         item.setQuantity_in_stock(quantity);
         item.setDescription(description);
         //item.setIdImage(idImage);
         item.setIdCategory(idCategory);
+
+        viewModel.updateItem(item, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
+                setResponse(true);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                setResponse(false);
+            }
+        });
+    }
+
+    private void setResponse(Boolean response) {
+        if (response) {
+            updateContent();
+            toast = Toast.makeText(this, getString(R.string.client_edited), Toast.LENGTH_LONG);
+            toast.show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        }
+        super.onBackPressed();
+        startActivity(new Intent(this, HomeActivity.class));
+    }
+
 
 
     private void initiateView() {

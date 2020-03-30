@@ -23,6 +23,10 @@ import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Currency;
+
 
 public class ItemDescriptionActivity extends BaseActivity {
 
@@ -64,9 +68,6 @@ public class ItemDescriptionActivity extends BaseActivity {
 
         });
 
-
-
-
         btn_add_cart = findViewById(R.id.btn_add_cart);
 
         btn_add_cart.setOnClickListener(new View.OnClickListener() {
@@ -82,8 +83,10 @@ public class ItemDescriptionActivity extends BaseActivity {
 
     private void updateContent() {
         if (item != null) {
+            NumberFormat defaultFormat = new DecimalFormat("#0.00");
+
             tvProductName.setText(item.getName());
-            tvPriceProduct.setText(String.valueOf(item.getPrice()));
+            tvPriceProduct.setText("CHF "+defaultFormat.format(item.getPrice()));
         }
 
     }

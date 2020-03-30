@@ -47,7 +47,7 @@ public class CategoryListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         convertView = inflater.inflate(R.layout.adapter_list_categories, null);
-        CategoryViewModel currentCategory = getItem(position);
+        /*CategoryEntity currentCategory = getItem(position);
         String categoryName = currentCategory.getCategoryName();
         String tag = currentCategory.getTag();
 
@@ -58,7 +58,7 @@ public class CategoryListAdapter extends BaseAdapter {
 
         TextView categoryNameView = convertView.findViewById(R.id.category_name);
         categoryNameView.setText(categoryName);
-
+        */
 
         return convertView;
     }

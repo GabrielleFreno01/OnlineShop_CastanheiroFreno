@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
-        android:text="@string/bye_button"
+        android:text="@string/buy_button"
         android:onClick="see"
         android:layout_gravity="center"
         android:textSize="@dimen/btnTextSize"/>

@@ -39,8 +39,8 @@ public class DatabaseInitializer {
 
     }
 
-    private static void addCategory(final AppDatabase db, final String name) {
-        CategoryEntity category = new CategoryEntity(name);
+    private static void addCategory(final AppDatabase db, final String name, final String tag) {
+        CategoryEntity category = new CategoryEntity(name, tag);
         long id = db.categoryDao().insert(category);
     }
 
@@ -58,17 +58,17 @@ public class DatabaseInitializer {
 
         //Categories
         db.categoryDao().deleteAll();
-        addCategory(db, "Audio");
+        addCategory(db, "Audio", "ic_audio");
 
-        addCategory(db, "Camera");
+        addCategory(db, "Camera", "ic_camera");
 
-        addCategory(db, "Computer");
+        addCategory(db, "Computer", "ic_computer");
 
-        addCategory(db, "Gaming");
+        addCategory(db, "Gaming", "ic_gaming");
 
-        addCategory(db, "Smartphone");
+        addCategory(db, "Smartphone", "ic_smartphone");
 
-        addCategory(db, "TV");
+        addCategory(db, "TV", "ic_tv");
 
        /* //Images
         db.imageDao().deleteAll();

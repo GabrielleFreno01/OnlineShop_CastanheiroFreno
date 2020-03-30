@@ -90,6 +90,7 @@ public class OrderViewModel extends AndroidViewModel {
     public LiveData<List<ItemEntity>> getItems() {
         return observableItems;
     }
+
     public void createOrder(OrderEntity order, OnAsyncEventListener callback) {
         repository.insert(order, callback, application);
     }

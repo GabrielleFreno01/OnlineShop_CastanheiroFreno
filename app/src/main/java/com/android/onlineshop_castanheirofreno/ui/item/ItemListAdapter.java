@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import com.android.onlineshop_castanheirofreno.R;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class ItemListAdapter extends BaseAdapter {
 
     private Context context;
@@ -52,7 +55,9 @@ public class ItemListAdapter extends BaseAdapter {
 
         imageView.setImageResource(imagesList[position]);
         name_textView.setText(itemsList[position][0]);
-        price_textView.setText(itemsList[position][1]);
+
+        NumberFormat defaultFormat = new DecimalFormat("#0.00");
+        price_textView.setText("CHF " + itemsList[position][1]);
 
         return convertView;
     }

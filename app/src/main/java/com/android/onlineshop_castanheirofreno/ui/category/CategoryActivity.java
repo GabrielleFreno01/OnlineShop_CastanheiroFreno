@@ -8,11 +8,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onlineshop_castanheirofreno.R;
+import com.android.onlineshop_castanheirofreno.adapter.CategoryAdapter;
 import com.android.onlineshop_castanheirofreno.adapter.OrdersAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
@@ -27,15 +29,13 @@ import java.util.List;
 
 public class CategoryActivity extends BaseActivity {
 
+    private static final String TAG = "CategoryActivity";
+
+    private List<CategoryEntity> categoryList;
+    private CategoryAdapter adapter;
+    private CategoryViewModel viewModel;
 
 
-    private static final String TAG = "CategoriesActivity";
-
-    private List<CategoryEntity> categories;
-    private OrderListViewModel viewModel;
-
-    private List<CategoryViewModel> categoryList = new ArrayList<>();
-    public static final String EXTRA_MESSSAGE ="ch.hevs.aislab.demo.ui.categories;";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,82 +45,48 @@ public class CategoryActivity extends BaseActivity {
         setTitle("Categories");
         navigationView.setCheckedItem(position);
 
-        categoryList.add(new CategoryViewModel("Audio","audio"));
-        categoryList.add(new CategoryViewModel("Camera", "camera"));
-        categoryList.add(new CategoryViewModel("Computer", "computer"));
-        categoryList.add(new CategoryViewModel("Gaming","gaming"));
-        categoryList.add(new CategoryViewModel("Smartphone","smartphone"));
-        categoryList.add(new CategoryViewModel("TV","tv"));
+        RecyclerView recyclerView = findViewById(R.id.categoryRecyclerView);
+
+        // use a linear layout manager
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                LinearLayoutManager.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
 
-        //get listView
-        ListView categoryListView = findViewById(R.id.category_list);
-        categoryListView.setAdapter(new CategoryListAdapter(this, categoryList));
+        categoryList = new ArrayList<>();
 
-        categoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        adapter = new CategoryAdapter( this, categoryList , new RecyclerViewItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                seeItemsList(view, categoryList.get(position).getCategoryName());
+            public void onItemClick(View v, int position) {
+                //get the details
+                Intent intent = new Intent(CategoryActivity.this, ItemListActivity.class);
+                intent.setFlags(
+                        Intent.FLAG_ACTIVITY_NO_ANIMATION |
+                                Intent.FLAG_ACTIVITY_NO_HISTORY
+                );
+                intent.putExtra("categoryId", categoryList.get(position).getIdCategory());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View v, int position) {
+                onItemClick(v,position);
             }
         });
-    }
 
-    public void seeItemsList (View view, String categoryName){
-        Intent intent = new Intent(this, ItemListActivity.class);
-        TextView name = (TextView) view.findViewById(R.id.category_name);
-        String cat_name = name.getText().toString();
-        intent.putExtra(EXTRA_MESSSAGE, cat_name);
-        onBackPressed();
-        startActivity(intent);
-    }
-}
-/*public class CategoryActivity extends BaseActivity {
-
-    private List<CategoryEntity> categoryList = new ArrayList<>();
-
-    CategoryRepository repository;
-
-    Application application;
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_category, frameLayout);
-
-
-
-        setTitle("Categories");
-        navigationView.setCheckedItem(position);
-
-        repository = ((BaseApp) getApplication()).getCategoryRepository();;
-
-        //TODO récupérer la table catégorie
-        LiveData<List<CategoryEntity>> category = repository.getCategories(application);
-
-
-
-
-        //get listView
-        ListView categoryListView = findViewById(R.id.category_list);
-        categoryListView.setAdapter(new CategoryListAdapter(this, category.getValue()));
-
-        categoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                seeItemsList(view, categoryList.get(position).getName());
+        CategoryViewModel.Factory factory = new CategoryViewModel.Factory(getApplication());
+        viewModel = ViewModelProviders.of(this, factory).get(CategoryViewModel.class);
+        viewModel.getCategories().observe(this, categories -> {
+            if (categories != null) {
+                categoryList = categories;
+                adapter.setData(categoryList);
             }
         });
+
+        recyclerView.setAdapter(adapter);
     }
 
-    public void seeItemsList (View view, String categoryName){
-        Intent intent = new Intent(this, ItemListActivity.class);
-        TextView name = (TextView) view.findViewById(R.id.category_name);
-        long id_cat = name.getId();
-        intent.putExtra("id_category", id_cat);
-
-        startActivity(intent);
-    }
 }
-*/

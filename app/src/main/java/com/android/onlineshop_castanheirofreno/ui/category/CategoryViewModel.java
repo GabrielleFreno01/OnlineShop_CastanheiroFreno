@@ -14,52 +14,31 @@ import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CategoryRepository;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
-public class CategoryViewModel extends ViewModel {
+import java.util.List;
 
-
-    private String categoryName;
-    private String tag;
-
-    public CategoryViewModel(String categoryName, String tag) {
-
-        this.categoryName = categoryName;
-        this.tag = tag ;
-
-    }
-
-    public String getCategoryName(){
-        return categoryName;
-    }
-
-    public String getTag(){
-        return tag;
-    }
-}
-
-/*public class CategoryViewModel extends AndroidViewModel {
+public class CategoryViewModel extends AndroidViewModel {
 
     private Application application;
 
     private CategoryRepository repository;
 
-    private final MediatorLiveData<CategoryEntity> observableCategory;
+    private final MediatorLiveData<List<CategoryEntity>> observableCategories;
 
-    public CategoryViewModel(@NonNull Application application,
-                            final Long accountId, CategoryRepository categoryRepository) {
+    public CategoryViewModel(@NonNull Application application, CategoryRepository categoryRepository) {
         super(application);
 
         this.application = application;
 
         repository = categoryRepository;
 
-        observableCategory = new MediatorLiveData<>();
+        observableCategories = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        observableCategory.setValue(null);
+        observableCategories.setValue(null);
 
-        LiveData<CategoryEntity> account = repository.getCategory(accountId, application);
+        LiveData<List<CategoryEntity>> categories = repository.getCategories(application);
 
         // observe the changes of the account entity from the database and forward them
-        observableCategory.addSource(account, observableCategory::setValue);
+        observableCategories.addSource(categories, observableCategories::setValue);
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
@@ -67,27 +46,24 @@ public class CategoryViewModel extends ViewModel {
         @NonNull
         private final Application application;
 
-        private final Long categoryId;
-
         private final CategoryRepository repository;
 
-        public Factory(@NonNull Application application, Long categoryId) {
+        public Factory(@NonNull Application application) {
             this.application = application;
-            this.categoryId = categoryId;
             repository = ((BaseApp) application).getCategoryRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new CategoryViewModel(application, categoryId, repository);
+            return (T) new CategoryViewModel(application, repository);
         }
     }
 
-    public LiveData<CategoryEntity> getAccount() {
-        return observableCategory;
+    public LiveData<List<CategoryEntity>> getCategories() {
+        return observableCategories;
     }
 
 
 
-}*/
+}

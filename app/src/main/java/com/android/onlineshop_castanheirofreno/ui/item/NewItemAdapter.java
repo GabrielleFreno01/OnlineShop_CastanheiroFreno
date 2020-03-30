@@ -11,6 +11,9 @@ import com.android.onlineshop_castanheirofreno.R;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.List;
 
 public class NewItemAdapter extends PagerAdapter {
@@ -48,7 +51,9 @@ public class NewItemAdapter extends PagerAdapter {
 
         imageView.setImageResource(models.get(position).getImage());
         productName.setText(models.get(position).getProductName());
-        price.setText("CHF "+models.get(position).getPrice());
+
+        NumberFormat defaultFormat = new DecimalFormat("#0.00");
+        price.setText("CHF "+defaultFormat.format(models.get(position).getPrice()));
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -140,9 +140,9 @@
             android:name=".ui.item.ItemDescriptionActivity"
             android:label="Item description"
             android:theme="@style/AppTheme.NoActionBar" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity" />
         </activity>
         <activity
             android:name=".ui.splashscreen.WelcomeActivity"
@@ -173,7 +173,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity" />
+            android:value="com.android.onlineshop_castanheirofreno.ui.item.ItemDescriptionActivity" />
 
         </activity>
     </application>

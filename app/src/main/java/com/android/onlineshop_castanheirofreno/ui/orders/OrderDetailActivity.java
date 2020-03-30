@@ -15,7 +15,9 @@ import androidx.lifecycle.ViewModelProviders;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Currency;
 
 public class OrderDetailActivity extends BaseActivity {
 
@@ -81,7 +83,6 @@ public class OrderDetailActivity extends BaseActivity {
 
     private void initiateView() {
         tvOrderId = findViewById(R.id.textview_id_order);
-        defaultFormat = NumberFormat.getCurrencyInstance();
 
         tvOrderStatus = findViewById(R.id.textView_order_status);
 
@@ -95,15 +96,17 @@ public class OrderDetailActivity extends BaseActivity {
 
         tvDeliveryDate = findViewById(R.id.textView_delivery_date);
 
+        defaultFormat = new DecimalFormat("#0.00");
     }
 
     private void updateContent() {
         if (orderWithItem != null) {
+
             tvOrderId.setText(String.valueOf(orderWithItem.order.getIdOrder()));
             tvOrderStatus.setText(orderWithItem.order.getStatus());
             tvProductId.setText(String.valueOf(orderWithItem.order.getIdItem()));
             tvProductName.setText(orderWithItem.item.getName());
-            tvProductPrice.setText(defaultFormat.format(orderWithItem.order.getPrice()));
+            tvProductPrice.setText("CHF "+defaultFormat.format(orderWithItem.order.getPrice()));
             tvOrderDate.setText(orderWithItem.order.getCreationDate());
             tvDeliveryDate.setText(orderWithItem.order.getDeliveryDate());
 

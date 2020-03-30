@@ -23,14 +23,14 @@ public class ItemListActivity extends BaseActivity {
     GridView gridView;
     TextView cat_name ;
 
-    String [][] itemsList = {{"Acer Aspire 5", "CHF 599.00"},{"Apple iMac", "CHF 1499.00"},
-            {"Acer Aspire 5", "CHF 599.00"},
-            {"Apple iMac", "CHF 1499.00"},{"Acer Aspire 5", "CHF 599.00"},
-            {"Apple iMac", "CHF 1499.00"},{"Acer Aspire 5", "CHF 599.00"},
-            {"Apple iMac", "CHF 1499.00"},{"Acer Aspire 5", "CHF 599.00"},
-            {"Apple iMac", "CHF 1499.00"},{"Acer Aspire 5", "CHF 599.00"},
-            {"Apple iMac", "CHF 1499.00"},{"Acer Aspire 5", "CHF 599.00"},
-            {"Apple iMac", "CHF 1499.00"}};
+    String [][] itemsList = {{"Acer Aspire 5", "599.00"},{"Apple iMac", "1499.00"},
+            {"Acer Aspire 5", "599.00"},
+            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
+            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
+            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
+            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
+            {"Apple iMac", "1499.00"},{"Acer Aspire 5", "599.00"},
+            {"Apple iMac", "1499.00"}};
 
     int[] imagesList = {R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
             R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
@@ -39,16 +39,12 @@ public class ItemListActivity extends BaseActivity {
             R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499,
             R.drawable.acer_aspire_5_599, R.drawable.apple_imac_1499};
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_item_list, frameLayout);
 
-        setTitle("ItemList");
+        setTitle("Items List");
         navigationView.setCheckedItem(position);
 
         gridView = findViewById(R.id.items_gv);
@@ -68,14 +64,15 @@ public class ItemListActivity extends BaseActivity {
         });
 
         Intent intent =  getIntent();
-        String name = intent.getStringExtra(CategoryActivity.EXTRA_MESSSAGE);
+        intent.getLongExtra("categoryId",0L);
+        String name = "Computer";
 
 
         //Replace by a function that gets the order with the idOrder
-        CategoryViewModel cat_v_model = new CategoryViewModel(name, null);
+        //ItemViewModel viewModel = new ItemViewModel(getApplication());
 
         cat_name = findViewById(R.id.cat_name_tv);
-        cat_name.setText(cat_v_model.getCategoryName());
+        cat_name.setText(name);
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButtonAddItem);
         fab.setOnClickListener(new View.OnClickListener() {

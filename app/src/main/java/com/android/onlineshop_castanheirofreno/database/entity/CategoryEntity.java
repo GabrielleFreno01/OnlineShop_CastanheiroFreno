@@ -22,8 +22,9 @@ public class CategoryEntity {
     public CategoryEntity() {
     }
 
-    public CategoryEntity(String name) {
+    public CategoryEntity(String name, String tag) {
         this.name = name;
+        this.tag = tag;
 
     }
 

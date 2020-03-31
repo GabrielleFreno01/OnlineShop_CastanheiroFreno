@@ -8,9 +8,11 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cart_item_cardview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="50dp"
         app:cardCornerRadius="25dp"
         android:layout_gravity="center">
 
@@ -42,11 +44,36 @@
                 android:textSize="@dimen/basicTextSize"
                 android:id="@+id/new_item_price"
                 android:textColor="@color/colorText"
-                android:text="000"
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/empty_cart_image"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_empty_cart"
+        android:scaleType="fitCenter"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/empty_cart_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="80dp"
+        android:textSize="@dimen/productNameSize"
+        android:textColor="@color/colorText"
+        android:text="@string/empty_cart"
+        android:visibility="gone"/>
+
 
     <Button
         android:id="@+id/btn_buy"

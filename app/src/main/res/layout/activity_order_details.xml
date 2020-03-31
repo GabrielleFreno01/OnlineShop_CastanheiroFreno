@@ -187,43 +187,6 @@
                     android:text=""
                     android:textSize="18sp" />
             </TableRow>
-
-
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:id="@+id/tablerow_changeProduct_button">
-
-                <Button
-                    android:id="@+id/button_change_product"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_column="0"
-                    android:text="changeProduct"
-                    android:textSize="18sp"/>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:id="@+id/tablerow_cancel_button">
-
-                <Button
-                    android:id="@+id/button_cancel"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_column="0"
-                    android:text="cancel"
-                    android:textSize="18sp"
-                    />
-            </TableRow>
         </TableLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

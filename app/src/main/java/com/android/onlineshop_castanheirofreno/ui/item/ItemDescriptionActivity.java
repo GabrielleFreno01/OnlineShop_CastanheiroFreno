@@ -39,9 +39,9 @@ public class ItemDescriptionActivity extends BaseActivity {
     private TextView tvProductName;
     private TextView tvPriceProduct;
     private TextView tvDescription;
-    ItemEntity item;
 
-    private ItemModel itemModel;
+    private ItemEntity item;
+
 
     private ItemViewModel viewModel;
 
@@ -61,7 +61,6 @@ public class ItemDescriptionActivity extends BaseActivity {
         long itemId = intent.getLongExtra( "itemId", 0L);
         long catId = intent.getLongExtra( "idCategory", 0L);
 
-        //TODO pourquoi c'est vide ?
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId,  catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
@@ -147,12 +146,10 @@ public class ItemDescriptionActivity extends BaseActivity {
 
     public void addToCart() {
         Intent intent = new Intent(this, CartActivity.class);
-        startActivity(intent);
-    }
-
-    public void modifyProduct() {
-        Intent intent = new Intent(this, EditItemActivity.class);
-        intent.putExtra("ID_ITEM", itemModel.getIdItem());
+        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_ITEM, 0).edit();
+        editor.remove(BaseActivity.PREFS_ITEM);
+        editor.putLong(BaseActivity.PREFS_ITEM, item.getIdItem());
+        editor.apply();
         startActivity(intent);
     }
 

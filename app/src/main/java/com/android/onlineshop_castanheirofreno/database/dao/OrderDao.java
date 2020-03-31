@@ -52,11 +52,4 @@ public abstract class OrderDao {
     @Query("DELETE FROM orders")
     public abstract void deleteAll();
 
-
-
-    @Transaction
-    public void transaction(OrderEntity sender, OrderEntity recipient) {
-        update(sender);
-        update(recipient);
-    }
 }

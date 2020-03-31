@@ -28,7 +28,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     public static final String PREFS_NAME = "SharedPrefs";
     public static final String PREFS_USER = "LoggedIn";
-
+    public static final String PREFS_ITEM= "ItemId";
 
 
     protected FrameLayout frameLayout;
@@ -120,6 +120,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public void logout() {
         SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_NAME, 0).edit();
         editor.remove(BaseActivity.PREFS_USER);
+        editor.remove(BaseActivity.PREFS_ITEM);
         editor.apply();
 
         Intent intent = new Intent(this, LoginActivity.class);

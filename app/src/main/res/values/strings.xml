@@ -180,5 +180,6 @@
     <string name="label_status">Status</string>
     <string name="hint_date">Select a date</string>
     <string name="OrderEdited">Order successfully edited</string>
+    <string name="empty_cart">Please add some item in your cart first</string>
 
 </resources>

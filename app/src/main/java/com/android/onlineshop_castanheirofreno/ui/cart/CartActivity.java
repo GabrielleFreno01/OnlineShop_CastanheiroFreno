@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
@@ -24,24 +26,28 @@ import com.android.onlineshop_castanheirofreno.ui.item.ItemViewModel;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 public class CartActivity extends BaseActivity {
 
-    private CartViewModel cartViewModel;
+
     private TextView etproductName;
     private TextView etproductPrice;
     private Button buy;
     private Button goShopping;
+    private TextView etEmptyCart;
+    private ImageView ivEmptyCart;
+    private CardView cardView;
 
     private Toast toast;
 
-    ItemViewModel viewModel;
+    private ItemViewModel viewModel;
 
-    private Date now = new Date();
-
-    private DateFormat dateformatter;
+    private SimpleDateFormat dateformatter;
 
     private String formattedDate ;
 
@@ -60,46 +66,51 @@ public class CartActivity extends BaseActivity {
 
         initiateView();
 
-        SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
-        long itemId = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
-        long catId = settings.getLong("idCategory", 0);
+        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ITEM, 0);
+        long itemId = settings.getLong(BaseActivity.PREFS_ITEM, 0L);
 
-        SharedPreferences settingsUser = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
-        String user = settingsUser.getString(PREFS_USER, null);
+        SharedPreferences settingsUser = getSharedPreferences(BaseActivity.PREFS_USER, 0);
+        String user = settingsUser.getString(BaseActivity.PREFS_USER, "");
+        System.out.println(user);
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, 0L);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
                 item = itemEntity;
+                buy.setVisibility(View.VISIBLE);
+                cardView.setVisibility(View.VISIBLE);
+                etEmptyCart.setVisibility(View.GONE);
+                ivEmptyCart.setVisibility(View.GONE);
                 updateContent();
+            }else{
+                buy.setVisibility(View.GONE);
+                cardView.setVisibility(View.GONE);
+                etEmptyCart.setVisibility(View.VISIBLE);
+                ivEmptyCart.setVisibility(View.VISIBLE);
             }
+
 
         });
 
-        buy = (Button) findViewById(R.id.btn_buy);
+
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dateformatter = DateFormat.getDateInstance(DateFormat.SHORT);
-                formattedDate = dateformatter.format(now);
+                dateformatter = new SimpleDateFormat("dd.MM.yyyy");
+                formattedDate = dateformatter.format(System.currentTimeMillis());
 
-                saveChanges(
-                        (Integer.parseInt(etproductPrice.getText().toString())),
-                        formattedDate,
-                        null,
-                        itemId,
-                        "In progress",
-                        user
-                );
+                saveChanges((item.getPrice()), formattedDate, null, item.getIdItem(), "In progress", user);
                 seeConfirmation(v);
-                SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_NAME, 0).edit();
-                editor.remove(ItemListActivity.PREFS_ITEM);
+                SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_ITEM, 0).edit();
+                editor.remove(BaseActivity.PREFS_ITEM);
                 editor.apply();
+                recreate();
+
             }
         });
 
-        goShopping = (Button) findViewById(R.id.btn_go);
+
         goShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,15 +152,22 @@ public class CartActivity extends BaseActivity {
 
     private void updateContent() {
         if (item != null) {
+            NumberFormat defaultFormat = new DecimalFormat("#0.00");
             etproductName.setText(item.getName());
-            etproductPrice.setText(String.valueOf(item.getPrice()));
+            etproductPrice.setText("CHF "+defaultFormat.format(item.getPrice()));
+
         }
     }
 
     private void initiateView() {
         etproductName = findViewById(R.id.new_item_name);
         etproductPrice = findViewById(R.id.new_item_price);
-    }
+        etEmptyCart = findViewById(R.id.empty_cart_tv);
+        ivEmptyCart = findViewById(R.id.empty_cart_image);
+        goShopping = findViewById(R.id.btn_go);
+        buy = findViewById(R.id.btn_buy);
+        cardView = findViewById(R.id.cart_item_cardview);
+}
 
     public void seeConfirmation (View view) {
         Intent intent = new Intent(this, ConfirmationActivity.class);

@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (clientEntity.getPassword().equals(password)) {
                         // We need an Editor object to make preference changes.
                         // All objects are from android.context.Context
-                        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_NAME, 0).edit();
+                        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_USER, 0).edit();
                         editor.putString(BaseActivity.PREFS_USER, clientEntity.getEmail());
                         editor.apply();
 

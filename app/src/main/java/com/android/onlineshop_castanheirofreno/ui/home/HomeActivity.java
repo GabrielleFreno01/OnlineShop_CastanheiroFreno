@@ -1,19 +1,27 @@
 package com.android.onlineshop_castanheirofreno.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onlineshop_castanheirofreno.R;
+import com.android.onlineshop_castanheirofreno.adapter.ItemsAdapter;
+import com.android.onlineshop_castanheirofreno.adapter.NewItemsAdapter;
+import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.ui.item.ItemDescriptionActivity;
 import com.android.onlineshop_castanheirofreno.ui.item.ItemModel;
+import com.android.onlineshop_castanheirofreno.ui.item.ItemViewModel;
 import com.android.onlineshop_castanheirofreno.ui.item.NewItemAdapter;
+import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,36 +30,68 @@ import java.util.TimerTask;
 
 public class HomeActivity extends BaseActivity {
 
-    private ViewPager viewPager;
-    private NewItemAdapter newItemsAdapter;
-    private List<ItemModel> models;
+    private NewItemsAdapter newItemsAdapter;
+    private ItemViewModel viewModel;
+    private List<ItemEntity> newItems;
     private Timer timer;
-    private int current_position;
+    private int current_position = 0;
+    private RecyclerView recyclerView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setTitle("Home");
-        navigationView.setCheckedItem(position);
         getLayoutInflater().inflate(R.layout.activity_home, frameLayout);
 
+        setTitle("Home");
+        navigationView.setCheckedItem(position);
 
-        //Adding products to the List containing the new products
-        models = new ArrayList<>();
-        models.add(new ItemModel(1, R.drawable.acer_aspire_5_599, "Acer Aspire 5", 599.00));
-        models.add(new ItemModel(2, R.drawable.apple_imac_1499, "Apple iMac", 1499.00));
-        models.add(new ItemModel(3, R.drawable.acer_aspire_5_599, "Acer Aspire 5", 599.00));
-        models.add(new ItemModel(4, R.drawable.apple_imac_1499, "Apple iMac", 1499.00));
-
-        newItemsAdapter = new NewItemAdapter(models, this);
-
-        viewPager = findViewById(R.id.newProducts_viewPager);
-        viewPager.setAdapter(newItemsAdapter);
-        viewPager.setPadding(150, 0, 150, 0);
-
+        recyclerView = findViewById(R.id.newProducts_recyclerView);
+        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        pagerSnapHelper.attachToRecyclerView(recyclerView);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    View centerView = pagerSnapHelper.findSnapView(layoutManager);
+                    current_position = layoutManager.getPosition(centerView);
+                }
+            }
+        });
         autoScroll();
+
+        newItems = new ArrayList<>();
+
+        newItemsAdapter = new NewItemsAdapter(this, newItems, new RecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Intent intent = new Intent(HomeActivity.this, ItemDescriptionActivity.class);
+                intent.setFlags(
+                        Intent.FLAG_ACTIVITY_NO_ANIMATION
+                );
+                intent.putExtra("itemId", newItems.get(position).getIdItem());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View v, int position) {
+
+            }
+        });
+
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), 0L, 0L);
+        viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
+        viewModel.getNewItems().observe(this, newItemEntity -> {
+            if (newItemEntity != null) {
+                newItems = newItemEntity;
+                newItemsAdapter.setData(newItems);
+            }
+        });
+
+        recyclerView.setAdapter(newItemsAdapter);
 
     }
 
@@ -62,10 +102,13 @@ public class HomeActivity extends BaseActivity {
         final Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                if(current_position==models.size()){
+
+                if(current_position==newItems.size()){
                     current_position = 0 ;
+                    recyclerView.smoothScrollToPosition(current_position);
+                }else {
+                    recyclerView.smoothScrollToPosition(current_position++);
                 }
-                viewPager.setCurrentItem(current_position++, true);
             }
         };
 
@@ -75,7 +118,7 @@ public class HomeActivity extends BaseActivity {
             public void run() {
                 handler.post(runnable);
             }
-        }, 3500, 3500);
+        }, 2500, 2500);
     }
 }
 

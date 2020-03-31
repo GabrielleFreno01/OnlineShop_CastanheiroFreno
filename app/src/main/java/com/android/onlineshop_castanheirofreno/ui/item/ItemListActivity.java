@@ -90,9 +90,6 @@ public class ItemListActivity extends BaseActivity {
 
                 startActivity(intent);
             }
-
-
-            //Delete an order
             @Override
             public void onItemLongClick(View v, int position) {
                 onItemClick(v, position);

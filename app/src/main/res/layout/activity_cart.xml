@@ -28,7 +28,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:id="@+id/new_item_image"
-                android:src="@drawable/acer_aspire_5_599"
+                android:src="@drawable/ic_devices"
                 android:scaleType="fitCenter"
                 android:gravity="center_horizontal"/>
             <TextView

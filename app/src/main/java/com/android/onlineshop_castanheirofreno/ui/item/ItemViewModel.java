@@ -31,6 +31,7 @@ public class ItemViewModel  extends AndroidViewModel {
     private final MediatorLiveData<ItemEntity> observableItem;
     private final MediatorLiveData<List<ItemEntity>> observableItems;
     private final MediatorLiveData<List<CategoryEntity>> observableCategories;
+    private final MediatorLiveData<List<ItemEntity>> observableNewItems;
 
 
     public ItemViewModel(@NonNull Application application,
@@ -52,14 +53,19 @@ public class ItemViewModel  extends AndroidViewModel {
         observableItems = new MediatorLiveData<>();
         observableItems.setValue(null);
 
+        observableNewItems = new MediatorLiveData<>();
+        observableNewItems.setValue(null);
+
         LiveData<ItemEntity> item = repository.getItem(idItem, application);
         LiveData<List<ItemEntity>> items = repository.getItemsByCategory(categoryId, application);
         LiveData<List<CategoryEntity>> listCategory = catRepository.getCategories(application);
+        LiveData<List<ItemEntity>> listNewItems = repository.getNewItems(application);
 
         // observe the changes of the account entity from the database and forward them
         observableItem.addSource(item, observableItem::setValue);
         observableCategories.addSource(listCategory, observableCategories::setValue);
         observableItems.addSource(items, observableItems::setValue);
+        observableNewItems.addSource(listNewItems, observableNewItems::setValue);
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
@@ -101,6 +107,10 @@ public class ItemViewModel  extends AndroidViewModel {
 
     public LiveData<List<CategoryEntity>> getCategories() {
         return observableCategories;
+    }
+
+    public LiveData<List<ItemEntity>> getNewItems() {
+        return observableNewItems;
     }
 
 

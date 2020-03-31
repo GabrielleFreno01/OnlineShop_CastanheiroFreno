@@ -61,9 +61,9 @@ public class EditItemActivity extends BaseActivity {
 
         initiateView();
 
-        SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
-        long itemId = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
-        long catId = settings.getLong("idCategory", 0);
+        Intent intent = getIntent();
+        long itemId = intent.getLongExtra( "itemId", 0L);
+        long catId = intent.getLongExtra( "idCategory", 0L);
 
        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);

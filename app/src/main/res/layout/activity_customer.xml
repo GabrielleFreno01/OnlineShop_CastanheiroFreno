@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="City"
                 android:textColor="@color/colorText"
-                android:inputType="text"
+                android:inputType="number"
                 android:textSize="@dimen/basicTextSize"
                 android:layout_marginBottom="20dp"/>
 

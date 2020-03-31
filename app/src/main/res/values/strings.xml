@@ -182,7 +182,7 @@
     <string name="imageproduct">imageProduct</string>
     <string name="btn_changeproduct">changeProduct</string>
     <string name="about_us">About Us</string>
-    <string name="about_us_content">This application was created for the course "mobile & cloud development" at the HESSO in Sierre by Gabrielle Freno and Tiago Garcia Castahneiro. \n\n Date of creation : 31.03.2020
+    <string name="about_us_content">This application was created for the course "mobile &amp; cloud development" at the HESSO in Sierre by Gabrielle Freno and Tiago Garcia Castahneiro. \n\n Date of creation : 31.03.2020
     \n\n Technospot© </string>
     <string name="mail_technospot">technospot@info.ch</string>
     <string name="empty_cart">Please add some item in your cart first</string>

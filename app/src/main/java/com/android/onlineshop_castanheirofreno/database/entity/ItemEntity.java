@@ -29,7 +29,7 @@ public class ItemEntity {
     private String description;
 
     @ColumnInfo(name = "price")
-    private int price;
+    private double price;
 
     @ColumnInfo(name = "idCategory")
     private long idCategory;
@@ -43,7 +43,7 @@ public class ItemEntity {
     public ItemEntity() {
     }
 
-    public ItemEntity(String name, String description,int price, long idCategory){//, long idImage) {
+    public ItemEntity(String name, String description,double price, long idCategory){//, long idImage) {
         this.name = name ;
         this.description = description;
         this.price = price;
@@ -66,9 +66,9 @@ public class ItemEntity {
 
     public void setDescription(String description) { this.description = description; }
 
-    public int getPrice() { return price; }
+    public double getPrice() { return price; }
 
-    public void setPrice(int price) { this.price = price; }
+    public void setPrice(double price) { this.price = price; }
 
     public long getIdCategory() { return idCategory; }
 

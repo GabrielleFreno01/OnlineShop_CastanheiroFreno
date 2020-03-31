@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.onlineshop_castanheirofreno.R;
 
@@ -43,6 +44,7 @@ public class ItemDescriptionActivity extends BaseActivity {
     private TextView tvProductName;
     private TextView tvPriceProduct;
     private TextView tvDescription;
+    private Toast toast;
 
     private ItemEntity item;
 
@@ -136,7 +138,8 @@ public class ItemDescriptionActivity extends BaseActivity {
                 viewModel.deleteItem(item, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-                        Intent intent = new Intent(ItemDescriptionActivity.this, CategoryActivity.class);
+
+                        setResponse(true);
                     }
 
                     @Override
@@ -159,6 +162,15 @@ public class ItemDescriptionActivity extends BaseActivity {
         editor.apply();
         startActivity(intent);
         finish();
+    }
+
+    private void setResponse(Boolean response) {
+        if (response) {
+            toast = Toast.makeText(this, "Item deleted", Toast.LENGTH_LONG);
+            toast.show();
+            onBackPressed();
+            finish();
+        }
     }
 
 

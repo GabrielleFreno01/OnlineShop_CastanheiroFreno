@@ -71,7 +71,6 @@ public class ItemListActivity extends BaseActivity {
         cat_name = findViewById(R.id.cat_name_tv);
         cat_name.setText(name);
 
-        long idCat = intent.getLongExtra( "categoryId", 0L);
         items = new ArrayList<>();
 
         adapter = new ItemsAdapter( this, items , new RecyclerViewItemClickListener() {
@@ -83,11 +82,12 @@ public class ItemListActivity extends BaseActivity {
                         Intent.FLAG_ACTIVITY_NO_ANIMATION
                 );
                 intent.putExtra("itemId", items.get(position).getIdItem());
-                intent.putExtra("idCategory", idCat);
-                final SharedPreferences.Editor editor = getSharedPreferences(PREFS_ITEM, 0).edit();
+                intent.putExtra("idCategory", items.get(position).getIdCategory());
+                /*final SharedPreferences.Editor editor = getSharedPreferences(PREFS_ITEM, 0).edit();
                 editor.putLong(PREFS_ITEM, items.get(position).getIdItem());
                 editor.putLong("idCategory", idCat);
-                editor.apply();
+                editor.apply();*/
+
                 startActivity(intent);
             }
 

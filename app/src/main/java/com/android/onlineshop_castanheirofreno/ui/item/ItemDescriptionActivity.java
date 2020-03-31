@@ -50,19 +50,16 @@ public class ItemDescriptionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_product_description, frameLayout);
 
-
         navigationView.setCheckedItem(position);
-        //Replace by a function that gets the item with the idItem
-        //itemModel = new ItemModel(2, R.drawable.apple_imac_1499, "Apple iMac", 1499.00);
 
         initiateView();
 
-        SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
+        /*SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
         long itemId = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
-        long catId = settings.getLong("idCategory", 0);
-        /*Intent intent = getIntent();
-        long itemId = intent.getLongExtra( "itemid", 0L);
-        long catId = intent.getLongExtra( "idCategory", 0L);*/
+        long catId = settings.getLong("idCategory", 0);*/
+        Intent intent = getIntent();
+        long itemId = intent.getLongExtra( "itemId", 0L);
+        long catId = intent.getLongExtra( "idCategory", 0L);
 
         //TODO pourquoi c'est vide ?
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId,  catId);

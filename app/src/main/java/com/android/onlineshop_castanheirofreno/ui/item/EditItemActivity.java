@@ -26,6 +26,8 @@ import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class EditItemActivity extends BaseActivity {
     private Toast toast;
 
     Spinner spinner;
-    ImageButton imageButton;
+    //ImageButton imageButton;
     Button validateButton;
     EditText etproductName;
     EditText etprice;
@@ -90,7 +92,8 @@ public class EditItemActivity extends BaseActivity {
     private void updateContent() {
         if (item != null) {
             etproductName.setText(item.getName());
-            etprice.setText(String.valueOf(item.getPrice()));
+            NumberFormat formatter = new DecimalFormat("#0.00");
+            etprice.setText(formatter.format(item.getPrice()));
             etdescription.setText(item.getDescription());
             spinner.setSelection((int)(item.getIdCategory())-1);
 

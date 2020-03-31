@@ -170,11 +170,8 @@
         <activity
             android:name=".ui.item.EditItemActivity"
             android:label="Item description"
-            android:theme="@style/AppTheme.NoActionBar">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.android.onlineshop_castanheirofreno.ui.item.ItemDescriptionActivity" />
-
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.item.ItemDescriptionActivity">
         </activity>
     </application>
 

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
+import com.android.onlineshop_castanheirofreno.adapter.MyListAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
@@ -35,21 +37,20 @@ import java.util.List;
 public class EditItemActivity extends BaseActivity {
 
 
-
     private Toast toast;
 
-    Spinner spinner;
+    private Spinner spinner;
     //ImageButton imageButton;
-    Button validateButton;
-    EditText etproductName;
-    EditText etprice;
-    EditText etdescription;
+    private Button validateButton;
+    private EditText etproductName;
+    private EditText etprice;
+    private EditText etdescription;
 
-    ItemViewModel viewModel;
+    private ItemViewModel viewModel;
 
-    ItemEntity item;
+    private ItemEntity item;
 
-    List<CategoryEntity> categories;
+    private MyListAdapter<CategoryEntity> adapterCategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +64,23 @@ public class EditItemActivity extends BaseActivity {
         initiateView();
 
         Intent intent = getIntent();
-        long itemId = intent.getLongExtra( "itemId", 0L);
-        long catId = intent.getLongExtra( "idCategory", 0L);
+        long itemId = intent.getLongExtra("itemId", 0L);
+        long catId = intent.getLongExtra("idCategory", 0L);
 
-       ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
                 item = itemEntity;
                 updateContent();
             }
-
         });
 
+        viewModel.getCategories().observe(this, categories -> {
+            if (categories != null) {
+                updateSpinner(categories);
+            }
+        });
 
 
         validateButton = (Button) findViewById(R.id.btn_edit_product);
@@ -89,6 +94,11 @@ public class EditItemActivity extends BaseActivity {
         });
     }
 
+    private void updateSpinner(List<CategoryEntity> categories) {
+        adapterCategories.updateData(new ArrayList<>(categories));
+
+    }
+
 
     private void updateContent() {
         if (item != null) {
@@ -96,7 +106,7 @@ public class EditItemActivity extends BaseActivity {
             NumberFormat formatter = new DecimalFormat("#0.00");
             etprice.setText(formatter.format(item.getPrice()));
             etdescription.setText(item.getDescription());
-            spinner.setSelection((int)(item.getIdCategory())-1);
+            spinner.setSelection((int) (item.getIdCategory()) - 1);
 
         }
 
@@ -108,7 +118,7 @@ public class EditItemActivity extends BaseActivity {
                 Double.parseDouble(etprice.getText().toString()),
                 etdescription.getText().toString(),
                 //imageButton.getId(),
-                spinner.getSelectedItemId()+1
+                spinner.getSelectedItemId() + 1
 
         );
 
@@ -150,16 +160,17 @@ public class EditItemActivity extends BaseActivity {
 
 
 
-
     private void initiateView() {
         //imageButton = findViewById(R.id.imagebtn_addImage);
         etproductName = findViewById(R.id.input_product_name);
         etprice = findViewById(R.id.input_price);
         etdescription = findViewById(R.id.input_description);
+
         spinner = findViewById(R.id.spinner_category);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_list, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        adapterCategories = new MyListAdapter<>(this, R.layout.row_category, new ArrayList<>());
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_list, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapterCategories);
 
     }
 }

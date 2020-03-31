@@ -52,4 +52,7 @@ public class CategoryEntity {
     public void setTag(String tag) {
         this.tag = tag;
     }
+    public String toString(){
+        return getName();
+    }
 }

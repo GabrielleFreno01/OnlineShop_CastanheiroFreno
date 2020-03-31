@@ -17,9 +17,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.android.onlineshop_castanheirofreno.R;
+import com.android.onlineshop_castanheirofreno.adapter.MyListAdapter;
 import com.android.onlineshop_castanheirofreno.database.async.customer.CreateCustomer;
 import com.android.onlineshop_castanheirofreno.database.async.item.CreateItem;
+import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
@@ -28,22 +32,26 @@ import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.mgmt.RegisterActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddItemActivity extends BaseActivity {
 
-    Spinner spinner;
+    private Spinner spinner;
     //ImageButton imageButton;
-    Button validateButton;
-    EditText etproductName;
-    EditText etprice;
-    EditText etdescription;
+    private Button validateButton;
+    private EditText etproductName;
+    private EditText etprice;
+    private EditText etdescription;
 
+    private MyListAdapter<CategoryEntity> adapterCategories;
     private Toast toast;
 
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
     private static final String TAG = "AddItemActivity";
 
-    ItemViewModel viewModel;
+    private ItemViewModel viewModel;
 
 
     @Override
@@ -56,10 +64,13 @@ public class AddItemActivity extends BaseActivity {
 
         initiateView();
 
-        spinner = findViewById(R.id.spinner_category);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_list, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), 0L, 0L);
+        viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
+        viewModel.getCategories().observe(this, categories -> {
+            if (categories != null) {
+                updateSpinner(categories);
+            }
+        });
 
 
         validateButton = findViewById(R.id.btn_add_new_product);
@@ -77,13 +88,18 @@ public class AddItemActivity extends BaseActivity {
         etproductName = findViewById(R.id.input_product_name);
         etdescription = findViewById(R.id.input_description);
         etprice = findViewById(R.id.input_price);
-        spinner = findViewById(R.id.spinner_category);
-
         etprice.setText("0.0");
         //imageButton = findViewById(R.id.imagebtn_addImage);
 
+        spinner = findViewById(R.id.spinner_category);
+        adapterCategories = new MyListAdapter<>(this, R.layout.row_category, new ArrayList<>());
+        spinner.setAdapter(adapterCategories);
     }
 
+    private void updateSpinner(List<CategoryEntity> categories) {
+        adapterCategories.updateData(new ArrayList<>(categories));
+
+    }
 
     private void pickImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);

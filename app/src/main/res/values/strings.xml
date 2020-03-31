@@ -1,30 +1,21 @@
 <resources>
     <string name="app_name">Technospot</string>
+
     <string name="productname">Product Name</string>
     <string name="add_to_the_cart">Add to the cart</string>
     <string name="price">Price</string>
-    <string name="product_description">Fuerit toto in consulatu sine provincia, cui fuerit, antequam Fuerit toto in consulatu sine provincia, cui fuerit, antequam designatus est, decreta provincia. Sortietur an non? Nam et non sortiri absurdum est, et, quod sortitus sis, non habere. Proficiscetur paludatus? Quo? Quo pervenire ante certam diem non licebit. ianuario, Februario, provinciam non habebit; Kalendis ei denique Martiis nascetur repente provincia. Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt. Altera sententia est, quae definit amicitiam paribus officiis ac voluntatibus. Hoc quidem est nimis exigue et exiliter ad calculos vocare amicitiam, ut par sit ratio acceptorum et datorum. Divitior mihi et affluentior videtur esse vera amicitia nec observare restricte, ne plus reddat quam acceperit; neque enim verendum est, ne quid excidat, aut ne quid in terram defluat, aut ne plus aequo quid in amicitiam congeratur.designatus est, decreta provincia. Sortietur an non? Nam et non sortiri absurdum est, et, quod sortitus sis, non habere. Proficiscetur paludatus? Quo? Quo pervenire ante certam diem non licebit. ianuario, Februario, provinciam non habebit; Kalendis ei denique Martiis nascetur repente provincia. Quam ob rem ut ii qui superiores sunt submittere se debent in amicitia, sic quodam modo inferiores extollere. Sunt enim quidam qui molestas amicitias faciunt, cum ipsi se contemni putant; quod non fere contingit nisi iis qui etiam contemnendos se arbitrantur; qui hac opinione non modo verbis sed etiam opere levandi sunt. Altera sententia est, quae definit amicitiam paribus officiis ac voluntatibus. Hoc quidem est nimis exigue et exiliter ad calculos vocare amicitiam, ut par sit ratio acceptorum et datorum. Divitior mihi et affluentior videtur esse vera amicitia nec observare restricte, ne plus reddat quam acceperit; neque enim verendum est, ne quid excidat, aut ne quid in terram defluat, aut ne plus aequo quid in amicitiam congeratur.</string>
-
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="add_newItem">Add</string>
     <string name="title_home">Home</string>
     <string name="title_logout">Logout</string>
     <string name="title_account">My Account</string>
     <string name="title_category">Categories</string>
     <string name="title_orders">Orders</string>
     <string name="title_settings">Settings</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
-    <string name="action_settings">Settings</string>
     <string name="default_name">Category Name</string>
     <string name="title_cart">My Cart</string>
     <string name="confirmation_message1">Thank you for your order !</string>
     <string name="confirmation_message2">You will receive a confirmation by email !</string>
-    <string name="bottom_navigation_menu_home">Home</string>
-    <string name="bottom_navigation_menu_categories">Category</string>
-    <string name="bottom_navigation_menu_settings">Settings</string>
-    <string name="bottom_navigation_menu_shopping_cart">Shopping Cart</string>
-    <string name="title_activity_items">ItemsActivity</string>
     <string name="title_new_products">New products</string>
-    <string name="add_newItem">Add</string>
     <string name="category_name">Category Name</string>
     <string name="hint_product_name">Enter the product name</string>
     <string name="text_view_product_name">Product name</string>

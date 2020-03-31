@@ -17,7 +17,7 @@ public class DatabaseInitializer {
     public static final String TAG = "DatabaseInitializer";
 
     public static void populateDatabase(final AppDatabase db) {
-        Log.i(TAG, "Inserting demo data.");
+        Log.i(TAG, "Inserting data.");
         PopulateDbAsync task = new PopulateDbAsync(db);
         task.execute();
     }
@@ -44,10 +44,7 @@ public class DatabaseInitializer {
         long id = db.categoryDao().insert(category);
     }
 
-    /*private static void addImage(final AppDatabase db, final String lien) {
-        ImageEntity image = new ImageEntity(lien);
-        long id = db.imageDao().insert(image);
-    }*/
+
 
     private static void populateWithTestData(AppDatabase db) {
         db.customerDao().deleteAll();
@@ -55,6 +52,13 @@ public class DatabaseInitializer {
         addCustomer(db, "g@g.com", "Gabrielle", "Freno", "Martigny", 1920, "097900595", "12345");
 
         addCustomer(db, "t@t.com", "Tiago", "Castanheiro", "Martigny", 1920, "097900595", "56789");
+
+        try {
+            // Let's ensure that customers are already stored in the database before we continue.
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //Categories
         db.categoryDao().deleteAll();
@@ -70,18 +74,13 @@ public class DatabaseInitializer {
 
         addCategory(db, "TV", "ic_tv");
 
-       /* //Images
-        db.imageDao().deleteAll();
-        addImage(db, ".\\OnlineShop_CastanheiroFreno\\app\\src\\main\\res\\drawable\\acer_aspire_5_599.PNG");
-
-        addImage(db, ".\\OnlineShop_CastanheiroFreno\\app\\src\\main\\res\\drawable\\apple_imac_1499.PNG");*/
-
         try {
-            // Let's ensure that the clients, categories and images are already stored in the database before we continue.
+            // Let's ensure that categories are already stored in the database before we continue.
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
         //Items
         db.itemDao().deleteAll();
@@ -443,9 +442,6 @@ public class DatabaseInitializer {
                 "Format d'affichage: 4K Ultra HD\n" +
                 "Résolution: 3840 x 2160" , 2799.00, 6);
 
-
-
-
         try {
             // Let's ensure that the items are already stored in the database before we continue.
             Thread.sleep(1000);
@@ -460,6 +456,13 @@ public class DatabaseInitializer {
         addOrder(db, 429, "23.03.2020", "23.03.2020", 2, "Delivered", "t@t.com");
         addOrder(db, 429, "25.05.2020", "", 1, "In progress", "t@t.com");
         addOrder(db, 429, "26.03.2020", "", 1, "In progress", "t@t.com");
+
+        try {
+            // Let's ensure that orders are already stored in the database before we continue.
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 

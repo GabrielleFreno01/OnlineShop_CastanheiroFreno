@@ -60,9 +60,9 @@ public class CartActivity extends BaseActivity {
 
         initiateView();
 
-        SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
-        long itemId = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
-        long catId = settings.getLong("idCategory", 0);
+        Intent intent = getIntent();
+        long itemId = intent.getLongExtra( "itemId", 0L);
+        long catId = intent.getLongExtra( "idCategory", 0L);
 
         SharedPreferences settingsUser = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         String user = settingsUser.getString(PREFS_USER, null);

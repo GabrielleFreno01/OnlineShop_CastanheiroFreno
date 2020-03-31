@@ -171,5 +171,19 @@
     <string name="label_status">Status</string>
     <string name="hint_date">Select a date</string>
     <string name="OrderEdited">Order successfully edited</string>
+    <string name="default_price">000</string>
+    <string name="telephone">Telephone</string>
+    <string name="city_code">City Code</string>
+    <string name="city">City</string>
+    <string name="modify_password">Modify Password</string>
+    <string name="default_idorder">8</string>
+    <string name="default_idproduct">2</string>
+    <string name="default_productname">Apple IMac</string>
+    <string name="image_decription_logo">logo</string>
+    <string name="imageproduct">imageProduct</string>
+    <string name="btn_changeproduct">changeProduct</string>
+    <string name="about_us">About Us</string>
+    <string name="about_us_content">Our application brings together for you a very wide range of electronic products.</string>
+    <string name="mail_technospot">technospot@info.ch</string>
 
 </resources>

@@ -11,28 +11,28 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginLeft="16dp"
-        android:text="id_order"
+        android:text="@string/default_idorder"
         android:id="@+id/textView_orderId"
         android:gravity="center_vertical"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginLeft="16dp"
-        android:text="order_creation_date"
+        android:text="@string/creation_date"
         android:id="@+id/textView_creationDate"
         android:gravity="center_vertical"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginLeft="16dp"
-        android:text="productname"
+        android:text="@string/productname"
         android:id="@+id/textView_productName"
         android:gravity="center_vertical"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginLeft="16dp"
-        android:text="order_status"
+        android:text="@string/label_status"
         android:id="@+id/textView_status"
         android:gravity="center_vertical"/>
 

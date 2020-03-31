@@ -33,9 +33,9 @@
 
                     <TextView
                         android:id="@+id/textview_id_order"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="8"
+                        android:text="@string/default_idorder"
                         android:textColor="@color/colorTitle"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -80,8 +80,8 @@
                     android:id="@+id/textView_product_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="2"
+                    android:layout_gravity="center"
+                    android:text="@string/default_idproduct"
                     android:textSize="18sp" />
 
             </TableRow>
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_marginLeft="30dp"
-                    android:text="Apple IMac"
+                    android:text="@string/default_productname"
                     android:textSize="18sp" />
             </TableRow>
             <TableRow

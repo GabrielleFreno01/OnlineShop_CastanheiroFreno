@@ -42,7 +42,7 @@
                 android:textSize="@dimen/basicTextSize"
                 android:id="@+id/new_item_price"
                 android:textColor="@color/colorText"
-                android:text="000"
+                android:text="@string/default_price"
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
 
@@ -52,10 +52,8 @@
         android:id="@+id/btn_buy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:text="@string/buy_button"
-        android:onClick="see"
         android:layout_gravity="center"
         android:textSize="@dimen/btnTextSize"/>
 
@@ -63,8 +61,6 @@
         android:id="@+id/btn_go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_buy"
-        android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:text="@string/go_shopping_button"
         android:onClick="goShopping"

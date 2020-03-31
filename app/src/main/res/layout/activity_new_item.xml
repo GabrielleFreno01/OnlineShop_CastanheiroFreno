@@ -25,7 +25,8 @@
                 android:id="@+id/new_item_image"
                 android:src="@drawable/acer_aspire_5_599"
                 android:scaleType="fitCenter"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:contentDescription="@string/imageproduct" />
             <TextView
                 android:id="@+id/new_item_name"
                 android:layout_width="wrap_content"

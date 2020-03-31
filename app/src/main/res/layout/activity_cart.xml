@@ -7,97 +7,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cart_item_cardview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="50dp"
-        app:cardCornerRadius="25dp"
-        android:layout_gravity="center">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="30dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cart_item_cardview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="50dp"
+                app:cardCornerRadius="25dp"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="30dp">
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:id="@+id/new_item_image"
+                        android:src="@drawable/ic_devices"
+                        android:scaleType="fitCenter"
+                        android:gravity="center_horizontal"/>
+                    <TextView
+                        android:id="@+id/new_item_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/productNameSize"
+                        android:textColor="@color/colorText"
+                        android:text="@string/productname"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/basicTextSize"
+                        android:id="@+id/new_item_price"
+                        android:textColor="@color/colorText"
+                        android:text="@string/default_price"
+                        android:layout_marginTop="5dp"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:id="@+id/new_item_image"
-                android:src="@drawable/ic_devices"
+                android:id="@+id/empty_cart_image"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_empty_cart"
                 android:scaleType="fitCenter"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:layout_marginTop="100dp"
+                android:visibility="gone"/>
+
             <TextView
-                android:id="@+id/new_item_name"
+                android:id="@+id/empty_cart_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:layout_marginHorizontal="80dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="80dp"
                 android:textSize="@dimen/productNameSize"
                 android:textColor="@color/colorText"
-                android:text="@string/productname"/>
-            <TextView
+                android:text="@string/empty_cart"
+                android:visibility="gone"/>
+
+
+            <Button
+                android:id="@+id/btn_buy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/basicTextSize"
-                android:id="@+id/new_item_price"
-                android:textColor="@color/colorText"
-                android:text="@string/default_price"
-                android:layout_marginTop="5dp"/>
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/buy_button"
+                android:onClick="see"
+                android:layout_gravity="center"
+                android:textSize="@dimen/btnTextSize"/>
+
+            <Button
+                android:id="@+id/btn_go"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_buy"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/go_shopping_button"
+                android:onClick="goShopping"
+                android:layout_gravity="center"
+                android:textSize="@dimen/btnTextSize"/>
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/empty_cart_image"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_empty_cart"
-        android:scaleType="fitCenter"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="100dp"
-        android:visibility="gone"/>
-
-    <TextView
-        android:id="@+id/empty_cart_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:layout_marginHorizontal="80dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="80dp"
-        android:textSize="@dimen/productNameSize"
-        android:textColor="@color/colorText"
-        android:text="@string/empty_cart"
-        android:visibility="gone"/>
+    </ScrollView>
 
 
-    <Button
-        android:id="@+id/btn_buy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:text="@string/buy_button"
-        android:onClick="see"
-        android:layout_gravity="center"
-        android:textSize="@dimen/btnTextSize"/>
-
-    <Button
-        android:id="@+id/btn_go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_buy"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:text="@string/go_shopping_button"
-        android:onClick="goShopping"
-        android:layout_gravity="center"
-        android:textSize="@dimen/btnTextSize"/>
 
 
 </LinearLayout>

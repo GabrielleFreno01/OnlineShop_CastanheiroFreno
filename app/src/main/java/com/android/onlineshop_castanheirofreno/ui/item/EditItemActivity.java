@@ -122,8 +122,6 @@ public class EditItemActivity extends BaseActivity {
         //item.setIdImage(idImage);
         item.setIdCategory(idCategory);
 
-
-        //TODO list de category
         viewModel.updateItem(item, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {

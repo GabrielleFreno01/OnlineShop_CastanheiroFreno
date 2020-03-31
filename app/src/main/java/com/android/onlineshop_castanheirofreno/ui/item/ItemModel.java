@@ -14,6 +14,7 @@ public class ItemModel {
         this.price = price;
         this.description = description;
     }
+
     public ItemModel(int idItem, int image, String productName, double price) {
         this.idItem = idItem;
         this.image = image;
@@ -38,6 +39,7 @@ public class ItemModel {
     public void setIdItem(int idItem) {
         this.idItem = idItem;
     }
+
     public int getImage() {
         return image;
     }

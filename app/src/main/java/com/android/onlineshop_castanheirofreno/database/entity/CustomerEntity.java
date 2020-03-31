@@ -10,7 +10,6 @@ import androidx.room.PrimaryKey;
 public class CustomerEntity implements Comparable {
 
 
-
     @NonNull
     private String email;
 
@@ -41,7 +40,7 @@ public class CustomerEntity implements Comparable {
         this.lastName = lastName;
         this.city = city;
         this.city_code = city_code;
-        this.telephone= telephone;
+        this.telephone = telephone;
         this.password = password;
     }
 
@@ -78,17 +77,29 @@ public class CustomerEntity implements Comparable {
         this.password = password;
     }
 
-    public String getCity() { return city; }
+    public String getCity() {
+        return city;
+    }
 
-    public void setCity(String city) { this.city = city; }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-    public int getCity_code() { return city_code; }
+    public int getCity_code() {
+        return city_code;
+    }
 
-    public void setCity_code(int city_code) { this.city_code = city_code; }
+    public void setCity_code(int city_code) {
+        this.city_code = city_code;
+    }
 
-    public String getTelephone() { return telephone; }
+    public String getTelephone() {
+        return telephone;
+    }
 
-    public void setTelephone(String telephone) { this.telephone = telephone; }
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
     @Override
     public boolean equals(Object obj) {

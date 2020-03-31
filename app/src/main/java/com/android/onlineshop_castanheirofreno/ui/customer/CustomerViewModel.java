@@ -24,7 +24,7 @@ public class CustomerViewModel extends AndroidViewModel {
     private final MediatorLiveData<CustomerEntity> observableCustomer;
 
     public CustomerViewModel(@NonNull Application application,
-                           final String user, CustomerRepository customerRepository) {
+                             final String user, CustomerRepository customerRepository) {
         super(application);
 
         this.application = application;

@@ -11,7 +11,7 @@ import java.util.List;
 public class CategoryWithItems {
 
     @Embedded
-    public CategoryEntity category ;
+    public CategoryEntity category;
 
     @Relation(parentColumn = "id", entityColumn = "categoryId", entity = ItemEntity.class)
     public List<ItemEntity> items;

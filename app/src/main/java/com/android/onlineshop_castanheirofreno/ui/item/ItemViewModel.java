@@ -19,13 +19,13 @@ import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.util.List;
 
-public class ItemViewModel  extends AndroidViewModel {
+public class ItemViewModel extends AndroidViewModel {
 
     private Application application;
 
     private ItemRepository repository;
 
-    private CategoryRepository catRepository ;
+    private CategoryRepository catRepository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<ItemEntity> observableItem;
@@ -35,15 +35,15 @@ public class ItemViewModel  extends AndroidViewModel {
 
 
     public ItemViewModel(@NonNull Application application,
-                            final long idItem, final long categoryId, ItemRepository itemRepository, CategoryRepository catRepository) {
+                         final long idItem, final long categoryId, ItemRepository itemRepository, CategoryRepository catRepository) {
         super(application);
 
         this.application = application;
 
         repository = itemRepository;
-        this.catRepository= catRepository;
+        this.catRepository = catRepository;
 
-        observableItem= new MediatorLiveData<>();
+        observableItem = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableItem.setValue(null);
 

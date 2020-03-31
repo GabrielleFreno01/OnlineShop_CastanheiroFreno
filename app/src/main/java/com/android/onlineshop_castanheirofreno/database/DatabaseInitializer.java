@@ -29,11 +29,11 @@ public class DatabaseInitializer {
     }
 
     private static void addOrder(final AppDatabase db, final double price, final String creation_date, final String delivery_date, final long idItem, final String status, final String owner) {
-        OrderEntity order = new OrderEntity(price, creation_date, delivery_date,  idItem, status, owner );
+        OrderEntity order = new OrderEntity(price, creation_date, delivery_date, idItem, status, owner);
         long id = db.orderDao().insert(order);
     }
 
-    private static void addItem(final AppDatabase db, final String name, final String description, final double price, final long idCategory){//, final long idImage) {
+    private static void addItem(final AppDatabase db, final String name, final String description, final double price, final long idCategory) {//, final long idImage) {
         ItemEntity item = new ItemEntity(name, description, price, idCategory);//, idImage );
         long id = db.itemDao().insert(item);
 
@@ -43,7 +43,6 @@ public class DatabaseInitializer {
         CategoryEntity category = new CategoryEntity(name, tag);
         long id = db.categoryDao().insert(category);
     }
-
 
 
     private static void populateWithTestData(AppDatabase db) {
@@ -214,7 +213,7 @@ public class DatabaseInitializer {
                 "Capacité SSD: 512 TB\n" +
                 "Carte graphique: Nvidia GeForce GTX 1650", 1699.00, 3);
 
-        addItem(db, "Acer Swift 3" , "ype d'Ecran: 14" +
+        addItem(db, "Acer Swift 3", "ype d'Ecran: 14" +
                 "\n Full HD IPS (1920 x 1080) matt, narrow bezel\n" +
                 "Diagonale de l'Ecran: 14 \n" +
                 "Processeur: Intel Core i5-1035G1 (1 GHz)\n" +
@@ -281,34 +280,34 @@ public class DatabaseInitializer {
 
         //Category 4 Gaming
 
-        addItem(db, "Sony PlayStation 4 Pro", "bb" , 45, 4);
+        addItem(db, "Sony PlayStation 4 Pro", "bb", 45, 4);
 
         addItem(db, "aa", "Plate-forme: Sony PlayStation 4\n" +
                 "Lecteur: BD × 6 CAV DVD × 8 CA\n" +
                 "Processeur: Single-chip custom processor CPU: x86-64 AMD “Jaguar”, 8 cores GPU: 4.20 TFLOPS, AMD Radeon™ based graphics engine\n" +
                 "Capacité mémoire du disque dur: 1 TB\n" +
-                "Mémoire flash intégrée: 8 GB" , 319.00, 4);
+                "Mémoire flash intégrée: 8 GB", 319.00, 4);
 
-        addItem(db, "Nintendo Switch Neon", "bb" , 45, 4);
+        addItem(db, "Nintendo Switch Neon", "bb", 45, 4);
 
         addItem(db, "aa", "Plate-forme: Nintendo Switch\n" +
                 "Processeur: Technologie de processeur Nvidia Tegra\n" +
                 "Mémoire flash intégrée: 32 GB\n" +
                 "Caractéristiques: Mode téléviseur, mode table, mode portable\n" +
-                "Type d'Ecran: Écran tactile capacitif / LCD 6,2 pouces / résolution : 1280 x 720 pixels" , 319.00, 4);
+                "Type d'Ecran: Écran tactile capacitif / LCD 6,2 pouces / résolution : 1280 x 720 pixels", 319.00, 4);
 
-        addItem(db, "Sony PlayStation Classic", "Console originale" , 69.90, 4);
+        addItem(db, "Sony PlayStation Classic", "Console originale", 69.90, 4);
 
         addItem(db, "Nintendo Switch Lite", "Plate-forme: Nintendo Switch\n" +
                 "Capacité mémoire du disque dur: 32 GB", 219.00, 4);
 
-        addItem(db, "PS4 - Red Dead Redemption 2 ", "Consoles de jeux vidéo compatibles: PlayStation 4" , 39.90, 4);
+        addItem(db, "PS4 - Red Dead Redemption 2 ", "Consoles de jeux vidéo compatibles: PlayStation 4", 39.90, 4);
 
-        addItem(db, "Xbox One - Borderlands 3", "Consoles de jeux vidéo compatibles: Xbox One" , 39.90, 4);
+        addItem(db, "Xbox One - Borderlands 3", "Consoles de jeux vidéo compatibles: Xbox One", 39.90, 4);
 
-        addItem(db, "PC - The Sims 4", "Consoles de jeux vidéo compatibles: PC" , 29.90, 4);
+        addItem(db, "PC - The Sims 4", "Consoles de jeux vidéo compatibles: PC", 29.90, 4);
 
-        addItem(db, "NSW - Just Dance 2020", "Consoles de jeux vidéo compatibles: Switch" , 39.90, 4);
+        addItem(db, "NSW - Just Dance 2020", "Consoles de jeux vidéo compatibles: Switch", 39.90, 4);
 
         //Category 5 Smartphone
 
@@ -316,62 +315,61 @@ public class DatabaseInitializer {
                 "Extension de mémoire: 1 TB\n" +
                 "Mémoire vive: 12 GB\n" +
                 "Résolution caméra arrière: 108 Mpx\n" +
-                "Résolution caméra avant: 40 Mpx" , 1349.00, 5);
+                "Résolution caméra avant: 40 Mpx", 1349.00, 5);
 
         addItem(db, "Apple iPhone 8", "Mémoire interne: 64 GB\n" +
                 "Résolution caméra arrière: 12 Mpx\n" +
                 "Résolution caméra avant: 7 Mpx\n" +
                 "Taille de l'Ecran: 4.7 \"\n" +
-                "Type d'Ecran: Retina" , 529.00, 5);
+                "Type d'Ecran: Retina", 529.00, 5);
 
         addItem(db, "Apple iPhone 11 Pro", "Mémoire interne: 64 GB\n" +
                 "Mémoire vive: 6 GB\n" +
                 "Résolution caméra arrière: 12 Mpx\n" +
                 "Résolution caméra avant: 12 Mpx\n" +
-                "Fonction caméra: Optical ZoomMode nocturneFlash intégré4K Video RecordingAutofocusDigital ZoomCaméra avantFlash LEDTéléobjectifUltra grand-AngleEnregistrements vidéomontage vidéoGrand-Angle" , 1249.00, 5);
+                "Fonction caméra: Optical ZoomMode nocturneFlash intégré4K Video RecordingAutofocusDigital ZoomCaméra avantFlash LEDTéléobjectifUltra grand-AngleEnregistrements vidéomontage vidéoGrand-Angle", 1249.00, 5);
 
         addItem(db, "Apple iPhone XR", "Mémoire interne: 64 GB\n" +
                 "Mémoire vive: 3 GB\n" +
                 "Résolution caméra arrière: 12 Mpx\n" +
                 "Résolution caméra avant: 7 Mpx\n" +
-                "Taille de l'Ecran: 6.1 \"" , 629.00, 5);
+                "Taille de l'Ecran: 6.1 \"", 629.00, 5);
 
         addItem(db, "Huawei P smart ", "Mémoire interne: 64 GB\n" +
                 "Extension de mémoire: 512 GB\n" +
                 "Mémoire vive: 3 GB\n" +
                 "Résolution caméra arrière: 13 Mpx\n" +
-                "Résolution caméra avant: 8 Mpx" , 249.00, 5);
+                "Résolution caméra avant: 8 Mpx", 249.00, 5);
 
         addItem(db, "Huawei P30 lite", "Mémoire interne: 128 GB\n" +
                 "Extension de mémoire: 512 GB\n" +
                 "Mémoire vive: 4 GB\n" +
                 "Résolution caméra arrière: 48 Mpx\n" +
-                "Résolution caméra avant: 24 Mpx" , 299.00, 5);
+                "Résolution caméra avant: 24 Mpx", 299.00, 5);
 
         addItem(db, "Samsung Galaxy A40", "Mémoire interne: 64 GB\n" +
                 "Extension de mémoire: 512 GB\n" +
                 "Mémoire vive: 4 GB\n" +
                 "Résolution caméra arrière: 16 Mpx\n" +
-                "Résolution caméra avant: 25 Mpx" , 245.00, 5);
+                "Résolution caméra avant: 25 Mpx", 245.00, 5);
 
         addItem(db, "Samsung Note10", "Mémoire interne: 128 GB\n" +
                 "Extension de mémoire: 1 TB\n" +
                 "Mémoire vive: 6 GB\n" +
                 "Résolution caméra arrière: 12 Mpx\n" +
-                "Résolution caméra avant: 32 Mpx" , 599.00, 5);
+                "Résolution caméra avant: 32 Mpx", 599.00, 5);
 
         addItem(db, "Samsung Galaxy A51", "Mémoire interne: 128 GB\n" +
                 "Extension de mémoire: 512 GB\n" +
                 "Mémoire vive: 4 GB\n" +
                 "Résolution caméra arrière: 48 Mpx\n" +
-                "Résolution caméra avant: 32 Mpx" , 369.00, 5);
+                "Résolution caméra avant: 32 Mpx", 369.00, 5);
 
         addItem(db, "Apple iPhone 11", "Mémoire interne: 256 GB\n" +
                 "Mémoire vive: 6 GB\n" +
                 "Résolution caméra arrière: 12 Mpx\n" +
                 "Résolution caméra avant: 12 Mpx\n" +
-                "Fonction caméra: Optical ZoomMode nocturneFlash intégré4K Video RecordingAutofocusDigital ZoomCaméra avantFlash LEDTéléobjectifUltra grand-AngleEnregistrements vidéomontage vidéoGrand-Angle" , 1369.00, 5);
-
+                "Fonction caméra: Optical ZoomMode nocturneFlash intégré4K Video RecordingAutofocusDigital ZoomCaméra avantFlash LEDTéléobjectifUltra grand-AngleEnregistrements vidéomontage vidéoGrand-Angle", 1369.00, 5);
 
 
         //Category 6 TV
@@ -380,67 +378,67 @@ public class DatabaseInitializer {
                 "Diagonale de l'Ecran en pouce: 55 \"\n" +
                 "Syntoniseur télévision numérique: 2 x DVB-T2/C/S2, 1 x CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 649.00, 6);
+                "Résolution: 3840 x 2160", 649.00, 6);
 
         addItem(db, "Panasonic TX-50", "Diagonale de l'Ecran en cm: 126 cm\n" +
                 "Diagonale de l'Ecran en pouce: 50 \"\n" +
                 "Syntoniseur télévision numérique: DVB-T2/C/S2 CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 549.00, 6);
+                "Résolution: 3840 x 2160", 549.00, 6);
 
         addItem(db, "LG 55UM", "Diagonale de l'Ecran en cm: 139 cm\n" +
                 "Diagonale de l'Ecran en pouce: 55 \"\n" +
                 "Syntoniseur télévision numérique: DVB-T2/C/S2 CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 499.00, 6);
+                "Résolution: 3840 x 2160", 499.00, 6);
 
         addItem(db, "Samsung QE-65Q", "Diagonale de l'Ecran en cm: 163 cm\n" +
                 "Diagonale de l'Ecran en pouce: 65 \"\n" +
                 "Syntoniseur télévision numérique: 2 x DVB-T2/C/S2, 1 x CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 749.00, 6);
+                "Résolution: 3840 x 2160", 749.00, 6);
 
         addItem(db, "Panasonic TX-65GZ", "Diagonale de l'Ecran en cm: 164 cm\n" +
                 "Diagonale de l'Ecran en pouce: 65 \"\n" +
                 "Syntoniseur télévision numérique: 2 x DVB-T2/C/S2 CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 1499.00, 6);
+                "Résolution: 3840 x 2160", 1499.00, 6);
 
         addItem(db, "Chiq U50Q5T", "Diagonale de l'Ecran en cm: 126 cm\n" +
                 "Diagonale de l'Ecran en pouce: 50 \"\n" +
                 "Syntoniseur télévision numérique: DVB-T2/C/S2 CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 299.00, 6);
+                "Résolution: 3840 x 2160", 299.00, 6);
 
         addItem(db, "LG 75UM7600", "Diagonale de l'Ecran en cm: 189 cm\n" +
                 "Diagonale de l'Ecran en pouce: 75 \"\n" +
                 "Syntoniseur télévision numérique: DVB-T2/C/S2 CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 999.00, 6);
+                "Résolution: 3840 x 2160", 999.00, 6);
 
         addItem(db, "Sony KD-55AG9", "Diagonale de l'Ecran en cm: 139 cm\n" +
                 "Diagonale de l'Ecran en pouce: 55 \"\n" +
                 "Syntoniseur télévision numérique: 2 x DVB-T2/C/S2, 1 x CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 1499.00, 6);
+                "Résolution: 3840 x 2160", 1499.00, 6);
 
         addItem(db, "Samsung QE-65LS03R", "Diagonale de l'Ecran en cm: 163 cm\n" +
                 "Diagonale de l'Ecran en pouce: 65 \"\n" +
                 "Syntoniseur télévision numérique: DVB-T2/C/S2 CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 2799.00, 6);
+                "Résolution: 3840 x 2160", 2799.00, 6);
 
         addItem(db, "Philips 65OLED854", "Diagonale de l'Ecran en cm: 164 cm\n" +
                 "Diagonale de l'Ecran en pouce: 65 \"\n" +
                 "Syntoniseur télévision numérique: 2 x DVB-T2/C/S2, 1 x CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 4499.00, 6);
+                "Résolution: 3840 x 2160", 4499.00, 6);
 
         addItem(db, "Panasonic TX-55GZC1004", "Diagonale de l'Ecran en cm: 139 cm\n" +
                 "Diagonale de l'Ecran en pouce: 55 \"\n" +
                 "Syntoniseur télévision numérique: 2 x DVB-T2/C/S2 CI+\n" +
                 "Format d'affichage: 4K Ultra HD\n" +
-                "Résolution: 3840 x 2160" , 2799.00, 6);
+                "Résolution: 3840 x 2160", 2799.00, 6);
 
         try {
             // Let's ensure that the items are already stored in the database before we continue.

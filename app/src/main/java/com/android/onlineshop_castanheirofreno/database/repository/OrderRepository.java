@@ -46,8 +46,9 @@ public class OrderRepository {
     public LiveData<List<OrderEntity>> getOrders(Application application) {
         return ((BaseApp) application).getDatabase().orderDao().getAll();
     }
+
     public LiveData<List<OrderWithItem>> getOwnedOrdersWithItem(final String owner, Application application) {
-        return((BaseApp) application).getDatabase().orderDao().getOwnedOrdersWithItem(owner);
+        return ((BaseApp) application).getDatabase().orderDao().getOwnedOrdersWithItem(owner);
     }
 
     public LiveData<List<OrderEntity>> getByOwner(final String owner, Application application) {
@@ -68,7 +69,6 @@ public class OrderRepository {
                        Application application) {
         new DeleteOrder(application, callback).execute(order);
     }
-
 
 
 }

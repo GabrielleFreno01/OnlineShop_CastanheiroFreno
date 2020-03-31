@@ -12,6 +12,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.ImageEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 
 import java.util.List;
+
 @Dao
 public interface ImageDao {
 

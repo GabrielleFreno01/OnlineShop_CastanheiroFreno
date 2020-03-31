@@ -1,14 +1,16 @@
 package com.android.onlineshop_castanheirofreno.ui.customer;
 
 
-
 import androidx.lifecycle.ViewModelProviders;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.AlertDialog;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +33,6 @@ public class CustomerActivity extends BaseActivity {
     private static final int DELETE_CLIENT = 2;
 
     private Toast toast;
-
 
 
     private EditText etFirstName;
@@ -83,7 +84,8 @@ public class CustomerActivity extends BaseActivity {
         });
 
     }
-    public void save (View view) {
+
+    public void save(View view) {
         saveChanges(
                 etFirstName.getText().toString(),
                 etLastName.getText().toString(),
@@ -146,7 +148,8 @@ public class CustomerActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onFailure(Exception e) {}
+                    public void onFailure(Exception e) {
+                    }
                 });
             });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
@@ -173,46 +176,45 @@ public class CustomerActivity extends BaseActivity {
         etCity_code.setEnabled(false);
 
 
-
     }
 
 
     private void EditableMode() {
-       // if (!isEditable) {
+        // if (!isEditable) {
 
-            LinearLayout linearLayout = findViewById(R.id.clientPasswordLayout);
-            linearLayout.setVisibility(View.VISIBLE);
-            etFirstName.setFocusable(true);
-            etFirstName.setEnabled(true);
-            etFirstName.setFocusableInTouchMode(true);
+        LinearLayout linearLayout = findViewById(R.id.clientPasswordLayout);
+        linearLayout.setVisibility(View.VISIBLE);
+        etFirstName.setFocusable(true);
+        etFirstName.setEnabled(true);
+        etFirstName.setFocusableInTouchMode(true);
 
-            etLastName.setFocusable(true);
-            etLastName.setEnabled(true);
-            etLastName.setFocusableInTouchMode(true);
+        etLastName.setFocusable(true);
+        etLastName.setEnabled(true);
+        etLastName.setFocusableInTouchMode(true);
 
-            etEmail.setFocusable(true);
-            etEmail.setEnabled(true);
-            etEmail.setFocusableInTouchMode(true);
+        etEmail.setFocusable(true);
+        etEmail.setEnabled(true);
+        etEmail.setFocusableInTouchMode(true);
 
-            etPwd1.setFocusable(true);
-            etPwd1.setEnabled(true);
-            etPwd1.setFocusableInTouchMode(true);
+        etPwd1.setFocusable(true);
+        etPwd1.setEnabled(true);
+        etPwd1.setFocusableInTouchMode(true);
 
-            etPwd2.setFocusable(true);
-            etPwd2.setEnabled(true);
-            etPwd2.setFocusableInTouchMode(true);
+        etPwd2.setFocusable(true);
+        etPwd2.setEnabled(true);
+        etPwd2.setFocusableInTouchMode(true);
 
-            etTelephone.setFocusable(true);
-            etTelephone.setEnabled(true);
-            etTelephone.setFocusableInTouchMode(true);
+        etTelephone.setFocusable(true);
+        etTelephone.setEnabled(true);
+        etTelephone.setFocusableInTouchMode(true);
 
-            etCity.setFocusable(true);
-            etCity.setEnabled(true);
-            etCity.setFocusableInTouchMode(true);
+        etCity.setFocusable(true);
+        etCity.setEnabled(true);
+        etCity.setFocusableInTouchMode(true);
 
-            etCity_code.setFocusable(true);
-            etCity_code.setEnabled(true);
-            etCity_code.setFocusableInTouchMode(true);
+        etCity_code.setFocusable(true);
+        etCity_code.setEnabled(true);
+        etCity_code.setFocusableInTouchMode(true);
 
 
     }
@@ -232,7 +234,7 @@ public class CustomerActivity extends BaseActivity {
     }
 
     private void saveChanges(String firstName, String lastName, String email, String pwd, String pwd2, String telephone, String city, int city_code) {
-        if(!(pwd.equals("")) && !(pwd2.equals(""))) {
+        if (!(pwd.equals("")) && !(pwd2.equals(""))) {
             if (!pwd.equals(pwd2) || pwd.length() < 5) {
                 toast = Toast.makeText(this, getString(R.string.error_edit_invalid_password), Toast.LENGTH_LONG);
                 toast.show();
@@ -254,8 +256,7 @@ public class CustomerActivity extends BaseActivity {
             etEmail.setError(getString(R.string.error_invalid_email));
             etEmail.requestFocus();
             return;
-        }
-        else {
+        } else {
             client.setEmail(email);
             client.setFirstName(firstName);
             client.setLastName(lastName);
@@ -263,7 +264,6 @@ public class CustomerActivity extends BaseActivity {
             client.setCity(city);
             client.setCity_code(city_code);
         }
-
 
 
         viewModel.updateCustomer(client, new OnAsyncEventListener() {

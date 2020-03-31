@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.android.onlineshop_castanheirofreno.R;
+
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
@@ -21,7 +23,7 @@ public class NewItemAdapter extends PagerAdapter {
     private LayoutInflater inflater;
     private List<ItemModel> models;
 
-    public NewItemAdapter(List<ItemModel> models, Context context){
+    public NewItemAdapter(List<ItemModel> models, Context context) {
         this.context = context;
         this.models = models;
     }
@@ -53,7 +55,7 @@ public class NewItemAdapter extends PagerAdapter {
         productName.setText(models.get(position).getProductName());
 
         NumberFormat defaultFormat = new DecimalFormat("#0.00");
-        price.setText("CHF "+defaultFormat.format(models.get(position).getPrice()));
+        price.setText("CHF " + defaultFormat.format(models.get(position).getPrice()));
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,10 +70,10 @@ public class NewItemAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
     }
 
-    public void seeProductDescription (View view){
+    public void seeProductDescription(View view) {
         Intent intent = new Intent(context, ItemDescriptionActivity.class);
         context.startActivity(intent);
     }

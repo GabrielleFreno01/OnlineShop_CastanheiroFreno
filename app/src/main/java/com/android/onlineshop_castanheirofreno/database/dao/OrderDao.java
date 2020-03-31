@@ -18,7 +18,7 @@ import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import java.util.List;
 
 @Dao
-public abstract class OrderDao {
+public interface OrderDao {
 
     @Query("SELECT * FROM orders WHERE idOrder = :id")
     public abstract LiveData<OrderEntity> getById(Long id);
@@ -38,18 +38,18 @@ public abstract class OrderDao {
     public abstract LiveData<List<OrderWithItem>> getOwnedOrdersWithItem(String owner);
 
     @Insert
-    public abstract long insert(OrderEntity order);
+    public  long insert(OrderEntity order);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public abstract void insertAll(List<OrderEntity> orders);
+    public  void insertAll(List<OrderEntity> orders);
 
     @Update
-    public abstract void update(OrderEntity order);
+    public  void update(OrderEntity order);
 
     @Delete
-    public abstract void delete(OrderEntity order);
+    public  void delete(OrderEntity order);
 
     @Query("DELETE FROM orders")
-    public abstract void deleteAll();
+    public  void deleteAll();
 
 }

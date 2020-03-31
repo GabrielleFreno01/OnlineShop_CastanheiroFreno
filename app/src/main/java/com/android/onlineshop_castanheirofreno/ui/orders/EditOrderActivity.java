@@ -15,7 +15,9 @@ import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.onlineshop_castanheirofreno.R;
+
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
@@ -81,6 +83,7 @@ public class EditOrderActivity extends BaseActivity {
         });
 
     }
+
     private void initiateView() {
         etPrice = findViewById(R.id.textView_product_price);
         tvOrderId = findViewById(R.id.textview_id_order);
@@ -102,9 +105,9 @@ public class EditOrderActivity extends BaseActivity {
         spStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(spStatus.getSelectedItem().equals("Delivered")) {
+                if (spStatus.getSelectedItem().equals("Delivered")) {
                     trDelivery.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     trDelivery.setVisibility(View.GONE);
                 }
             }
@@ -115,7 +118,7 @@ public class EditOrderActivity extends BaseActivity {
             }
         });
 
-        tvDeliver.setOnClickListener(new View.OnClickListener(){
+        tvDeliver.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -139,13 +142,13 @@ public class EditOrderActivity extends BaseActivity {
                 month += 1;
                 String monthString = String.valueOf(month);
                 String dayString = String.valueOf(dayOfMonth);
-                if(month<10)
-                    monthString = "0"+month;
+                if (month < 10)
+                    monthString = "0" + month;
 
-                if(dayOfMonth<10)
-                    dayString = "0"+dayOfMonth;
+                if (dayOfMonth < 10)
+                    dayString = "0" + dayOfMonth;
 
-                String date = dayString+"."+monthString+"."+year;
+                String date = dayString + "." + monthString + "." + year;
                 tvDeliver.setText(date);
             }
         };
@@ -169,7 +172,7 @@ public class EditOrderActivity extends BaseActivity {
             spStatus.setSelection(getIndex(spStatus, orderWithItem.order.getStatus()));
 
             String deliveryDate = orderWithItem.order.getDeliveryDate();
-            if(deliveryDate!=""){
+            if (deliveryDate != "") {
                 tvDeliver.setText(deliveryDate);
             }
 
@@ -185,17 +188,18 @@ public class EditOrderActivity extends BaseActivity {
 
     private void saveChanges() {
         NumberFormat formatter = new DecimalFormat("#0.00");
-        if(String.valueOf(orderWithItem.order.getIdItem()).equals(tvItemNumber.getText().toString())&&
-                formatter.format(orderWithItem.order.getPrice()).equals(etPrice.getText().toString())&&
-                orderWithItem.order.getStatus().equals(spStatus.getSelectedItem())){
+        if (String.valueOf(orderWithItem.order.getIdItem()).equals(tvItemNumber.getText().toString()) &&
+                formatter.format(orderWithItem.order.getPrice()).equals(etPrice.getText().toString()) &&
+                orderWithItem.order.getStatus().equals(spStatus.getSelectedItem())) {
             return;
 
-        };
+        }
+        ;
 
         orderWithItem.order.setIdItem(Long.parseLong(tvItemNumber.getText().toString()));
         orderWithItem.order.setPrice(Double.parseDouble(etPrice.getText().toString()));
         orderWithItem.order.setStatus(spStatus.getSelectedItem().toString());
-        if(tvDeliver.getText().toString()!="")
+        if (tvDeliver.getText().toString() != "")
             orderWithItem.order.setDeliveryDate(tvDeliver.getText().toString());
 
         viewModel.updateOrder(orderWithItem.order, new OnAsyncEventListener() {
@@ -213,7 +217,7 @@ public class EditOrderActivity extends BaseActivity {
 
     }
 
-    private void displayDialogItemsList(){
+    private void displayDialogItemsList() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choose an item");
 
@@ -226,9 +230,9 @@ public class EditOrderActivity extends BaseActivity {
             if (itemsList != null) {
                 myItemsList = itemsList;
                 String[] itemsId = new String[myItemsList.size()];
-                int i=0;
-                for (ItemEntity item:itemsList) {
-                    itemsId[i]=item.getIdItem()+" "+item.getName();
+                int i = 0;
+                for (ItemEntity item : itemsList) {
+                    itemsId[i] = item.getIdItem() + " " + item.getName();
                     i++;
                 }
                 updateItemsList(builder, itemsId);
@@ -241,7 +245,7 @@ public class EditOrderActivity extends BaseActivity {
 
     }
 
-    private void updateItemsList(AlertDialog.Builder builder, String[] itemsId){
+    private void updateItemsList(AlertDialog.Builder builder, String[] itemsId) {
         builder.setItems(itemsId, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int position) {
@@ -254,12 +258,12 @@ public class EditOrderActivity extends BaseActivity {
         });
     }
 
-    private int getIndex(Spinner spinner, String myString){
+    private int getIndex(Spinner spinner, String myString) {
 
         int index = 0;
 
-        for (int i=0;i<spinner.getCount();i++){
-            if (spinner.getItemAtPosition(i).equals(myString)){
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).equals(myString)) {
                 return i;
             }
         }

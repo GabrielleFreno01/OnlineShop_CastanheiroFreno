@@ -13,6 +13,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 
 import java.util.List;
+
 @Dao
 public interface CategoryDao {
 
@@ -27,7 +28,6 @@ public interface CategoryDao {
 
     @Insert
     long insert(CategoryEntity category) throws SQLiteConstraintException;
-
 
 
 }

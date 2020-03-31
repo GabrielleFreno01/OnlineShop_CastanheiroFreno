@@ -45,7 +45,7 @@ public class CustomerRepository {
     }
 
     public LiveData<List<CustomerWithOrders>> getCustomerWithOrders(final String owner,
-                                                                  Application application) {
+                                                                    Application application) {
         return ((BaseApp) application).getDatabase().customerDao().getOtherCustomersWithOrders(owner);
     }
 

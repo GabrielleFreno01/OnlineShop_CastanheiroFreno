@@ -66,7 +66,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.ItemsV
         return items.size();
     }
 
-    static class ItemsViewHolder extends RecyclerView.ViewHolder{
+    static class ItemsViewHolder extends RecyclerView.ViewHolder {
         TextView name_textView;
         TextView price_textView;
 
@@ -96,7 +96,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.ItemsV
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    if(((ItemEntity) items.get(oldItemPosition)).getIdItem()==((ItemEntity) data.get(newItemPosition)).getIdItem())
+                    if (((ItemEntity) items.get(oldItemPosition)).getIdItem() == ((ItemEntity) data.get(newItemPosition)).getIdItem())
                         return true;
                     return false;
                 }
@@ -105,7 +105,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.ItemsV
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
                     ItemEntity newItem = (ItemEntity) data.get(newItemPosition);
                     ItemEntity oldItem = (ItemEntity) items.get(newItemPosition);
-                    return newItem.getIdItem()== oldItem.getIdItem()
+                    return newItem.getIdItem() == oldItem.getIdItem()
                             && newItem.getName() == oldItem.getName()
                             && newItem.getPrice() == oldItem.getPrice()
                             && newItem.getIdCategory() == oldItem.getIdCategory()

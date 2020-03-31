@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
@@ -29,7 +30,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     public static final String PREFS_NAME = "SharedPrefs";
     public static final String PREFS_USER = "LoggedIn";
-    public static final String PREFS_ITEM= "ItemId";
+    public static final String PREFS_ITEM = "ItemId";
 
 
     protected FrameLayout frameLayout;
@@ -76,8 +77,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
@@ -108,10 +107,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_logout), (dialog, which) -> logout());
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
             alertDialog.show();
-        }else if (id == R.id.nav_account) {
+        } else if (id == R.id.nav_account) {
             intent = new Intent(this, CustomerActivity.class);
-        }
-        else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_settings) {
 
             intent = new Intent(this, SettingsActivity.class);
         }

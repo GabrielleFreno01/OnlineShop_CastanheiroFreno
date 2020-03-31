@@ -62,7 +62,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categories.size();
     }
 
-    static class CategoriesViewHolder extends RecyclerView.ViewHolder{
+    static class CategoriesViewHolder extends RecyclerView.ViewHolder {
         ImageView categoryImageView;
         TextView categoryNameView;
 
@@ -92,7 +92,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    if(((CategoryEntity) categories.get(oldItemPosition)).getIdCategory()==((CategoryEntity) data.get(newItemPosition)).getIdCategory())
+                    if (((CategoryEntity) categories.get(oldItemPosition)).getIdCategory() == ((CategoryEntity) data.get(newItemPosition)).getIdCategory())
                         return true;
                     return false;
                 }
@@ -101,7 +101,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
                     CategoryEntity newCategory = (CategoryEntity) data.get(newItemPosition);
                     CategoryEntity oldCategory = (CategoryEntity) categories.get(newItemPosition);
-                    return newCategory.getIdCategory()== oldCategory.getIdCategory()
+                    return newCategory.getIdCategory() == oldCategory.getIdCategory()
                             && newCategory.getName() == oldCategory.getName()
                             && newCategory.getTag() == oldCategory.getTag();
                 }

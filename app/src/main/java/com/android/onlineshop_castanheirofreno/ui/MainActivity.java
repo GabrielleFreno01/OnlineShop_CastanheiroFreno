@@ -2,6 +2,7 @@ package com.android.onlineshop_castanheirofreno.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.ui.confirmation.ConfirmationActivity;
 import com.android.onlineshop_castanheirofreno.ui.splashscreen.WelcomeActivity;

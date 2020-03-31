@@ -144,12 +144,12 @@ public class AddItemActivity extends BaseActivity {
                 return;
             }
 
-        if(price == 0. ) {
-            etprice.setError("This field is required !");
-            cancel = true;
-            etprice.requestFocus();
-            return;
-        }
+            if(price == 0. ) {
+                etprice.setError("This field is required !");
+                cancel = true;
+                etprice.requestFocus();
+                return;
+            }
 
             if (description.equals("")) {
                 etdescription.setError("This field is required !");
@@ -182,7 +182,9 @@ public class AddItemActivity extends BaseActivity {
         if (response) {
             toast = Toast.makeText(this, "Item created", Toast.LENGTH_LONG);
             toast.show();
-            Intent intent = new Intent(AddItemActivity.this, CategoryActivity.class);
+            Intent intent = new Intent(AddItemActivity.this, ItemListActivity.class);
+            intent.putExtra("categoryId", spinner.getSelectedItemId()+1);
+            intent.putExtra("categoryName", spinner.getSelectedItem().toString());
             startActivity(intent);
             finish();
         }

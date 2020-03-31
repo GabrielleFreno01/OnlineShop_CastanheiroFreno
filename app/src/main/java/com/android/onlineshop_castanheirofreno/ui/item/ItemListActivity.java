@@ -34,10 +34,9 @@ public class ItemListActivity extends BaseActivity {
     public static final String PREFS_ITEM = "item";
 
 
-
     ItemEntity item;
 
-    TextView cat_name ;
+    TextView cat_name;
 
     private List<ItemEntity> items;
     private ItemsAdapter adapter;
@@ -73,7 +72,7 @@ public class ItemListActivity extends BaseActivity {
 
         items = new ArrayList<>();
 
-        adapter = new ItemsAdapter( this, items , new RecyclerViewItemClickListener() {
+        adapter = new ItemsAdapter(this, items, new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 //get the details
@@ -85,6 +84,7 @@ public class ItemListActivity extends BaseActivity {
                 intent.putExtra("idCategory", items.get(position).getIdCategory());
                 startActivity(intent);
             }
+
             @Override
             public void onItemLongClick(View v, int position) {
                 onItemClick(v, position);
@@ -111,7 +111,8 @@ public class ItemListActivity extends BaseActivity {
         });
 
     }
-    public void seeAddNewItem (View view){
+
+    public void seeAddNewItem(View view) {
         Intent intent = new Intent(ItemListActivity.this, AddItemActivity.class);
         intent.setFlags(
                 Intent.FLAG_ACTIVITY_NO_ANIMATION

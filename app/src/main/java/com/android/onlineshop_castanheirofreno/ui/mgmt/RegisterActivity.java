@@ -7,7 +7,9 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.android.onlineshop_castanheirofreno.R;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.onlineshop_castanheirofreno.database.async.customer.CreateCustomer;
@@ -52,7 +54,6 @@ public class RegisterActivity extends AppCompatActivity {
         etCityCode.setText("0");
 
 
-
         Button saveBtn = findViewById(R.id.editButton);
         saveBtn.setOnClickListener(view -> saveChanges(
                 etFirstName.getText().toString(),
@@ -77,42 +78,42 @@ public class RegisterActivity extends AppCompatActivity {
         etCityCode.setError(null);
         etTelephone.setError(null);
 
-        if(email.equals("")) {
+        if (email.equals("")) {
             etEmail.setError("This field is required !");
             cancel = true;
             etEmail.requestFocus();
             return;
         }
 
-        if(firstName.equals("")) {
+        if (firstName.equals("")) {
             etFirstName.setError("This field is required !");
             cancel = true;
             etFirstName.requestFocus();
             System.out.println(city_code);
             return;
         }
-        if(lastName.equals("")) {
+        if (lastName.equals("")) {
             etLastName.setError("This field is required !");
             cancel = true;
             etLastName.requestFocus();
             return;
         }
 
-        if(city.equals("")) {
+        if (city.equals("")) {
             etCity.setError("This field is required !");
             cancel = true;
             etCity.requestFocus();
             return;
         }
 
-        if(city_code == 0) {
+        if (city_code == 0) {
             etCityCode.setError("This field is required !");
             cancel = true;
             etCityCode.requestFocus();
             return;
         }
 
-        if(telephone.equals("")) {
+        if (telephone.equals("")) {
             etTelephone.setError("This field is required !");
             cancel = true;
             etTelephone.requestFocus();
@@ -134,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if(!cancel) {
+        if (!cancel) {
             CustomerEntity newClient = new CustomerEntity(email, firstName, lastName, city, city_code, telephone, pwd);
 
             new CreateCustomer(getApplication(), new OnAsyncEventListener() {

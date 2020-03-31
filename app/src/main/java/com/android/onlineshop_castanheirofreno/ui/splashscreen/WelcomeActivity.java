@@ -18,8 +18,7 @@ import com.android.onlineshop_castanheirofreno.ui.mgmt.LoginActivity;
 
 import static com.android.onlineshop_castanheirofreno.ui.BaseActivity.PREFS_USER;
 
-public class WelcomeActivity  extends AppCompatActivity {
-
+public class WelcomeActivity extends AppCompatActivity {
 
 
     private TextView welcome;
@@ -38,7 +37,6 @@ public class WelcomeActivity  extends AppCompatActivity {
         welcome = findViewById(R.id.welcome);
 
 
-
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
         String user = settings.getString(PREFS_USER, null);
 
@@ -47,7 +45,7 @@ public class WelcomeActivity  extends AppCompatActivity {
         viewModel.getCustomer().observe(this, customerEntity -> {
             if (customerEntity != null) {
                 client = customerEntity;
-                welcome.setText("Welcome " + client.getFirstName()  + " !");
+                welcome.setText("Welcome " + client.getFirstName() + " !");
             }
         });
 

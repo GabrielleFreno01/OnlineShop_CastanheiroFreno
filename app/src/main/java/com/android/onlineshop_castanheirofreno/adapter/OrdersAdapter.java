@@ -65,7 +65,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
         return orders.size();
     }
 
-    static class OrdersViewHolder extends RecyclerView.ViewHolder{
+    static class OrdersViewHolder extends RecyclerView.ViewHolder {
         TextView textView_orderId;
         TextView textView_creationDate;
         TextView textView_productName;
@@ -101,7 +101,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    if(((OrderEntity) orders.get(oldItemPosition).order).getIdOrder()==((OrderEntity) data.get(newItemPosition).order).getIdOrder())
+                    if (((OrderEntity) orders.get(oldItemPosition).order).getIdOrder() == ((OrderEntity) data.get(newItemPosition).order).getIdOrder())
                         return true;
                     return false;
                 }
@@ -110,7 +110,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
                     OrderWithItem newOrder = (OrderWithItem) data.get(newItemPosition);
                     OrderWithItem oldOrder = (OrderWithItem) orders.get(newItemPosition);
-                    return newOrder.order.getIdOrder()== oldOrder.order.getIdOrder()
+                    return newOrder.order.getIdOrder() == oldOrder.order.getIdOrder()
                             && newOrder.order.getCreationDate() == oldOrder.order.getCreationDate()
                             && newOrder.order.getDeliveryDate() == oldOrder.order.getDeliveryDate()
                             && newOrder.order.getOwner().equals(oldOrder.order.getOwner())

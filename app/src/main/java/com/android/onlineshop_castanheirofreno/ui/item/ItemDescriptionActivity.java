@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.onlineshop_castanheirofreno.R;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
@@ -61,10 +62,10 @@ public class ItemDescriptionActivity extends BaseActivity {
         long itemId = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
         long catId = settings.getLong("idCategory", 0);*/
         Intent intent = getIntent();
-        long itemId = intent.getLongExtra( "itemId", 0L);
-        long catId = intent.getLongExtra( "idCategory", 0L);
+        long itemId = intent.getLongExtra("itemId", 0L);
+        long catId = intent.getLongExtra("idCategory", 0L);
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId,  catId);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
@@ -91,7 +92,7 @@ public class ItemDescriptionActivity extends BaseActivity {
         if (item != null) {
             NumberFormat defaultFormat = new DecimalFormat("#0.00");
             tvProductName.setText(item.getName());
-            tvPriceProduct.setText("CHF "+defaultFormat.format(item.getPrice()));
+            tvPriceProduct.setText("CHF " + defaultFormat.format(item.getPrice()));
             tvDescription.setText(item.getDescription());
         }
 
@@ -100,7 +101,7 @@ public class ItemDescriptionActivity extends BaseActivity {
     private void initiateView() {
         tvProductName = findViewById(R.id.new_item_name);
         tvPriceProduct = findViewById(R.id.new_item_price);
-         tvDescription = findViewById(R.id.productDescription);
+        tvDescription = findViewById(R.id.productDescription);
     }
 
     @Override
@@ -120,7 +121,7 @@ public class ItemDescriptionActivity extends BaseActivity {
         if (itemmenu.getItemId() == EDIT_ORDER) {
             itemmenu.setIcon(R.drawable.ic_edit);
 
-            Intent intent = new Intent(this,EditItemActivity.class);
+            Intent intent = new Intent(this, EditItemActivity.class);
             intent.putExtra("itemId", item.getIdItem());
             intent.putExtra("idCategory", item.getIdCategory());
             startActivity(intent);
@@ -139,7 +140,8 @@ public class ItemDescriptionActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onFailure(Exception e) {}
+                    public void onFailure(Exception e) {
+                    }
                 });
             });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());

@@ -2,7 +2,9 @@ package com.android.onlineshop_castanheirofreno.database.repository;
 
 import android.app.Application;
 import android.content.Context;
+
 import androidx.lifecycle.LiveData;
+
 import com.android.onlineshop_castanheirofreno.database.AppDatabase;
 import com.android.onlineshop_castanheirofreno.database.async.item.CreateItem;
 import com.android.onlineshop_castanheirofreno.database.async.item.DeleteItem;
@@ -16,7 +18,8 @@ public class ItemRepository {
 
     private static ItemRepository instance;
 
-    private ItemRepository() {}
+    private ItemRepository() {
+    }
 
     public static ItemRepository getInstance() {
         if (instance == null) {

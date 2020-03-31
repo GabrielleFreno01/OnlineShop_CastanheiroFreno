@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.onlineshop_castanheirofreno.R;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
@@ -64,7 +66,7 @@ public class OrdersActivity extends BaseActivity {
         //New list of orders
         orders = new ArrayList<>();
 
-        adapter = new OrdersAdapter( this, orders , new RecyclerViewItemClickListener() {
+        adapter = new OrdersAdapter(this, orders, new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 //get the details

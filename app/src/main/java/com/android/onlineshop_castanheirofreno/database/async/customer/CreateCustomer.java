@@ -8,7 +8,6 @@ import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 
-
 public class CreateCustomer extends AsyncTask<CustomerEntity, Void, Void> {
 
     private Application application;

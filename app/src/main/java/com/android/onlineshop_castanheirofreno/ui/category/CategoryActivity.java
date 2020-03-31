@@ -39,7 +39,6 @@ public class CategoryActivity extends BaseActivity {
     private CategoryViewModel viewModel;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +60,7 @@ public class CategoryActivity extends BaseActivity {
 
         categoryList = new ArrayList<>();
 
-        adapter = new CategoryAdapter( this, categoryList , new RecyclerViewItemClickListener() {
+        adapter = new CategoryAdapter(this, categoryList, new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 //get the details
@@ -77,7 +76,7 @@ public class CategoryActivity extends BaseActivity {
 
             @Override
             public void onItemLongClick(View v, int position) {
-                onItemClick(v,position);
+                onItemClick(v, position);
             }
         });
 
@@ -103,7 +102,6 @@ public class CategoryActivity extends BaseActivity {
         super.onBackPressed();
         startActivity(new Intent(this, HomeActivity.class));
     }
-
 
 
 }

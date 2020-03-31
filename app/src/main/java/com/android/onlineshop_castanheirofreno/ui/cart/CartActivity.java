@@ -50,16 +50,15 @@ public class CartActivity extends BaseActivity {
 
     private SimpleDateFormat dateformatter;
 
-    private String formattedDate ;
+    private String formattedDate;
 
     private static final String TAG = "AddOrder";
-
 
     ItemEntity item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        //Create the activity
         super.onCreate(savedInstanceState);
         setTitle("My Cart");
         navigationView.setCheckedItem(position);
@@ -67,6 +66,7 @@ public class CartActivity extends BaseActivity {
 
         initiateView();
 
+        //get the item
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ITEM, 0);
         long itemId = settings.getLong(BaseActivity.PREFS_ITEM, 0L);
 
@@ -84,7 +84,7 @@ public class CartActivity extends BaseActivity {
                 etEmptyCart.setVisibility(View.GONE);
                 ivEmptyCart.setVisibility(View.GONE);
                 updateContent();
-            }else{
+            } else {
                 buy.setVisibility(View.GONE);
                 cardView.setVisibility(View.GONE);
                 etEmptyCart.setVisibility(View.VISIBLE);
@@ -122,9 +122,9 @@ public class CartActivity extends BaseActivity {
     }
 
 
-    private void saveChanges(double price, String creationDate,String deliveryDate, long idItem, String status, String owner){
+    private void saveChanges(double price, String creationDate, String deliveryDate, long idItem, String status, String owner) {
 
-        OrderEntity newOrder = new OrderEntity(price, creationDate, deliveryDate, idItem, status,owner);
+        OrderEntity newOrder = new OrderEntity(price, creationDate, deliveryDate, idItem, status, owner);
 
         new CreateOrder(getApplication(), new OnAsyncEventListener() {
 
@@ -154,7 +154,7 @@ public class CartActivity extends BaseActivity {
         if (item != null) {
             NumberFormat defaultFormat = new DecimalFormat("#0.00");
             etproductName.setText(item.getName());
-            etproductPrice.setText("CHF "+defaultFormat.format(item.getPrice()));
+            etproductPrice.setText("CHF " + defaultFormat.format(item.getPrice()));
 
         }
     }
@@ -167,15 +167,15 @@ public class CartActivity extends BaseActivity {
         goShopping = findViewById(R.id.btn_go);
         buy = findViewById(R.id.btn_buy);
         cardView = findViewById(R.id.cart_item_cardview);
-}
+    }
 
-    public void seeConfirmation (View view) {
+    public void seeConfirmation(View view) {
         Intent intent = new Intent(this, ConfirmationActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void goShopping (View view){
+    public void goShopping(View view) {
         super.onBackPressed();
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);

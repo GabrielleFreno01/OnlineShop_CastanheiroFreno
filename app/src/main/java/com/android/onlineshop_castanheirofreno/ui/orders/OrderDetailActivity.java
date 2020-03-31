@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TableRow;
 import android.widget.TextView;
+
 import com.android.onlineshop_castanheirofreno.R;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -111,11 +113,11 @@ public class OrderDetailActivity extends BaseActivity {
             tvOrderStatus.setText(orderWithItem.order.getStatus());
             tvProductId.setText(String.valueOf(orderWithItem.order.getIdItem()));
             tvProductName.setText(orderWithItem.item.getName());
-            tvProductPrice.setText("CHF "+defaultFormat.format(orderWithItem.order.getPrice()));
+            tvProductPrice.setText("CHF " + defaultFormat.format(orderWithItem.order.getPrice()));
             tvOrderDate.setText(orderWithItem.order.getCreationDate());
             tvDeliveryDate.setText(orderWithItem.order.getDeliveryDate());
 
-            if(orderWithItem.order.getStatus().equals("In progress")){
+            if (orderWithItem.order.getStatus().equals("In progress")) {
                 tableRow.setVisibility(View.GONE);
             }
 
@@ -128,7 +130,6 @@ public class OrderDetailActivity extends BaseActivity {
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(action));
         alertDialog.setCancelable(false);
-
 
 
     }

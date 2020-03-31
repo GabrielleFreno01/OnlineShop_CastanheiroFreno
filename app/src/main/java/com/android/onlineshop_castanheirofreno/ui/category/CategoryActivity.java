@@ -69,6 +69,7 @@ public class CategoryActivity extends BaseActivity {
                 intent.putExtra("categoryId", categoryList.get(position).getIdCategory());
                 intent.putExtra("categoryName", categoryList.get(position).getName());
                 startActivity(intent);
+                finish();
             }
 
             @Override

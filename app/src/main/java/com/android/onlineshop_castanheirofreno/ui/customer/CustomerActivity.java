@@ -77,6 +77,7 @@ public class CustomerActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 save(v);
+                finish();
 
             }
         });

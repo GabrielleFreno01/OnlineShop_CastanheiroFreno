@@ -115,7 +115,7 @@ public class CartActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 goShopping(v);
-
+                finish();
             }
         });
 

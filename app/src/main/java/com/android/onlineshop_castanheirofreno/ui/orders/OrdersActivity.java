@@ -73,6 +73,7 @@ public class OrdersActivity extends BaseActivity {
                 );
                 intent.putExtra("orderId", orders.get(position).order.getIdOrder());
                 startActivity(intent);
+                finish();
             }
 
 

@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
+import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.text.DecimalFormat;
@@ -132,7 +133,7 @@ public class ItemDescriptionActivity extends BaseActivity {
                 viewModel.deleteItem(item, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-
+                        Intent intent = new Intent(ItemDescriptionActivity.this, CategoryActivity.class);
                     }
 
                     @Override
@@ -153,11 +154,13 @@ public class ItemDescriptionActivity extends BaseActivity {
         editor.putLong(BaseActivity.PREFS_ITEM, item.getIdItem());
         editor.apply();
         startActivity(intent);
+        finish();
     }
 
     public void back() {
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
+
     }
 }
 

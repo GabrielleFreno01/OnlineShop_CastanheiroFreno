@@ -83,12 +83,8 @@ public class ItemListActivity extends BaseActivity {
                 );
                 intent.putExtra("itemId", items.get(position).getIdItem());
                 intent.putExtra("idCategory", items.get(position).getIdCategory());
-                /*final SharedPreferences.Editor editor = getSharedPreferences(PREFS_ITEM, 0).edit();
-                editor.putLong(PREFS_ITEM, items.get(position).getIdItem());
-                editor.putLong("idCategory", idCat);
-                editor.apply();*/
-
                 startActivity(intent);
+                finish();
             }
             @Override
             public void onItemLongClick(View v, int position) {
@@ -122,6 +118,7 @@ public class ItemListActivity extends BaseActivity {
                 Intent.FLAG_ACTIVITY_NO_ANIMATION
         );
         startActivity(intent);
+        finish();
     }
 
 }

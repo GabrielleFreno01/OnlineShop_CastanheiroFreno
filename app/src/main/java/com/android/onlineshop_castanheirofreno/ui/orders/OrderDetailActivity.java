@@ -80,6 +80,7 @@ public class OrderDetailActivity extends BaseActivity {
         intent.putExtra("orderId", orderId);
         startActivity(intent);
         onBackPressed();
+        finish();
         return super.onOptionsItemSelected(item);
     }
 

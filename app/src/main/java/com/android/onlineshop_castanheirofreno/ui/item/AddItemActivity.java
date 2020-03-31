@@ -168,6 +168,7 @@ public class AddItemActivity extends BaseActivity {
             toast.show();
             Intent intent = new Intent(AddItemActivity.this, CategoryActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 

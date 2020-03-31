@@ -161,6 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
             toast.show();
             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
         } else {
             etEmail.setError(getString(R.string.error_used_email));
             etEmail.requestFocus();

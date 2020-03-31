@@ -23,6 +23,7 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
@@ -155,10 +156,11 @@ public class EditItemActivity extends BaseActivity {
     private void setResponse(Boolean response) {
         if (response) {
             updateContent();
-            toast = Toast.makeText(this, getString(R.string.client_edited), Toast.LENGTH_LONG);
+            toast = Toast.makeText(this, "Order edited", Toast.LENGTH_LONG);
             toast.show();
-            Intent intent = new Intent(EditItemActivity.this, ItemListActivity.class);
+            Intent intent = new Intent(EditItemActivity.this, CategoryActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 

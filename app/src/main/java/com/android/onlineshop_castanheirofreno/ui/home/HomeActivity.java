@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -78,8 +80,12 @@ public class HomeActivity extends BaseActivity {
 
             @Override
             public void onItemLongClick(View v, int position) {
-
+                onBackPressed();
             }
+
+
+
+
         });
 
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), 0L, 0L);
@@ -119,6 +125,21 @@ public class HomeActivity extends BaseActivity {
                 handler.post(runnable);
             }
         }, 2500, 2500);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        }
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle(getString(R.string.action_logout));
+        alertDialog.setCancelable(false);
+        alertDialog.setMessage(getString(R.string.logout_msg));
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_logout), (dialog, which) -> logout());
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
+        alertDialog.show();
     }
 }
 

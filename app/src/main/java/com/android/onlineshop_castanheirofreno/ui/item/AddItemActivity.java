@@ -87,7 +87,7 @@ public class AddItemActivity extends BaseActivity {
                 etproductName.getText().toString(),
                 etdescription.getText().toString(),
                 Integer.parseInt(etprice.getText().toString()),
-                spinner.getSelectedItemId()
+                spinner.getSelectedItemId()+1
                 //imageButton.getId()
         ));
 

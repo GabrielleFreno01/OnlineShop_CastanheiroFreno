@@ -61,8 +61,9 @@ public class EditItemActivity extends BaseActivity {
 
         SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
         long itemId = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
+        long catId = settings.getLong("idCategory", 0);
 
-       ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, 0L);
+       ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
@@ -91,7 +92,7 @@ public class EditItemActivity extends BaseActivity {
             etproductName.setText(item.getName());
             etprice.setText(String.valueOf(item.getPrice()));
             etdescription.setText(item.getDescription());
-            //spinner.setSelection(item.getIdCategory());
+            spinner.setSelection((int)(item.getIdCategory())-1);
 
             /*viewModel.getCategories().observe(this, categoriesEntity -> {
                 if (categoriesEntity != null) {
@@ -119,7 +120,7 @@ public class EditItemActivity extends BaseActivity {
                 Integer.parseInt(etprice.getText().toString()),
                 etdescription.getText().toString(),
                 //imageButton.getId(),
-                spinner.getSelectedItemId()
+                spinner.getSelectedItemId()+1
 
         );
 
@@ -133,6 +134,8 @@ public class EditItemActivity extends BaseActivity {
         //item.setIdImage(idImage);
         item.setIdCategory(idCategory);
 
+
+        //TODO list de category
         viewModel.updateItem(item, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
@@ -167,11 +170,14 @@ public class EditItemActivity extends BaseActivity {
 
 
     private void initiateView() {
-        spinner = findViewById(R.id.spinner_category);
         //imageButton = findViewById(R.id.imagebtn_addImage);
         etproductName = findViewById(R.id.input_product_name);
         etprice = findViewById(R.id.input_price);
         etdescription = findViewById(R.id.input_description);
+        spinner = findViewById(R.id.spinner_category);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_list, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
     }
 }

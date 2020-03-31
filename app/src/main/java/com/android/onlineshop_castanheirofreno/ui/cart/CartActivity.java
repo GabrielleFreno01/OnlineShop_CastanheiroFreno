@@ -60,13 +60,14 @@ public class CartActivity extends BaseActivity {
 
         initiateView();
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
-        long itemid = settings.getLong(ItemListActivity.PREFS_ITEM, 1);
+        SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
+        long itemId = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
+        long catId = settings.getLong("idCategory", 0);
 
         SharedPreferences settingsUser = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
         String user = settingsUser.getString(PREFS_USER, null);
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemid, 0L);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
@@ -87,7 +88,7 @@ public class CartActivity extends BaseActivity {
                         (Integer.parseInt(etproductPrice.getText().toString())),
                         formattedDate,
                         null,
-                        itemid,
+                        itemId,
                         "In progress",
                         user
                 );

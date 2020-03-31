@@ -32,11 +32,13 @@ public class ItemDescriptionActivity extends BaseActivity {
 
     private Button btn_add_cart;
 
+
     private static final int EDIT_ORDER = 1;
     private static final int DELETE_ORDER = 2;
 
     private TextView tvProductName;
     private TextView tvPriceProduct;
+    private TextView tvDescription;
     ItemEntity item;
 
     private ItemModel itemModel;
@@ -56,9 +58,14 @@ public class ItemDescriptionActivity extends BaseActivity {
         initiateView();
 
         SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
-        long itemid = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
+        long itemId = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
+        long catId = settings.getLong("idCategory", 0);
+        /*Intent intent = getIntent();
+        long itemId = intent.getLongExtra( "itemid", 0L);
+        long catId = intent.getLongExtra( "idCategory", 0L);*/
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemid, 0L);
+        //TODO pourquoi c'est vide ?
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId,  catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
@@ -84,9 +91,9 @@ public class ItemDescriptionActivity extends BaseActivity {
     private void updateContent() {
         if (item != null) {
             NumberFormat defaultFormat = new DecimalFormat("#0.00");
-
             tvProductName.setText(item.getName());
             tvPriceProduct.setText("CHF "+defaultFormat.format(item.getPrice()));
+            tvDescription.setText(item.getDescription());
         }
 
     }
@@ -94,6 +101,7 @@ public class ItemDescriptionActivity extends BaseActivity {
     private void initiateView() {
         tvProductName = findViewById(R.id.new_item_name);
         tvPriceProduct = findViewById(R.id.new_item_price);
+         tvDescription = findViewById(R.id.productDescription);
     }
 
     @Override
@@ -112,6 +120,8 @@ public class ItemDescriptionActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem itemmenu) {
         if (itemmenu.getItemId() == EDIT_ORDER) {
             itemmenu.setIcon(R.drawable.ic_edit);
+
+
             Intent intent = new Intent(this,EditItemActivity.class);
             startActivity(intent);
         }
@@ -124,7 +134,7 @@ public class ItemDescriptionActivity extends BaseActivity {
                 viewModel.deleteItem(item, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-                        logout();
+
                     }
 
                     @Override
@@ -133,6 +143,7 @@ public class ItemDescriptionActivity extends BaseActivity {
             });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
             alertDialog.show();
+
         }
         return super.onOptionsItemSelected(itemmenu);
     }
@@ -144,7 +155,12 @@ public class ItemDescriptionActivity extends BaseActivity {
 
     public void modifyProduct() {
         Intent intent = new Intent(this, EditItemActivity.class);
-        //intent.putExtra("ID_ITEM", itemModel.getIdItem());
+        intent.putExtra("ID_ITEM", itemModel.getIdItem());
+        startActivity(intent);
+    }
+
+    public void back() {
+        Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
     }
 }

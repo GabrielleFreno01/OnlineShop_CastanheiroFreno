@@ -118,10 +118,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void logout() {
-        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_NAME, 0).edit();
+        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_USER, 0).edit();
         editor.remove(BaseActivity.PREFS_USER);
-        editor.remove(BaseActivity.PREFS_ITEM);
         editor.apply();
+
+        SharedPreferences.Editor editorItem = getSharedPreferences(BaseActivity.PREFS_ITEM, 0).edit();
+        editorItem.remove(BaseActivity.PREFS_ITEM);
+        editorItem.apply();
 
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

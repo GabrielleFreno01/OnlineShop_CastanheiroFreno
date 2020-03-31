@@ -39,7 +39,7 @@ public class WelcomeActivity  extends AppCompatActivity {
 
 
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
+        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
         String user = settings.getString(PREFS_USER, null);
 
         CustomerViewModel.Factory factory = new CustomerViewModel.Factory(getApplication(), user);

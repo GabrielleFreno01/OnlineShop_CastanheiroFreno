@@ -56,7 +56,7 @@ public class OrdersActivity extends BaseActivity {
                 LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
+        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
         String user = settings.getString(BaseActivity.PREFS_USER, null);
 
         //New list of orders

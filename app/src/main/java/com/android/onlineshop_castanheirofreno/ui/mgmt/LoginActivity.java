@@ -126,12 +126,10 @@ public class LoginActivity extends AppCompatActivity {
                         passwordView.requestFocus();
                         passwordView.setText("");
                     }
-
                 } else {
                     emailView.setError(getString(R.string.error_invalid_email));
                     emailView.requestFocus();
                     passwordView.setText("");
-
                 }
             });
         }

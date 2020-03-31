@@ -62,7 +62,7 @@ public class EditOrderActivity extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
+        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
         owner = settings.getString(BaseActivity.PREFS_USER, null);
 
 

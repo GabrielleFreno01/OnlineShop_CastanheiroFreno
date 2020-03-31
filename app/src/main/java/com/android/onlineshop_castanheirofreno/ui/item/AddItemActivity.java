@@ -24,6 +24,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;
+import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.mgmt.RegisterActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
@@ -60,35 +61,13 @@ public class AddItemActivity extends BaseActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        //imageButton = findViewById(R.id.imagebtn_addImage);
-        //imageButton.setOnClickListener(new View.OnClickListener() {
-/*
-            @Override
-            public void onClick(View v) {
-                //Check runtime permission
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-                    if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                        //Permission not given
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                        //Show popup for runtime permission
-                        requestPermissions(permissions, PERMISSION_CODE);
-                    } else {
-                        //Permission already given
-                        pickImageFromGallery();
-                    }
-                }
-
-            }
-        });
-*/
         validateButton = findViewById(R.id.btn_add_new_product);
         validateButton.setOnClickListener(view -> saveChanges(
                 etproductName.getText().toString(),
                 etdescription.getText().toString(),
-                Integer.parseInt(etprice.getText().toString()),
+                Double.parseDouble(etprice.getText().toString()),
                 spinner.getSelectedItemId()+1
-                //imageButton.getId()
         ));
 
 
@@ -99,6 +78,8 @@ public class AddItemActivity extends BaseActivity {
         etdescription = findViewById(R.id.input_description);
         etprice = findViewById(R.id.input_price);
         spinner = findViewById(R.id.spinner_category);
+
+        etprice.setText("0.0");
         //imageButton = findViewById(R.id.imagebtn_addImage);
 
     }
@@ -129,29 +110,64 @@ public class AddItemActivity extends BaseActivity {
         }
     }
 
-    private void saveChanges(String name, String description, int price, long idCategory){//, long idImage) {
+    private void saveChanges(String name, String description, double price, long idCategory) {
 
-        ItemEntity newItem = new ItemEntity(name, description, price, idCategory);//), idImage);
 
-        new CreateItem(getApplication(), new OnAsyncEventListener() {
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "createItme: success");
-                setResponse(true);
+            boolean cancel = false;
+
+            // Reset errors.
+            etproductName.setError(null);
+            etdescription.setError(null);
+            etprice.setError(null);
+
+
+            if (name.equals("")) {
+                etproductName.setError("This field is required !");
+                cancel = true;
+                etproductName.requestFocus();
+                return;
             }
 
-            @Override
-            public void onFailure(Exception e) {
-                Log.d(TAG, "createItem: failure", e);
-                setResponse(false);
+        if(price == 0. ) {
+            etprice.setError("This field is required !");
+            cancel = true;
+            etprice.requestFocus();
+            return;
+        }
+
+            if (description.equals("")) {
+                etdescription.setError("This field is required !");
+                cancel = true;
+                etdescription.requestFocus();
+                return;
             }
-        }).execute(newItem);
-    }
+
+            if (!cancel) {
+                ItemEntity newItem = new ItemEntity(name, description, price, idCategory);
+
+                new CreateItem(getApplication(), new OnAsyncEventListener() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG, "createItme: success");
+                        setResponse(true);
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.d(TAG, "createItem: failure", e);
+                        setResponse(false);
+                    }
+                }).execute(newItem);
+            }
+        }
+
 
     private void setResponse(Boolean response) {
         if (response) {
             toast = Toast.makeText(this, "Item created", Toast.LENGTH_LONG);
             toast.show();
+            Intent intent = new Intent(AddItemActivity.this, CategoryActivity.class);
+            startActivity(intent);
         }
     }
 

@@ -48,6 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
         etCity = findViewById(R.id.city);
         etCityCode = findViewById(R.id.city_code);
         etTelephone = findViewById(R.id.telephone);
+
+        etCityCode.setText("0");
+
+
+
         Button saveBtn = findViewById(R.id.editButton);
         saveBtn.setOnClickListener(view -> saveChanges(
                 etFirstName.getText().toString(),
@@ -62,33 +67,90 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void saveChanges(String firstName, String lastName, String email, String pwd, String pwd2, String city, int city_code, String telephone) {
+        boolean cancel = false;
+
+        // Reset errors.
+        etFirstName.setError(null);
+        etLastName.setError(null);
+        etEmail.setError(null);
+        etCity.setError(null);
+        etCityCode.setError(null);
+        etTelephone.setError(null);
+
+        if(email.equals("")) {
+            etEmail.setError("This field is required !");
+            cancel = true;
+            etEmail.requestFocus();
+            return;
+        }
+
+        if(firstName.equals("")) {
+            etFirstName.setError("This field is required !");
+            cancel = true;
+            etFirstName.requestFocus();
+            System.out.println(city_code);
+            return;
+        }
+        if(lastName.equals("")) {
+            etLastName.setError("This field is required !");
+            cancel = true;
+            etLastName.requestFocus();
+            return;
+        }
+
+        if(city.equals("")) {
+            etCity.setError("This field is required !");
+            cancel = true;
+            etCity.requestFocus();
+            return;
+        }
+
+        if(city_code == 0) {
+            etCityCode.setError("This field is required !");
+            cancel = true;
+            etCityCode.requestFocus();
+            return;
+        }
+
+        if(telephone.equals("")) {
+            etTelephone.setError("This field is required !");
+            cancel = true;
+            etTelephone.requestFocus();
+            return;
+        }
+
         if (!pwd.equals(pwd2) || pwd.length() < 5) {
             etPwd1.setError(getString(R.string.error_invalid_password));
             etPwd1.requestFocus();
             etPwd1.setText("");
             etPwd2.setText("");
+            cancel = true;
             return;
         }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError(getString(R.string.error_invalid_email));
             etEmail.requestFocus();
+            cancel = true;
             return;
         }
-        CustomerEntity newClient = new CustomerEntity(email, firstName, lastName, city, city_code, telephone, pwd);
 
-        new CreateCustomer(getApplication(), new OnAsyncEventListener() {
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "createUserWithEmail: success");
-                setResponse(true);
-            }
+        if(!cancel) {
+            CustomerEntity newClient = new CustomerEntity(email, firstName, lastName, city, city_code, telephone, pwd);
 
-            @Override
-            public void onFailure(Exception e) {
-                Log.d(TAG, "createUserWithEmail: failure", e);
-                setResponse(false);
-            }
-        }).execute(newClient);
+            new CreateCustomer(getApplication(), new OnAsyncEventListener() {
+                @Override
+                public void onSuccess() {
+                    Log.d(TAG, "createUserWithEmail: success");
+                    setResponse(true);
+                }
+
+                @Override
+                public void onFailure(Exception e) {
+                    Log.d(TAG, "createUserWithEmail: failure", e);
+                    setResponse(false);
+                }
+            }).execute(newClient);
+        }
     }
 
     private void setResponse(Boolean response) {

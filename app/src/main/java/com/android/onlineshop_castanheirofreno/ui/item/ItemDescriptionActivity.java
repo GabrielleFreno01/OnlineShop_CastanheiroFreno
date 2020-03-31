@@ -119,6 +119,8 @@ public class ItemDescriptionActivity extends BaseActivity {
 
 
             Intent intent = new Intent(this,EditItemActivity.class);
+            intent.putExtra("itemId", item.getIdItem());
+            intent.putExtra("idCategory", item.getIdCategory());
             startActivity(intent);
         }
         if (itemmenu.getItemId() == DELETE_ORDER) {

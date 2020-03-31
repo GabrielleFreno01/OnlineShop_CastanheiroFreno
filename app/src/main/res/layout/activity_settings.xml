@@ -15,7 +15,7 @@
         android:text="@string/about_us"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:textColor="@color/colorText"
         android:textSize="@dimen/basicTextSize"
         android:text="@string/about_us_content"/>

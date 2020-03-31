@@ -120,7 +120,7 @@ public class EditItemActivity extends BaseActivity {
     public void save(View view) {
         saveChanges(
                 etproductName.getText().toString(),
-                Integer.parseInt(etprice.getText().toString()),
+                Double.parseDouble(etprice.getText().toString()),
                 etdescription.getText().toString(),
                 //imageButton.getId(),
                 spinner.getSelectedItemId()+1
@@ -130,7 +130,7 @@ public class EditItemActivity extends BaseActivity {
     }
 
 
-    private void saveChanges(String name, int price, String description, long idCategory) {
+    private void saveChanges(String name, double price, String description, long idCategory) {
         item.setName(name);
         item.setPrice(price);
         item.setDescription(description);
@@ -157,6 +157,8 @@ public class EditItemActivity extends BaseActivity {
             updateContent();
             toast = Toast.makeText(this, getString(R.string.client_edited), Toast.LENGTH_LONG);
             toast.show();
+            Intent intent = new Intent(EditItemActivity.this, ItemListActivity.class);
+            startActivity(intent);
         }
     }
 

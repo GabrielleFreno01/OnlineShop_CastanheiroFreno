@@ -41,6 +41,10 @@ public class ItemRepository {
         return AppDatabase.getInstance(context).itemDao().getAll();
     }
 
+    public LiveData<List<ItemEntity>> getNewItems(Context context) {
+        return AppDatabase.getInstance(context).itemDao().getNewItems();
+    }
+
     public void insert(final ItemEntity item, OnAsyncEventListener callback,
                        Application application) {
         new CreateItem(application, callback).execute(item);

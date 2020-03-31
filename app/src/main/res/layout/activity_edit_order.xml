@@ -80,9 +80,10 @@
                     android:id="@+id/textView_product_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
                     android:text="@string/default_idproduct"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/orange"/>
 
             </TableRow>
 
@@ -203,7 +204,8 @@
                     android:layout_column="1"
                     android:layout_marginLeft="30dp"
                     android:textSize="18sp"
-                    android:hint="@string/hint_date"/>
+                    android:hint="@string/hint_date"
+                    android:textColor="@color/orange"/>
             </TableRow>
 
             <TableRow

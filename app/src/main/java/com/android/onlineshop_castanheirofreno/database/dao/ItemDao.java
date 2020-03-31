@@ -26,6 +26,9 @@ public interface ItemDao {
     @Query("SELECT * FROM items WHERE idCategory =:id")
     LiveData<List<ItemEntity>> getItemsByCategory(long id);
 
+    @Query("SELECT * FROM items ORDER BY idItem DESC LIMIT 5")
+    LiveData<List<ItemEntity>> getNewItems();
+
     @Insert
     long insert(ItemEntity item) throws SQLiteConstraintException;
 

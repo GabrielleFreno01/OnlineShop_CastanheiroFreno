@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableRow;
 import android.widget.TextView;
 import com.android.onlineshop_castanheirofreno.R;
 import androidx.appcompat.app.AlertDialog;
@@ -34,6 +35,7 @@ public class OrderDetailActivity extends BaseActivity {
     private TextView tvProductPrice;
     private TextView tvOrderDate;
     private TextView tvDeliveryDate;
+    private TableRow tableRow;
 
     private NumberFormat defaultFormat;
 
@@ -96,6 +98,8 @@ public class OrderDetailActivity extends BaseActivity {
 
         tvDeliveryDate = findViewById(R.id.textView_delivery_date);
 
+        tableRow = findViewById(R.id.tablerow_delivery_date);
+
         defaultFormat = new DecimalFormat("#0.00");
     }
 
@@ -109,6 +113,10 @@ public class OrderDetailActivity extends BaseActivity {
             tvProductPrice.setText("CHF "+defaultFormat.format(orderWithItem.order.getPrice()));
             tvOrderDate.setText(orderWithItem.order.getCreationDate());
             tvDeliveryDate.setText(orderWithItem.order.getDeliveryDate());
+
+            if(orderWithItem.order.getStatus().equals("In progress")){
+                tableRow.setVisibility(View.GONE);
+            }
 
         }
     }

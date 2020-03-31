@@ -81,6 +81,7 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onItemLongClick(View v, int position) {
                 onBackPressed();
+
             }
 
 

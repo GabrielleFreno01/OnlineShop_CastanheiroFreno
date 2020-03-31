@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +20,7 @@ import com.android.onlineshop_castanheirofreno.adapter.CategoryAdapter;
 import com.android.onlineshop_castanheirofreno.adapter.OrdersAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrderDetailActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrderListViewModel;
@@ -69,7 +72,7 @@ public class CategoryActivity extends BaseActivity {
                 intent.putExtra("categoryId", categoryList.get(position).getIdCategory());
                 intent.putExtra("categoryName", categoryList.get(position).getName());
                 startActivity(intent);
-                finish();
+
             }
 
             @Override
@@ -88,6 +91,19 @@ public class CategoryActivity extends BaseActivity {
         });
 
         recyclerView.setAdapter(adapter);
+
     }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        }
+        super.onBackPressed();
+        startActivity(new Intent(this, HomeActivity.class));
+    }
+
+
 
 }

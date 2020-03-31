@@ -16,12 +16,14 @@ import android.widget.TextView;
 import com.android.onlineshop_castanheirofreno.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
+import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.text.DecimalFormat;
@@ -118,11 +120,11 @@ public class ItemDescriptionActivity extends BaseActivity {
         if (itemmenu.getItemId() == EDIT_ORDER) {
             itemmenu.setIcon(R.drawable.ic_edit);
 
-
             Intent intent = new Intent(this,EditItemActivity.class);
             intent.putExtra("itemId", item.getIdItem());
             intent.putExtra("idCategory", item.getIdCategory());
             startActivity(intent);
+
         }
         if (itemmenu.getItemId() == DELETE_ORDER) {
             final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -157,11 +159,7 @@ public class ItemDescriptionActivity extends BaseActivity {
         finish();
     }
 
-    public void back() {
-        Intent intent = new Intent(this, ItemListActivity.class);
-        startActivity(intent);
 
-    }
 }
 
 

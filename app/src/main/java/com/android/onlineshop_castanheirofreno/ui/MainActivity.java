@@ -28,7 +28,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setTitle("Home");
         navigationView.setCheckedItem(R.id.nav_none);
     }
 

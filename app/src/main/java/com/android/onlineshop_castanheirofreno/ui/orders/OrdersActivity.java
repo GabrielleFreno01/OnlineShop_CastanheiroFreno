@@ -22,6 +22,8 @@ import com.android.onlineshop_castanheirofreno.adapter.OrdersAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
+import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 
@@ -73,7 +75,7 @@ public class OrdersActivity extends BaseActivity {
                 );
                 intent.putExtra("orderId", orders.get(position).order.getIdOrder());
                 startActivity(intent);
-                finish();
+
             }
 
 
@@ -138,5 +140,15 @@ public class OrdersActivity extends BaseActivity {
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
         alertDialog.setView(view);
         alertDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        /*if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        }*/
+        //super.onBackPressed();
+        startActivity(new Intent(this, CategoryActivity.class));
     }
 }

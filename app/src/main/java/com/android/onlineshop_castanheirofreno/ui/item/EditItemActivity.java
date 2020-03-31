@@ -98,22 +98,6 @@ public class EditItemActivity extends BaseActivity {
             etdescription.setText(item.getDescription());
             spinner.setSelection((int)(item.getIdCategory())-1);
 
-            /*viewModel.getCategories().observe(this, categoriesEntity -> {
-                if (categoriesEntity != null) {
-                    categories = categoriesEntity;
-                    System.out.println(categories.size());
-                }
-
-            });
-
-
-            ArrayList<String> categoriesArray = new ArrayList<String>();
-            for (CategoryEntity categoryEntity : categories) {
-                categoriesArray.add(categoryEntity.getName());
-            }
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, categoriesArray);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);*/
         }
 
     }
@@ -164,15 +148,6 @@ public class EditItemActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return;
-        }
-        super.onBackPressed();
-        startActivity(new Intent(this, HomeActivity.class));
-    }
 
 
 

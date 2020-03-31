@@ -84,7 +84,6 @@ public class ItemListActivity extends BaseActivity {
                 intent.putExtra("itemId", items.get(position).getIdItem());
                 intent.putExtra("idCategory", items.get(position).getIdCategory());
                 startActivity(intent);
-                finish();
             }
             @Override
             public void onItemLongClick(View v, int position) {
@@ -118,7 +117,7 @@ public class ItemListActivity extends BaseActivity {
                 Intent.FLAG_ACTIVITY_NO_ANIMATION
         );
         startActivity(intent);
-        finish();
+
     }
 
 }

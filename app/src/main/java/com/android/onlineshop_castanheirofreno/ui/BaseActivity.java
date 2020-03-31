@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -100,11 +101,18 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_category) {
             intent = new Intent(this, CategoryActivity.class);
         } else if (id == R.id.nav_logout) {
-            logout();
+            final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle(getString(R.string.action_logout));
+            alertDialog.setCancelable(false);
+            alertDialog.setMessage(getString(R.string.logout_msg));
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_logout), (dialog, which) -> logout());
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
+            alertDialog.show();
         }else if (id == R.id.nav_account) {
             intent = new Intent(this, CustomerActivity.class);
         }
         else if (id == R.id.nav_settings) {
+
             intent = new Intent(this, SettingsActivity.class);
         }
         if (intent != null) {

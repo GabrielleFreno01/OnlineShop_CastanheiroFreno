@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
@@ -115,7 +116,6 @@ public class CartActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 goShopping(v);
-                finish();
             }
         });
 
@@ -172,12 +172,23 @@ public class CartActivity extends BaseActivity {
     public void seeConfirmation (View view) {
         Intent intent = new Intent(this, ConfirmationActivity.class);
         startActivity(intent);
-        onBackPressed();
+        finish();
     }
 
     public void goShopping (View view){
+        super.onBackPressed();
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-        onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        }
+        super.onBackPressed();
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

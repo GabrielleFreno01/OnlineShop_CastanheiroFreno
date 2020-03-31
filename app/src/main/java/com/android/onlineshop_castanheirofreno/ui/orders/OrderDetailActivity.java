@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -17,10 +16,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderViewModel;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Currency;
 
 public class OrderDetailActivity extends BaseActivity {
 

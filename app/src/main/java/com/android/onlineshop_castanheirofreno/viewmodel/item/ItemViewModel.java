@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.ui.item;
+package com.android.onlineshop_castanheirofreno.viewmodel.item;
 
 import android.app.Application;
 
@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
-import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CategoryRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.ItemRepository;

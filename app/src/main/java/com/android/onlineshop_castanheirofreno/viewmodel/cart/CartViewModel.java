@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.ui.cart;
+package com.android.onlineshop_castanheirofreno.viewmodel.cart;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

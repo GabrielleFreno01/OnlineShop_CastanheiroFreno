@@ -1,17 +1,11 @@
 package com.android.onlineshop_castanheirofreno.ui.item;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,16 +15,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.adapter.MyListAdapter;
-import com.android.onlineshop_castanheirofreno.database.async.customer.CreateCustomer;
 import com.android.onlineshop_castanheirofreno.database.async.item.CreateItem;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
-import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.ui.MainActivity;
-import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
-import com.android.onlineshop_castanheirofreno.ui.mgmt.RegisterActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
+import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

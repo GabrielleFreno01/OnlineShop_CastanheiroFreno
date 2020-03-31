@@ -1,14 +1,9 @@
 package com.android.onlineshop_castanheirofreno.ui.category;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -17,15 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.adapter.CategoryAdapter;
-import com.android.onlineshop_castanheirofreno.adapter.OrdersAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity;
-import com.android.onlineshop_castanheirofreno.ui.orders.OrderDetailActivity;
-import com.android.onlineshop_castanheirofreno.ui.orders.OrderListViewModel;
-import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
+import com.android.onlineshop_castanheirofreno.viewmodel.category.CategoryViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

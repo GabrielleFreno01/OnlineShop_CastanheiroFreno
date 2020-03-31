@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.ui.orders;
+package com.android.onlineshop_castanheirofreno.viewmodel.order;
 
 import android.app.Application;
 

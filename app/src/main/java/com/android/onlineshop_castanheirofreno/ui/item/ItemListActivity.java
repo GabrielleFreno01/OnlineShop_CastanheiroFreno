@@ -1,29 +1,21 @@
 package com.android.onlineshop_castanheirofreno.ui.item;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.adapter.ItemsAdapter;
-import com.android.onlineshop_castanheirofreno.adapter.OrdersAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
-import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
-import com.android.onlineshop_castanheirofreno.ui.category.CategoryViewModel;
-import com.android.onlineshop_castanheirofreno.ui.orders.OrderListViewModel;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
+import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

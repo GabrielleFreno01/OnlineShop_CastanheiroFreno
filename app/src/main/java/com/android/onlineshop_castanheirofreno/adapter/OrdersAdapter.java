@@ -1,11 +1,9 @@
 package com.android.onlineshop_castanheirofreno.adapter;
 
 import android.content.Context;
-import android.net.sip.SipSession;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,11 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
-import com.android.onlineshop_castanheirofreno.ui.orders.OrderViewModel;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 
 import java.util.List;
-import java.util.Objects;
 
 
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder> {

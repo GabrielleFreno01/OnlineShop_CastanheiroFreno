@@ -3,34 +3,26 @@ package com.android.onlineshop_castanheirofreno.ui.item;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.onlineshop_castanheirofreno.R;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
-import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
-import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
+import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Currency;
 
 
 public class ItemDescriptionActivity extends BaseActivity {
@@ -60,9 +52,6 @@ public class ItemDescriptionActivity extends BaseActivity {
 
         initiateView();
 
-        /*SharedPreferences settings = getSharedPreferences(ItemListActivity.PREFS_ITEM, 0);
-        long itemId = settings.getLong(ItemListActivity.PREFS_ITEM, 0);
-        long catId = settings.getLong("idCategory", 0);*/
         Intent intent = getIntent();
         long itemId = intent.getLongExtra("itemId", 0L);
         long catId = intent.getLongExtra("idCategory", 0L);
@@ -87,7 +76,7 @@ public class ItemDescriptionActivity extends BaseActivity {
             }
         });
 
-        //ImageView productImage = (ImageView) this.findViewById(R.id.imageView);
+
     }
 
     private void updateContent() {
@@ -104,6 +93,7 @@ public class ItemDescriptionActivity extends BaseActivity {
         tvProductName = findViewById(R.id.new_item_name);
         tvPriceProduct = findViewById(R.id.new_item_price);
         tvDescription = findViewById(R.id.productDescription);
+        //ImageView productImage = (ImageView) this.findViewById(R.id.imageView);
     }
 
     @Override

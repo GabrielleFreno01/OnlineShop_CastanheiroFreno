@@ -25,6 +25,7 @@ import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
+import com.android.onlineshop_castanheirofreno.viewmodel.customer.CustomerViewModel;
 
 
 public class CustomerActivity extends BaseActivity {

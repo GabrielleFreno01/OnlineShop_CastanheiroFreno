@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.ui.category;
+package com.android.onlineshop_castanheirofreno.viewmodel.category;
 
 import android.app.Application;
 
@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CategoryRepository;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.util.List;
 

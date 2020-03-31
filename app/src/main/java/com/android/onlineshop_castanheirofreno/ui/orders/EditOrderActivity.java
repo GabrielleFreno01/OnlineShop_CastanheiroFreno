@@ -22,13 +22,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
-import com.android.onlineshop_castanheirofreno.database.repository.ItemRepository;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
+import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderViewModel;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 

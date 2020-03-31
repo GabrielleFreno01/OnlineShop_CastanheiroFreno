@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.ui.orders;
+package com.android.onlineshop_castanheirofreno.viewmodel.order;
 
 import android.app.Application;
 
@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
-import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;

@@ -12,9 +12,8 @@ import androidx.lifecycle.ViewModelProviders;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.ui.customer.CustomerViewModel;
+import com.android.onlineshop_castanheirofreno.viewmodel.customer.CustomerViewModel;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
-import com.android.onlineshop_castanheirofreno.ui.mgmt.LoginActivity;
 
 import static com.android.onlineshop_castanheirofreno.ui.BaseActivity.PREFS_USER;
 

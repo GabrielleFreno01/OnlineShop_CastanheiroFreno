@@ -108,7 +108,6 @@ public class LoginActivity extends AppCompatActivity {
             repository.getCustomerByEmail(email, getApplication()).observe(LoginActivity.this, clientEntity -> {
                 if (clientEntity != null) {
                     if (clientEntity.getPassword().equals(password)) {
-                        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_NAME, 0).edit();
                         // We need an Editor object to make preference changes.
                         // All objects are from android.context.Context
                         SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_USER, 0).edit();

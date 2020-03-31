@@ -3,7 +3,6 @@ package com.android.onlineshop_castanheirofreno.ui.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -15,14 +14,11 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.onlineshop_castanheirofreno.R;
-import com.android.onlineshop_castanheirofreno.adapter.ItemsAdapter;
 import com.android.onlineshop_castanheirofreno.adapter.NewItemsAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.item.ItemDescriptionActivity;
-import com.android.onlineshop_castanheirofreno.ui.item.ItemModel;
 import com.android.onlineshop_castanheirofreno.ui.item.ItemViewModel;
-import com.android.onlineshop_castanheirofreno.ui.item.NewItemAdapter;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 
 import java.util.ArrayList;

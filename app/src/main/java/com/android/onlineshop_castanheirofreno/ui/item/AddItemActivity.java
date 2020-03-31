@@ -45,6 +45,7 @@ public class AddItemActivity extends BaseActivity {
     private EditText etdescription;
 
     private MyListAdapter<CategoryEntity> adapterCategories;
+    private List<CategoryEntity> categoryEntities;
     private Toast toast;
 
     private static final int IMAGE_PICK_CODE = 1000;
@@ -66,8 +67,10 @@ public class AddItemActivity extends BaseActivity {
 
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), 0L, 0L);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
+        categoryEntities = new ArrayList<>();
         viewModel.getCategories().observe(this, categories -> {
             if (categories != null) {
+                categoryEntities = categories;
                 updateSpinner(categories);
             }
         });
@@ -164,7 +167,7 @@ public class AddItemActivity extends BaseActivity {
                 new CreateItem(getApplication(), new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-                        Log.d(TAG, "createItme: success");
+                        Log.d(TAG, "createItem: success");
                         setResponse(true);
                     }
 

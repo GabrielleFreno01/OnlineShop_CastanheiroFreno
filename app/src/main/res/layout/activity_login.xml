@@ -16,7 +16,8 @@
     <ScrollView
         android:id="@+id/main_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -28,7 +29,8 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@mipmap/ic_launcher"
-                android:layout_gravity="top|center_horizontal"/>
+                android:layout_gravity="top|center_horizontal"
+                android:contentDescription="@string/image_decription_logo" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -61,14 +63,7 @@
                     android:maxLines="1"/>
 
             </com.google.android.material.textfield.TextInputLayout>
-            <ProgressBar
-                android:id="@+id/progress"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_gravity="center_horizontal"
-                android:visibility="gone" />
+
 
             <Button
                 android:id="@+id/email_sign_in_button"

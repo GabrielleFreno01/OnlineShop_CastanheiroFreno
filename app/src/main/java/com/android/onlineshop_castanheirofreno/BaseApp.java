@@ -30,9 +30,7 @@ public class BaseApp extends Application {
         return ItemRepository.getInstance();
     }
 
-    public CustomerRepository getCustomerRepository() {
-        return CustomerRepository.getInstance();
-    }
+    public CustomerRepository getCustomerRepository() { return CustomerRepository.getInstance(); }
 
     public CategoryRepository getCategoryRepository() {
         return CategoryRepository.getInstance();

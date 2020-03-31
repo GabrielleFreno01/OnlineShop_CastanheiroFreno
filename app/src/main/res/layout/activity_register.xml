@@ -10,10 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:orientation="vertical"
@@ -26,7 +25,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_gravity="top|center_horizontal"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="50dp" />
+            android:layout_marginBottom="50dp"
+            android:contentDescription="@string/image_decription_logo" />
 
 
             <EditText
@@ -38,7 +38,7 @@
                 android:textSize="@dimen/basicTextSize"
                 android:textColor="@color/colorHint"
                 android:inputType="textEmailAddress"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp" />
 
 
 
@@ -72,7 +72,7 @@
                 android:textSize="@dimen/basicTextSize"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="City"
+                android:hint="@string/city"
                 android:textColor="@color/colorHint"
                 android:inputType="textPersonName"
                 android:layout_marginBottom="20dp"/>
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/basicTextSize"
                 android:ems="10"
-                android:hint="City_code"
+                android:hint="@string/city_code"
                 android:textColor="@color/colorHint"
                 android:inputType="number"
                 android:layout_marginBottom="20dp"/>
@@ -97,9 +97,10 @@
                 android:textColor="@color/colorHint"
                 android:ems="10"
                 android:textSize="@dimen/basicTextSize"
-                android:hint="Telephone"
+                android:hint="@string/telephone"
                 android:inputType="number"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                tools:ignore="TextFields" />
 
 
             <EditText

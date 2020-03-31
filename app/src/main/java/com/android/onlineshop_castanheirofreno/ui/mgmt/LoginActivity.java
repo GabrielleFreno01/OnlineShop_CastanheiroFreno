@@ -23,13 +23,14 @@ import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepos
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;
 
-import static com.android.onlineshop_castanheirofreno.database.AppDatabase.initializeDemoData;
+import static com.android.onlineshop_castanheirofreno.database.AppDatabase.initializeData;
+
 
 public class LoginActivity extends AppCompatActivity {
 
     private AutoCompleteTextView emailView;
     private EditText passwordView;
-    private ProgressBar progressBar;
+
 
     private CustomerRepository repository;
 
@@ -41,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         repository = ((BaseApp) getApplication()).getCustomerRepository();
-        progressBar = findViewById(R.id.progress);
+
 
         // Set up the login form.
         emailView = findViewById(R.id.email_login);
@@ -102,14 +103,12 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
             focusView.requestFocus();
         } else {
-            progressBar.setVisibility(View.VISIBLE);
             repository.getCustomerByEmail(email, getApplication()).observe(LoginActivity.this, clientEntity -> {
                 if (clientEntity != null) {
                     if (clientEntity.getPassword().equals(password)) {
+                        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_NAME, 0).edit();
                         // We need an Editor object to make preference changes.
                         // All objects are from android.context.Context
                         SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_USER, 0).edit();
@@ -128,12 +127,12 @@ public class LoginActivity extends AppCompatActivity {
                         passwordView.requestFocus();
                         passwordView.setText("");
                     }
-                    progressBar.setVisibility(View.GONE);
+
                 } else {
                     emailView.setError(getString(R.string.error_invalid_email));
                     emailView.requestFocus();
                     passwordView.setText("");
-                    progressBar.setVisibility(View.GONE);
+
                 }
             });
         }
@@ -147,17 +146,6 @@ public class LoginActivity extends AppCompatActivity {
         return password.length() > 4;
     }
 
-    private void reinitializeDatabase() {
-        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(getString(R.string.action_demo_data));
-        alertDialog.setCancelable(false);
-        alertDialog.setMessage(getString(R.string.reset_msg));
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_reset), (dialog, which) ->{
-            initializeDemoData(AppDatabase.getInstance(this));
-            Toast.makeText(this, getString(R.string.demo_data_initiated), Toast.LENGTH_LONG).show();
-        });
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
-        alertDialog.show();
-    }
+
 }
 

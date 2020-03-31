@@ -33,7 +33,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
 
-    private static final String DATABASE_NAME = "bank-database";
+    private static final String DATABASE_NAME = "Technospot Database";
 
     public abstract OrderDao orderDao();
 
@@ -69,7 +69,7 @@ public abstract class AppDatabase extends RoomDatabase {
                         super.onCreate(db);
                         Executors.newSingleThreadExecutor().execute(() -> {
                             AppDatabase database = AppDatabase.getInstance(appContext);
-                            initializeDemoData(database);
+                            initializeData(database);
                             // notify that the database was created and it's ready to be used
                             database.setDatabaseCreated();
                         });
@@ -78,7 +78,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 .build();
     }
 
-    public static void initializeDemoData(final AppDatabase database) {
+    public static void initializeData(final AppDatabase database) {
         Executors.newSingleThreadExecutor().execute(() -> {
             database.runInTransaction(() -> {
                 Log.i(TAG, "Wipe database.");

@@ -168,4 +168,5 @@ public class RegisterActivity extends AppCompatActivity {
             etEmail.requestFocus();
         }
     }
+
 }

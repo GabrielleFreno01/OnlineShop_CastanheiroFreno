@@ -61,6 +61,7 @@ public class HomeActivity extends BaseActivity {
         });
         autoScroll();
 
+
         newItems = new ArrayList<>();
 
         newItemsAdapter = new NewItemsAdapter(this, newItems, new RecyclerViewItemClickListener() {
@@ -77,11 +78,7 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onItemLongClick(View v, int position) {
                 onBackPressed();
-
             }
-
-
-
 
         });
 
@@ -138,5 +135,6 @@ public class HomeActivity extends BaseActivity {
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
         alertDialog.show();
     }
+
 }
 

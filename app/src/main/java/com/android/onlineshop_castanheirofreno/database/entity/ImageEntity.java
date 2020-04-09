@@ -1,21 +1,18 @@
 package com.android.onlineshop_castanheirofreno.database.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import com.google.firebase.database.Exclude;
 
-@Entity(tableName = "images")
+//@Entity(tableName = "images")
 public class ImageEntity {
 
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
     private Long idImage;
 
-    @ColumnInfo(name = "lien")
+    //@ColumnInfo(name = "lien")
     private String lien;
 
 
-    @Ignore
+    //@Ignore
     public ImageEntity() {
     }
 
@@ -25,6 +22,7 @@ public class ImageEntity {
     }
 
     //getters & setters
+    @Exclude
     public Long getIdImage() {
         return idImage;
     }

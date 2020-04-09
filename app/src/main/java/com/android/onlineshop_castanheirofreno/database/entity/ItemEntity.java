@@ -1,44 +1,40 @@
 package com.android.onlineshop_castanheirofreno.database.entity;
 
-import android.widget.ImageButton;
+import com.google.firebase.database.Exclude;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Ignore;
-import androidx.room.Index;
-import androidx.room.PrimaryKey;
+import java.util.HashMap;
+import java.util.Map;
 
-@Entity(tableName = "items", foreignKeys = {@ForeignKey(entity = CategoryEntity.class, parentColumns = "idCategory", childColumns = "idCategory")},
-        //@ForeignKey(entity = ImageEntity.class, parentColumns = "idImage", childColumns = "idImage")},
-        indices = {
-                @Index(value = {"idCategory"}),
-                //@Index( value = {"idImage"})
-        }
-)
+//@Entity(tableName = "items", foreignKeys = {@ForeignKey(entity = CategoryEntity.class, parentColumns = "idCategory", childColumns = "idCategory")},
+//@ForeignKey(entity = ImageEntity.class, parentColumns = "idImage", childColumns = "idImage")},
+// indices = {
+//   @Index(value = {"idCategory"}),
+//@Index( value = {"idImage"})
+//  }
+//)
 
 public class ItemEntity {
 
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
     private Long idItem;
 
-    @ColumnInfo(name = "name")
+    //@ColumnInfo(name = "name")
     private String name;
 
-    @ColumnInfo(name = "description")
+    //@ColumnInfo(name = "description")
     private String description;
 
-    @ColumnInfo(name = "price")
+    // @ColumnInfo(name = "price")
     private double price;
 
-    @ColumnInfo(name = "idCategory")
+    // @ColumnInfo(name = "idCategory")
     private long idCategory;
 
     /*@ColumnInfo(name = "idImage")
     private long idImage;*/
 
 
-    @Ignore
+    // @Ignore
     public ItemEntity() {
     }
 
@@ -52,7 +48,7 @@ public class ItemEntity {
 
     //getters & setters
 
-
+    @Exclude
     public Long getIdItem() {
         return idItem;
     }
@@ -97,5 +93,14 @@ public class ItemEntity {
 
     //public void setIdImage(long image) { this.idImage = image; }
 
+
+    @Exclude
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("name" , name);
+        result.put("description" , description);
+        result.put("price" , price);
+        return result;
+    }
 
 }

@@ -1,24 +1,21 @@
 
 package com.android.onlineshop_castanheirofreno.database.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import com.google.firebase.database.Exclude;
 
-@Entity(tableName = "categories")
+//@Entity(tableName = "categories")
 public class CategoryEntity {
 
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
     private long idCategory;
 
-    @ColumnInfo(name = "name")
+    //@ColumnInfo(name = "name")
     private String name;
 
-    @ColumnInfo(name = "tag")
+    //@ColumnInfo(name = "tag")
     private String tag;
 
-    @Ignore
+    // @Ignore
     public CategoryEntity() {
     }
 
@@ -29,6 +26,7 @@ public class CategoryEntity {
     }
 
     //getters & setters
+    @Exclude
     public long getIdCategory() {
         return idCategory;
     }
@@ -56,3 +54,4 @@ public class CategoryEntity {
         return getName();
     }
 }
+

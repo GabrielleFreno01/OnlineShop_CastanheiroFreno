@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.database.async.customer;
+/*package com.android.onlineshop_castanheirofreno.database.async.customer;
 
 import android.app.Application;
 import android.content.Context;
@@ -43,4 +43,4 @@ public class DeleteCustomer extends AsyncTask<CustomerEntity, Void, Void> {
             }
         }
     }
-}
+}*/

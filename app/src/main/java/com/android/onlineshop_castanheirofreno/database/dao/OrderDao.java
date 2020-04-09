@@ -1,9 +1,6 @@
-package com.android.onlineshop_castanheirofreno.database.dao;
-
-import android.database.sqlite.SQLiteConstraintException;
+/*package com.android.onlineshop_castanheirofreno.database.dao;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -12,12 +9,11 @@ import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
-import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 
 import java.util.List;
 
-@Dao
+//@Dao
 public interface OrderDao {
 
     @Query("SELECT * FROM orders WHERE idOrder = :id")
@@ -53,3 +49,4 @@ public interface OrderDao {
     public  void deleteAll();
 
 }
+*/

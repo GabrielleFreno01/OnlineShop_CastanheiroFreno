@@ -1,9 +1,8 @@
-package com.android.onlineshop_castanheirofreno.database.dao;
+/*package com.android.onlineshop_castanheirofreno.database.dao;
 
 import android.database.sqlite.SQLiteConstraintException;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -16,7 +15,7 @@ import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 
 import java.util.List;
 
-@Dao
+//@Dao
 public interface CustomerDao {
 
     @Query("SELECT * FROM customer WHERE email = :id")
@@ -51,3 +50,4 @@ public interface CustomerDao {
     @Query("SELECT * FROM customer WHERE email != :id")
     LiveData<List<CustomerWithOrders>> getOtherCustomersWithOrders(String id);
 }
+*/

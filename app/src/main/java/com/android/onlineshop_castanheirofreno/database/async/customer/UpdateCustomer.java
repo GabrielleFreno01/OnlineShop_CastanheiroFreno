@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.database.async.customer;
+/*package com.android.onlineshop_castanheirofreno.database.async.customer;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -40,4 +40,4 @@ public class UpdateCustomer extends AsyncTask<CustomerEntity, Void, Void> {
             }
         }
     }
-}
+}*/

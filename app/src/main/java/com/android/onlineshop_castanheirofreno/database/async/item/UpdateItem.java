@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.database.async.item;
+/*package com.android.onlineshop_castanheirofreno.database.async.item;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -41,4 +41,4 @@ public class UpdateItem extends AsyncTask<ItemEntity, Void, Void> {
             }
         }
     }
-}
+}*/

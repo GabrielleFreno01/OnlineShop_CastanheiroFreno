@@ -1,31 +1,38 @@
 package com.android.onlineshop_castanheirofreno.database.entity;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "customer", primaryKeys = {"email"})
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
+//@Entity(tableName = "customer", primaryKeys = {"email"})
 public class CustomerEntity implements Comparable {
 
 
-    @NonNull
+
+
+    private String idCustomer;
+
+
+    // @NonNull
     private String email;
 
-    @ColumnInfo(name = "first_name")
+    //@ColumnInfo(name = "first_name")
     private String firstName;
 
-    @ColumnInfo(name = "last_name")
+    //@ColumnInfo(name = "last_name")
     private String lastName;
 
-    @ColumnInfo(name = "city")
+    //@ColumnInfo(name = "city")
     private String city;
 
-    @ColumnInfo(name = "city_code")
+    // @ColumnInfo(name = "city_code")
     private int city_code;
 
-    @ColumnInfo(name = "telephone")
+    //@ColumnInfo(name = "telephone")
     private String telephone;
 
     private String password;
@@ -44,7 +51,11 @@ public class CustomerEntity implements Comparable {
         this.password = password;
     }
 
-    @NonNull
+    public String getIdCustomer() { return idCustomer; }
+
+    public void setIdCustomer(String idCustomer) { this.idCustomer = idCustomer; }
+
+    //@NonNull
     public String getEmail() {
         return email;
     }
@@ -118,5 +129,18 @@ public class CustomerEntity implements Comparable {
     @Override
     public int compareTo(@NonNull Object o) {
         return toString().compareTo(o.toString());
+    }
+
+    @Exclude
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("email" , email);
+        result.put("firstname" , firstName);
+        result.put("lastname" , lastName);
+        result.put("city" , city);
+        result.put("city_code" , city_code);
+        result.put("telephone" , telephone);
+
+        return result;
     }
 }

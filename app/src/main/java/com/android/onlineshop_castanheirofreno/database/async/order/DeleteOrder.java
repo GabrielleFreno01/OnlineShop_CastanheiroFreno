@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.database.async.order;
+/*package com.android.onlineshop_castanheirofreno.database.async.order;
 
 import android.app.Application;
 import android.content.Context;
@@ -43,4 +43,4 @@ public class DeleteOrder extends AsyncTask<OrderEntity, Void, Void> {
             }
         }
     }
-}
+}*/

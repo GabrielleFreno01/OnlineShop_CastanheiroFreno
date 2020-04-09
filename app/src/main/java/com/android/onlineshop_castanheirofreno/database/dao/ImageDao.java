@@ -1,19 +1,16 @@
-package com.android.onlineshop_castanheirofreno.database.dao;
+/*package com.android.onlineshop_castanheirofreno.database.dao;
 
 import android.database.sqlite.SQLiteConstraintException;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ImageEntity;
-import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 
 import java.util.List;
 
-@Dao
+//@Dao
 public interface ImageDao {
 
     @Query("SELECT * FROM images WHERE idImage = :id")
@@ -28,3 +25,4 @@ public interface ImageDao {
     @Insert
     long insert(ImageEntity image) throws SQLiteConstraintException;
 }
+*/

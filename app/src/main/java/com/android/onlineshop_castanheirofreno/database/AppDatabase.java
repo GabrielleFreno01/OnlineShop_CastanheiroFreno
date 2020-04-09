@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.database;
+/*package com.android.onlineshop_castanheirofreno.database;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,19 +11,12 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-
-import com.android.onlineshop_castanheirofreno.database.dao.CategoryDao;
-import com.android.onlineshop_castanheirofreno.database.dao.CustomerDao;
-import com.android.onlineshop_castanheirofreno.database.dao.ImageDao;
-import com.android.onlineshop_castanheirofreno.database.dao.ItemDao;
-import com.android.onlineshop_castanheirofreno.database.dao.OrderDao;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ImageEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 @Database(entities = {OrderEntity.class, CustomerEntity.class, ItemEntity.class, ImageEntity.class, CategoryEntity.class}, version = 11, exportSchema = false)
@@ -82,7 +75,7 @@ public abstract class AppDatabase extends RoomDatabase {
         Executors.newSingleThreadExecutor().execute(() -> {
             database.runInTransaction(() -> {
                 Log.i(TAG, "Wipe database.");
-                database.orderDao().deleteAll();
+               /* database.orderDao().deleteAll();
                 database.itemDao().deleteAll();
                 database.customerDao().deleteAll();
                 database.categoryDao().deleteAll();
@@ -110,4 +103,4 @@ public abstract class AppDatabase extends RoomDatabase {
     public LiveData<Boolean> getDatabaseCreated() {
         return mIsDatabaseCreated;
     }
-}
+}*/

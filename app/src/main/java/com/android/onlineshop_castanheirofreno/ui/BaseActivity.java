@@ -3,7 +3,6 @@ package com.android.onlineshop_castanheirofreno.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -20,8 +19,6 @@ import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.customer.CustomerActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
-import com.android.onlineshop_castanheirofreno.ui.item.ItemListActivity;
-import com.android.onlineshop_castanheirofreno.ui.mgmt.LoginActivity;
 import com.android.onlineshop_castanheirofreno.ui.mgmt.SettingsActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
 import com.google.android.material.navigation.NavigationView;
@@ -132,9 +129,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         editorItem.remove(BaseActivity.PREFS_ITEM);
         editorItem.apply();
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        /*Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
+        startActivity(intent);*/
     }
 }

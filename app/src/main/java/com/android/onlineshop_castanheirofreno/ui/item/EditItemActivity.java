@@ -16,7 +16,6 @@ import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.text.DecimalFormat;
@@ -122,7 +121,7 @@ public class EditItemActivity extends BaseActivity {
         //item.setIdImage(idImage);
         item.setIdCategory(idCategory);
 
-        viewModel.updateItem(item, new OnAsyncEventListener() {
+        /*viewModel.updateItem(item, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
                 setResponse(true);
@@ -132,7 +131,7 @@ public class EditItemActivity extends BaseActivity {
             public void onFailure(Exception e) {
                 setResponse(false);
             }
-        });
+        });*/
     }
 
     private void setResponse(Boolean response) {

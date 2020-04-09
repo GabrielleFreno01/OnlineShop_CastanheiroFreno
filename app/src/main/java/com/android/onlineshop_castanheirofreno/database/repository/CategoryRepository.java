@@ -1,14 +1,5 @@
 package com.android.onlineshop_castanheirofreno.database.repository;
 
-import android.app.Application;
-
-import androidx.lifecycle.LiveData;
-
-import com.android.onlineshop_castanheirofreno.BaseApp;
-import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
-
-import java.util.List;
-
 public class CategoryRepository {
 
     private static CategoryRepository instance;
@@ -26,7 +17,7 @@ public class CategoryRepository {
         }
         return instance;
     }
-
+/*
     public LiveData<List<CategoryEntity>> getCategories(Application application) {
         LiveData<List<CategoryEntity>> category = ((BaseApp) application).getDatabase().categoryDao().getAll();
         //System.out.println(category.getValue().get(1));
@@ -35,6 +26,6 @@ public class CategoryRepository {
 
     public LiveData<CategoryEntity> getCategory(final Long categoryId, Application application) {
         return ((BaseApp) application).getDatabase().categoryDao().getById(categoryId);
-    }
+    }*/
 
 }

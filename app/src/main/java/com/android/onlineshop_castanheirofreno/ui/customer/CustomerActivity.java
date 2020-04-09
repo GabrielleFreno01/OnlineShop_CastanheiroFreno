@@ -1,16 +1,9 @@
 package com.android.onlineshop_castanheirofreno.ui.customer;
 
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.AlertDialog;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,12 +12,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.GravityCompat;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.customer.CustomerViewModel;
 
 
@@ -142,7 +138,7 @@ public class CustomerActivity extends BaseActivity {
             alertDialog.setCancelable(false);
             alertDialog.setMessage(getString(R.string.delete_msg));
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_delete), (dialog, which) -> {
-                viewModel.deleteCustomer(client, new OnAsyncEventListener() {
+               /* viewModel.deleteCustomer(client, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
                         logout();
@@ -151,7 +147,7 @@ public class CustomerActivity extends BaseActivity {
                     @Override
                     public void onFailure(Exception e) {
                     }
-                });
+                });*/
             });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
             alertDialog.show();
@@ -267,7 +263,7 @@ public class CustomerActivity extends BaseActivity {
         }
 
 
-        viewModel.updateCustomer(client, new OnAsyncEventListener() {
+        /*viewModel.updateCustomer(client, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
                 setResponse(true);
@@ -277,7 +273,7 @@ public class CustomerActivity extends BaseActivity {
             public void onFailure(Exception e) {
                 setResponse(false);
             }
-        });
+        });*/
     }
 
     private void setResponse(Boolean response) {

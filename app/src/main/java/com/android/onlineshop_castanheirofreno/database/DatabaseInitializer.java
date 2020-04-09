@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.database;
+/*package com.android.onlineshop_castanheirofreno.database;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -479,4 +479,4 @@ public class DatabaseInitializer {
         }
 
     }
-}
+}*/

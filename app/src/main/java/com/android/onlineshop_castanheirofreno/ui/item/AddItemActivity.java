@@ -3,7 +3,6 @@ package com.android.onlineshop_castanheirofreno.ui.item;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -15,11 +14,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.adapter.MyListAdapter;
-import com.android.onlineshop_castanheirofreno.database.async.item.CreateItem;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.util.ArrayList;
@@ -154,7 +151,7 @@ public class AddItemActivity extends BaseActivity {
             if (!cancel) {
                 ItemEntity newItem = new ItemEntity(name, description, price, idCategory);
 
-                new CreateItem(getApplication(), new OnAsyncEventListener() {
+                /*new CreateItem(getApplication(), new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
                         Log.d(TAG, "createItem: success");
@@ -166,7 +163,7 @@ public class AddItemActivity extends BaseActivity {
                         Log.d(TAG, "createItem: failure", e);
                         setResponse(false);
                     }
-                }).execute(newItem);
+                }).execute(newItem);*/
             }
         }
 

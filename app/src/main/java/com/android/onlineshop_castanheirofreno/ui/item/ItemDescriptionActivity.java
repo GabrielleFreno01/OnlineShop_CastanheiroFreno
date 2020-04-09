@@ -10,15 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.onlineshop_castanheirofreno.R;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.text.DecimalFormat;
@@ -125,7 +123,7 @@ public class ItemDescriptionActivity extends BaseActivity {
             alertDialog.setCancelable(false);
             alertDialog.setMessage(getString(R.string.delete_msg));
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_delete), (dialog, which) -> {
-                viewModel.deleteItem(item, new OnAsyncEventListener() {
+                /*viewModel.deleteItem(item, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
 
@@ -135,7 +133,7 @@ public class ItemDescriptionActivity extends BaseActivity {
                     @Override
                     public void onFailure(Exception e) {
                     }
-                });
+                });*/
             });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
             alertDialog.show();

@@ -3,7 +3,6 @@ package com.android.onlineshop_castanheirofreno;
 
 import android.app.Application;
 
-import com.android.onlineshop_castanheirofreno.database.AppDatabase;
 import com.android.onlineshop_castanheirofreno.database.repository.CategoryRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.ItemRepository;
@@ -17,10 +16,10 @@ public class BaseApp extends Application {
         super.onCreate();
     }
 
-    public AppDatabase getDatabase() {
+   /* public AppDatabase getDatabase() {
         return AppDatabase.getInstance(this);
     }
-
+*/
     public OrderRepository getOrderRepository() {
         return OrderRepository.getInstance();
     }

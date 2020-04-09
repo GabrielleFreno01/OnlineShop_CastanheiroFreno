@@ -8,12 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.onlineshop_castanheirofreno.R;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.onlineshop_castanheirofreno.database.async.customer.CreateCustomer;
+import com.android.onlineshop_castanheirofreno.BaseApp;
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
+import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
@@ -21,6 +21,8 @@ import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
+
+    private CustomerRepository repository;
 
     private Toast toast;
 
@@ -33,10 +35,13 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etCityCode;
     private EditText etTelephone;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        repository = ((BaseApp) getApplication()).getCustomerRepository();
+
         initializeForm();
         toast = Toast.makeText(this, getString(R.string.client_created), Toast.LENGTH_LONG);
     }
@@ -136,9 +141,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (!cancel) {
+
             CustomerEntity newClient = new CustomerEntity(email, firstName, lastName, city, city_code, telephone, pwd);
 
-            new CreateCustomer(getApplication(), new OnAsyncEventListener() {
+            repository.register(newClient, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
                     Log.d(TAG, "createUserWithEmail: success");
@@ -150,7 +156,9 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.d(TAG, "createUserWithEmail: failure", e);
                     setResponse(false);
                 }
-            }).execute(newClient);
+
+
+            });
         }
     }
 

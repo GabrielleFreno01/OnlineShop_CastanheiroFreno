@@ -51,11 +51,11 @@ public class OrderListViewModel extends AndroidViewModel {
         observableOrderCustomer.addSource(clientOrders, observableOrderCustomer::setValue);
         observableOwnOrder.addSource(ownOrders, observableOwnOrder::setValue);*/
 
-        LiveData<List<CustomerWithOrders>> customerOrders = customerRepository.getCustomerWithOrders(ownerId);
+       // LiveData<List<CustomerWithOrders>> customerOrders = customerRepository.getCustomerWithOrders(ownerId);
         LiveData<List<OrderEntity>> ownOrders = repository.getByOwner(ownerId);
 
         // observe the changes of the entities from the database and forward them
-        observableOrderCustomer.addSource(customerOrders, observableOrderCustomer::setValue);
+        //observableOrderCustomer.addSource(customerOrders, observableOrderCustomer::setValue);
         observableOwnOrder.addSource(ownOrders, observableOwnOrder::setValue);
     }
 

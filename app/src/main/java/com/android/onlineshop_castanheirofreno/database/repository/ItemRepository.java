@@ -1,19 +1,5 @@
 package com.android.onlineshop_castanheirofreno.database.repository;
 
-import android.app.Application;
-import android.content.Context;
-
-import androidx.lifecycle.LiveData;
-
-import com.android.onlineshop_castanheirofreno.database.AppDatabase;
-import com.android.onlineshop_castanheirofreno.database.async.item.CreateItem;
-import com.android.onlineshop_castanheirofreno.database.async.item.DeleteItem;
-import com.android.onlineshop_castanheirofreno.database.async.item.UpdateItem;
-import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
-
-import java.util.List;
-
 public class ItemRepository {
 
     private static ItemRepository instance;
@@ -32,7 +18,7 @@ public class ItemRepository {
         return instance;
     }
 
-    public LiveData<ItemEntity> getItem(final long id, Context context) {
+   /* public LiveData<ItemEntity> getItem(final long id, Context context) {
         return AppDatabase.getInstance(context).itemDao().getById(id);
     }
 
@@ -62,5 +48,5 @@ public class ItemRepository {
                        Application application) {
         new DeleteItem(application, callback).execute(item);
     }
-
+*/
 }

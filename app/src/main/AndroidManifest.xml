@@ -173,6 +173,8 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.item.ItemDescriptionActivity">
         </activity>
+
+
     </application>
 
 </manifest>

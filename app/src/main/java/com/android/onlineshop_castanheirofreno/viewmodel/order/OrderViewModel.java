@@ -11,11 +11,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
-import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.database.repository.ItemRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.OrderRepository;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.util.List;
 
@@ -43,19 +41,19 @@ public class OrderViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableOrder.setValue(null);
 
-        LiveData<OrderWithItem> order = repository.getOrderWithItem(orderId, application);
+        //LiveData<OrderWithItem> order = repository.getOrderWithItem(orderId, application);
 
         // observe the changes of the account entity from the database and forward them
-        observableOrder.addSource(order, observableOrder::setValue);
+       // observableOrder.addSource(order, observableOrder::setValue);
 
         observableItems = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableItems.setValue(null);
 
-        LiveData<List<ItemEntity>> items = itemRepository.getAllItems(application);
+       // LiveData<List<ItemEntity>> items = itemRepository.getAllItems(application);
 
         // observe the changes of the account entity from the database and forward them
-        observableItems.addSource(items, observableItems::setValue);
+       // observableItems.addSource(items, observableItems::setValue);
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
@@ -91,11 +89,11 @@ public class OrderViewModel extends AndroidViewModel {
         return observableItems;
     }
 
-    public void createOrder(OrderEntity order, OnAsyncEventListener callback) {
+   /* public void createOrder(OrderEntity order, OnAsyncEventListener callback) {
         repository.insert(order, callback, application);
     }
 
     public void updateOrder(OrderEntity order, OnAsyncEventListener callback) {
         repository.update(order, callback, application);
-    }
+    }*/
 }

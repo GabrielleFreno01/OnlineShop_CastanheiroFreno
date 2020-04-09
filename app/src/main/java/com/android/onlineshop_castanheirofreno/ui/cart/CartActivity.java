@@ -3,7 +3,6 @@ package com.android.onlineshop_castanheirofreno.ui.cart;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,14 +14,12 @@ import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
-import com.android.onlineshop_castanheirofreno.database.async.order.CreateOrder;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.confirmation.ConfirmationActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -122,7 +119,7 @@ public class CartActivity extends BaseActivity {
 
         OrderEntity newOrder = new OrderEntity(price, creationDate, deliveryDate, idItem, status, owner);
 
-        new CreateOrder(getApplication(), new OnAsyncEventListener() {
+        /*new CreateOrder(getApplication(), new OnAsyncEventListener() {
 
             @Override
             public void onSuccess() {
@@ -135,7 +132,7 @@ public class CartActivity extends BaseActivity {
                 Log.d(TAG, "createItem: failure", e);
                 setResponse(false);
             }
-        }).execute(newOrder);
+        }).execute(newOrder);*/
 
     }
 

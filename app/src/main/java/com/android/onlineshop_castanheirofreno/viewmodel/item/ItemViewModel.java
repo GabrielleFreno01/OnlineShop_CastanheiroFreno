@@ -14,7 +14,6 @@ import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CategoryRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.ItemRepository;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.util.List;
 
@@ -55,16 +54,16 @@ public class ItemViewModel extends AndroidViewModel {
         observableNewItems = new MediatorLiveData<>();
         observableNewItems.setValue(null);
 
-        LiveData<ItemEntity> item = repository.getItem(idItem, application);
+        /*LiveData<ItemEntity> item = repository.getItem(idItem, application);
         LiveData<List<ItemEntity>> items = repository.getItemsByCategory(categoryId, application);
         LiveData<List<CategoryEntity>> listCategory = catRepository.getCategories(application);
-        LiveData<List<ItemEntity>> listNewItems = repository.getNewItems(application);
+        LiveData<List<ItemEntity>> listNewItems = repository.getNewItems(application);*/
 
         // observe the changes of the account entity from the database and forward them
-        observableItem.addSource(item, observableItem::setValue);
+       /* observableItem.addSource(item, observableItem::setValue);
         observableCategories.addSource(listCategory, observableCategories::setValue);
         observableItems.addSource(items, observableItems::setValue);
-        observableNewItems.addSource(listNewItems, observableNewItems::setValue);
+        observableNewItems.addSource(listNewItems, observableNewItems::setValue);*/
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
@@ -113,7 +112,7 @@ public class ItemViewModel extends AndroidViewModel {
     }
 
 
-    public void deleteItem(ItemEntity item, OnAsyncEventListener callback) {
+    /*public void deleteItem(ItemEntity item, OnAsyncEventListener callback) {
         repository.delete(item, callback, application);
 
     }
@@ -124,5 +123,5 @@ public class ItemViewModel extends AndroidViewModel {
 
     public void updateItem(ItemEntity item, OnAsyncEventListener callback) {
         repository.update(item, callback, application);
-    }
+    }*/
 }

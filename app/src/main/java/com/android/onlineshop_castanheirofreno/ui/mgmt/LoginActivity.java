@@ -1,31 +1,20 @@
 package com.android.onlineshop_castanheirofreno.ui.mgmt;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.android.onlineshop_castanheirofreno.R;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
-import com.android.onlineshop_castanheirofreno.database.AppDatabase;
-import com.android.onlineshop_castanheirofreno.database.DatabaseInitializer;
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
-import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;
-
-import static com.android.onlineshop_castanheirofreno.database.AppDatabase.initializeData;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -60,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         );
 
     }
+
 
     @Override
     protected void onResume() {
@@ -107,32 +97,20 @@ public class LoginActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            repository.getCustomerByEmail(email, getApplication()).observe(LoginActivity.this, clientEntity -> {
-                if (clientEntity != null) {
-                    if (clientEntity.getPassword().equals(password)) {
-                        // We need an Editor object to make preference changes.
-                        // All objects are from android.context.Context
-                        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_USER, 0).edit();
-                        editor.putString(BaseActivity.PREFS_USER, clientEntity.getEmail());
-                        editor.apply();
-
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.setFlags(
-                                Intent.FLAG_ACTIVITY_NO_ANIMATION
-                        );
-                        startActivity(intent);
-                        emailView.setText("");
-                        passwordView.setText("");
-                    } else {
-                        passwordView.setError(getString(R.string.error_incorrect_password));
-                        passwordView.requestFocus();
-                        passwordView.setText("");
-                    }
+            repository.signIn(email, password, task -> {
+                if (task.isSuccessful()) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("name", FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                    startActivity(intent);
+                    emailView.setText("");
+                    passwordView.setText("");
                 } else {
                     emailView.setError(getString(R.string.error_invalid_email));
                     emailView.requestFocus();
                     passwordView.setText("");
                 }
+
+
             });
         }
     }

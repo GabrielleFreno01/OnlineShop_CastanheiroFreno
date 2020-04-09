@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 public class CustomerViewModel extends AndroidViewModel {
 
@@ -35,10 +34,10 @@ public class CustomerViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableCustomer.setValue(null);
 
-        LiveData<CustomerEntity> customer = repository.getCustomerUser(user, application);
+        //LiveData<CustomerEntity> customer = repository.getCustomerUser(user, application);
 
         // observe the changes of the customer entity from the database and forward them
-        observableCustomer.addSource(customer, observableCustomer::setValue);
+        //observableCustomer.addSource(customer, observableCustomer::setValue);
     }
 
 
@@ -70,7 +69,7 @@ public class CustomerViewModel extends AndroidViewModel {
         return observableCustomer;
     }
 
-    public void createCustomer(CustomerEntity customer, OnAsyncEventListener callback) {
+   /*public void createCustomer(CustomerEntity customer, OnAsyncEventListener callback) {
         repository.insert(customer, callback, application);
     }
 
@@ -81,5 +80,5 @@ public class CustomerViewModel extends AndroidViewModel {
     public void deleteCustomer(CustomerEntity customer, OnAsyncEventListener callback) {
         repository.delete(customer, callback, application);
 
-    }
+    }*/
 }

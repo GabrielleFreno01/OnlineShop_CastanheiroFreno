@@ -3,14 +3,11 @@ package com.android.onlineshop_castanheirofreno.ui.orders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.onlineshop_castanheirofreno.R;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -20,12 +17,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.adapter.OrdersAdapter;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderListViewModel;
 
@@ -91,12 +87,12 @@ public class OrdersActivity extends BaseActivity {
         OrderListViewModel.Factory factory = new OrderListViewModel.Factory(
                 getApplication(), user);
         viewModel = ViewModelProviders.of(this, factory).get(OrderListViewModel.class);
-        viewModel.getOwnOrders().observe(this, ordersWithItem -> {
+       /* viewModel.getOwnOrders().observe(this, ordersWithItem -> {
             if (ordersWithItem != null) {
                 orders = ordersWithItem;
                 adapter.setData(orders);
             }
-        });
+        });*/
 
         recyclerView.setAdapter(adapter);
     }
@@ -125,7 +121,7 @@ public class OrdersActivity extends BaseActivity {
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, "Order deleted", Toast.LENGTH_LONG);
-            viewModel.deleteOrder(orderWithItem, new OnAsyncEventListener() {
+           /* viewModel.deleteOrder(orderWithItem, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
                     Log.d(TAG, "deleteOrder: success");
@@ -135,7 +131,7 @@ public class OrdersActivity extends BaseActivity {
                 public void onFailure(Exception e) {
                     Log.d(TAG, "deleteOrder: failure", e);
                 }
-            });
+            });*/
             toast.show();
         });
 

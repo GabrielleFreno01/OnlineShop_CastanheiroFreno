@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,14 +15,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.onlineshop_castanheirofreno.R;
-
 import androidx.lifecycle.ViewModelProviders;
 
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderViewModel;
 
 import java.text.DecimalFormat;
@@ -201,7 +198,7 @@ public class EditOrderActivity extends BaseActivity {
         if (tvDeliver.getText().toString() != "")
             orderWithItem.order.setDeliveryDate(tvDeliver.getText().toString());
 
-        viewModel.updateOrder(orderWithItem.order, new OnAsyncEventListener() {
+        /*viewModel.updateOrder(orderWithItem.order, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "updateOrder: success");
@@ -211,7 +208,7 @@ public class EditOrderActivity extends BaseActivity {
             public void onFailure(Exception e) {
                 Log.d(TAG, "updateOrder: failure", e);
             }
-        });
+        });*/
 
 
     }

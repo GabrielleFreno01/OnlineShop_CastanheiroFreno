@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 public class CustomerViewModel extends AndroidViewModel {
 
@@ -23,10 +24,8 @@ public class CustomerViewModel extends AndroidViewModel {
     private final MediatorLiveData<CustomerEntity> observableCustomer;
 
     public CustomerViewModel(@NonNull Application application,
-                             final String user, CustomerRepository customerRepository) {
+                           final String clientId, CustomerRepository customerRepository) {
         super(application);
-
-        this.application = application;
 
         repository = customerRepository;
 
@@ -34,10 +33,10 @@ public class CustomerViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableCustomer.setValue(null);
 
-        //LiveData<CustomerEntity> customer = repository.getCustomerUser(user, application);
+        LiveData<CustomerEntity> customer = repository.getCustomer(clientId);
 
-        // observe the changes of the customer entity from the database and forward them
-        //observableCustomer.addSource(customer, observableCustomer::setValue);
+        // observe the changes of the client entity from the database and forward them
+        observableCustomer.addSource(customer, observableCustomer::setValue);
     }
 
 
@@ -46,13 +45,13 @@ public class CustomerViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final String user;
+        private final String customerId;
 
         private final CustomerRepository repository;
 
-        public Factory(@NonNull Application application, String user) {
+        public Factory(@NonNull Application application, String customerId) {
             this.application = application;
-            this.user = user;
+            this.customerId = customerId;
             repository = ((BaseApp) application).getCustomerRepository();
         }
 
@@ -60,13 +59,29 @@ public class CustomerViewModel extends AndroidViewModel {
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new CustomerViewModel(application, user, repository);
+            return (T) new CustomerViewModel(application, customerId, repository);
         }
     }
 
 
     public LiveData<CustomerEntity> getCustomer() {
         return observableCustomer;
+    }
+
+
+
+    public void updateClient(CustomerEntity client, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getCustomerRepository()
+                .update(client, callback);
+    }
+    public void updateClientPwd(CustomerEntity client, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getCustomerRepository()
+                .updatePwd(client, callback);
+    }
+
+    public void deleteClient(CustomerEntity client, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getCustomerRepository()
+                .delete(client, callback);
     }
 
    /*public void createCustomer(CustomerEntity customer, OnAsyncEventListener callback) {

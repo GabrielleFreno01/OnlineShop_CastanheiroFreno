@@ -39,10 +39,10 @@ public class CustomerRepository {
                 .addOnCompleteListener(listener);
     }
 
-    public LiveData<CustomerEntity> getClient(final String clientId) {
+    public LiveData<CustomerEntity> getCustomer(final String clientId) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("Customers")
-                .child(clientId);
+                .getReference("customers")
+                .child(clientId); //"O1OuWOo1y1Ow2bdAGm0bqGxuuID2"
         return new CustomerLiveData(reference);
     }
 
@@ -68,7 +68,7 @@ public class CustomerRepository {
 
     private void insert(final CustomerEntity customer, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
-                .getReference("Customer")
+                .getReference("customers")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .setValue(customer, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
@@ -92,7 +92,7 @@ public class CustomerRepository {
 
     public void update(final CustomerEntity customer, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
-                .getReference("Customer")
+                .getReference("customers")
                 .child(customer.getIdCustomer())
                 .updateChildren(customer.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
@@ -101,6 +101,10 @@ public class CustomerRepository {
                         callback.onSuccess();
                     }
                 });
+
+    }
+
+    public void updatePwd(final CustomerEntity customer, final OnAsyncEventListener callback){
         FirebaseAuth.getInstance().getCurrentUser().updatePassword(customer.getPassword())
                 .addOnFailureListener(
                         e -> Log.d(TAG, "updatePassword failure!", e)
@@ -109,7 +113,7 @@ public class CustomerRepository {
 
     public void delete(final CustomerEntity customer, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
-                .getReference("Customer")
+                .getReference("customers")
                 .child(customer.getIdCustomer())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {

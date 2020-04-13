@@ -14,7 +14,6 @@ import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;
-import com.google.firebase.auth.FirebaseAuth;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -100,8 +99,8 @@ public class LoginActivity extends AppCompatActivity {
             repository.signIn(email, password, task -> {
                 if (task.isSuccessful()) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("name", FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                     startActivity(intent);
+
                     emailView.setText("");
                     passwordView.setText("");
                 } else {

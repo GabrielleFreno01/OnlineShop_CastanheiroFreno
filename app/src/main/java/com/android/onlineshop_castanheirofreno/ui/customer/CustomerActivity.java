@@ -2,8 +2,8 @@ package com.android.onlineshop_castanheirofreno.ui.customer;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,19 +15,23 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.customer.CustomerViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class CustomerActivity extends BaseActivity {
 
     private static final int EDIT_CLIENT = 1;
     private static final int DELETE_CLIENT = 2;
+
+    private static final String TAG = "CustomerActivity";
 
     private Toast toast;
 
@@ -57,18 +61,28 @@ public class CustomerActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_customer, frameLayout);
 
         initiateView();
+        System.out.println( FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
-        String user = settings.getString(PREFS_USER, null);
+        /*SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_CUSTOMERID, 0);
+        String custoId = settings.getString(PREFS_CUSTOMERID, null);*/
 
-        CustomerViewModel.Factory factory = new CustomerViewModel.Factory(getApplication(), user);
-        viewModel = ViewModelProviders.of(this, factory).get(CustomerViewModel.class);
+        /*Intent intent = getIntent();
+        String custoId = intent.getStringExtra("custoId");
+        System.out.println(custoId);*/
+
+        CustomerViewModel.Factory factory = new CustomerViewModel.Factory(
+                getApplication(),
+                FirebaseAuth.getInstance().getCurrentUser().getUid()
+        );
+        viewModel = new ViewModelProvider(this, factory).get(CustomerViewModel.class);
         viewModel.getCustomer().observe(this, customerEntity -> {
             if (customerEntity != null) {
                 client = customerEntity;
                 updateContent();
             }
         });
+
+
 
         btn_save = (Button) findViewById(R.id.btn_save);
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +95,7 @@ public class CustomerActivity extends BaseActivity {
         });
 
     }
+
 
     public void save(View view) {
         saveChanges(
@@ -138,16 +153,18 @@ public class CustomerActivity extends BaseActivity {
             alertDialog.setCancelable(false);
             alertDialog.setMessage(getString(R.string.delete_msg));
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_delete), (dialog, which) -> {
-               /* viewModel.deleteCustomer(client, new OnAsyncEventListener() {
+                viewModel.deleteClient(client, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
+                        Log.d(TAG, "deleteUser: success");
                         logout();
                     }
 
                     @Override
                     public void onFailure(Exception e) {
+                        Log.d(TAG, "deleteUser: failure", e);
                     }
-                });*/
+                });
             });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
             alertDialog.show();
@@ -218,8 +235,10 @@ public class CustomerActivity extends BaseActivity {
 
     private void updateContent() {
         if (client != null) {
-            etFirstName.setText(client.getFirstName());
-            etLastName.setText(client.getLastName());
+            etFirstName.setText(client.getFirstname());
+            System.out.println(client.getFirstname());
+            System.out.println(client.getLastname());
+            etLastName.setText(client.getLastname());
             etEmail.setText(client.getEmail());
             etCity.setText(client.getCity());
             etCity_code.setText(String.valueOf(client.getCity_code()));
@@ -241,12 +260,26 @@ public class CustomerActivity extends BaseActivity {
             }
 
             client.setEmail(email);
-            client.setFirstName(firstName);
-            client.setLastName(lastName);
+            client.setFirstname(firstName);
+            client.setLastname(lastName);
             client.setPassword(pwd);
             client.setTelephone(telephone);
             client.setCity(city);
             client.setCity_code(city_code);
+
+            viewModel.updateClientPwd(client, new OnAsyncEventListener() {
+                @Override
+                public void onSuccess() {
+                    Log.d(TAG, "Password update: success");
+                    setResponse(true);
+                }
+
+                @Override
+                public void onFailure(Exception e) {
+                    Log.d(TAG, "Password update: failure", e);
+                    setResponse(false);
+                }
+            });
         }
 
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -255,25 +288,27 @@ public class CustomerActivity extends BaseActivity {
             return;
         } else {
             client.setEmail(email);
-            client.setFirstName(firstName);
-            client.setLastName(lastName);
+            client.setFirstname(firstName);
+            client.setLastname(lastName);
             client.setTelephone(telephone);
             client.setCity(city);
             client.setCity_code(city_code);
         }
 
 
-        /*viewModel.updateCustomer(client, new OnAsyncEventListener() {
+        viewModel.updateClient(client, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
+                Log.d(TAG, "update: success");
                 setResponse(true);
             }
 
             @Override
             public void onFailure(Exception e) {
+                Log.d(TAG, "update: failure", e);
                 setResponse(false);
             }
-        });*/
+        });
     }
 
     private void setResponse(Boolean response) {

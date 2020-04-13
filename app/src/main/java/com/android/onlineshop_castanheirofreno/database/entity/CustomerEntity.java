@@ -21,10 +21,10 @@ public class CustomerEntity implements Comparable {
     private String email;
 
     //@ColumnInfo(name = "first_name")
-    private String firstName;
+    private String firstname;
 
     //@ColumnInfo(name = "last_name")
-    private String lastName;
+    private String lastname;
 
     //@ColumnInfo(name = "city")
     private String city;
@@ -41,16 +41,17 @@ public class CustomerEntity implements Comparable {
     public CustomerEntity() {
     }
 
-    public CustomerEntity(@NonNull String email, String firstName, String lastName, String city, int city_code, String telephone, String password) {
+    public CustomerEntity(@NonNull String email, String firstname, String lastname, String city, int city_code, String telephone, String password) {
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.city = city;
         this.city_code = city_code;
         this.telephone = telephone;
         this.password = password;
     }
 
+    @Exclude
     public String getIdCustomer() { return idCustomer; }
 
     public void setIdCustomer(String idCustomer) { this.idCustomer = idCustomer; }
@@ -64,20 +65,20 @@ public class CustomerEntity implements Comparable {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPassword() {
@@ -123,7 +124,7 @@ public class CustomerEntity implements Comparable {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return firstname + " " + lastname;
     }
 
     @Override
@@ -135,8 +136,8 @@ public class CustomerEntity implements Comparable {
     public Map<String, Object> toMap(){
         HashMap<String, Object> result = new HashMap<>();
         result.put("email" , email);
-        result.put("firstname" , firstName);
-        result.put("lastname" , lastName);
+        result.put("firstname" , firstname);
+        result.put("lastname" , lastname);
         result.put("city" , city);
         result.put("city_code" , city_code);
         result.put("telephone" , telephone);

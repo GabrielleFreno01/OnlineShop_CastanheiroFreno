@@ -19,15 +19,21 @@ import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.ui.customer.CustomerActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
+import com.android.onlineshop_castanheirofreno.ui.mgmt.LoginActivity;
 import com.android.onlineshop_castanheirofreno.ui.mgmt.SettingsActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String PREFS_NAME = "SharedPrefs";
     public static final String PREFS_USER = "LoggedIn";
     public static final String PREFS_ITEM = "ItemId";
+    public static final String PREFS_CUSTOMERID = "CustoId";
+
 
 
     protected FrameLayout frameLayout;
@@ -36,6 +42,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     protected NavigationView navigationView;
 
+    private StorageReference mStorageRef;
 
     protected static int position;
 
@@ -45,6 +52,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_base);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         frameLayout = findViewById(R.id.flContent);
 
@@ -56,6 +65,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = findViewById(R.id.base_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -129,9 +140,11 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         editorItem.remove(BaseActivity.PREFS_ITEM);
         editorItem.apply();
 
-        /*Intent intent = new Intent(this, LoginActivity.class);
+        FirebaseAuth.getInstance().signOut();
+
+        Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);*/
+        startActivity(intent);
     }
 }

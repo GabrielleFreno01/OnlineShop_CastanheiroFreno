@@ -3,6 +3,7 @@ package com.android.onlineshop_castanheirofreno.ui.item;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -17,6 +18,7 @@ import com.android.onlineshop_castanheirofreno.adapter.MyListAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class AddItemActivity extends BaseActivity {
 
         initiateView();
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), 0L, 0L);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), "", "");
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         categoryEntities = new ArrayList<>();
         viewModel.getCategories().observe(this, categories -> {
@@ -68,7 +70,7 @@ public class AddItemActivity extends BaseActivity {
                 etproductName.getText().toString(),
                 etdescription.getText().toString(),
                 Double.parseDouble(etprice.getText().toString()),
-                spinner.getSelectedItemId()+1
+                (CategoryEntity)spinner.getSelectedItem()
         ));
 
 
@@ -116,7 +118,7 @@ public class AddItemActivity extends BaseActivity {
         }
     }
 
-    private void saveChanges(String name, String description, double price, long idCategory) {
+    private void saveChanges(String name, String description, double price, CategoryEntity category) {
 
 
             boolean cancel = false;
@@ -149,8 +151,21 @@ public class AddItemActivity extends BaseActivity {
             }
 
             if (!cancel) {
-                ItemEntity newItem = new ItemEntity(name, description, price, idCategory);
+                ItemEntity newItem = new ItemEntity(name, description, price, category.getIdCategory());
+                viewModel.createItem(newItem, new OnAsyncEventListener(){
 
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG, "createItem: success");
+                        setResponse(true);
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.d(TAG, "createItem: failure", e);
+                        setResponse(false);
+                    }
+                });
                 /*new CreateItem(getApplication(), new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {

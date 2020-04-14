@@ -3,6 +3,7 @@ package com.android.onlineshop_castanheirofreno.ui.item;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.text.DecimalFormat;
@@ -27,6 +29,7 @@ public class ItemDescriptionActivity extends BaseActivity {
 
     private Button btn_add_cart;
 
+    private static final String TAG = "ItemDescriptionActivity";
 
     private static final int EDIT_ORDER = 1;
     private static final int DELETE_ORDER = 2;
@@ -51,8 +54,8 @@ public class ItemDescriptionActivity extends BaseActivity {
         initiateView();
 
         Intent intent = getIntent();
-        long itemId = intent.getLongExtra("itemId", 0L);
-        long catId = intent.getLongExtra("idCategory", 0L);
+        String itemId = intent.getStringExtra("itemId");
+        String catId = intent.getStringExtra("idCategory");
 
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
@@ -123,17 +126,17 @@ public class ItemDescriptionActivity extends BaseActivity {
             alertDialog.setCancelable(false);
             alertDialog.setMessage(getString(R.string.delete_msg));
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_delete), (dialog, which) -> {
-                /*viewModel.deleteItem(item, new OnAsyncEventListener() {
+                viewModel.deleteItem(item, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-
+                        Log.d(TAG, "Delete item: success");
                         setResponse(true);
                     }
 
                     @Override
                     public void onFailure(Exception e) {
                     }
-                });*/
+                });
             });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
             alertDialog.show();
@@ -146,7 +149,7 @@ public class ItemDescriptionActivity extends BaseActivity {
         Intent intent = new Intent(this, CartActivity.class);
         SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_ITEM, 0).edit();
         editor.remove(BaseActivity.PREFS_ITEM);
-        editor.putLong(BaseActivity.PREFS_ITEM, item.getIdItem());
+        editor.putString(BaseActivity.PREFS_ITEM, item.getIdItem());
         editor.apply();
         startActivity(intent);
         finish();

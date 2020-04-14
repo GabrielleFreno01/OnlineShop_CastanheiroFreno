@@ -5,55 +5,34 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
-//@Entity(tableName = "items", foreignKeys = {@ForeignKey(entity = CategoryEntity.class, parentColumns = "idCategory", childColumns = "idCategory")},
-//@ForeignKey(entity = ImageEntity.class, parentColumns = "idImage", childColumns = "idImage")},
-// indices = {
-//   @Index(value = {"idCategory"}),
-//@Index( value = {"idImage"})
-//  }
-//)
+
 
 public class ItemEntity {
 
-    //@PrimaryKey(autoGenerate = true)
-    private Long idItem;
-
-    //@ColumnInfo(name = "name")
+    private String idItem;
     private String name;
-
-    //@ColumnInfo(name = "description")
     private String description;
-
-    // @ColumnInfo(name = "price")
     private double price;
+    private String idCategory;
 
-    // @ColumnInfo(name = "idCategory")
-    private long idCategory;
-
-    /*@ColumnInfo(name = "idImage")
-    private long idImage;*/
-
-
-    // @Ignore
     public ItemEntity() {
     }
 
-    public ItemEntity(String name, String description, double price, long idCategory) {//, long idImage) {
+    public ItemEntity(String name, String description, double price, String idCategory) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.idCategory = idCategory;
-        //this.idImage = idImage;
     }
 
     //getters & setters
 
     @Exclude
-    public Long getIdItem() {
+    public String getIdItem() {
         return idItem;
     }
 
-    public void setIdItem(Long id) {
+    public void setIdItem(String id) {
         this.idItem = id;
     }
 
@@ -81,17 +60,14 @@ public class ItemEntity {
         this.price = price;
     }
 
-    public long getIdCategory() {
+    @Exclude
+    public String getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(long idCategory) {
+    public void setIdCategory(String idCategory) {
         this.idCategory = idCategory;
     }
-
-    //public long getIdImage() { return idImage; }
-
-    //public void setIdImage(long image) { this.idImage = image; }
 
 
     @Exclude

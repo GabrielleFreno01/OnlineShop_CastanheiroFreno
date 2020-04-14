@@ -29,7 +29,7 @@ public class OrderViewModel extends AndroidViewModel {
     private final MediatorLiveData<List<ItemEntity>> observableItems;
 
     public OrderViewModel(@NonNull Application application,
-                          final Long orderId, OrderRepository orderRepository, ItemRepository itemRepository) {
+                          final String orderId, OrderRepository orderRepository, ItemRepository itemRepository) {
         super(application);
 
         this.application = application;
@@ -61,12 +61,12 @@ public class OrderViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final Long orderId;
+        private final String orderId;
 
         private final OrderRepository repository;
         private final ItemRepository itemRepository;
 
-        public Factory(@NonNull Application application, Long orderId) {
+        public Factory(@NonNull Application application, String orderId) {
             this.application = application;
             this.orderId = orderId;
             repository = ((BaseApp) application).getOrderRepository();

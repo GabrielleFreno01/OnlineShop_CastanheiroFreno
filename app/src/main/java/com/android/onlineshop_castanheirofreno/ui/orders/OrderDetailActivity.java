@@ -42,7 +42,7 @@ public class OrderDetailActivity extends BaseActivity {
 
     private OrderViewModel viewModel;
 
-    private long orderId;
+    private String orderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class OrderDetailActivity extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
-        orderId = getIntent().getLongExtra("orderId", 0L);
+        orderId = getIntent().getStringExtra("orderId");
 
         initiateView();
 

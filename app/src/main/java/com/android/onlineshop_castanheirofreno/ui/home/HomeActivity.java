@@ -82,7 +82,7 @@ public class HomeActivity extends BaseActivity {
 
         });
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), 0L, 0L);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), "", "");
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getNewItems().observe(this, newItemEntity -> {
             if (newItemEntity != null) {

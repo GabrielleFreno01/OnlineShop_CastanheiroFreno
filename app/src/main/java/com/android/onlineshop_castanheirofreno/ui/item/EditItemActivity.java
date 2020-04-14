@@ -16,6 +16,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.text.DecimalFormat;
@@ -38,6 +39,7 @@ public class EditItemActivity extends BaseActivity {
     private ItemViewModel viewModel;
 
     private ItemEntity item;
+    private List<CategoryEntity> categoriesList;
 
     private MyListAdapter<CategoryEntity> adapterCategories;
 
@@ -53,8 +55,9 @@ public class EditItemActivity extends BaseActivity {
         initiateView();
 
         Intent intent = getIntent();
-        long itemId = intent.getLongExtra("itemId", 0L);
-        long catId = intent.getLongExtra("idCategory", 0L);
+        String itemId = intent.getStringExtra("itemId");
+        String catId = intent.getStringExtra("idCategory");
+
 
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
@@ -65,12 +68,13 @@ public class EditItemActivity extends BaseActivity {
             }
         });
 
+        categoriesList = new ArrayList<>();
         viewModel.getCategories().observe(this, categories -> {
             if (categories != null) {
+                categoriesList = categories;
                 updateSpinner(categories);
             }
         });
-
 
         validateButton = (Button) findViewById(R.id.btn_edit_product);
         validateButton.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +89,15 @@ public class EditItemActivity extends BaseActivity {
 
     private void updateSpinner(List<CategoryEntity> categories) {
         adapterCategories.updateData(new ArrayList<>(categories));
+        int position = 0;
+        for (int i=0; i<categories.size(); i++) {
+            CategoryEntity cat = categories.get(i);
+            if(cat.getIdCategory().equals(item.getIdCategory())) {
+                position = i;
+                break;
+            }
+        }
+        spinner.setSelection(position);
 
     }
 
@@ -95,8 +108,6 @@ public class EditItemActivity extends BaseActivity {
             NumberFormat formatter = new DecimalFormat("#0.00");
             etprice.setText(formatter.format(item.getPrice()));
             etdescription.setText(item.getDescription());
-            spinner.setSelection((int) (item.getIdCategory()) - 1);
-
         }
 
     }
@@ -107,21 +118,20 @@ public class EditItemActivity extends BaseActivity {
                 Double.parseDouble(etprice.getText().toString()),
                 etdescription.getText().toString(),
                 //imageButton.getId(),
-                spinner.getSelectedItemId() + 1
-
+                (CategoryEntity)spinner.getSelectedItem()
         );
 
     }
 
 
-    private void saveChanges(String name, double price, String description, long idCategory) {
+    private void saveChanges(String name, double price, String description, CategoryEntity category) {
         item.setName(name);
         item.setPrice(price);
         item.setDescription(description);
         //item.setIdImage(idImage);
-        item.setIdCategory(idCategory);
+        item.setIdCategory(category.getIdCategory());
 
-        /*viewModel.updateItem(item, new OnAsyncEventListener() {
+        viewModel.updateItem(item, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
                 setResponse(true);
@@ -131,7 +141,7 @@ public class EditItemActivity extends BaseActivity {
             public void onFailure(Exception e) {
                 setResponse(false);
             }
-        });*/
+        });
     }
 
     private void setResponse(Boolean response) {

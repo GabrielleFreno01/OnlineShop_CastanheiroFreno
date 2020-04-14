@@ -124,7 +124,7 @@ public class CustomerRepository {
                 });
     }
 /*
-    public LiveData<CustomerEntity> getCustomer(final long customerId, Application application) {
+    public LiveData<CustomerEntity> getCustomer(final String customerId, Application application) {
         return ((BaseApp) application).getDatabase().customerDao().getById(customerId);
     }
 

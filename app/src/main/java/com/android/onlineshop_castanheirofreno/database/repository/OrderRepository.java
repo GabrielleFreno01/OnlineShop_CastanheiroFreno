@@ -139,11 +139,11 @@ public class OrderRepository {
         });
     }
 /*
-    public LiveData<OrderEntity> getOrder(final Long orderId, Application application) {
+    public LiveData<OrderEntity> getOrder(final String orderId, Application application) {
         return ((BaseApp) application).getDatabase().orderDao().getById(orderId);
     }
 
-    public LiveData<OrderWithItem> getOrderWithItem(final Long orderId, Application application) {
+    public LiveData<OrderWithItem> getOrderWithItem(final String orderId, Application application) {
         return ((BaseApp) application).getDatabase().orderDao().getOrderWithItem(orderId);
     }
 

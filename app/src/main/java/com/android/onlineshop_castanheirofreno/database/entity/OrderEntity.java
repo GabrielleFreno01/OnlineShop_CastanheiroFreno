@@ -39,7 +39,7 @@ public class OrderEntity implements Comparable {
     private String creationDate;
 
     //  @ColumnInfo(name = "idItem")
-    private long idItem;
+    private String idItem;
 
     //@ColumnInfo(name = "owner")
     private String owner;
@@ -54,7 +54,7 @@ public class OrderEntity implements Comparable {
     public OrderEntity() {
     }
 
-    public OrderEntity(double price, String creationDate, String deliveryDate, long idItem, String status, String owner) {
+    public OrderEntity(double price, String creationDate, String deliveryDate, String idItem, String status, String owner) {
         this.price = price;
         this.creationDate = creationDate;
         this.deliveryDate = deliveryDate;
@@ -88,11 +88,11 @@ public class OrderEntity implements Comparable {
         this.creationDate = creationDate;
     }
 
-    public long getIdItem() {
+    public String getIdItem() {
         return idItem;
     }
 
-    public void setIdItem(long idItem) {
+    public void setIdItem(String idItem) {
         this.idItem = idItem;
     }
 

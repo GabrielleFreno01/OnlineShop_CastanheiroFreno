@@ -14,7 +14,7 @@ import java.util.List;
 public interface ImageDao {
 
     @Query("SELECT * FROM images WHERE idImage = :id")
-    LiveData<ImageEntity> getById(Long id);
+    LiveData<ImageEntity> getById(String id);
 
     @Query("SELECT * FROM images")
     LiveData<List<ImageEntity>> getAll();

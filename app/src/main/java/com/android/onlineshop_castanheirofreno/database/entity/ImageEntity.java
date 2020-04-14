@@ -6,7 +6,7 @@ import com.google.firebase.database.Exclude;
 public class ImageEntity {
 
     //@PrimaryKey(autoGenerate = true)
-    private Long idImage;
+    private String idImage;
 
     //@ColumnInfo(name = "lien")
     private String lien;
@@ -23,11 +23,11 @@ public class ImageEntity {
 
     //getters & setters
     @Exclude
-    public Long getIdImage() {
+    public String getIdImage() {
         return idImage;
     }
 
-    public void setIdImage(Long id) {
+    public void setIdImage(String id) {
         this.idImage = id;
     }
 

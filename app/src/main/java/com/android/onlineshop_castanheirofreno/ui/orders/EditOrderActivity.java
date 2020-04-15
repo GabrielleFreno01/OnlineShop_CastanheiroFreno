@@ -50,7 +50,7 @@ public class EditOrderActivity extends BaseActivity {
     private OrderWithItem orderWithItem;
     private List<ItemEntity> myItemsList;
 
-    private long orderId;
+    private String orderId;
 
 
     @Override
@@ -64,7 +64,7 @@ public class EditOrderActivity extends BaseActivity {
         owner = settings.getString(BaseActivity.PREFS_USER, null);
 
 
-        orderId = getIntent().getLongExtra("orderId", 0L);
+        orderId = getIntent().getStringExtra("orderId");
 
         initiateView();
 
@@ -192,7 +192,7 @@ public class EditOrderActivity extends BaseActivity {
         }
         ;
 
-        orderWithItem.order.setIdItem(Long.parseLong(tvItemNumber.getText().toString()));
+        orderWithItem.order.setIdItem(tvItemNumber.getText().toString());
         orderWithItem.order.setPrice(Double.parseDouble(etPrice.getText().toString()));
         orderWithItem.order.setStatus(spStatus.getSelectedItem().toString());
         if (tvDeliver.getText().toString() != "")

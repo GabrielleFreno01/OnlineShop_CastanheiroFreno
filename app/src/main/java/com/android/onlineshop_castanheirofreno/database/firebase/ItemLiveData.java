@@ -5,21 +5,24 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
-import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
+import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
+import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class CategoriesLiveData extends LiveData<CategoryEntity> {
+public class ItemLiveData extends LiveData<ItemEntity> {
 
-    private static final String TAG = "AccountLiveData";
+    private static final String TAG = "ItemLiveData";
 
     private final DatabaseReference reference;
-    private final CategoriesLiveData.MyValueEventListener listener = new CategoriesLiveData.MyValueEventListener();
+    private final String idCategory;
+    private final ItemLiveData.MyValueEventListener listener = new ItemLiveData.MyValueEventListener();
 
-    public CategoriesLiveData(DatabaseReference ref) {
+    public ItemLiveData(DatabaseReference ref, String idCategory) {
         reference = ref;
+        this.idCategory = idCategory;
     }
 
     @Override
@@ -36,8 +39,9 @@ public class CategoriesLiveData extends LiveData<CategoryEntity> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            CategoryEntity entity = dataSnapshot.getValue(CategoryEntity.class);
-            entity.setIdCategory(dataSnapshot.getKey());
+            ItemEntity entity = dataSnapshot.getValue(ItemEntity.class);
+            entity.setIdItem(dataSnapshot.getKey());
+            entity.setIdCategory(idCategory);
             setValue(entity);
         }
 

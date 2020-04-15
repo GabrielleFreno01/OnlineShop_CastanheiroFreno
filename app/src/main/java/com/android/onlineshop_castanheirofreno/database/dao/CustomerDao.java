@@ -19,7 +19,7 @@ import java.util.List;
 public interface CustomerDao {
 
     @Query("SELECT * FROM customer WHERE email = :id")
-    LiveData<CustomerEntity> getById(long id);
+    LiveData<CustomerEntity> getById(String id);
 
     @Query("SELECT * FROM customer WHERE email = :id")
     LiveData<CustomerEntity> getByEmail(String id);
@@ -32,7 +32,7 @@ public interface CustomerDao {
     LiveData<List<CustomerWithOrders>> getOtherClientsWithOrders(String owner);
 
     @Insert
-    long insert(CustomerEntity customer) throws SQLiteConstraintException;
+    String insert(CustomerEntity customer) throws SQLiteConstraintException;
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<CustomerEntity> clients);

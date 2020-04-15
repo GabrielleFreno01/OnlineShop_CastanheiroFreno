@@ -61,13 +61,13 @@ public class CartActivity extends BaseActivity {
 
         //get the item
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ITEM, 0);
-        long itemId = settings.getLong(BaseActivity.PREFS_ITEM, 0L);
+        String itemId = settings.getString(BaseActivity.PREFS_ITEM,"");
 
         SharedPreferences settingsUser = getSharedPreferences(BaseActivity.PREFS_USER, 0);
         String user = settingsUser.getString(BaseActivity.PREFS_USER, "");
         System.out.println(user);
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, 0L);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, "");
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
@@ -115,7 +115,7 @@ public class CartActivity extends BaseActivity {
     }
 
 
-    private void saveChanges(double price, String creationDate, String deliveryDate, long idItem, String status, String owner) {
+    private void saveChanges(double price, String creationDate, String deliveryDate, String idItem, String status, String owner) {
 
         OrderEntity newOrder = new OrderEntity(price, creationDate, deliveryDate, idItem, status, owner);
 

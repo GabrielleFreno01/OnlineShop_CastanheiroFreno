@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.adapter.ItemsAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
+import com.android.onlineshop_castanheirofreno.database.pojo.CategoryWithItems;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
@@ -31,6 +32,7 @@ public class ItemListActivity extends BaseActivity {
     TextView cat_name;
 
     private List<ItemEntity> items;
+    private CategoryWithItems categoryWithItems;
     private ItemsAdapter adapter;
     private ItemViewModel viewModel;
 
@@ -57,10 +59,9 @@ public class ItemListActivity extends BaseActivity {
         recyclerView.addItemDecoration(horizontalDividerItemDecoration);
 
         Intent intent = getIntent();
-        long categoryId = intent.getLongExtra("categoryId", 0L);
+        String categoryId = intent.getStringExtra("categoryId");
         String name = intent.getStringExtra("categoryName");
         cat_name = findViewById(R.id.cat_name_tv);
-        cat_name.setText(name);
 
         items = new ArrayList<>();
 
@@ -83,12 +84,14 @@ public class ItemListActivity extends BaseActivity {
             }
         });
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), 0L, categoryId);
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), "", categoryId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
-        viewModel.getItemsByCategory().observe(this, itemEntity -> {
-            if (itemEntity != null) {
-                items = itemEntity;
+        viewModel.getCategoryWithItems().observe(this, categoryWithItemsList ->  {
+            if (categoryWithItemsList != null) {
+                categoryWithItems = categoryWithItemsList;
+                items = categoryWithItemsList.items;
                 adapter.setData(items);
+                cat_name.setText(categoryWithItems.category.getName());
             }
         });
 

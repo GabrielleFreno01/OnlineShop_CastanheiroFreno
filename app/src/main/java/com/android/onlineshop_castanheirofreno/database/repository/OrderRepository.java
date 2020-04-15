@@ -1,11 +1,14 @@
 package com.android.onlineshop_castanheirofreno.database.repository;
 
+import android.app.Application;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.firebase.OrderListLiveData;
 import com.android.onlineshop_castanheirofreno.database.firebase.OrderLiveData;
+import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,33 +41,39 @@ public class OrderRepository {
 
     public LiveData<OrderEntity> getOrder(final String orderId) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("Customers")
+                .getReference("orders")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("Orders")
                 .child(orderId);
         return new OrderLiveData(reference);
     }
 
     public LiveData<List<OrderEntity>> getByOwner(final String owner) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(owner)
-                .child("Orders");
+                .getReference("orders")
+                .child(owner);
         return new OrderListLiveData(reference, owner);
     }
 
-    public void insert(final OrderEntity account, final OnAsyncEventListener callback) {
+    public LiveData<List<OrderWithItem>> getOwnedOrdersWithItem(final String owner) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts");
+                .getReference("orders")
+                .child(owner);
+        return new OrderWithItemListLiveData(reference);
+    }
+
+
+    public void insert(final OrderEntity order, final OnAsyncEventListener callback) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("orders")
+                .child(order.getOwner())
+                .child("orders");
         String key = reference.push().getKey();
         FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts")
+                .getReference("orders")
+                .child(order.getOwner())
+                .child("orders")
                 .child(key)
-                .setValue(account, (databaseError, databaseReference) -> {
+                .setValue(order, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {
@@ -73,13 +82,13 @@ public class OrderRepository {
                 });
     }
 
-    public void update(final OrderEntity account, OnAsyncEventListener callback) {
+    public void update(final OrderEntity order, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts")
-                .child(account.getIdOrder())
-                .updateChildren(account.toMap(), (databaseError, databaseReference) -> {
+                .getReference("customers")
+                .child(order.getOwner())
+                .child("orders")
+                .child(order.getIdOrder())
+                .updateChildren(order.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {
@@ -88,12 +97,12 @@ public class OrderRepository {
                 });
     }
 
-    public void delete(final OrderEntity account, OnAsyncEventListener callback) {
+    public void delete(final OrderEntity order, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts")
-                .child(account.getIdOrder())
+                .getReference("customers")
+                .child(order.getOwner())
+                .child("orders")
+                .child(order.getIdOrder())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -111,16 +120,16 @@ public class OrderRepository {
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
                 rootReference
-                        .child("clients")
+                        .child("customers")
                         .child(sender.getOwner())
-                        .child("accounts")
+                        .child("orders")
                         .child(sender.getIdOrder())
                         .updateChildren(sender.toMap());
 
                 rootReference
-                        .child("clients")
+                        .child("customers")
                         .child(recipient.getOwner())
-                        .child("accounts")
+                        .child("orders")
                         .child(recipient.getIdOrder())
                         .updateChildren(recipient.toMap());
 

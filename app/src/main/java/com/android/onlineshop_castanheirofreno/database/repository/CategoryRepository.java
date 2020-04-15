@@ -1,5 +1,12 @@
 package com.android.onlineshop_castanheirofreno.database.repository;
 
+import androidx.lifecycle.LiveData;
+
+import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
+import com.android.onlineshop_castanheirofreno.database.firebase.CategoriesLiveData;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CategoryRepository {
 
     private static CategoryRepository instance;
@@ -16,6 +23,13 @@ public class CategoryRepository {
             }
         }
         return instance;
+    }
+
+    public LiveData<CategoryEntity> getCategories() {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("categories")
+                .child("name");
+        return new CategoriesLiveData(reference);
     }
 /*
     public LiveData<List<CategoryEntity>> getCategories(Application application) {

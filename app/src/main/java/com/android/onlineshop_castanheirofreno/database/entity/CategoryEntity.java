@@ -3,11 +3,14 @@ package com.android.onlineshop_castanheirofreno.database.entity;
 
 import com.google.firebase.database.Exclude;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //@Entity(tableName = "categories")
 public class CategoryEntity {
 
     //@PrimaryKey(autoGenerate = true)
-    private long idCategory;
+    private String idCategory;
 
     //@ColumnInfo(name = "name")
     private String name;
@@ -27,11 +30,11 @@ public class CategoryEntity {
 
     //getters & setters
     @Exclude
-    public long getIdCategory() {
+    public String getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(long id) {
+    public void setIdCategory(String id) {
         this.idCategory = id;
     }
 
@@ -52,6 +55,14 @@ public class CategoryEntity {
     }
     public String toString(){
         return getName();
+    }
+
+    @Exclude
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("name" , name);
+
+        return result;
     }
 }
 

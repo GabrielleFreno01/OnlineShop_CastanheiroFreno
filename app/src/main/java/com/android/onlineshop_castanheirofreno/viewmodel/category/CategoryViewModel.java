@@ -13,20 +13,20 @@ import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CategoryRepository;
 
-import java.util.List;
-
 public class CategoryViewModel extends AndroidViewModel {
 
     private Application application;
 
     private CategoryRepository repository;
 
-    private final MediatorLiveData<List<CategoryEntity>> observableCategories;
+    String categoryId;
+
+    private final MediatorLiveData<CategoryEntity> observableCategories;
 
     public CategoryViewModel(@NonNull Application application, CategoryRepository categoryRepository) {
         super(application);
 
-        this.application = application;
+        this.categoryId = categoryId;
 
         repository = categoryRepository;
 
@@ -34,6 +34,12 @@ public class CategoryViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableCategories.setValue(null);
 
+
+        LiveData<CategoryEntity> category = repository.getCategories();
+        observableCategories.addSource(category, observableCategories::setValue);
+
+        //LiveData<CategoryEntity> categories = repository.getCategories();
+        //observableCategories.addSource(categories, observableCategories::setValue);
         //LiveData<List<CategoryEntity>> categories = repository.getCategories(application);
 
         // observe the changes of the account entity from the database and forward them
@@ -44,11 +50,12 @@ public class CategoryViewModel extends AndroidViewModel {
 
         @NonNull
         private final Application application;
-
+        private String categoryId;
         private final CategoryRepository repository;
 
         public Factory(@NonNull Application application) {
             this.application = application;
+
             repository = ((BaseApp) application).getCategoryRepository();
         }
 
@@ -59,7 +66,7 @@ public class CategoryViewModel extends AndroidViewModel {
         }
     }
 
-    public LiveData<List<CategoryEntity>> getCategories() {
+    public LiveData<CategoryEntity> getCategories() {
         return observableCategories;
     }
 

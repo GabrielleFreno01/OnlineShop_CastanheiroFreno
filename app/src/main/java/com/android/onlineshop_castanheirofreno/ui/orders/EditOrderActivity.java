@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.ui.orders;
+/*package com.android.onlineshop_castanheirofreno.ui.orders;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -208,7 +208,7 @@ public class EditOrderActivity extends BaseActivity {
             public void onFailure(Exception e) {
                 Log.d(TAG, "updateOrder: failure", e);
             }
-        });*/
+        });
 
 
     }
@@ -266,3 +266,4 @@ public class EditOrderActivity extends BaseActivity {
         return index;
     }
 }
+*/

@@ -49,7 +49,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
     public void onBindViewHolder(@NonNull OrdersViewHolder holder, int position) {
         OrderWithItem orderWithItem = orders.get(position);
 
-        //holder.textView_orderId.setText(Long.toString(orderWithItem.order.getIdOrder()));
+        holder.textView_orderId.setText(orderWithItem.order.getIdOrder());
         holder.textView_creationDate.setText(orderWithItem.order.getCreationDate());
         holder.textView_productName.setText(orderWithItem.item.getName());
         holder.textView_status.setText(orderWithItem.order.getStatus());

@@ -11,9 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
-import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
+import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.ItemRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.OrderRepository;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 import java.util.List;
 
@@ -25,11 +26,11 @@ public class OrderViewModel extends AndroidViewModel {
     private ItemRepository itemRepository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<OrderWithItem> observableOrder;
+    private final MediatorLiveData<OrderEntity> observableOrder;
     private final MediatorLiveData<List<ItemEntity>> observableItems;
 
     public OrderViewModel(@NonNull Application application,
-                          final Long orderId, OrderRepository orderRepository, ItemRepository itemRepository) {
+                          final String orderId, OrderRepository orderRepository, ItemRepository itemRepository) {
         super(application);
 
         this.application = application;
@@ -41,6 +42,12 @@ public class OrderViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableOrder.setValue(null);
 
+        if (orderId != null) {
+            LiveData<OrderEntity> order = repository.getOrder(orderId);
+
+            // observe the changes of the account entity from the database and forward them
+            observableOrder.addSource(order, observableOrder::setValue);
+        }
         //LiveData<OrderWithItem> order = repository.getOrderWithItem(orderId, application);
 
         // observe the changes of the account entity from the database and forward them
@@ -61,12 +68,12 @@ public class OrderViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final Long orderId;
+        private final String orderId;
 
         private final OrderRepository repository;
         private final ItemRepository itemRepository;
 
-        public Factory(@NonNull Application application, Long orderId) {
+        public Factory(@NonNull Application application, String orderId) {
             this.application = application;
             this.orderId = orderId;
             repository = ((BaseApp) application).getOrderRepository();
@@ -81,12 +88,22 @@ public class OrderViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<OrderWithItem> getOrderWithItem() {
+    public LiveData<OrderEntity> getOrderWithItem() {
         return observableOrder;
     }
 
     public LiveData<List<ItemEntity>> getItems() {
         return observableItems;
+    }
+
+    public void createOrder(OrderEntity order, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getOrderRepository()
+                .insert(order, callback);
+    }
+
+    public void updateOrder(OrderEntity order, OnAsyncEventListener callback) {
+        ((BaseApp) getApplication()).getOrderRepository()
+                .update(order, callback);
     }
 
    /* public void createOrder(OrderEntity order, OnAsyncEventListener callback) {

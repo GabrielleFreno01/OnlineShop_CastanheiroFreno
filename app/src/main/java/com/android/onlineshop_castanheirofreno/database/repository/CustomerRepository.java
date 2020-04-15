@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.firebase.CustomerLiveData;
+import com.android.onlineshop_castanheirofreno.database.firebase.CustomerOrderListLiveData;
+import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
@@ -46,11 +48,12 @@ public class CustomerRepository {
         return new CustomerLiveData(reference);
     }
 
-    /*public LiveData<List<CustomerWithOrders>> getCustomerWithOrders(final String owner) {
+    public LiveData<CustomerWithOrders> getCustomerWithOrders(final String owner) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("Customers");
-        return new CustomerWithOrders(reference, owner);
-    }*/
+                .getReference("customers");
+        return new CustomerOrderListLiveData(reference, owner);
+    }
+
 
     public void register(final CustomerEntity customer, final OnAsyncEventListener callback) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(

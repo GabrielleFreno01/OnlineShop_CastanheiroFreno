@@ -1,6 +1,5 @@
 package com.android.onlineshop_castanheirofreno.ui.orders;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -9,11 +8,10 @@ import android.view.View;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.android.onlineshop_castanheirofreno.R;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderViewModel;
@@ -42,7 +40,7 @@ public class OrderDetailActivity extends BaseActivity {
 
     private OrderViewModel viewModel;
 
-    private long orderId;
+    private String orderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class OrderDetailActivity extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
-        orderId = getIntent().getLongExtra("orderId", 0L);
+        orderId = getIntent().getStringExtra("orderId");
 
         initiateView();
 
@@ -60,7 +58,7 @@ public class OrderDetailActivity extends BaseActivity {
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
         viewModel.getOrderWithItem().observe(this, orderEntity -> {
             if (orderEntity != null) {
-                orderWithItem = orderEntity;
+                //orderWithItem = orderEntity;
                 updateContent();
             }
         });
@@ -77,9 +75,9 @@ public class OrderDetailActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(this, EditOrderActivity.class);
+        /*Intent intent = new Intent(this, EditOrderActivity.class);
         intent.putExtra("orderId", orderId);
-        startActivity(intent);
+        startActivity(intent);*/
         onBackPressed();
         finish();
         return super.onOptionsItemSelected(item);

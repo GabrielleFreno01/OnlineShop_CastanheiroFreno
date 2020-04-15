@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "434369670768",
+    "firebase_url": "https://onlineshop-castanheiro-freno.firebaseio.com",
+    "project_id": "onlineshop-castanheiro-freno",
+    "storage_bucket": "onlineshop-castanheiro-freno.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434369670768:android:9a75dd6d8f6c0c7c544eb5",
+        "android_client_info": {
+          "package_name": "com.android.onlineshop_castanheirofreno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "434369670768-1ornpvqn14ch5lib53lpoinbt22p132p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmxto8ZjWJoYyDEVVA3ry38UyrpjsE9rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "434369670768-1ornpvqn14ch5lib53lpoinbt22p132p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

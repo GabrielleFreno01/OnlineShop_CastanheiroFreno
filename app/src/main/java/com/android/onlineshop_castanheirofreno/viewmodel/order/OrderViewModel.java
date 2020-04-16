@@ -88,10 +88,6 @@ public class OrderViewModel extends AndroidViewModel {
         return observableItems;
     }
 
-   //public void createOrder(OrderEntity order, OnAsyncEventListener callback) {
-       // repository.insert(order, callback, application);
-    //}
-
     public void updateOrder(OrderEntity order, OnAsyncEventListener callback) {
         repository.update(order, callback);
     }

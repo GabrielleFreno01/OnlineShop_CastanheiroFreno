@@ -11,9 +11,6 @@ import java.util.Map;
 //@Entity(tableName = "customer", primaryKeys = {"email"})
 public class CustomerEntity implements Comparable {
 
-
-
-
     private String idCustomer;
 
 
@@ -35,21 +32,24 @@ public class CustomerEntity implements Comparable {
     //@ColumnInfo(name = "telephone")
     private String telephone;
 
-    private String password;
+    //private String password;
 
     @Ignore
     public CustomerEntity() {
     }
 
-    public CustomerEntity(@NonNull String email, String firstname, String lastname, String city, int city_code, String telephone, String password) {
+    public CustomerEntity(@NonNull String email, String firstname, String lastname, String city, int city_code, String telephone){//, String password) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.city = city;
         this.city_code = city_code;
         this.telephone = telephone;
-        this.password = password;
+        //this.password = password;
     }
+
+
+
 
     @Exclude
     public String getIdCustomer() { return idCustomer; }
@@ -81,13 +81,9 @@ public class CustomerEntity implements Comparable {
         this.lastname = lastname;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    //public String getPassword() { return password;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    //public void setPassword(String password) { this.password = password; }
 
     public String getCity() {
         return city;

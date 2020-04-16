@@ -61,14 +61,7 @@ public class CustomerActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_customer, frameLayout);
 
         initiateView();
-        System.out.println( FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        /*SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_CUSTOMERID, 0);
-        String custoId = settings.getString(PREFS_CUSTOMERID, null);*/
-
-        /*Intent intent = getIntent();
-        String custoId = intent.getStringExtra("custoId");
-        System.out.println(custoId);*/
 
         CustomerViewModel.Factory factory = new CustomerViewModel.Factory(
                 getApplication(),
@@ -262,10 +255,11 @@ public class CustomerActivity extends BaseActivity {
             client.setEmail(email);
             client.setFirstname(firstName);
             client.setLastname(lastName);
-            client.setPassword(pwd);
+            //client.setPassword(pwd);
             client.setTelephone(telephone);
             client.setCity(city);
             client.setCity_code(city_code);
+
 
             viewModel.updateClientPwd(client, new OnAsyncEventListener() {
                 @Override
@@ -279,13 +273,14 @@ public class CustomerActivity extends BaseActivity {
                     Log.d(TAG, "Password update: failure", e);
                     setResponse(false);
                 }
-            });
+            }, etPwd1.getText().toString());
         }
 
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError(getString(R.string.error_invalid_email));
             etEmail.requestFocus();
             return;
+
         } else {
             client.setEmail(email);
             client.setFirstname(firstName);

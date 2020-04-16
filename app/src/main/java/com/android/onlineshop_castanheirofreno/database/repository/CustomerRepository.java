@@ -6,12 +6,16 @@ import androidx.lifecycle.LiveData;
 
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.firebase.CustomerLiveData;
+import com.android.onlineshop_castanheirofreno.database.firebase.CustomerOrderListLiveData;
+import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 public class CustomerRepository {
 
@@ -42,21 +46,23 @@ public class CustomerRepository {
     public LiveData<CustomerEntity> getCustomer(final String clientId) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("customers")
-                .child(clientId); //"O1OuWOo1y1Ow2bdAGm0bqGxuuID2"
-        System.out.println(clientId);
+                .child(clientId);
         return new CustomerLiveData(reference);
     }
 
-    /*public LiveData<List<CustomerWithOrders>> getCustomerWithOrders(final String owner) {
+    public LiveData<List<CustomerWithOrders>> getCustomerWithOrders(final String ownerId) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("Customers");
-        return new CustomerWithOrders(reference, owner);
-    }*/
+                .getReference("orders")
+                .child(ownerId);
+        return new CustomerOrderListLiveData(reference, ownerId);
+    }
 
-    public void register(final CustomerEntity customer, final OnAsyncEventListener callback) {
+
+
+    public void register(final CustomerEntity customer, final OnAsyncEventListener callback, String pwd) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                 customer.getEmail(),
-                customer.getPassword()
+                pwd
         ).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 customer.setIdCustomer(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -105,8 +111,8 @@ public class CustomerRepository {
 
     }
 
-    public void updatePwd(final CustomerEntity customer, final OnAsyncEventListener callback){
-        FirebaseAuth.getInstance().getCurrentUser().updatePassword(customer.getPassword())
+    public void updatePwd(final CustomerEntity customer, final OnAsyncEventListener callback, String pwd){
+        FirebaseAuth.getInstance().getCurrentUser().updatePassword(pwd)
                 .addOnFailureListener(
                         e -> Log.d(TAG, "updatePassword failure!", e)
                 );
@@ -124,38 +130,7 @@ public class CustomerRepository {
                     }
                 });
     }
-/*
-    public LiveData<CustomerEntity> getCustomer(final String customerId, Application application) {
-        return ((BaseApp) application).getDatabase().customerDao().getById(customerId);
-    }
 
-    public LiveData<CustomerEntity> getCustomerUser(final String user, Application application) {
-        return ((BaseApp) application).getDatabase().customerDao().getByEmail(user);
-    }
-
-    public LiveData<CustomerEntity> getCustomerByEmail(final String email, Application application) {
-        return ((BaseApp) application).getDatabase().customerDao().getByEmail(email);
-    }
-
-    public LiveData<List<CustomerWithOrders>> getCustomerWithOrders(final String owner,
-                                                                    Application application) {
-        return ((BaseApp) application).getDatabase().customerDao().getOtherCustomersWithOrders(owner);
-    }
-
-    public void insert(final CustomerEntity customer, OnAsyncEventListener callback,
-                       Application application) {
-        new CreateCustomer(application, callback).execute(customer);
-    }
-
-    public void update(final CustomerEntity customer, OnAsyncEventListener callback,
-                       Application application) {
-        new UpdateCustomer(application, callback).execute(customer);
-    }
-
-    public void delete(final CustomerEntity customer, OnAsyncEventListener callback,
-                       Application application) {
-        new DeleteCustomer(application, callback).execute(customer);
-    }*/
 
 
 }

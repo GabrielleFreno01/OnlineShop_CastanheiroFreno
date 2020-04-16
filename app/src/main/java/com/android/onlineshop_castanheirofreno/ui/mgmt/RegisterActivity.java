@@ -1,7 +1,6 @@
 package com.android.onlineshop_castanheirofreno.ui.mgmt;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -14,7 +13,6 @@ import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
-import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
@@ -142,7 +140,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (!cancel) {
 
-            CustomerEntity newClient = new CustomerEntity(email, firstName, lastName, city, city_code, telephone, pwd);
+            CustomerEntity newClient = new CustomerEntity(email, firstName, lastName, city, city_code, telephone);
 
             repository.register(newClient, new OnAsyncEventListener() {
                 @Override
@@ -158,15 +156,12 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
 
-            });
+            }, etPwd1.getText().toString());
         }
     }
 
     private void setResponse(Boolean response) {
         if (response) {
-            final SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_USER, 0).edit();
-            editor.putString(BaseActivity.PREFS_USER, etEmail.getText().toString());
-            editor.apply();
             toast.show();
             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(intent);

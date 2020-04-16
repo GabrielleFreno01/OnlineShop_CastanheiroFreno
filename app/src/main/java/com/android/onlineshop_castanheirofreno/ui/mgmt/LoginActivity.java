@@ -14,6 +14,8 @@ import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -21,13 +23,14 @@ public class LoginActivity extends AppCompatActivity {
     private AutoCompleteTextView emailView;
     private EditText passwordView;
 
-
+    private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private CustomerRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.title_activity_login);
+
 
         setContentView(R.layout.activity_login);
 

@@ -129,39 +129,6 @@ public class OrderRepository {
             }
         });
     }
-/*
-    public LiveData<OrderEntity> getOrder(final String orderId, Application application) {
-        return ((BaseApp) application).getDatabase().orderDao().getById(orderId);
-    }
 
-
-
-    public LiveData<List<OrderEntity>> getOrders(Application application) {
-        return ((BaseApp) application).getDatabase().orderDao().getAll();
-    }
-
-    public LiveData<List<OrderWithItem>> getOwnedOrdersWithItem(final String owner, Application application) {
-        return ((BaseApp) application).getDatabase().orderDao().getOwnedOrdersWithItem(owner);
-    }
-
-    public LiveData<List<OrderEntity>> getByOwner(final String owner, Application application) {
-        return ((BaseApp) application).getDatabase().orderDao().getOwned(owner);
-    }
-
-    public void insert(final OrderEntity order, OnAsyncEventListener callback,
-                       Application application) {
-        new CreateOrder(application, callback).execute(order);
-    }
-
-    public void update(final OrderEntity order, OnAsyncEventListener callback,
-                       Application application) {
-        new UpdateOrder(application, callback).execute(order);
-    }
-
-    public void delete(final OrderEntity order, OnAsyncEventListener callback,
-                       Application application) {
-        new DeleteOrder(application, callback).execute(order);
-    }
-*/
 
 }

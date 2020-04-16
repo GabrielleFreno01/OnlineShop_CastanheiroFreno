@@ -75,7 +75,7 @@ public class EditOrderActivity extends BaseActivity {
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
         viewModel.getOrderWithItem().observe(this, orderEntity -> {
             if (orderEntity != null) {
-                //orderWithItem = orderEntity;
+                orderWithItem = orderEntity;
                 updateContent();
             }
         });

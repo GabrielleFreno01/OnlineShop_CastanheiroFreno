@@ -3,6 +3,7 @@ package com.android.onlineshop_castanheirofreno.ui.item;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -165,8 +166,8 @@ public class EditItemActivity extends BaseActivity {
 
         spinner = findViewById(R.id.spinner_category);
         adapterCategories = new MyListAdapter<>(this, R.layout.row_category, new ArrayList<>());
-        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_list, android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_list, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterCategories);
 
     }

@@ -1,0 +1,406 @@
+{
+  "categories" : {
+    "-M51MsOxdEtBGOCW_h0v" : {
+      "items" : {
+        "-M51Pjo9z9Sd9QyU0fPd" : {
+          "description" : "Fonctions: Fonction mains libresCommande intégrée\\n\" +\n                \"Forme de port (type d'écouteurs): In-Ear\\n\" +\n                \"Bluetooth: Non\\n\" +\n                \"Connexions: 3.5 mm AUX\\n\" +\n                \"Connexions audio: Line in 3.5mm",
+          "name" : "Apple EarPods",
+          "price" : 35
+        },
+        "-M51Pu_s7Faf3h-B_l5L" : {
+          "description" : "utonomie de fonctionnement (jusqu'à): 8 h\\n\" +\n                \"Fonctions: Fonction mains libres\\n\" +\n                \"Forme de port (type d'écouteurs): In-Ear\\n\" +\n                \"Bande de fréquences: 20 Hz - 20 kHz\\n\" +\n                \"Connectivité: Bluetooth",
+          "name" : "AKG Y100 Wireless",
+          "price" : 69.3
+        },
+        "-M51Q2-s1IUZsCAyoLyv" : {
+          "description" : "Autonomie de fonctionnement (jusqu'à): 16 h\\n\" +\n                \"Fonctions: Commande intégréeFonction mains libres\\n\" +\n                \"Forme de port (type d'écouteurs): In-Ear\\n\" +\n                \"Bluetooth: Oui\\n\" +\n                \"Assistant linguistique: SiriGoogle Assistant",
+          "name" : "JBL Tune 120TWS",
+          "price" : 79.9
+        },
+        "-M51Q7NBeV7SLHrlIPPO" : {
+          "description" : "Fonctions: Commande intégréeFonction mains libres\\n\" +\n                \"Forme de port (type d'écouteurs): In-Ear\\n\" +\n                \"Assistant linguistique: Siri\\n\" +\n                \"Connexions audio: Line in 3.5mm\\n\" +\n                \"Commande intégrée: Oui",
+          "name" : "Beats By Dr. Dre",
+          "price" : 64.9
+        },
+        "-M51QExKqH4OY7oGDtzo" : {
+          "description" : "Autonomie de fonctionnement (jusqu'à): 20 h\\n\" +\n                \"Fonctions: Active Noise CancelingPliableFonction mains libresCommande intégrée\\n\" +\n                \"Forme de port (type d'écouteurs): Over-Ear\\n\" +\n                \"Bluetooth: Oui\\n\" +\n                \"Assistant linguistique: Google AssistantSiri",
+          "name" : "Bose QuietComfort",
+          "price" : 399
+        },
+        "-M51QKyGRaNUYpfUvWFs" : {
+          "description" : "Autonomie de fonctionnement (jusqu'à): 22 h\\n\" +\n                \"Fonctions: Pliable\\n\" +\n                \"Forme de port (type d'écouteurs): Over-Ear\\n\" +\n                \"Bluetooth: Oui\\n\" +\n                \"Suppresseur de bruit actif (Active Noise Canceling): Oui",
+          "name" : "Bowers & Wilkins PX",
+          "price" : 429
+        },
+        "-M51QQIwW7tlBBKYnmwa" : {
+          "description" : "Fonctions: Commande intégréeFonction mains libres\\n\" +\n                \"Forme de port (type d'écouteurs): In-Ear\\n\" +\n                \"Commande intégrée: Oui\\n\" +\n                \"Bande de fréquences: 20–20.000 Hz\\n\" +\n                \"Connectivité: Bluetooth",
+          "name" : "B&O Beoplay E8",
+          "price" : 349
+        },
+        "-M51QWExq1HAHceGh__0" : {
+          "description" : "Autonomie de fonctionnement (jusqu'à): 30 h\\n\" +\n                \"Fonctions: Active Noise CancelingFonction mains libresCommande intégréePliable\\n\" +\n                \"Forme de port (type d'écouteurs): Over-Ear\\n\" +\n                \"Bluetooth: Oui\\n\" +\n                \"Assistant linguistique: Google AssistantSiri",
+          "name" : "Sony WH-1000XM3B",
+          "price" : 349
+        },
+        "-M51QaJiV4qGQiGpx6CU" : {
+          "description" : "Fonctions: PliableRésistant à la transpiration\\n\" +\n                \"Forme de port (type d'écouteurs): Over-Ear\\n\" +\n                \"Bluetooth: Non\\n\" +\n                \"Suppresseur de bruit actif (Active Noise Canceling): Non\\n\" +\n                \"Connexions audio: Line in 6.3mm",
+          "name" : "Pioneer DJ HDJ",
+          "price" : 339
+        },
+        "-M51QgcNVsPLjAlbWOgf" : {
+          "description" : "Autonomie de fonctionnement (jusqu'à): 20 h\\n\" +\n                \"Portée de transmission: 10 m\\n\" +\n                \"Fonctions: Commande intégréeFonction mains libresPliable\\n\" +\n                \"Forme de port (type d'écouteurs): Over-Ear\\n\" +\n                \"Bluetooth: Oui",
+          "name" : "Panasonic RP-HD",
+          "price" : 299
+        },
+        "-M51QmZ0_R9eNNuN1SJP" : {
+          "description" : "Autonomie de fonctionnement (jusqu'à): 14 h\\n\" +\n                \"Bluetooth: Oui\\n\" +\n                \"Bande de fréquences: 5Hz - 40kHz",
+          "name" : "V-Moda Crossfade",
+          "price" : 289
+        }
+      },
+      "name" : "Audio",
+      "tag" : "ic_audio"
+    },
+    "-M51MzL23iUZQQG5CYDn" : {
+      "items" : {
+        "-M51REwqq9nwtB6DYcwu" : {
+          "description" : "Type de capteur optique: CMOS\\n\" +\n                \"Résolution de la prise de vue: 18 Mpx\\n\" +\n                \"Résolution de l’enregistrement vidéo: Full HD (1920x1080)\\n\" +\n                \"Distance focale finale: 55 mm\\n\" +\n                \"Processeur d'images: DIGIC 4+",
+          "name" : "Canon EOS 4000D",
+          "price" : 199
+        },
+        "-M51RL8zp4fTPRwkLIzK" : {
+          "description" : "Equipement: Flash de l?appareil photo\\n\" +\n                \"Distance focale: 60mm\\n\" +\n                \"Distance focale initiale: 60 mm\\n\" +\n                \"Distance focale finale: 60 mm\\n\" +\n                \"Fonctions supplémentaires: un miroir pour les selfies",
+          "name" : "FUJIFILM Instax Mini",
+          "price" : 69.9
+        },
+        "-M51RQdcCUighggDMjvw" : {
+          "description" : "Résolution de la prise de vue: 24.2 Mpx\\n\" +\n                \"Type de capteur optique: APS-C, (23,5 x 15,6 mm) EXMOR® CMOS Sensor\\n\" +\n                \"Résolution de l'Ecran: 921600 Mpx\\n\" +\n                \"Images par seconde foto: 11\\n\" +\n                \"Images par seconde film: 30 Mpx",
+          "name" : "Sony Alpha 6400",
+          "price" : 1349
+        },
+        "-M51RVcTUeSh0ZemuDQU" : {
+          "description" : "Taille de l'Ecran: 3 \\n\" +\n                \"Résolution de l'Ecran: 461.000\\n\" +\n                \"Type de batterie: Lithium-ion (Li-Ion)\\n\" +\n                \"Fonctions prises de vue: Enregistrement vidéo\\n\" +\n                \"Connexions sans fil: WiFiNFC",
+          "name" : "Canon IXUS 285",
+          "price" : 199
+        },
+        "-M51R_AcLWyvOylkzOoc" : {
+          "description" : "Taille de l'Ecran: 2.7 \\n\" +\n                \"Résolution de l'Ecran: 230.400\\n\" +\n                \"Type de batterie: Lithium-ion (Li-Ion)\\n\" +\n                \"Fonctions prises de vue: Enregistrement vidéo\\n\" +\n                \"Cartes mémoire prises en charge: SDSDHCSDXC",
+          "name" : "Sony DSC-W810",
+          "price" : 99.9
+        },
+        "-M51RfyheNl0EmJ6G4Rk" : {
+          "description" : "Fonctions supplémentaires: Taille d'image: 62mm x 46mm\\n\" +\n                \"Accessoires inclus: Dragonne \\n bague de dragonne \\n garantie \\n mode d'emploi \\n 2 piles lithium-ion CR2",
+          "name" : "FUJIFILM Instax",
+          "price" : 111.8
+        },
+        "-M51Rm5Z0CVwmlmlvUOv" : {
+          "description" : "Type de capteur optique: CMOS\\n\" +\n                \"Résolution de la prise de vue: 18 Mpx\\n\" +\n                \"Résolution de l’enregistrement vidéo: Full HD (1920x1080)\\n\" +\n                \"Distance focale finale: 55 mm\\n\" +\n                \"Processeur d'images: DIGIC 4+",
+          "name" : "Canon Powershot",
+          "price" : 233.2
+        },
+        "-M51RqkUBeFEpLR4KMvs" : {
+          "description" : "Résolution de l’enregistrement vidéo: 4k (3840×2160)\\n\" +\n                \"Equipement: Viseur electronique\\n\" +\n                \"Connexions sans fil: WiFi\\n\" +\n                \"Cartes mémoire prises en charge: SDSDHCSDXC",
+          "name" : "Panasonic FZ2000",
+          "price" : 1100.3
+        },
+        "-M51Rxh7ccIWDDcKQiJ2" : {
+          "description" : "Résolution photo: 16 Mpx\\n\" +\n                \"Images par seconde foto: 10\\n\" +\n                \"Zoom optique: 2.6 x\\n\" +\n                \"Equipement: Flash de l?appareil photo",
+          "name" : "Panasonic DMC-GX",
+          "price" : 699
+        },
+        "-M51S8ssEfo9Vqrh-Q7i" : {
+          "description" : "Résolution de la prise de vue: 8 Mpx\\n\" +\n                \"Type de batterie: Lithium Polymer (LiPo)\\n\" +\n                \"Equipement: Flash de l?appareil photo\\n\" +\n                \"Connexions sans fil: Bluetooth\\n\" +\n                \"Cartes mémoire prises en charge: SD micro",
+          "name" : "Canon Zoemini S",
+          "price" : 179
+        }
+      },
+      "name" : "Camera",
+      "tag" : "ic_camera"
+    },
+    "-M51N3w_Wj4_Xppb2XJl" : {
+      "items" : {
+        "-M51T-qnTu7MJ81vhaZw" : {
+          "description" : "",
+          "name" : "Sony PlayStation 4 Pro",
+          "price" : 350
+        },
+        "-M51TDdc76eri3LjkiJk" : {
+          "description" : "",
+          "name" : "Nintendo Switch Neon",
+          "price" : 350
+        },
+        "-M51TJBRGL0FRsPRMZuH" : {
+          "description" : "Console originale",
+          "name" : "ony PlayStation Classic",
+          "price" : 69.9
+        },
+        "-M51TP-aeAfHPfr9b9A-" : {
+          "description" : "Plate-forme: Nintendo Switch\\n\" +\n                \"Capacité mémoire du disque dur: 32 GB",
+          "name" : "Nintendo Switch Lite",
+          "price" : 219
+        },
+        "-M51TVs7MVMmn-8iv6PF" : {
+          "description" : "Consoles de jeux vidéo compatibles: PlayStation 4",
+          "name" : "PS4 - Red Dead Redemption 2",
+          "price" : 39.9
+        },
+        "-M51T_ReMpTw4HWV9V7D" : {
+          "description" : "Consoles de jeux vidéo compatibles: Xbox One",
+          "name" : "Xbox One - Borderlands 3",
+          "price" : 39.9
+        },
+        "-M51TfbxroKbbxskhqDu" : {
+          "description" : "Consoles de jeux vidéo compatibles: PC",
+          "name" : "PC - The Sims 4",
+          "price" : 29.9
+        },
+        "-M51TkftY-y9sqZ3LXqm" : {
+          "description" : "Consoles de jeux vidéo compatibles: Switch",
+          "name" : "NSW - Just Dance 2020",
+          "price" : 39.9
+        }
+      },
+      "name" : "Gaming",
+      "tag" : "ic_gaming"
+    },
+    "-M51NAA9BybYJz8hTHol" : {
+      "items" : {
+        "-M51U3r_ymAABiix_ANf" : {
+          "description" : "Mémoire interne: 128 GB\\n\" +\n                \"Extension de mémoire: 1 TB\\n\" +\n                \"Mémoire vive: 12 GB\\n\" +\n                \"Résolution caméra arrière: 108 Mpx\\n\" +\n                \"Résolution caméra avant: 40 Mpx",
+          "name" : "Samsung Galaxy S20",
+          "price" : 1349
+        },
+        "-M51UBxkhP5DjHu2opPn" : {
+          "description" : "Mémoire interne: 64 GB\\n\" +\n                \"Résolution caméra arrière: 12 Mpx\\n\" +\n                \"Résolution caméra avant: 7 Mpx\\n\" +\n                \"Taille de l'Ecran: 4.7 \\\"\\n\" +\n                \"Type d'Ecran: Retina",
+          "name" : "Apple iPhone 8",
+          "price" : 529
+        },
+        "-M51ULZ39ysA5H_sJvLg" : {
+          "description" : "Mémoire interne: 64 GB\\n\" +\n                \"Mémoire vive: 6 GB\\n\" +\n                \"Résolution caméra arrière: 12 Mpx\\n\" +\n                \"Résolution caméra avant: 12 Mpx\\n\" +\n                \"Fonction caméra: Optical ZoomMode nocturneFlash intégré4K Video RecordingAutofocusDigital ZoomCaméra avantFlash LEDTéléobjectifUltra grand-AngleEnregistrements vidéomontage vidéoGrand-Angle",
+          "name" : "Apple iPhone 11 Pro",
+          "price" : 1249
+        },
+        "-M51UVWCAfLeDLjZLyaS" : {
+          "description" : "Mémoire interne: 64 GB\\n\" +\n                \"Mémoire vive: 3 GB\\n\" +\n                \"Résolution caméra arrière: 12 Mpx\\n\" +\n                \"Résolution caméra avant: 7 Mpx\\n\" +\n                \"Taille de l'Ecran: 6.1 ",
+          "name" : "Apple iPhone XR",
+          "price" : 629
+        },
+        "-M51Uc8RVDtMwU-HV5Ge" : {
+          "description" : "Mémoire interne: 64 GB\\n\" +\n                \"Extension de mémoire: 512 GB\\n\" +\n                \"Mémoire vive: 3 GB\\n\" +\n                \"Résolution caméra arrière: 13 Mpx\\n\" +\n                \"Résolution caméra avant: 8 Mpx",
+          "name" : "Huawei P smart",
+          "price" : 249
+        },
+        "-M51UgRV8zCmdbfC402Z" : {
+          "description" : "Mémoire interne: 128 GB\\n\" +\n                \"Extension de mémoire: 512 GB\\n\" +\n                \"Mémoire vive: 4 GB\\n\" +\n                \"Résolution caméra arrière: 48 Mpx\\n\" +\n                \"Résolution caméra avant: 24 Mpx",
+          "name" : "Huawei P30 lite",
+          "price" : 299
+        },
+        "-M51Ull-WzJyKmKCaAkI" : {
+          "description" : "Mémoire interne: 64 GB\\n\" +\n                \"Extension de mémoire: 512 GB\\n\" +\n                \"Mémoire vive: 4 GB\\n\" +\n                \"Résolution caméra arrière: 16 Mpx\\n\" +\n                \"Résolution caméra avant: 25 Mpx",
+          "name" : "Samsung Galaxy A40",
+          "price" : 245
+        },
+        "-M51UqFblATQG0tggG33" : {
+          "description" : "Mémoire interne: 128 GB\\n\" +\n                \"Extension de mémoire: 1 TB\\n\" +\n                \"Mémoire vive: 6 GB\\n\" +\n                \"Résolution caméra arrière: 12 Mpx\\n\" +\n                \"Résolution caméra avant: 32 Mpx",
+          "name" : "Samsung Note10",
+          "price" : 599
+        },
+        "-M51UxKg-Wb6BlhfowTi" : {
+          "description" : "Mémoire interne: 128 GB\\n\" +\n                \"Extension de mémoire: 512 GB\\n\" +\n                \"Mémoire vive: 4 GB\\n\" +\n                \"Résolution caméra arrière: 48 Mpx\\n\" +\n                \"Résolution caméra avant: 32 Mpx",
+          "name" : "Samsung Galaxy A51",
+          "price" : 369
+        },
+        "-M51V1OCHCHRsGIvesbT" : {
+          "description" : "Mémoire interne: 256 GB\\n\" +\n                \"Mémoire vive: 6 GB\\n\" +\n                \"Résolution caméra arrière: 12 Mpx\\n\" +\n                \"Résolution caméra avant: 12 Mpx\\n\" +\n                \"Fonction caméra: Optical ZoomMode nocturneFlash intégré4K Video RecordingAutofocusDigital ZoomCaméra avantFlash LEDTéléobjectifUltra grand-AngleEnregistrements vidéomontage vidéoGrand-Angle",
+          "name" : "Apple iPhone 11",
+          "price" : 1369
+        }
+      },
+      "name" : "Smartphone",
+      "tag" : "ic_smartphone"
+    },
+    "-M51NEAauFH1tj8AkfGN" : {
+      "items" : {
+        "-M51VPAt7ISPQ8myXkgq" : {
+          "description" : "Diagonale de l'Ecran en cm: 138 cm\\n\" +\n                \"Diagonale de l'Ecran en pouce: 55 \\\"\\n\" +\n                \"Syntoniseur télévision numérique: 2 x DVB-T2/C/S2, 1 x CI+\\n\" +\n                \"Format d'affichage: 4K Ultra HD\\n\" +\n                \"Résolution: 3840 x 2160",
+          "name" : "Samsung QE",
+          "price" : 649
+        },
+        "-M51V_9_5VSSxEa-4ddZ" : {
+          "description" : "Diagonale de l'Ecran en cm: 126 cm\\n\" +\n                \"Diagonale de l'Ecran en pouce: 50 \\\"\\n\" +\n                \"Syntoniseur télévision numérique: DVB-T2/C/S2 CI+\\n\" +\n                \"Format d'affichage: 4K Ultra HD\\n\" +\n                \"Résolution: 3840 x 2160",
+          "name" : "Panasonic TX-50",
+          "price" : 549
+        },
+        "-M51VfKOYzRZFMOU2Ydl" : {
+          "description" : "Diagonale de l'Ecran en cm: 139 cm\nDiagonale de l'Ecran en pouce: 55 \"\nSyntoniseur télévision numérique: DVB-T2/C/S2 CI+\nFormat d'affichage: 4K Ultra HD\nRésolution: 3840 x 2160",
+          "name" : "LG 55UM",
+          "price" : 499
+        },
+        "-M51Vlaqfsxmi8sA6Dcw" : {
+          "description" : "Diagonale de l'Ecran en cm: 163 cm\\n\" +\n                \"Diagonale de l'Ecran en pouce: 65 \\\"\\n\" +\n                \"Syntoniseur télévision numérique: 2 x DVB-T2/C/S2, 1 x CI+\\n\" +\n                \"Format d'affichage: 4K Ultra HD\\n\" +\n                \"Résolution: 3840 x 2160",
+          "name" : "Samsung QE-65Q",
+          "price" : 749
+        },
+        "-M51Vs_LPyctopmiSj4Q" : {
+          "description" : "Diagonale de l'Ecran en cm: 164 cm\\n\" +\n                \"Diagonale de l'Ecran en pouce: 65 \\\"\\n\" +\n                \"Syntoniseur télévision numérique: 2 x DVB-T2/C/S2 CI+\\n\" +\n                \"Format d'affichage: 4K Ultra HD\\n\" +\n                \"Résolution: 3840 x 2160",
+          "name" : "Panasonic TX-65GZ",
+          "price" : 1499
+        },
+        "-M51VzHZApAV_ORnbKbA" : {
+          "description" : "Diagonale de l'Ecran en cm: 126 cm\\n\" +\n                \"Diagonale de l'Ecran en pouce: 50 \\\"\\n\" +\n                \"Syntoniseur télévision numérique: DVB-T2/C/S2 CI+\\n\" +\n                \"Format d'affichage: 4K Ultra HD\\n\" +\n                \"Résolution: 3840 x 2160",
+          "name" : "Chiq U50Q5T",
+          "price" : 299
+        },
+        "-M51W2oOG_P_GGcZFZeg" : {
+          "description" : "Diagonale de l'Ecran en cm: 189 cm\\n\" +\n                \"Diagonale de l'Ecran en pouce: 75 \\\"\\n\" +\n                \"Syntoniseur télévision numérique: DVB-T2/C/S2 CI+\\n\" +\n                \"Format d'affichage: 4K Ultra HD\\n\" +\n                \"Résolution: 3840 x 2160",
+          "name" : "LG 75UM7600",
+          "price" : 999
+        },
+        "-M51W8hrk3mG30p0VI39" : {
+          "description" : "Diagonale de l'Ecran en cm: 139 cm\\n\" +\n                \"Diagonale de l'Ecran en pouce: 55 \\\"\\n\" +\n                \"Syntoniseur télévision numérique: 2 x DVB-T2/C/S2, 1 x CI+\\n\" +\n                \"Format d'affichage: 4K Ultra HD\\n\" +\n                \"Résolution: 3840 x 2160",
+          "name" : "Sony KD-55AG9",
+          "price" : 1499
+        },
+        "-M51WMVOoX5qhnGG9t_9" : {
+          "description" : "Diagonale de l'Ecran en cm: 164 cm\\n\" +\n                \"Diagonale de l'Ecran en pouce: 65 \\\"\\n\" +\n                \"Syntoniseur télévision numérique: 2 x DVB-T2/C/S2, 1 x CI+\\n\" +\n                \"Format d'affichage: 4K Ultra HD\\n\" +\n                \"Résolution: 3840 x 2160",
+          "name" : "Philips 65OLED854",
+          "price" : 4499
+        },
+        "-M51WSbNiCrdJe-JLHS4" : {
+          "description" : "Diagonale de l'Ecran en cm: 139 cm\\n\" +\n                \"Diagonale de l'Ecran en pouce: 55 \\\"\\n\" +\n                \"Syntoniseur télévision numérique: 2 x DVB-T2/C/S2 CI+\\n\" +\n                \"Format d'affichage: 4K Ultra HD\\n\" +\n                \"Résolution: 3840 x 2160",
+          "name" : "Panasonic TX-55GZC1004",
+          "price" : 2799
+        }
+      },
+      "name" : "TV",
+      "tag" : "ic_tv"
+    },
+    "-M51NLgE7C9UgZBd07hg" : {
+      "items" : {
+        "-M51WmU2zLZ2lBYGo2Ib" : {
+          "description" : "Diagonale de l'Ecran: 15.6 \\n\" +\n                \"Mémoire vive: 16 GB\\n\" +\n                \"Capacité HDD: 1 TB\\n\" +\n                \"Capacité SSD: 512 TB\\n\" +\n                \"Carte graphique: Nvidia GeForce GTX 1650",
+          "name" : "Acer Nitro 5",
+          "price" : 1699
+        },
+        "-M51WvPJKFEhq0U-rQrx" : {
+          "description" : "Type d'Ecran: 14\" +\n                \"\\n Full HD IPS (1920 x 1080) matt, narrow bezel\\n\" +\n                \"Diagonale de l'Ecran: 14 \\n\" +\n                \"Processeur: Intel Core i5-1035G1 (1 GHz)\\n\" +\n                \"Mémoire vive: 8 GB\\n\" +\n                \"Capacité SSD: 1 TB",
+          "name" : "Acer Swift 3",
+          "price" : 799
+        },
+        "-M51X7NAW2oOW9CBahSt" : {
+          "description" : "Diagonale de l'Ecran: 13 \nMémoire vive: 16 GB\nCapacité SSD: 512 GB\nCarte graphique: Intel Iris Plus Graphics 655\nDispositif de pointage: TouchpadWebcamTouchbar",
+          "name" : "Apple CTO MacBook",
+          "price" : 2469
+        },
+        "-M51XCi0lIWQhcJzcJiP" : {
+          "description" : "DType d'Ecran: 16\\n\" +\n                \" Retina IPS (3072 x 1920)\\n\" +\n                \"Diagonale de l'Ecran: 16 \\\"\\n\" +\n                \"Processeur: Intel Core i9 8-Core (2.4 GHz)\\n\" +\n                \"Mémoire vive: 16 GB\\n\" +\n                \"Capacité SSD: 4 TB",
+          "name" : "Apple CTO MacBook Pro 16",
+          "price" : 4404
+        },
+        "-M51XHrgQ2mkdbm5KfP1" : {
+          "description" : "Diagonale de l'Ecran: 11.6 \\n\" +\n                \"Processeur: Intel Celeron N3350\\n\" +\n                \"Mémoire vive: 4 GB\\n\" +\n                \"Mémoire interne: 64 GB\\n\" +\n                \"Chip graphique: Intel HD Graphics 500",
+          "name" : "Asus W202NA",
+          "price" : 349
+        },
+        "-M51XMvHbJf_ZatW18Dg" : {
+          "description" : "Diagonale de l'Ecran: 14 \\n\" +\n                \"Processeur: Intel Core i5-10210U\\n\" +\n                \"Mémoire vive: 8 GB\\n\" +\n                \"Capacité SSD: 512 GB\\n\" +\n                \"Carte graphique: Nvidia GeForce MX250",
+          "name" : "Asus ZenBook 14",
+          "price" : 1259
+        },
+        "-M51XRD7VckJFcHnLLiL" : {
+          "description" : "Diagonale de l'Ecran: 15.6 \\n\" +\n                \"Processeur: Intel Core i7-8665U\\n\" +\n                \"Mémoire vive: 32 GB\\n\" +\n                \"Capacité SSD: 1000 GB\\n\" +\n                \"Carte graphique: AMD Radeon Pro WX 2100",
+          "name" : "Dell Precision 3540",
+          "price" : 2199
+        },
+        "-M51XXjHEVdGbiQKTcvi" : {
+          "description" : "Type d'Ecran: 15.6 \" +\n                \"\\n FHD-SVA-Display\\n\" +\n                \"Diagonale de l'Ecran: 15.6 \\n\" +\n                \"Processeur: Intel Pentium® Gold 4417U\\n\" +\n                \"Mémoire vive: 8 GB\\n\" +\n                \"Capacité SSD: 256 GB",
+          "name" : "HP 15-dw0456nz",
+          "price" : 499
+        },
+        "-M51XbsFTRx_xkCpAsjS" : {
+          "description" : "Type d'Ecran: IPS\\n\" +\n                \"Diagonale de l'Ecran: 14 \\n\" +\n                \"Processeur: Intel Core i7-8565U\\n\" +\n                \"Mémoire vive: 16 GB\\n\" +\n                \"Capacité SSD: 512 GB",
+          "name" : "Lenovo ThinkPad T490s",
+          "price" : 2249
+        },
+        "-M51Xha6KoDgT4zdCRsh" : {
+          "description" : "Type d'Ecran: 13.5\" +\n                \"\\n PixelSense Touch (2256 x 1504)\\n\" +\n                \"Diagonale de l'Ecran: 13.5 \\\"\\n\" +\n                \"Processeur: Intel Core i5-8250U\\n\" +\n                \"Mémoire vive: 8 GB\\n\" +\n                \"Capacité SSD: 256 GB",
+          "name" : "Microsoft Surface Laptop 2",
+          "price" : 1499
+        },
+        "-M51XnNOir-hREC4GacH" : {
+          "description" : "Type d'Ecran: IPS\\n\" +\n                \"Diagonale de l'Ecran: 14 \\\"\\n\" +\n                \"Processeur: Intel Core i7-8565U\\n\" +\n                \"Mémoire vive: 16 GB\\n\" +\n                \"Capacité SSD: 512 GB",
+          "name" : "Vaio SX14 i7",
+          "price" : 1999
+        }
+      },
+      "name" : "Computer",
+      "tag" : "ic_computer"
+    }
+  },
+  "customers" : {
+    "-M51MQKjcKVWZdFbiZAe" : {
+      "city" : "Martigny",
+      "city_code" : 1920,
+      "email" : "g@g.com",
+      "firstname" : "Gabrielle",
+      "lastname" : "Freno",
+      "telephone" : "0789654132"
+    },
+    "-M51MbtyM0UIaDF2JEk3" : {
+      "city" : "Martigny",
+      "city_code" : 1920,
+      "email" : "t@t.com",
+      "firstname" : "Tiago",
+      "lastname" : "Castanheiro",
+      "telephone" : "078964582"
+    }
+  },
+  "orders" : {
+    "-M51MQKjcKVWZdFbiZAe" : {
+      "-M51ZE_0QnxIwBj6tIBT" : {
+        "creationDate" : "23.03.2020",
+        "deliveryDate" : "",
+        "idItem" : "-M51REwqq9nwtB6DYcwu",
+        "price" : 199,
+        "status" : "In progress"
+      },
+      "-M51Zc_l5FHK3Ip1UY0E" : {
+        "creationDate" : "23.03.2020",
+        "deliveryDate" : "",
+        "idItem" : "--M51VPAt7lSPQ8myXkgq",
+        "price" : 199,
+        "status" : "In progress"
+      },
+      "-M51ZmKYO-HJh0uoyS3B" : {
+        "IdItem" : "-M51V1OCHVHRsGlvesbT",
+        "creationDate" : "23.03.2020",
+        "deliveryDate" : "",
+        "price" : 199,
+        "status" : "In progress"
+      }
+    },
+    "-M51MbtyM0UlaDF2JEk3" : {
+      "-M51_HXtxom53TKzVa6T" : {
+        "creationDate" : "23.03.2020",
+        "deliveryDate" : "",
+        "idItem" : "-M51REwqq9nwtB6DYcwu",
+        "price" : 199,
+        "status" : "In progress"
+      },
+      "-M51_VmzXY4DkalDgwCr" : {
+        "creationDate" : "23.03.2020",
+        "deliveryDate" : "",
+        "idItem" : "-M51XRD7VckJFcHnLLiL",
+        "price" : 199,
+        "status" : "In progress"
+      },
+      "-M51_aUXoABlMQRAlaSb" : {
+        "creationDate" : "23.03.2020",
+        "deliveryDate" : "",
+        "idItem" : "-M51Rxh7ccIWDDcKQiJ2",
+        "price" : 199,
+        "status" : "In progress"
+      }
+    }
+  }
+}

@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 public class CustomerRepository {
 
     private static CustomerRepository instance;
@@ -44,21 +46,23 @@ public class CustomerRepository {
     public LiveData<CustomerEntity> getCustomer(final String clientId) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("customers")
-                .child(clientId); //"O1OuWOo1y1Ow2bdAGm0bqGxuuID2"
+                .child(clientId);
         return new CustomerLiveData(reference);
     }
 
-    public LiveData<CustomerWithOrders> getCustomerWithOrders(final String owner) {
+    public LiveData<List<CustomerWithOrders>> getCustomerWithOrders(final String ownerId) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("customers");
-        return new CustomerOrderListLiveData(reference, owner);
+                .getReference("orders")
+                .child(ownerId);
+        return new CustomerOrderListLiveData(reference, ownerId);
     }
 
 
-    public void register(final CustomerEntity customer, final OnAsyncEventListener callback) {
+
+    public void register(final CustomerEntity customer, final OnAsyncEventListener callback, String pwd) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                 customer.getEmail(),
-                customer.getPassword()
+                pwd
         ).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 customer.setIdCustomer(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -107,8 +111,8 @@ public class CustomerRepository {
 
     }
 
-    public void updatePwd(final CustomerEntity customer, final OnAsyncEventListener callback){
-        FirebaseAuth.getInstance().getCurrentUser().updatePassword(customer.getPassword())
+    public void updatePwd(final CustomerEntity customer, final OnAsyncEventListener callback, String pwd){
+        FirebaseAuth.getInstance().getCurrentUser().updatePassword(pwd)
                 .addOnFailureListener(
                         e -> Log.d(TAG, "updatePassword failure!", e)
                 );
@@ -126,6 +130,8 @@ public class CustomerRepository {
                     }
                 });
     }
+
+
 /*
     public LiveData<CustomerEntity> getCustomer(final String customerId, Application application) {
         return ((BaseApp) application).getDatabase().customerDao().getById(customerId);

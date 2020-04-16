@@ -2,7 +2,6 @@ package com.android.onlineshop_castanheirofreno.viewmodel.order;
 
 import android.app.Application;
 
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -11,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
+import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
@@ -46,7 +46,7 @@ public class OrderListViewModel extends AndroidViewModel {
         observableOwnOrder.setValue(null);
 
         LiveData<List<CustomerWithOrders>> clientOrders = customerRepository.getCustomerWithOrders(ownerId);
-        LiveData<List<OrderWithItem>> ownOrders = repository.getOwnedOrdersWithItem(ownerId, application);
+        LiveData<List<OrderWithItem>> ownOrders = repository.getOwnedOrdersWithItem(ownerId);
 
         // observe the changes of the entities from the database and forward them
         observableOrderCustomer.addSource(clientOrders, observableOrderCustomer::setValue);
@@ -89,8 +89,9 @@ public class OrderListViewModel extends AndroidViewModel {
         return observableOwnOrder;
     }
 
-    public void deleteOrder(OrderWithItem orderWithItem, OnAsyncEventListener callback) {
-        repository.delete(orderWithItem.order, callback, application);
+    public void deleteOrder(OrderEntity order, OnAsyncEventListener callback) {
+        repository.delete(order, callback);
+
     }
 
 

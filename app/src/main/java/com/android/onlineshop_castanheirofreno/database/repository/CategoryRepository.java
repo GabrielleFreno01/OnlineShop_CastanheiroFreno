@@ -1,5 +1,18 @@
 package com.android.onlineshop_castanheirofreno.database.repository;
 
+import android.app.Application;
+
+import androidx.lifecycle.LiveData;
+
+import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
+import com.android.onlineshop_castanheirofreno.database.firebase.CategoryItemsLiveData;
+import com.android.onlineshop_castanheirofreno.database.firebase.CategoryListLiveData;
+import com.android.onlineshop_castanheirofreno.database.pojo.CategoryWithItems;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
+
 public class CategoryRepository {
 
     private static CategoryRepository instance;
@@ -17,14 +30,25 @@ public class CategoryRepository {
         }
         return instance;
     }
-/*
+
+
+
     public LiveData<List<CategoryEntity>> getCategories(Application application) {
-        LiveData<List<CategoryEntity>> category = ((BaseApp) application).getDatabase().categoryDao().getAll();
-        //System.out.println(category.getValue().get(1));
-        return category;
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("categories");
+        return new CategoryListLiveData(reference);
     }
 
-    public LiveData<CategoryEntity> getCategory(final Long categoryId, Application application) {
+    public LiveData<CategoryWithItems> getCategoryWithItems(Application application, String idCategory) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("categories")
+                .child(idCategory);
+        return new CategoryItemsLiveData(reference);
+
+    }
+
+/*
+    public LiveData<CategoryEntity> getCategory(final String categoryId, Application application) {
         return ((BaseApp) application).getDatabase().categoryDao().getById(categoryId);
     }*/
 

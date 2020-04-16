@@ -5,7 +5,6 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
-import com.android.onlineshop_castanheirofreno.database.firebase.CategoryItemsLiveData;
 import com.android.onlineshop_castanheirofreno.database.firebase.ItemLiveData;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.google.firebase.database.DatabaseReference;
@@ -29,13 +28,13 @@ public class ItemRepository {
         return instance;
     }
 
-   public LiveData<ItemEntity> getItem(Context context, String idItem, String idCategory) {
-       DatabaseReference reference = FirebaseDatabase.getInstance()
-               .getReference("categories")
-               .child(idCategory)
-               .child("items")
-               .child(idItem);
-       return new ItemLiveData(reference, idCategory);
+    public LiveData<ItemEntity> getItem(Context context, String idItem, String idCategory) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("categories")
+                .child(idCategory)
+                .child("items")
+                .child(idItem);
+        return new ItemLiveData(reference, idCategory);
     }
 
     public void insert(final ItemEntity item, final OnAsyncEventListener callback) {
@@ -86,6 +85,7 @@ public class ItemRepository {
                     }
                 });
     }
+
 
     /*
     public LiveData<List<ItemEntity>> getItemsByCategory(final String id, Context context) {

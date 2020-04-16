@@ -34,10 +34,10 @@ public class CategoryViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableCategories.setValue(null);
 
-        //LiveData<List<CategoryEntity>> categories = repository.getCategories(application);
+        LiveData<List<CategoryEntity>> categories = repository.getCategories(application);
 
         // observe the changes of the account entity from the database and forward them
-        //observableCategories.addSource(categories, observableCategories::setValue);
+        observableCategories.addSource(categories, observableCategories::setValue);
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {

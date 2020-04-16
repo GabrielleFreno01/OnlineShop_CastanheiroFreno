@@ -1,7 +1,6 @@
 package com.android.onlineshop_castanheirofreno.ui.orders;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +26,7 @@ import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderListViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +60,8 @@ public class OrdersActivity extends BaseActivity {
                 LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
-        String user = settings.getString(BaseActivity.PREFS_USER, null);
+
+        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //New list of orders
         orders = new ArrayList<>();
@@ -93,7 +93,7 @@ public class OrdersActivity extends BaseActivity {
         viewModel = ViewModelProviders.of(this, factory).get(OrderListViewModel.class);
         viewModel.getOwnOrders().observe(this, ordersWithItem -> {
             if (ordersWithItem != null) {
-                //orders = ordersWithItem;
+                orders = ordersWithItem;
                 adapter.setData(orders);
             }
         });

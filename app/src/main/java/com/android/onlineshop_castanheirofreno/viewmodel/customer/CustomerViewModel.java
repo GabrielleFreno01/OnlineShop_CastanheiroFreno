@@ -74,9 +74,9 @@ public class CustomerViewModel extends AndroidViewModel {
         ((BaseApp) getApplication()).getCustomerRepository()
                 .update(client, callback);
     }
-    public void updateClientPwd(CustomerEntity client, OnAsyncEventListener callback) {
+    public void updateClientPwd(CustomerEntity client, OnAsyncEventListener callback, String pwd) {
         ((BaseApp) getApplication()).getCustomerRepository()
-                .updatePwd(client, callback);
+                .updatePwd(client, callback, pwd);
     }
 
     public void deleteClient(CustomerEntity client, OnAsyncEventListener callback) {

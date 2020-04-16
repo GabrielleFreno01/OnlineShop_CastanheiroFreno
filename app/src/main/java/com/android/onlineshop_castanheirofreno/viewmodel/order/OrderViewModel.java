@@ -97,13 +97,11 @@ public class OrderViewModel extends AndroidViewModel {
     }
 
     public void createOrder(OrderEntity order, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getOrderRepository()
-                .insert(order, callback);
+        repository.insert(order, callback);
     }
 
     public void updateOrder(OrderEntity order, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getOrderRepository()
-                .update(order, callback);
+        repository.update(order, callback);
     }
 
    /* public void createOrder(OrderEntity order, OnAsyncEventListener callback) {

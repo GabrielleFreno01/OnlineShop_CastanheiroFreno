@@ -54,7 +54,7 @@ public class OrderEntity implements Comparable {
     public OrderEntity() {
     }
 
-    public OrderEntity(double price, String creationDate, String deliveryDate, String idItem, String status, String owner) {
+    public OrderEntity(double price, String creationDate, String deliveryDate, String idItem, String status){//, String owner) {
         this.price = price;
         this.creationDate = creationDate;
         this.deliveryDate = deliveryDate;

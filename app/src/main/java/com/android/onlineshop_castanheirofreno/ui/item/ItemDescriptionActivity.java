@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -37,10 +40,14 @@ public class ItemDescriptionActivity extends BaseActivity {
     private TextView tvProductName;
     private TextView tvPriceProduct;
     private TextView tvDescription;
+    private ImageView image;
     private Toast toast;
 
     private ItemEntity item;
-
+    String path;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
+    StorageReference imageRef;
 
     private ItemViewModel viewModel;
 
@@ -53,9 +60,12 @@ public class ItemDescriptionActivity extends BaseActivity {
 
         initiateView();
 
+
         Intent intent = getIntent();
         String itemId = intent.getStringExtra("itemId");
         String catId = intent.getStringExtra("idCategory");
+
+
 
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
@@ -86,6 +96,7 @@ public class ItemDescriptionActivity extends BaseActivity {
             tvProductName.setText(item.getName());
             tvPriceProduct.setText("CHF " + defaultFormat.format(item.getPrice()));
             tvDescription.setText(item.getDescription());
+
         }
 
     }
@@ -94,7 +105,7 @@ public class ItemDescriptionActivity extends BaseActivity {
         tvProductName = findViewById(R.id.new_item_name);
         tvPriceProduct = findViewById(R.id.new_item_price);
         tvDescription = findViewById(R.id.productDescription);
-        //ImageView productImage = (ImageView) this.findViewById(R.id.imageView);
+        image = (ImageView) this.findViewById(R.id.new_item_image);
     }
 
     @Override

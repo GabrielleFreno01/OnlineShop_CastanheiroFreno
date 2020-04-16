@@ -14,6 +14,7 @@ public class ItemEntity {
     private String description;
     private double price;
     private String idCategory;
+    private String image;
 
     public ItemEntity() {
     }
@@ -23,6 +24,7 @@ public class ItemEntity {
         this.description = description;
         this.price = price;
         this.idCategory = idCategory;
+        this.image=image;
     }
 
     //getters & setters
@@ -67,6 +69,14 @@ public class ItemEntity {
 
     public void setIdCategory(String idCategory) {
         this.idCategory = idCategory;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 

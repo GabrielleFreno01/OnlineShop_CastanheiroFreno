@@ -16,7 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerOrderListLiveData extends LiveData<CustomerWithOrders> {
+public class CustomerOrderListLiveData extends LiveData<List<CustomerWithOrders>> {
 
     private static final String TAG = "CustomerOrderLLD";
 
@@ -44,7 +44,7 @@ public class CustomerOrderListLiveData extends LiveData<CustomerWithOrders> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue((CustomerWithOrders) toCustomerWithOrdersList(dataSnapshot));
+            setValue(toCustomerWithOrdersList(dataSnapshot));
         }
 
         @Override

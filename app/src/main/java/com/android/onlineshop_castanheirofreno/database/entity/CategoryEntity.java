@@ -1,3 +1,6 @@
+
+package com.android.onlineshop_castanheirofreno.database.entity;
+
 import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
@@ -57,3 +60,4 @@ public class CategoryEntity {
         return result;
     }
 }
+

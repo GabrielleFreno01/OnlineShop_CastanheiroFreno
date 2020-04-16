@@ -44,17 +44,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 welcome.setText("Welcome " + client.getFirstname() + " !");
             }
         });
-        /*SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
-        String user = settings.getString(PREFS_USER, null);
 
-        CustomerViewModel.Factory factory = new CustomerViewModel.Factory(getApplication(), user);
-        viewModel = ViewModelProviders.of(this, factory).get(CustomerViewModel.class);
-        viewModel.getCustomer().observe(this, customerEntity -> {
-            if (customerEntity != null) {
-                client = customerEntity;
-                welcome.setText("Welcome " + client.getFirstName() + " !");
-            }
-        });*/
 
         //redirection vers la page principale après 1 secondes
         Runnable run = new Runnable() {

@@ -52,11 +52,11 @@ public class CategoryItemsLiveData extends LiveData<CategoryWithItems> {
     }
 
     private CategoryWithItems toCategoryWithItems(DataSnapshot snapshot) {
-            CategoryWithItems categoryWithItems = new CategoryWithItems();
-            categoryWithItems.category = snapshot.getValue(CategoryEntity.class);
-            categoryWithItems.category.setIdCategory(snapshot.getKey());
-            categoryWithItems.items = toItems(snapshot.child("items"),
-                    snapshot.getKey());
+        CategoryWithItems categoryWithItems = new CategoryWithItems();
+        categoryWithItems.category = snapshot.getValue(CategoryEntity.class);
+        categoryWithItems.category.setIdCategory(snapshot.getKey());
+        categoryWithItems.items = toItems(snapshot.child("items"),
+                snapshot.getKey());
 
 
         return categoryWithItems;

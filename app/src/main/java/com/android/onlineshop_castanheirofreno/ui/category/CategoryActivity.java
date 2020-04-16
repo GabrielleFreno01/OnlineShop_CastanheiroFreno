@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -72,12 +72,11 @@ public class CategoryActivity extends BaseActivity {
             }
         });
 
-
         CategoryViewModel.Factory factory = new CategoryViewModel.Factory(getApplication());
-        viewModel = new ViewModelProvider(this, factory).get(CategoryViewModel.class);
+        viewModel = ViewModelProviders.of(this, factory).get(CategoryViewModel.class);
         viewModel.getCategories().observe(this, categories -> {
             if (categories != null) {
-                //categoryList = categories;
+                categoryList = categories;
                 adapter.setData(categoryList);
             }
         });

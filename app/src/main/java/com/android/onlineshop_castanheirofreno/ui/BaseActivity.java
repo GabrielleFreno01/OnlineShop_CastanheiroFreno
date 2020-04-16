@@ -24,8 +24,6 @@ import com.android.onlineshop_castanheirofreno.ui.mgmt.SettingsActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,15 +32,14 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public static final String PREFS_ITEM = "ItemId";
     public static final String PREFS_CUSTOMERID = "CustoId";
 
-
-
     protected FrameLayout frameLayout;
 
     protected DrawerLayout drawerLayout;
 
     protected NavigationView navigationView;
 
-    private StorageReference mStorageRef;
+
+
 
     protected static int position;
 
@@ -53,7 +50,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+
 
         frameLayout = findViewById(R.id.flContent);
 
@@ -68,6 +65,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
+
+    /*public void writeNewUser(String userId, String lastname, String firstname, String email, String telephone, String city, int city_code) {
+        CustomerEntity user = new CustomerEntity(lastname,firstname,  email,   city,  city_code, telephone);
+
+        database.child("customers").child(userId).setValue(user);
+    }*/
+
 
     @Override
     protected void onResume() {

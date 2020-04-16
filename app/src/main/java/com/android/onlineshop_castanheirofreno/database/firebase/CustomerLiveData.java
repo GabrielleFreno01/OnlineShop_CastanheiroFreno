@@ -35,9 +35,11 @@ public class CustomerLiveData extends LiveData<CustomerEntity> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            CustomerEntity entity = dataSnapshot.getValue(CustomerEntity.class);
-            entity.setIdCustomer(dataSnapshot.getKey());
-            setValue(entity);
+            if (dataSnapshot.exists ()) {
+                CustomerEntity entity = dataSnapshot.getValue(CustomerEntity.class);
+                entity.setIdCustomer(dataSnapshot.getKey());
+                setValue(entity);
+            }
         }
 
         @Override

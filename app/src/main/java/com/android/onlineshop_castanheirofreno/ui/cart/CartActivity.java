@@ -3,6 +3,7 @@ package com.android.onlineshop_castanheirofreno.ui.cart;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,7 +20,10 @@ import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.confirmation.ConfirmationActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
+import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -40,6 +44,8 @@ public class CartActivity extends BaseActivity {
     private Toast toast;
 
     private ItemViewModel viewModel;
+
+    private OrderViewModel orderViewModel;
 
     private SimpleDateFormat dateformatter;
 
@@ -63,9 +69,11 @@ public class CartActivity extends BaseActivity {
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_ITEM, 0);
         String itemId = settings.getString(BaseActivity.PREFS_ITEM,"");
 
-        SharedPreferences settingsUser = getSharedPreferences(BaseActivity.PREFS_USER, 0);
-        String user = settingsUser.getString(BaseActivity.PREFS_USER, "");
-        System.out.println(user);
+
+        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+
 
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, "");
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
@@ -117,7 +125,19 @@ public class CartActivity extends BaseActivity {
 
     private void saveChanges(double price, String creationDate, String deliveryDate, String idItem, String status, String owner) {
 
-        OrderEntity newOrder = new OrderEntity(price, creationDate, deliveryDate, idItem, status, owner);
+        OrderEntity newOrder = new OrderEntity(price, creationDate, deliveryDate, idItem, status);//, owner);
+        orderViewModel.createOrder(newOrder, new OnAsyncEventListener(){
+            @Override
+            public void onSuccess() {
+                Log.d(TAG, "createOrder: success");
+                setResponse(true);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.d(TAG, "createItem: failure", e);
+                setResponse(false);
+            }
 
         /*new CreateOrder(getApplication(), new OnAsyncEventListener() {
 
@@ -134,8 +154,8 @@ public class CartActivity extends BaseActivity {
             }
         }).execute(newOrder);*/
 
+    });
     }
-
     private void setResponse(Boolean response) {
         if (response) {
             toast = Toast.makeText(this, "Order created", Toast.LENGTH_LONG);

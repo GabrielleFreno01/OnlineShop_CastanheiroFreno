@@ -49,7 +49,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
     public void onBindViewHolder(@NonNull OrdersViewHolder holder, int position) {
         OrderWithItem orderWithItem = orders.get(position);
 
-        //holder.textView_orderId.setText(Long.toString(orderWithItem.order.getIdOrder()));
+        holder.textView_orderId.setText(String.valueOf(position+1));
         holder.textView_creationDate.setText(orderWithItem.order.getCreationDate());
         holder.textView_productName.setText(orderWithItem.item.getName());
         holder.textView_status.setText(orderWithItem.order.getStatus());
@@ -109,10 +109,12 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
                     return newOrder.order.getIdOrder() == oldOrder.order.getIdOrder()
                             && newOrder.order.getCreationDate() == oldOrder.order.getCreationDate()
                             && newOrder.order.getDeliveryDate() == oldOrder.order.getDeliveryDate()
-                            && newOrder.order.getOwner().equals(oldOrder.order.getOwner())
                             && newOrder.order.getIdItem() == oldOrder.order.getIdItem()
                             && newOrder.order.getPrice() == oldOrder.order.getPrice()
-                            && newOrder.order.getStatus() == oldOrder.order.getStatus();
+                            && newOrder.order.getStatus() == oldOrder.order.getStatus()
+                            && newOrder.item.getPrice() == oldOrder.item.getPrice()
+                            && newOrder.item.getDescription() == oldOrder.item.getDescription()
+                            && newOrder.item.getName() == oldOrder.item.getName();
                 }
             });
             orders = data;

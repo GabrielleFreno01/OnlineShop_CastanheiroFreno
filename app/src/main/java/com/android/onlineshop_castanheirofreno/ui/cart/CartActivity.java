@@ -3,6 +3,7 @@ package com.android.onlineshop_castanheirofreno.ui.cart;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.confirmation.ConfirmationActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.text.DecimalFormat;
@@ -65,9 +67,12 @@ public class CartActivity extends BaseActivity {
 
         SharedPreferences settingsUser = getSharedPreferences(BaseActivity.PREFS_USER, 0);
         String user = settingsUser.getString(BaseActivity.PREFS_USER, "");
-        System.out.println(user);
 
-        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, "");
+        SharedPreferences settingsCat = getSharedPreferences(BaseActivity.PREFS_CATEGORYID, 0);
+        String categoryId = settingsCat.getString(BaseActivity.PREFS_CATEGORYID, "");
+        System.out.println(categoryId+"---------"+itemId);
+
+        ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, categoryId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
@@ -94,11 +99,14 @@ public class CartActivity extends BaseActivity {
                 dateformatter = new SimpleDateFormat("dd.MM.yyyy");
                 formattedDate = dateformatter.format(System.currentTimeMillis());
 
-                saveChanges((item.getPrice()), formattedDate, null, item.getIdItem(), "In progress", user);
+                saveChanges((item.getPrice()), formattedDate, null, item.getIdItem(), item.getIdCategory(), "In progress", user);
                 seeConfirmation(v);
                 SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_ITEM, 0).edit();
                 editor.remove(BaseActivity.PREFS_ITEM);
                 editor.apply();
+                SharedPreferences.Editor editor2 = getSharedPreferences(BaseActivity.PREFS_CATEGORYID, 0).edit();
+                editor2.remove(BaseActivity.PREFS_CATEGORYID);
+                editor2.apply();
                 recreate();
 
             }
@@ -115,12 +123,11 @@ public class CartActivity extends BaseActivity {
     }
 
 
-    private void saveChanges(double price, String creationDate, String deliveryDate, String idItem, String status, String owner) {
+    private void saveChanges(double price, String creationDate, String deliveryDate, String idItem, String idCategory, String status, String owner) {
 
-        OrderEntity newOrder = new OrderEntity(price, creationDate, deliveryDate, idItem, status, owner);
+        OrderEntity newOrder = new OrderEntity(price, creationDate, deliveryDate, idItem, idCategory, status, owner);
 
-        /*new CreateOrder(getApplication(), new OnAsyncEventListener() {
-
+        viewModel.createOrder(newOrder, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "createOrder: success");
@@ -132,7 +139,7 @@ public class CartActivity extends BaseActivity {
                 Log.d(TAG, "createItem: failure", e);
                 setResponse(false);
             }
-        }).execute(newOrder);*/
+        });
 
     }
 

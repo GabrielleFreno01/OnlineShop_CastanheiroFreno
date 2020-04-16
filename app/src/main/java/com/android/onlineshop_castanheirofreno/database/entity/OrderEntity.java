@@ -8,59 +8,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-//@Entity(tableName = "orders",
-//  foreignKeys = {
-//   @ForeignKey(
-//          entity = CustomerEntity.class,
-//     parentColumns = "email",
-//        childColumns = "owner",
-//      onDelete = ForeignKey.CASCADE
-// ),
-// @ForeignKey(
-//          entity = ItemEntity.class,
-//         parentColumns = "idItem",
-//        childColumns = "idItem",
-//         onDelete = ForeignKey.CASCADE
-//    )},
-//  indices = {
-//    @Index(value = {"owner"}),
-//    @Index(value = {"idItem"})
-//  }
-//)
 public class OrderEntity implements Comparable {
 
-    //@PrimaryKey(autoGenerate = true)
     private String idOrder;
 
-    // @ColumnInfo(name = "price")
     private double price;
 
-    //  @ColumnInfo(name = "creation_date")
     private String creationDate;
 
-    //  @ColumnInfo(name = "idItem")
     private String idItem;
 
-    //@ColumnInfo(name = "owner")
     private String owner;
 
-    //@ColumnInfo(name = "status")
     private String status;
 
-    //@ColumnInfo(name = "delivery_date")
     private String deliveryDate;
 
-    //@Ignore
+    private String idCategory;
+
     public OrderEntity() {
     }
 
-    public OrderEntity(double price, String creationDate, String deliveryDate, String idItem, String status, String owner) {
+    public OrderEntity(double price, String creationDate, String deliveryDate, String idItem, String idCategory, String status, String owner) {
         this.price = price;
         this.creationDate = creationDate;
         this.deliveryDate = deliveryDate;
         this.idItem = idItem;
         this.status = status;
         this.owner = owner;
+        this.idCategory = idCategory;
 
     }
     @Exclude
@@ -112,12 +88,21 @@ public class OrderEntity implements Comparable {
         this.deliveryDate = deliveryDate;
     }
 
+    @Exclude
     public String getOwner() {
         return owner;
     }
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(String idCategory) {
+        this.idCategory = idCategory;
     }
 
     @Override
@@ -137,7 +122,8 @@ public class OrderEntity implements Comparable {
         result.put("creationDate", creationDate);
         result.put("status", status);
         result.put("deliveryDate", deliveryDate);
-
+        result.put("idCategory", idCategory);
+        result.put("idItem", idItem);
         return result;
     }
 

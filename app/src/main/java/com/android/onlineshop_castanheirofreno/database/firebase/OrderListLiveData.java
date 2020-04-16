@@ -1,20 +1,19 @@
 package com.android.onlineshop_castanheirofreno.database.firebase;
 
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-
+import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
+import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderListLiveData extends LiveData<List<OrderEntity>> {
+public class OrderListLiveData extends LiveData<List<OrderWithItem>> {
 
     private static final String TAG = "OrderListLiveData";
 
@@ -41,7 +40,7 @@ public class OrderListLiveData extends LiveData<List<OrderEntity>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toOrders(dataSnapshot));
+            setValue(toOrders(dataSnapshot, owner));
         }
 
         @Override
@@ -50,14 +49,25 @@ public class OrderListLiveData extends LiveData<List<OrderEntity>> {
         }
     }
 
-    private List<OrderEntity> toOrders(DataSnapshot snapshot) {
-        List<OrderEntity> accounts = new ArrayList<>();
-        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-            OrderEntity entity = childSnapshot.getValue(OrderEntity.class);
-            entity.setIdOrder(childSnapshot.getKey());
-            entity.setOwner(owner);
-            accounts.add(entity);
+    private List<OrderWithItem> toOrders(DataSnapshot snapshot, String owner) {
+        List<OrderWithItem> orderWithItemList = new ArrayList<>();
+        DataSnapshot ordersSnapshot = snapshot.child("orders").child(owner);
+        for (DataSnapshot childSnapshot : ordersSnapshot.getChildren()) {
+            OrderWithItem orderWithItem = new OrderWithItem();
+            orderWithItem.order = childSnapshot.getValue(OrderEntity.class);
+            orderWithItem.order.setIdOrder(childSnapshot.getKey());
+            orderWithItem.order.setOwner(owner);
+            orderWithItem.item = toItem(snapshot, orderWithItem.order.getIdItem(), orderWithItem.order.getIdCategory());
+            orderWithItemList.add(orderWithItem);
         }
-        return accounts;
+        return orderWithItemList;
+    }
+
+    private ItemEntity toItem(DataSnapshot snapshot, String idItem, String idCategory) {
+        DataSnapshot childSnapshot = snapshot.child("categories").child(idCategory).child("items").child(idItem);
+        ItemEntity entity = childSnapshot.getValue(ItemEntity.class);
+        entity.setIdItem(childSnapshot.getKey());
+        entity.setIdCategory(idCategory);
+        return entity;
     }
 }

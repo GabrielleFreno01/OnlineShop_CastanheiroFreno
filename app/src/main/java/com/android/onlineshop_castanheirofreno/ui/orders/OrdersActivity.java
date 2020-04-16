@@ -3,6 +3,7 @@ package com.android.onlineshop_castanheirofreno.ui.orders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,8 +23,10 @@ import com.android.onlineshop_castanheirofreno.adapter.OrdersAdapter;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderListViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +59,8 @@ public class OrdersActivity extends BaseActivity {
                 LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
-        String user = settings.getString(BaseActivity.PREFS_USER, null);
+
+        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //New list of orders
         orders = new ArrayList<>();
@@ -87,12 +90,12 @@ public class OrdersActivity extends BaseActivity {
         OrderListViewModel.Factory factory = new OrderListViewModel.Factory(
                 getApplication(), user);
         viewModel = ViewModelProviders.of(this, factory).get(OrderListViewModel.class);
-       /* viewModel.getOwnOrders().observe(this, ordersWithItem -> {
+        viewModel.getOwnOrders().observe(this, ordersWithItem -> {
             if (ordersWithItem != null) {
                 orders = ordersWithItem;
                 adapter.setData(orders);
             }
-        });*/
+        });
 
         recyclerView.setAdapter(adapter);
     }
@@ -117,11 +120,11 @@ public class OrdersActivity extends BaseActivity {
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format("Do you to delete the order " + orderWithItem.order.getIdOrder() + " ?"));
+        deleteMessage.setText(String.format("Do you want to delete the order " + orderWithItem.order.getIdOrder() + " ?"));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, "Order deleted", Toast.LENGTH_LONG);
-           /* viewModel.deleteOrder(orderWithItem, new OnAsyncEventListener() {
+            viewModel.deleteOrder(orderWithItem, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
                     Log.d(TAG, "deleteOrder: success");
@@ -131,7 +134,7 @@ public class OrdersActivity extends BaseActivity {
                 public void onFailure(Exception e) {
                     Log.d(TAG, "deleteOrder: failure", e);
                 }
-            });*/
+            });
             toast.show();
         });
 

@@ -39,10 +39,13 @@ public class ItemLiveData extends LiveData<ItemEntity> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
             ItemEntity entity = dataSnapshot.getValue(ItemEntity.class);
-            entity.setIdItem(dataSnapshot.getKey());
-            entity.setIdCategory(idCategory);
-            setValue(entity);
+            if(entity!=null) {
+                entity.setIdItem(dataSnapshot.getKey());
+                entity.setIdCategory(idCategory);
+                setValue(entity);
+            }
         }
 
         @Override

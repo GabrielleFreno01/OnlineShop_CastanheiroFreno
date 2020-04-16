@@ -1,15 +1,23 @@
 package com.android.onlineshop_castanheirofreno.database.repository;
 
+import android.app.Application;
+import android.content.ClipData;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
+import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
+import com.android.onlineshop_castanheirofreno.database.firebase.AllItemsListLiveData;
 import com.android.onlineshop_castanheirofreno.database.firebase.CategoryItemsLiveData;
 import com.android.onlineshop_castanheirofreno.database.firebase.ItemLiveData;
+import com.android.onlineshop_castanheirofreno.database.firebase.NewItemsLiveData;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 public class ItemRepository {
 
@@ -37,7 +45,17 @@ public class ItemRepository {
                .child(idItem);
        return new ItemLiveData(reference, idCategory);
     }
+    public LiveData<List<ItemEntity>> getAllItems() {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("categories");
+        return new AllItemsListLiveData(reference);
+    }
 
+    public LiveData<List<ItemEntity>> getNewItems(Context context) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("categories");
+        return new NewItemsLiveData(reference);
+    }
     public void insert(final ItemEntity item, final OnAsyncEventListener callback) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("categories")
@@ -57,19 +75,39 @@ public class ItemRepository {
                     }
                 });
     }
-    public void update(final ItemEntity item, final OnAsyncEventListener callback) {
-        FirebaseDatabase.getInstance()
-                .getReference("categories")
-                .child(item.getIdCategory())
-                .child("items")
-                .child(item.getIdItem())
-                .updateChildren(item.toMap(), (databaseError, databaseReference) -> {
-                    if (databaseError != null) {
-                        callback.onFailure(databaseError.toException());
-                    } else {
-                        callback.onSuccess();
-                    }
-                });
+    public void update(final ItemEntity newItem, final ItemEntity oldItem, final OnAsyncEventListener callback) {
+        //Check if the category has changed
+        if(newItem.getIdCategory().equals(oldItem.getIdCategory())) {
+            FirebaseDatabase.getInstance()
+                    .getReference("categories")
+                    .child(newItem.getIdCategory())
+                    .child("items")
+                    .child(newItem.getIdItem())
+                    .updateChildren(newItem.toMap(), (databaseError, databaseReference) -> {
+                        if (databaseError != null) {
+                            callback.onFailure(databaseError.toException());
+                        } else {
+                            callback.onSuccess();
+                        }
+                    });
+        }else {
+            //Delete item under old category
+            delete(oldItem, callback);
+
+            //Insert item under new category with the same itemId
+            FirebaseDatabase.getInstance()
+                    .getReference("categories")
+                    .child(newItem.getIdCategory())
+                    .child("items")
+                    .child(oldItem.getIdItem())
+                    .setValue(newItem, (databaseError, databaseReference) -> {
+                        if (databaseError != null) {
+                            callback.onFailure(databaseError.toException());
+                        } else {
+                            callback.onSuccess();
+                        }
+                    });
+        }
     }
 
     public void delete(final ItemEntity item, final OnAsyncEventListener callback) {
@@ -79,6 +117,25 @@ public class ItemRepository {
                 .child("items")
                 .child(item.getIdItem())
                 .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
+    }
+
+    public void insertOrder(OrderEntity newOrder, OnAsyncEventListener callback) {
+        newOrder.setOwner(FirebaseAuth.getInstance().getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("orders")
+                .child(newOrder.getOwner());
+        String key = reference.push().getKey();
+        FirebaseDatabase.getInstance()
+                .getReference("orders")
+                .child(newOrder.getOwner())
+                .child(key)
+                .setValue(newOrder, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {

@@ -61,16 +61,16 @@
     <string name="title_purchase_confirmation">Purchase confirmation</string>
     <string name="title_order_details">Order details</string>
     <string name="title_product_description">Product description</string>
-    <string name="text_view_product_id">Product id</string>
+    <string name="text_view_product_id">Product ref. </string>
     <string name="text_view_product_price">Price</string>
     <string name="text_view_order_date">Order date</string>
     <string name="text_view_delivery_date">Delivery date</string>
-    <string name="label_order_number">Order n°</string>
+    <string name="label_order_number">Order ref. </string>
     <string name="button_deliver">Deliver</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_changeProduct">Change product</string>
     <string name="title_modify_product">Modify product</string>
-    <string name="label_item_number">Product n°</string>
+    <string name="label_item_number">Product ref. </string>
 
 
 
@@ -121,7 +121,7 @@
     <string name="account_balance">Account Balance</string>
     <string name="action_deliver">Delivered</string>
     <string name="action_change">Changed</string>
-    <string name="action_cancel">Canceled</string>
+    <string name="action_cancel">Cancel</string>
     <string name="action_transaction">Execute</string>
     <string name="action_accept">Execute</string>
     <string name="transaction_from">From</string>
@@ -173,9 +173,10 @@
     <string name="imageproduct">imageProduct</string>
     <string name="btn_changeproduct">changeProduct</string>
     <string name="about_us">About Us</string>
-    <string name="about_us_content">This application was created for the course \"644-1 Mobile &amp; Cloud Computing\" at the HESSO in Sierre by Gabrielle Freno and Tiago Garcia Castahneiro. \n\nDate of creation : 31.03.2020
+    <string name="about_us_content">This application was created for the course \"644-1 Mobile &amp; Cloud Computing\" at the HESSO in Sierre by Gabrielle Freno and Tiago Garcia Castanheiro. \n\nDate of creation : 31.03.2020
     \n\nCopyright © 2020 Technospot.\nAll Rights Reserved. </string>
     <string name="mail_technospot">technospot@info.ch</string>
     <string name="empty_cart">Please add some item in your cart first</string>
+    <string name="label_order_status">Order status</string>
 
 </resources>

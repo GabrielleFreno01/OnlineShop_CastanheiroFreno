@@ -23,6 +23,7 @@ import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class ItemDescriptionActivity extends BaseActivity {
@@ -57,13 +58,23 @@ public class ItemDescriptionActivity extends BaseActivity {
         String itemId = intent.getStringExtra("itemId");
         String catId = intent.getStringExtra("idCategory");
 
+        //AtomicBoolean isCreated = new AtomicBoolean(false);
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
                 item = itemEntity;
                 updateContent();
+                //isCreated.set(true);
+
+            }else{
+                //if(isCreated.get() == true) {
+                   // viewModel.getItem().removeObservers(this);
+                   // finish();
+               // }
+                    //viewModel.modifyCategory();
             }
+
 
         });
 
@@ -118,6 +129,8 @@ public class ItemDescriptionActivity extends BaseActivity {
             intent.putExtra("itemId", item.getIdItem());
             intent.putExtra("idCategory", item.getIdCategory());
             startActivity(intent);
+            finish();
+
 
         }
         if (itemmenu.getItemId() == DELETE_ORDER) {
@@ -151,6 +164,10 @@ public class ItemDescriptionActivity extends BaseActivity {
         editor.remove(BaseActivity.PREFS_ITEM);
         editor.putString(BaseActivity.PREFS_ITEM, item.getIdItem());
         editor.apply();
+        SharedPreferences.Editor editor2 = getSharedPreferences(BaseActivity.PREFS_CATEGORYID, 0).edit();
+        editor2.remove(BaseActivity.PREFS_CATEGORYID);
+        editor2.putString(BaseActivity.PREFS_CATEGORYID, item.getIdCategory());
+        editor2.apply();
         startActivity(intent);
         finish();
     }

@@ -31,18 +31,20 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/textview_id_order"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/default_idorder"
-                        android:textColor="@color/colorTitle"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:layout_weight="1"/>
+
 
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textview_id_order"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_idorder"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
 
             </TableRow>
 

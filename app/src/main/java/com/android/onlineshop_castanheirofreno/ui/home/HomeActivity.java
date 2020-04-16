@@ -72,6 +72,7 @@ public class HomeActivity extends BaseActivity {
                         Intent.FLAG_ACTIVITY_NO_ANIMATION
                 );
                 intent.putExtra("itemId", newItems.get(position).getIdItem());
+                intent.putExtra("idCategory", newItems.get(position).getIdCategory());
                 startActivity(intent);
             }
 

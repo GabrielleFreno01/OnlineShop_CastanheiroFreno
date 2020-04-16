@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.firebase.OrderListLiveData;
 import com.android.onlineshop_castanheirofreno.database.firebase.OrderLiveData;
+import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -36,20 +37,13 @@ public class OrderRepository {
         return instance;
     }
 
-    public LiveData<OrderEntity> getOrder(final String orderId) {
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("Customers")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("Orders")
-                .child(orderId);
-        return new OrderLiveData(reference);
+    public LiveData<OrderWithItem> getOrderWithItem(final String owner, final String orderId) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        return new OrderLiveData(reference, owner, orderId);
     }
 
-    public LiveData<List<OrderEntity>> getByOwner(final String owner) {
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(owner)
-                .child("Orders");
+    public LiveData<List<OrderWithItem>> getOrdersWithItem(final String owner) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         return new OrderListLiveData(reference, owner);
     }
 
@@ -73,13 +67,12 @@ public class OrderRepository {
                 });
     }
 
-    public void update(final OrderEntity account, OnAsyncEventListener callback) {
+    public void update(final OrderEntity entity, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts")
-                .child(account.getIdOrder())
-                .updateChildren(account.toMap(), (databaseError, databaseReference) -> {
+                .getReference("orders")
+                .child(entity.getOwner())
+                .child(entity.getIdOrder())
+                .updateChildren(entity.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {
@@ -88,12 +81,11 @@ public class OrderRepository {
                 });
     }
 
-    public void delete(final OrderEntity account, OnAsyncEventListener callback) {
+    public void delete(final OrderEntity entity, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts")
-                .child(account.getIdOrder())
+                .getReference("orders")
+                .child(entity.getOwner())
+                .child(entity.getIdOrder())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -103,8 +95,7 @@ public class OrderRepository {
                 });
     }
 
-    public void transaction(final OrderEntity sender, final OrderEntity recipient,
-                            OnAsyncEventListener callback) {
+    public void transaction(final OrderEntity sender, final OrderEntity recipient, OnAsyncEventListener callback) {
         final DatabaseReference rootReference = FirebaseDatabase.getInstance().getReference();
         rootReference.runTransaction(new Transaction.Handler() {
             @NonNull
@@ -143,9 +134,7 @@ public class OrderRepository {
         return ((BaseApp) application).getDatabase().orderDao().getById(orderId);
     }
 
-    public LiveData<OrderWithItem> getOrderWithItem(final String orderId, Application application) {
-        return ((BaseApp) application).getDatabase().orderDao().getOrderWithItem(orderId);
-    }
+
 
     public LiveData<List<OrderEntity>> getOrders(Application application) {
         return ((BaseApp) application).getDatabase().orderDao().getAll();

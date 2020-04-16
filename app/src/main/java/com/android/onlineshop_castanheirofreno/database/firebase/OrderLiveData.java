@@ -4,24 +4,29 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.room.FtsOptions;
 
+import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
+import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class OrderLiveData extends LiveData<OrderEntity> {
+public class OrderLiveData extends LiveData<OrderWithItem> {
 
     private static final String TAG = "AccountLiveData";
 
     private final DatabaseReference reference;
     private final String owner;
+    private final String idOrder;
     private final OrderLiveData.MyValueEventListener listener = new OrderLiveData.MyValueEventListener();
 
-    public OrderLiveData(DatabaseReference ref) {
+    public OrderLiveData(DatabaseReference ref, String owner, String idOrder) {
         reference = ref;
-        owner = ref.getParent().getParent().getKey();
+        this.owner = owner;
+        this.idOrder = idOrder;
     }
 
     @Override
@@ -38,9 +43,12 @@ public class OrderLiveData extends LiveData<OrderEntity> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            OrderEntity entity = dataSnapshot.getValue(OrderEntity.class);
-            entity.setIdOrder(dataSnapshot.getKey());
-            entity.setOwner(owner);
+            OrderWithItem entity = new OrderWithItem();
+            DataSnapshot orderSnapshot = dataSnapshot.child("orders").child(owner).child(idOrder);
+            entity.order = orderSnapshot.getValue(OrderEntity.class);
+            entity.order.setIdOrder(idOrder);
+            entity.order.setOwner(owner);
+            entity.item = toItem(dataSnapshot, entity.order.getIdItem(), entity.order.getIdCategory());
             setValue(entity);
         }
 
@@ -48,5 +56,13 @@ public class OrderLiveData extends LiveData<OrderEntity> {
         public void onCancelled(@NonNull DatabaseError databaseError) {
             Log.e(TAG, "Can't listen to query " + reference, databaseError.toException());
         }
+    }
+
+    private ItemEntity toItem(DataSnapshot dataSnapshot, String idItem, String idCategory) {
+        DataSnapshot childSnapshot = dataSnapshot.child("categories").child(idCategory).child("items").child(idItem);
+        ItemEntity entity = childSnapshot.getValue(ItemEntity.class);
+        entity.setIdItem(childSnapshot.getKey());
+        entity.setIdCategory(idCategory);
+        return entity;
     }
 }

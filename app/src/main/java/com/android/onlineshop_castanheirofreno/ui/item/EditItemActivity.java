@@ -15,7 +15,6 @@ import com.android.onlineshop_castanheirofreno.adapter.MyListAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
@@ -38,9 +37,11 @@ public class EditItemActivity extends BaseActivity {
 
     private ItemViewModel viewModel;
 
-    private ItemEntity item;
+    private ItemEntity oldItem;
+    private ItemEntity newItem = new ItemEntity();
     private List<CategoryEntity> categoriesList;
 
+    private boolean categoryChanged = false;
     private MyListAdapter<CategoryEntity> adapterCategories;
 
     @Override
@@ -63,7 +64,7 @@ public class EditItemActivity extends BaseActivity {
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
-                item = itemEntity;
+                oldItem = itemEntity;
                 updateContent();
             }
         });
@@ -81,7 +82,6 @@ public class EditItemActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 save(v);
-                onBackPressed();
 
             }
         });
@@ -92,7 +92,7 @@ public class EditItemActivity extends BaseActivity {
         int position = 0;
         for (int i=0; i<categories.size(); i++) {
             CategoryEntity cat = categories.get(i);
-            if(cat.getIdCategory().equals(item.getIdCategory())) {
+            if(cat.getIdCategory().equals(oldItem.getIdCategory())) {
                 position = i;
                 break;
             }
@@ -103,11 +103,11 @@ public class EditItemActivity extends BaseActivity {
 
 
     private void updateContent() {
-        if (item != null) {
-            etproductName.setText(item.getName());
+        if (oldItem != null) {
+            etproductName.setText(oldItem.getName());
             NumberFormat formatter = new DecimalFormat("#0.00");
-            etprice.setText(formatter.format(item.getPrice()));
-            etdescription.setText(item.getDescription());
+            etprice.setText(formatter.format(oldItem.getPrice()));
+            etdescription.setText(oldItem.getDescription());
         }
 
     }
@@ -121,19 +121,22 @@ public class EditItemActivity extends BaseActivity {
                 (CategoryEntity)spinner.getSelectedItem()
         );
 
+
     }
 
 
     private void saveChanges(String name, double price, String description, CategoryEntity category) {
-        item.setName(name);
-        item.setPrice(price);
-        item.setDescription(description);
+        newItem.setIdItem(oldItem.getIdItem());
+        newItem.setName(name);
+        newItem.setPrice(price);
+        newItem.setDescription(description);
         //item.setIdImage(idImage);
-        item.setIdCategory(category.getIdCategory());
-
-        viewModel.updateItem(item, new OnAsyncEventListener() {
+        newItem.setIdCategory(category.getIdCategory());
+        viewModel.updateItem(newItem, oldItem, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
+                if (!newItem.getIdCategory().equals(oldItem.getIdCategory()))
+                    categoryChanged = true;
                 setResponse(true);
             }
 
@@ -146,11 +149,8 @@ public class EditItemActivity extends BaseActivity {
 
     private void setResponse(Boolean response) {
         if (response) {
-            updateContent();
-            toast = Toast.makeText(this, "Order edited", Toast.LENGTH_LONG);
+            toast = Toast.makeText(this, "Item edited", Toast.LENGTH_LONG);
             toast.show();
-            Intent intent = new Intent(EditItemActivity.this, CategoryActivity.class);
-            startActivity(intent);
             finish();
         }
     }

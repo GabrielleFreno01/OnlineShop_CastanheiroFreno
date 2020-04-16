@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderViewModel;
 
 import java.text.DecimalFormat;
@@ -51,6 +53,7 @@ public class EditOrderActivity extends BaseActivity {
     private List<ItemEntity> myItemsList;
 
     private String orderId;
+    private String categoryId;
 
 
     @Override
@@ -68,8 +71,7 @@ public class EditOrderActivity extends BaseActivity {
 
         initiateView();
 
-        OrderViewModel.Factory factory = new OrderViewModel.Factory(
-                getApplication(), orderId);
+        OrderViewModel.Factory factory = new OrderViewModel.Factory(getApplication(), orderId);
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
         viewModel.getOrderWithItem().observe(this, orderEntity -> {
             if (orderEntity != null) {
@@ -178,6 +180,7 @@ public class EditOrderActivity extends BaseActivity {
             etPrice.setText(formatter.format(orderWithItem.order.getPrice()));
             etPrice.setHint(formatter.format(orderWithItem.order.getPrice()));
             tvCreationDate.setText(orderWithItem.order.getCreationDate());
+            categoryId = orderWithItem.order.getIdCategory();
 
         }
     }
@@ -190,15 +193,14 @@ public class EditOrderActivity extends BaseActivity {
             return;
 
         }
-        ;
-
+        orderWithItem.order.setIdCategory(categoryId);
         orderWithItem.order.setIdItem(tvItemNumber.getText().toString());
         orderWithItem.order.setPrice(Double.parseDouble(etPrice.getText().toString()));
         orderWithItem.order.setStatus(spStatus.getSelectedItem().toString());
         if (tvDeliver.getText().toString() != "")
             orderWithItem.order.setDeliveryDate(tvDeliver.getText().toString());
 
-        /*viewModel.updateOrder(orderWithItem.order, new OnAsyncEventListener() {
+        viewModel.updateOrder(orderWithItem.order, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "updateOrder: success");
@@ -208,7 +210,7 @@ public class EditOrderActivity extends BaseActivity {
             public void onFailure(Exception e) {
                 Log.d(TAG, "updateOrder: failure", e);
             }
-        });*/
+        });
 
 
     }
@@ -228,7 +230,7 @@ public class EditOrderActivity extends BaseActivity {
                 String[] itemsId = new String[myItemsList.size()];
                 int i = 0;
                 for (ItemEntity item : itemsList) {
-                    itemsId[i] = item.getIdItem() + " " + item.getName();
+                    itemsId[i] = item.getName();
                     i++;
                 }
                 updateItemsList(builder, itemsId);
@@ -250,8 +252,16 @@ public class EditOrderActivity extends BaseActivity {
                 NumberFormat formatter = new DecimalFormat("#0.00");
                 etPrice.setText(formatter.format(myItemsList.get(position).getPrice()));
                 etPrice.setHint(formatter.format(myItemsList.get(position).getPrice()));
+                categoryId = myItemsList.get(position).getIdCategory();
+
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     private int getIndex(Spinner spinner, String myString) {

@@ -43,6 +43,7 @@ public class CustomerRepository {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("customers")
                 .child(clientId); //"O1OuWOo1y1Ow2bdAGm0bqGxuuID2"
+        System.out.println(clientId);
         return new CustomerLiveData(reference);
     }
 

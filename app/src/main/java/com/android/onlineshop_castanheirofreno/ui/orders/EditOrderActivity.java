@@ -3,7 +3,7 @@ package com.android.onlineshop_castanheirofreno.ui.orders;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,9 +21,7 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderViewModel;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -62,7 +60,9 @@ public class EditOrderActivity extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
-        owner = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
+        owner = settings.getString(BaseActivity.PREFS_USER, null);
+
 
         orderId = getIntent().getStringExtra("orderId");
 
@@ -73,7 +73,7 @@ public class EditOrderActivity extends BaseActivity {
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
         viewModel.getOrderWithItem().observe(this, orderEntity -> {
             if (orderEntity != null) {
-                //orderWithItem = orderEntity;
+                orderWithItem = orderEntity;
                 updateContent();
             }
         });
@@ -195,34 +195,22 @@ public class EditOrderActivity extends BaseActivity {
         orderWithItem.order.setIdItem(tvItemNumber.getText().toString());
         orderWithItem.order.setPrice(Double.parseDouble(etPrice.getText().toString()));
         orderWithItem.order.setStatus(spStatus.getSelectedItem().toString());
-
         if (tvDeliver.getText().toString() != "")
             orderWithItem.order.setDeliveryDate(tvDeliver.getText().toString());
 
-        viewModel.updateOrder(orderWithItem.order, new OnAsyncEventListener() {
+        /*viewModel.updateOrder(orderWithItem.order, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-                setResponse(true);
+                Log.d(TAG, "updateOrder: success");
             }
 
             @Override
             public void onFailure(Exception e) {
-                setResponse(false);
+                Log.d(TAG, "updateOrder: failure", e);
             }
-        });
+        });*/
 
 
-    }
-
-    private void setResponse(Boolean response) {
-        if (response) {
-            updateContent();
-            toast = Toast.makeText(this, "Order edited", Toast.LENGTH_LONG);
-            toast.show();
-            Intent intent = new Intent(EditOrderActivity.this, OrderDetailActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
 
     private void displayDialogItemsList() {

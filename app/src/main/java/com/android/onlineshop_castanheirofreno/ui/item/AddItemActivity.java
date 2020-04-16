@@ -121,52 +121,51 @@ public class AddItemActivity extends BaseActivity {
     private void saveChanges(String name, String description, double price, CategoryEntity category) {
 
 
-        boolean cancel = false;
+            boolean cancel = false;
 
-        // Reset errors.
-        etproductName.setError(null);
-        etdescription.setError(null);
-        etprice.setError(null);
-
-
-        if (name.equals("")) {
-            etproductName.setError("This field is required !");
-            cancel = true;
-            etproductName.requestFocus();
-            return;
-        }
-
-        if(price == 0. ) {
-            etprice.setError("This field is required !");
-            cancel = true;
-            etprice.requestFocus();
-            return;
-        }
-
-        if (description.equals("")) {
-            etdescription.setError("This field is required !");
-            cancel = true;
-            etdescription.requestFocus();
-            return;
-        }
+            // Reset errors.
+            etproductName.setError(null);
+            etdescription.setError(null);
+            etprice.setError(null);
 
 
-        if (!cancel) {
-            ItemEntity newItem = new ItemEntity(name, description, price, category.getIdCategory());
-            viewModel.createItem(newItem, new OnAsyncEventListener(){
+            if (name.equals("")) {
+                etproductName.setError("This field is required !");
+                cancel = true;
+                etproductName.requestFocus();
+                return;
+            }
 
-                @Override
-                public void onSuccess() {
-                    Log.d(TAG, "createItem: success");
-                    setResponse(true);
-                }
+            if(price == 0. ) {
+                etprice.setError("This field is required !");
+                cancel = true;
+                etprice.requestFocus();
+                return;
+            }
 
-                @Override
-                public void onFailure(Exception e) {
-                    Log.d(TAG, "createItem: failure", e);
-                    setResponse(false);
-                }
-            });
+            if (description.equals("")) {
+                etdescription.setError("This field is required !");
+                cancel = true;
+                etdescription.requestFocus();
+                return;
+            }
+
+            if (!cancel) {
+                ItemEntity newItem = new ItemEntity(name, description, price, category.getIdCategory());
+                viewModel.createItem(newItem, new OnAsyncEventListener(){
+
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG, "createItem: success");
+                        setResponse(true);
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.d(TAG, "createItem: failure", e);
+                        setResponse(false);
+                    }
+                });
                 /*new CreateItem(getApplication(), new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
@@ -180,8 +179,8 @@ public class AddItemActivity extends BaseActivity {
                         setResponse(false);
                     }
                 }).execute(newItem);*/
+            }
         }
-    }
 
 
     private void setResponse(Boolean response) {

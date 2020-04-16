@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
+import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,11 +39,10 @@ public class ItemLiveData extends LiveData<ItemEntity> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ItemEntity entity = dataSnapshot.getValue(ItemEntity.class);
-                entity.setIdItem(dataSnapshot.getKey());
-                entity.setIdCategory(idCategory);
-                setValue(entity);
-
+            ItemEntity entity = dataSnapshot.getValue(ItemEntity.class);
+            entity.setIdItem(dataSnapshot.getKey());
+            entity.setIdCategory(idCategory);
+            setValue(entity);
         }
 
         @Override

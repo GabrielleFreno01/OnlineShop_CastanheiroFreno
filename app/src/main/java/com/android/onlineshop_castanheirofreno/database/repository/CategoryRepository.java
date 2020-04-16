@@ -37,6 +37,7 @@ public class CategoryRepository {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("categories");
         return new CategoryListLiveData(reference);
+
     }
 
     public LiveData<CategoryWithItems> getCategoryWithItems(Application application, String idCategory) {

@@ -13,7 +13,6 @@ import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
-import com.android.onlineshop_castanheirofreno.ui.MainActivity;
 import com.android.onlineshop_castanheirofreno.ui.splashscreen.WelcomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 

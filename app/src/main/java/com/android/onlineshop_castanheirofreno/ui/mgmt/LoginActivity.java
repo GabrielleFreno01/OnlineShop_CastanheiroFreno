@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
-import com.android.onlineshop_castanheirofreno.ui.MainActivity;
 import com.android.onlineshop_castanheirofreno.ui.splashscreen.WelcomeActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

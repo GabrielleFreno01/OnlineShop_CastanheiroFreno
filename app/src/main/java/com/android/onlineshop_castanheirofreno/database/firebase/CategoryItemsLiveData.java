@@ -42,7 +42,11 @@ public class CategoryItemsLiveData extends LiveData<CategoryWithItems> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toCategoryWithItems(dataSnapshot));
+            CategoryWithItems categoryWithItems = new CategoryWithItems();
+            categoryWithItems = toCategoryWithItems(dataSnapshot);
+            if(categoryWithItems!=null) {
+                setValue(categoryWithItems);
+            }
         }
 
         @Override
@@ -52,12 +56,12 @@ public class CategoryItemsLiveData extends LiveData<CategoryWithItems> {
     }
 
     private CategoryWithItems toCategoryWithItems(DataSnapshot snapshot) {
-            CategoryWithItems categoryWithItems = new CategoryWithItems();
-            categoryWithItems.category = snapshot.getValue(CategoryEntity.class);
+        CategoryWithItems categoryWithItems = new CategoryWithItems();
+        categoryWithItems.category = snapshot.getValue(CategoryEntity.class);
+        if(categoryWithItems.category!=null) {
             categoryWithItems.category.setIdCategory(snapshot.getKey());
-            categoryWithItems.items = toItems(snapshot.child("items"),
-                    snapshot.getKey());
-
+            categoryWithItems.items = toItems(snapshot.child("items"), snapshot.getKey());
+        }
 
         return categoryWithItems;
     }
@@ -66,9 +70,11 @@ public class CategoryItemsLiveData extends LiveData<CategoryWithItems> {
         List<ItemEntity> items = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             ItemEntity entity = childSnapshot.getValue(ItemEntity.class);
-            entity.setIdItem(childSnapshot.getKey());
-            entity.setIdCategory(categoryId);
-            items.add(entity);
+            if(entity!=null) {
+                entity.setIdItem(childSnapshot.getKey());
+                entity.setIdCategory(categoryId);
+                items.add(entity);
+            }
         }
         return items;
     }

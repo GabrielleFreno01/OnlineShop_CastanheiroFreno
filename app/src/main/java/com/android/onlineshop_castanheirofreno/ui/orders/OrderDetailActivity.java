@@ -49,7 +49,7 @@ public class OrderDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_order_details, frameLayout);
 
-        navigationView.setCheckedItem(position);
+        navigationView.setCheckedItem(R.id.nav_order);
 
         orderId = getIntent().getStringExtra("orderId");
 
@@ -80,8 +80,6 @@ public class OrderDetailActivity extends BaseActivity {
         Intent intent = new Intent(this, EditOrderActivity.class);
         intent.putExtra("orderId", orderId);
         startActivity(intent);
-        onBackPressed();
-        finish();
         return super.onOptionsItemSelected(item);
     }
 

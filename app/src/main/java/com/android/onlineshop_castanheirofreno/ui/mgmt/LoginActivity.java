@@ -14,6 +14,7 @@ import com.android.onlineshop_castanheirofreno.BaseApp;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;
+import com.android.onlineshop_castanheirofreno.ui.splashscreen.WelcomeActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -51,19 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         );
 
     }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-    }
-
-
     private void attemptLogin() {
 
         // Reset errors.
@@ -101,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             repository.signIn(email, password, task -> {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
                     startActivity(intent);
 
                     emailView.setText("");

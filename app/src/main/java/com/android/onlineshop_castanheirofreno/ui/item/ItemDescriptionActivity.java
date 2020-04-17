@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
@@ -35,6 +37,10 @@ public class ItemDescriptionActivity extends BaseActivity {
     private static final int EDIT_ORDER = 1;
     private static final int DELETE_ORDER = 2;
 
+    private static final int REQUEST_EXIT = 1;
+
+    private String catId;
+
     private TextView tvProductName;
     private TextView tvPriceProduct;
     private TextView tvDescription;
@@ -52,27 +58,21 @@ public class ItemDescriptionActivity extends BaseActivity {
 
         navigationView.setCheckedItem(position);
 
+
         initiateView();
 
         Intent intent = getIntent();
         String itemId = intent.getStringExtra("itemId");
-        String catId = intent.getStringExtra("idCategory");
+        catId = intent.getStringExtra("idCategory");
 
-        //AtomicBoolean isCreated = new AtomicBoolean(false);
+
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, catId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
         viewModel.getItem().observe(this, itemEntity -> {
             if (itemEntity != null) {
                 item = itemEntity;
                 updateContent();
-                //isCreated.set(true);
 
-            }else{
-                //if(isCreated.get() == true) {
-                   // viewModel.getItem().removeObservers(this);
-                   // finish();
-               // }
-                    //viewModel.modifyCategory();
             }
 
 
@@ -125,13 +125,10 @@ public class ItemDescriptionActivity extends BaseActivity {
         if (itemmenu.getItemId() == EDIT_ORDER) {
             itemmenu.setIcon(R.drawable.ic_edit);
 
-            Intent intent = new Intent(this, EditItemActivity.class);
+            Intent intent = new Intent(ItemDescriptionActivity.this, EditItemActivity.class);
             intent.putExtra("itemId", item.getIdItem());
             intent.putExtra("idCategory", item.getIdCategory());
-            startActivity(intent);
-            finish();
-
-
+            startActivityForResult(intent, REQUEST_EXIT);
         }
         if (itemmenu.getItemId() == DELETE_ORDER) {
             final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -148,6 +145,8 @@ public class ItemDescriptionActivity extends BaseActivity {
 
                     @Override
                     public void onFailure(Exception e) {
+                        Log.d(TAG, e.toString());
+                        setResponse(false);
                     }
                 });
             });
@@ -168,8 +167,14 @@ public class ItemDescriptionActivity extends BaseActivity {
         editor2.remove(BaseActivity.PREFS_CATEGORYID);
         editor2.putString(BaseActivity.PREFS_CATEGORYID, item.getIdCategory());
         editor2.apply();
+        intent.setFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_NEW_TASK |
+                        Intent.FLAG_ACTIVITY_NO_ANIMATION
+        );
         startActivity(intent);
-        finish();
+
+        super.onNavigationItemSelected(options.findItem(R.id.nav_cart));
     }
 
     private void setResponse(Boolean response) {
@@ -177,10 +182,22 @@ public class ItemDescriptionActivity extends BaseActivity {
             toast = Toast.makeText(this, "Item deleted", Toast.LENGTH_LONG);
             toast.show();
             onBackPressed();
-            finish();
+        }else {
+            toast = Toast.makeText(this, "Item not deleted, please contact the administrator", Toast.LENGTH_LONG);
+            toast.show();
+            onBackPressed();
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_EXIT) {
+            if (resultCode == RESULT_OK) {
+                this.finish();
+            }
+        }
+    }
 
 }
 

@@ -17,7 +17,12 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.adapter.NewItemsAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
+import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
+import com.android.onlineshop_castanheirofreno.ui.customer.CustomerActivity;
 import com.android.onlineshop_castanheirofreno.ui.item.ItemDescriptionActivity;
+import com.android.onlineshop_castanheirofreno.ui.mgmt.SettingsActivity;
+import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 
@@ -41,8 +46,12 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_home, frameLayout);
 
+        Intent intent = getIntent();
+
+        int menuId = intent.getIntExtra("menuId", -1);
+
         setTitle("Home");
-        navigationView.setCheckedItem(position);
+        navigationView.setCheckedItem(R.id.nav_home);
 
         recyclerView = findViewById(R.id.newProducts_recyclerView);
         PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
@@ -94,6 +103,41 @@ public class HomeActivity extends BaseActivity {
 
         recyclerView.setAdapter(newItemsAdapter);
 
+        if(menuId!=-1){
+            createActivityChoosed(menuId);
+        }
+    }
+
+    private void createActivityChoosed(int menuId) {
+        Intent intent = null;
+        switch (menuId) {
+            case R.id.nav_home:
+                intent = new Intent(this, HomeActivity.class);
+                break;
+            case R.id.nav_order:
+                intent = new Intent(this, OrdersActivity.class);
+                break;
+            case R.id.nav_cart:
+                intent = new Intent(this, CartActivity.class);
+                break;
+            case R.id.nav_category:
+                intent = new Intent(this, CategoryActivity.class);
+                break;
+            case R.id.nav_account:
+                intent = new Intent(this, CustomerActivity.class);
+                break;
+            case R.id.nav_settings:
+                intent = new Intent(this, SettingsActivity.class);
+                break;
+        }
+        if (intent != null) {
+            intent.setFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_NO_ANIMATION
+            );
+            startActivity(intent);
+        }
+
     }
 
     private void autoScroll(){
@@ -135,6 +179,13 @@ public class HomeActivity extends BaseActivity {
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_logout), (dialog, which) -> logout());
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
         alertDialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setTitle("Home");
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 
 }

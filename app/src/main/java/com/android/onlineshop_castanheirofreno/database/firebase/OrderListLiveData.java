@@ -55,10 +55,12 @@ public class OrderListLiveData extends LiveData<List<OrderWithItem>> {
         for (DataSnapshot childSnapshot : ordersSnapshot.getChildren()) {
             OrderWithItem orderWithItem = new OrderWithItem();
             orderWithItem.order = childSnapshot.getValue(OrderEntity.class);
-            orderWithItem.order.setIdOrder(childSnapshot.getKey());
-            orderWithItem.order.setOwner(owner);
-            orderWithItem.item = toItem(snapshot, orderWithItem.order.getIdItem(), orderWithItem.order.getIdCategory());
-            orderWithItemList.add(orderWithItem);
+            if (orderWithItem.order != null) {
+                orderWithItem.order.setIdOrder(childSnapshot.getKey());
+                orderWithItem.order.setOwner(owner);
+                orderWithItem.item = toItem(snapshot, orderWithItem.order.getIdItem(), orderWithItem.order.getIdCategory());
+                orderWithItemList.add(orderWithItem);
+            }
         }
         return orderWithItemList;
     }
@@ -66,8 +68,10 @@ public class OrderListLiveData extends LiveData<List<OrderWithItem>> {
     private ItemEntity toItem(DataSnapshot snapshot, String idItem, String idCategory) {
         DataSnapshot childSnapshot = snapshot.child("categories").child(idCategory).child("items").child(idItem);
         ItemEntity entity = childSnapshot.getValue(ItemEntity.class);
-        entity.setIdItem(childSnapshot.getKey());
-        entity.setIdCategory(idCategory);
+        if(entity!=null) {
+            entity.setIdItem(childSnapshot.getKey());
+            entity.setIdCategory(idCategory);
+        }
         return entity;
     }
 }

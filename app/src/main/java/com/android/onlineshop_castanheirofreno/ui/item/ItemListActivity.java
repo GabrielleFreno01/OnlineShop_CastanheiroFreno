@@ -2,9 +2,12 @@ package com.android.onlineshop_castanheirofreno.ui.item;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -42,7 +45,7 @@ public class ItemListActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_item_list, frameLayout);
 
         setTitle("Items List");
-        navigationView.setCheckedItem(position);
+        navigationView.setCheckedItem(R.id.nav_category);
 
         RecyclerView recyclerView = findViewById(R.id.itemsRecyclerView);
 
@@ -70,9 +73,6 @@ public class ItemListActivity extends BaseActivity {
             public void onItemClick(View v, int position) {
                 //get the details
                 Intent intent = new Intent(ItemListActivity.this, ItemDescriptionActivity.class);
-                intent.setFlags(
-                        Intent.FLAG_ACTIVITY_NO_ANIMATION
-                );
                 intent.putExtra("itemId", items.get(position).getIdItem());
                 intent.putExtra("idCategory", items.get(position).getIdCategory());
                 startActivity(intent);
@@ -109,9 +109,6 @@ public class ItemListActivity extends BaseActivity {
 
     public void seeAddNewItem(View view) {
         Intent intent = new Intent(ItemListActivity.this, AddItemActivity.class);
-        intent.setFlags(
-                Intent.FLAG_ACTIVITY_NO_ANIMATION
-        );
         startActivity(intent);
 
     }

@@ -61,7 +61,7 @@ public class EditOrderActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_edit_order, frameLayout);
 
-        navigationView.setCheckedItem(position);
+        navigationView.setCheckedItem(R.id.nav_order);
 
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
         owner = settings.getString(BaseActivity.PREFS_USER, null);
@@ -154,9 +154,6 @@ public class EditOrderActivity extends BaseActivity {
         Button saveBtn = findViewById(R.id.btnSave);
         saveBtn.setOnClickListener(view -> {
             saveChanges();
-            onBackPressed();
-            toast = Toast.makeText(this, getString(R.string.OrderEdited), Toast.LENGTH_LONG);
-            toast.show();
         });
 
 
@@ -204,11 +201,13 @@ public class EditOrderActivity extends BaseActivity {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "updateOrder: success");
+                setResponse(true);
             }
 
             @Override
             public void onFailure(Exception e) {
                 Log.d(TAG, "updateOrder: failure", e);
+                setResponse(false);
             }
         });
 
@@ -258,12 +257,6 @@ public class EditOrderActivity extends BaseActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
     private int getIndex(Spinner spinner, String myString) {
 
         int index = 0;
@@ -274,5 +267,18 @@ public class EditOrderActivity extends BaseActivity {
             }
         }
         return index;
+    }
+
+    private void setResponse(Boolean response) {
+        if (response) {
+            toast = Toast.makeText(this, getString(R.string.OrderEdited), Toast.LENGTH_LONG);
+            toast.show();
+            finish();
+
+        }else {
+            toast = Toast.makeText(this, getString(R.string.OrderNotEdited), Toast.LENGTH_LONG);
+            toast.show();
+            finish();
+        }
     }
 }

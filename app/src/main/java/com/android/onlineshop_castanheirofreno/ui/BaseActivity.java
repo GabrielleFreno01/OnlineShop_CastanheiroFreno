@@ -3,6 +3,7 @@ package com.android.onlineshop_castanheirofreno.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -30,7 +31,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public static final String PREFS_NAME = "SharedPrefs";
     public static final String PREFS_USER = "LoggedIn";
     public static final String PREFS_ITEM = "ItemId";
-    public static final String PREFS_CUSTOMERID = "CustoId";
     public static final String PREFS_CATEGORYID = "CategoryId";
 
     protected FrameLayout frameLayout;
@@ -39,10 +39,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     protected NavigationView navigationView;
 
-
-
-
     protected static int position;
+
+    protected Menu options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,21 +61,11 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         navigationView = findViewById(R.id.base_nav_view);
+
+        options = navigationView.getMenu();
         navigationView.setNavigationItemSelectedListener(this);
 
 
-    }
-
-    /*public void writeNewUser(String userId, String lastname, String firstname, String email, String telephone, String city, int city_code) {
-        CustomerEntity user = new CustomerEntity(lastname,firstname,  email,   city,  city_code, telephone);
-
-        database.child("customers").child(userId).setValue(user);
-    }*/
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
@@ -102,17 +91,25 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         BaseActivity.position = id;
         Intent intent = null;
 
-        navigationView.setCheckedItem(id);
 
-        if (id == R.id.nav_home) {
+
+        if(id==R.id.nav_home || id==R.id.nav_order
+                || id==R.id.nav_cart || id==R.id.nav_category
+                || id==R.id.nav_account || id==R.id.nav_settings) {
             intent = new Intent(this, HomeActivity.class);
-        } else if (id == R.id.nav_order) {
-            intent = new Intent(this, OrdersActivity.class);
-        } else if (id == R.id.nav_cart) {
-            intent = new Intent(this, CartActivity.class);
-        } else if (id == R.id.nav_category) {
-            intent = new Intent(this, CategoryActivity.class);
-        } else if (id == R.id.nav_logout) {
+            intent.putExtra("menuId", id);
+            navigationView.setCheckedItem(id);
+        }
+
+        if (intent != null) {
+            intent.setFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_NO_ANIMATION
+            );
+            startActivity(intent);
+        }
+
+        if(id==R.id.nav_logout){
             final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle(getString(R.string.action_logout));
             alertDialog.setCancelable(false);
@@ -120,17 +117,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_logout), (dialog, which) -> logout());
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
             alertDialog.show();
-        } else if (id == R.id.nav_account) {
-            intent = new Intent(this, CustomerActivity.class);
-        } else if (id == R.id.nav_settings) {
-
-            intent = new Intent(this, SettingsActivity.class);
-        }
-        if (intent != null) {
-            intent.setFlags(
-                    Intent.FLAG_ACTIVITY_NO_ANIMATION
-            );
-            startActivity(intent);
+            navigationView.setCheckedItem(0);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -144,6 +131,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences.Editor editorItem = getSharedPreferences(BaseActivity.PREFS_ITEM, 0).edit();
         editorItem.remove(BaseActivity.PREFS_ITEM);
         editorItem.apply();
+
+        SharedPreferences.Editor editorCat = getSharedPreferences(BaseActivity.PREFS_CATEGORYID, 0).edit();
+        editorCat.remove(BaseActivity.PREFS_CATEGORYID);
+        editorCat.apply();
 
         FirebaseAuth.getInstance().signOut();
 

@@ -45,7 +45,7 @@ public class OrdersActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_order_list, frameLayout);
 
         setTitle("Orders");
-        navigationView.setCheckedItem(position);
+        navigationView.setCheckedItem(R.id.nav_order);
 
         RecyclerView recyclerView = findViewById(R.id.OrderRecyclerView);
 
@@ -69,13 +69,8 @@ public class OrdersActivity extends BaseActivity {
             public void onItemClick(View v, int position) {
                 //get the details
                 Intent intent = new Intent(OrdersActivity.this, OrderDetailActivity.class);
-                intent.setFlags(
-                        Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                                Intent.FLAG_ACTIVITY_NO_HISTORY
-                );
                 intent.putExtra("orderId", orders.get(position).order.getIdOrder());
                 startActivity(intent);
-
             }
 
 
@@ -97,17 +92,6 @@ public class OrdersActivity extends BaseActivity {
         });
 
         recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == BaseActivity.position) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return false;
-        }
-
-        finish();
-        return super.onNavigationItemSelected(item);
     }
 
     private void createDeleteDialog(final int position) {

@@ -14,6 +14,7 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.CustomerEntity;
 import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.ui.MainActivity;
+import com.android.onlineshop_castanheirofreno.ui.splashscreen.WelcomeActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -163,7 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void setResponse(Boolean response) {
         if (response) {
             toast.show();
-            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, WelcomeActivity.class);
             startActivity(intent);
             finish();
         } else {

@@ -50,12 +50,14 @@ public class CategoryListLiveData extends LiveData<List<CategoryEntity>> {
     }
 
     private List<CategoryEntity> toCategories(DataSnapshot snapshot) {
-        List<CategoryEntity> accounts = new ArrayList<>();
+        List<CategoryEntity> categories = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             CategoryEntity entity = childSnapshot.getValue(CategoryEntity.class);
-            entity.setIdCategory(childSnapshot.getKey());
-            accounts.add(entity);
+            if(entity!=null) {
+                entity.setIdCategory(childSnapshot.getKey());
+                categories.add(entity);
+            }
         }
-        return accounts;
+        return categories;
     }
 }

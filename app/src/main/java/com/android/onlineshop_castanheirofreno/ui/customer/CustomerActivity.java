@@ -34,8 +34,6 @@ public class CustomerActivity extends BaseActivity {
     private static final String TAG = "CustomerActivity";
 
     private Toast toast;
-
-
     private EditText etFirstName;
     private EditText etLastName;
     private EditText etEmail;
@@ -56,7 +54,7 @@ public class CustomerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setTitle("My account");
-        navigationView.setCheckedItem(position);
+        navigationView.setCheckedItem(R.id.nav_account);
 
         getLayoutInflater().inflate(R.layout.activity_customer, frameLayout);
 
@@ -110,16 +108,6 @@ public class CustomerActivity extends BaseActivity {
         etTelephone.setEnabled(false);
         etCity.setEnabled(false);
         etCity_code.setEnabled(false);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == BaseActivity.position) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return false;
-        }
-        finish();
-        return super.onNavigationItemSelected(item);
     }
 
     @Override
@@ -316,7 +304,7 @@ public class CustomerActivity extends BaseActivity {
             etEmail.requestFocus();
         }
     }
-
+/*
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -325,5 +313,5 @@ public class CustomerActivity extends BaseActivity {
         }
         super.onBackPressed();
         startActivity(new Intent(this, HomeActivity.class));
-    }
+    }*/
 }

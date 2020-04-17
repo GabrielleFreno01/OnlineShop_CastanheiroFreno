@@ -50,13 +50,12 @@ public class WelcomeActivity extends AppCompatActivity {
         Runnable run = new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, HomeActivity.class);
                 startActivity(intent);
-                finish();
             }
         };
 
-        new Handler().postDelayed(run, 2000);
+        new Handler().postDelayed(run, 1500);
     }
 
 }

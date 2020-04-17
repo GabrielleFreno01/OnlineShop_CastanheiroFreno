@@ -1,19 +1,14 @@
 package com.android.onlineshop_castanheirofreno.database.repository;
 
-import android.app.Application;
-import android.content.ClipData;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
-import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.firebase.AllItemsListLiveData;
-import com.android.onlineshop_castanheirofreno.database.firebase.CategoryItemsLiveData;
 import com.android.onlineshop_castanheirofreno.database.firebase.ItemLiveData;
 import com.android.onlineshop_castanheirofreno.database.firebase.NewItemsLiveData;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -38,7 +33,7 @@ public class ItemRepository {
     }
 
    public LiveData<ItemEntity> getItem(Context context, String idItem, String idCategory) {
-       DatabaseReference reference = FirebaseDatabase.getInstance()
+        DatabaseReference reference = FirebaseDatabase.getInstance()
                .getReference("categories")
                .child(idCategory)
                .child("items")
@@ -125,51 +120,4 @@ public class ItemRepository {
                 });
     }
 
-    public void insertOrder(OrderEntity newOrder, OnAsyncEventListener callback) {
-        newOrder.setOwner(FirebaseAuth.getInstance().getUid());
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("orders")
-                .child(newOrder.getOwner());
-        String key = reference.push().getKey();
-        FirebaseDatabase.getInstance()
-                .getReference("orders")
-                .child(newOrder.getOwner())
-                .child(key)
-                .setValue(newOrder, (databaseError, databaseReference) -> {
-                    if (databaseError != null) {
-                        callback.onFailure(databaseError.toException());
-                    } else {
-                        callback.onSuccess();
-                    }
-                });
-    }
-
-    /*
-    public LiveData<List<ItemEntity>> getItemsByCategory(final String id, Context context) {
-        return AppDatabase.getInstance(context).itemDao().getItemsByCategory(id);
-    }
-
-    public LiveData<List<ItemEntity>> getAllItems(Context context) {
-        return AppDatabase.getInstance(context).itemDao().getAll();
-    }
-
-    public LiveData<List<ItemEntity>> getNewItems(Context context) {
-        return AppDatabase.getInstance(context).itemDao().getNewItems();
-    }
-
-    public void insert(final ItemEntity item, OnAsyncEventListener callback,
-                       Application application) {
-        new CreateItem(application, callback).execute(item);
-    }
-
-    public void update(final ItemEntity item, OnAsyncEventListener callback,
-                       Application application) {
-        new UpdateItem(application, callback).execute(item);
-    }
-
-    public void delete(final ItemEntity item, OnAsyncEventListener callback,
-                       Application application) {
-        new DeleteItem(application, callback).execute(item);
-    }
-*/
 }

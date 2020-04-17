@@ -10,10 +10,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.onlineshop_castanheirofreno.BaseApp;
-import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
-import com.android.onlineshop_castanheirofreno.database.pojo.CustomerWithOrders;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
-import com.android.onlineshop_castanheirofreno.database.repository.CustomerRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.OrderRepository;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 
@@ -24,34 +21,27 @@ public class OrderListViewModel extends AndroidViewModel {
     private Application application;
 
     private OrderRepository repository;
-    private CustomerRepository customerRepository;
 
-    // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<CustomerWithOrders>> observableOrderCustomer;
+    // MediatorLiveData can observe other LiveData objects and react on their emissions
     private final MediatorLiveData<List<OrderWithItem>> observableOwnOrder;
 
     public OrderListViewModel(@NonNull Application application,
                               final String ownerId,
-                              CustomerRepository custRepository,
                               OrderRepository orderRepository) {
         super(application);
 
         this.application = application;
 
         repository = orderRepository;
-        this.customerRepository = custRepository;
 
-        observableOrderCustomer = new MediatorLiveData<>();
         observableOwnOrder = new MediatorLiveData<>();
-        // set by default null, until we get data from the database.
-        observableOrderCustomer.setValue(null);
+        // set by default null, until we get data from the database
         observableOwnOrder.setValue(null);
 
         //LiveData<List<CustomerWithOrders>> clientOrders = customerRepository.getCustomerWithOrders(ownerId, application);
         LiveData<List<OrderWithItem>> ownOrders = repository.getOrdersWithItem(ownerId);
 
         // observe the changes of the entities from the database and forward them
-        //observableOrderCustomer.addSource(clientOrders, observableOrderCustomer::setValue);
         observableOwnOrder.addSource(ownOrders, observableOwnOrder::setValue);
     }
 
@@ -61,29 +51,21 @@ public class OrderListViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final String orderId;
-
-        private final CustomerRepository customerRepository;
+        private final String ownerId;
 
         private final OrderRepository orderRepository;
 
-        public Factory(@NonNull Application application, String orderId) {
+        public Factory(@NonNull Application application, String ownerId) {
             this.application = application;
-            this.orderId = orderId;
-            customerRepository = ((BaseApp) application).getCustomerRepository();
+            this.ownerId = ownerId;
             orderRepository = ((BaseApp) application).getOrderRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new OrderListViewModel(application, orderId, customerRepository, orderRepository);
+            return (T) new OrderListViewModel(application, ownerId, orderRepository);
         }
-    }
-
-
-    public LiveData<List<CustomerWithOrders>> getClientOrders() {
-        return observableOrderCustomer;
     }
 
     public LiveData<List<OrderWithItem>> getOwnOrders() {

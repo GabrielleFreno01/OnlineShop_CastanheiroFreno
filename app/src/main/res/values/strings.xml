@@ -178,5 +178,6 @@
     <string name="mail_technospot">technospot@info.ch</string>
     <string name="empty_cart">Please add some item in your cart first</string>
     <string name="label_order_status">Order status</string>
+    <string name="OrderNotEdited">Order not edited, please contact the administrator</string>
 
 </resources>

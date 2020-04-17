@@ -33,6 +33,8 @@ public class AddItemActivity extends BaseActivity {
     private EditText etprice;
     private EditText etdescription;
 
+    private String idCategory;
+
     private MyListAdapter<CategoryEntity> adapterCategories;
     private List<CategoryEntity> categoryEntities;
     private Toast toast;
@@ -50,7 +52,7 @@ public class AddItemActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_add_item, frameLayout);
 
         setTitle("Add item");
-        navigationView.setCheckedItem(position);
+        navigationView.setCheckedItem(R.id.nav_category);
 
         initiateView();
 
@@ -152,6 +154,7 @@ public class AddItemActivity extends BaseActivity {
 
             if (!cancel) {
                 ItemEntity newItem = new ItemEntity(name, description, price, category.getIdCategory());
+                idCategory=category.getIdCategory();
                 viewModel.createItem(newItem, new OnAsyncEventListener(){
 
                     @Override
@@ -187,10 +190,7 @@ public class AddItemActivity extends BaseActivity {
         if (response) {
             toast = Toast.makeText(this, "Item created", Toast.LENGTH_LONG);
             toast.show();
-            Intent intent = new Intent(AddItemActivity.this, ItemListActivity.class);
-            intent.putExtra("categoryId", spinner.getSelectedItemId()+1);
-            intent.putExtra("categoryName", spinner.getSelectedItem().toString());
-            startActivity(intent);
+            onBackPressed();
             finish();
         }
     }

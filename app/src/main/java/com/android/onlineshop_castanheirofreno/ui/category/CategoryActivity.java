@@ -2,8 +2,10 @@ package com.android.onlineshop_castanheirofreno.ui.category;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -37,7 +39,7 @@ public class CategoryActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_category, frameLayout);
 
         setTitle("Categories");
-        navigationView.setCheckedItem(position);
+        navigationView.setCheckedItem(R.id.nav_category);
 
         RecyclerView recyclerView = findViewById(R.id.categoryRecyclerView);
 
@@ -57,9 +59,6 @@ public class CategoryActivity extends BaseActivity {
             public void onItemClick(View v, int position) {
                 //get the details
                 Intent intent = new Intent(CategoryActivity.this, ItemListActivity.class);
-                intent.setFlags(
-                        Intent.FLAG_ACTIVITY_NO_ANIMATION
-                );
                 intent.putExtra("categoryId", categoryList.get(position).getIdCategory());
                 intent.putExtra("categoryName", categoryList.get(position).getName());
                 startActivity(intent);
@@ -84,16 +83,5 @@ public class CategoryActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
 
     }
-
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return;
-        }
-        super.onBackPressed();
-        startActivity(new Intent(this, HomeActivity.class));
-    }
-
 
 }

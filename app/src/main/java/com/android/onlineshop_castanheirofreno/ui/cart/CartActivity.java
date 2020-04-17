@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
@@ -56,7 +58,7 @@ public class CartActivity extends BaseActivity {
         //Create the activity
         super.onCreate(savedInstanceState);
         setTitle("My Cart");
-        navigationView.setCheckedItem(position);
+        navigationView.setCheckedItem(R.id.nav_cart);
         getLayoutInflater().inflate(R.layout.activity_cart, frameLayout);
 
         initiateView();
@@ -70,7 +72,6 @@ public class CartActivity extends BaseActivity {
 
         SharedPreferences settingsCat = getSharedPreferences(BaseActivity.PREFS_CATEGORYID, 0);
         String categoryId = settingsCat.getString(BaseActivity.PREFS_CATEGORYID, "");
-        System.out.println(categoryId+"---------"+itemId);
 
         ItemViewModel.Factory factory = new ItemViewModel.Factory(getApplication(), itemId, categoryId);
         viewModel = ViewModelProviders.of(this, factory).get(ItemViewModel.class);
@@ -180,15 +181,5 @@ public class CartActivity extends BaseActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return;
-        }
-        super.onBackPressed();
-        startActivity(new Intent(this, HomeActivity.class));
     }
 }

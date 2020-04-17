@@ -57,9 +57,11 @@ public class AllItemsListLiveData extends LiveData<List<ItemEntity>> {
             DataSnapshot itemsSnapshot = categorySnapshot.child("items");
             for (DataSnapshot childSnapshot : itemsSnapshot.getChildren()) {
                 ItemEntity entity = childSnapshot.getValue(ItemEntity.class);
-                entity.setIdItem(childSnapshot.getKey());
-                entity.setIdCategory(categoryKey);
-                allItems.add(entity);
+                if(entity!=null) {
+                    entity.setIdItem(childSnapshot.getKey());
+                    entity.setIdCategory(categoryKey);
+                    allItems.add(entity);
+                }
             }
         }
 

@@ -16,6 +16,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.database.pojo.CategoryWithItems;
 import com.android.onlineshop_castanheirofreno.database.repository.CategoryRepository;
 import com.android.onlineshop_castanheirofreno.database.repository.ItemRepository;
+import com.android.onlineshop_castanheirofreno.database.repository.OrderRepository;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -29,6 +30,8 @@ public class ItemViewModel extends AndroidViewModel {
 
     private CategoryRepository catRepository;
 
+    private OrderRepository orderRepository;
+
     private String idItem;
     private String idCategory;
 
@@ -41,7 +44,8 @@ public class ItemViewModel extends AndroidViewModel {
 
 
     public ItemViewModel(@NonNull Application application,
-                         final String idItem, final String categoryId, ItemRepository itemRepository, CategoryRepository catRepository) {
+                         final String idItem, final String categoryId, ItemRepository itemRepository,
+                         CategoryRepository catRepository, OrderRepository orderRepository) {
         super(application);
 
         this.application = application;
@@ -50,6 +54,7 @@ public class ItemViewModel extends AndroidViewModel {
 
         repository = itemRepository;
         this.catRepository = catRepository;
+        this.orderRepository = orderRepository;
 
         observableItem = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
@@ -68,7 +73,6 @@ public class ItemViewModel extends AndroidViewModel {
         observableCategoryWithItems.setValue(null);
 
         LiveData<ItemEntity> item = repository.getItem(application, idItem, categoryId);
-        //LiveData<List<ItemEntity>> items = repository.getItemsByCategory(categoryId, application);
         LiveData<List<CategoryEntity>> listCategory = catRepository.getCategories(application);
         LiveData<CategoryWithItems> categoryWithItems = catRepository.getCategoryWithItems(application, categoryId);
         LiveData<List<ItemEntity>> listNewItems = repository.getNewItems(application);
@@ -77,7 +81,6 @@ public class ItemViewModel extends AndroidViewModel {
         observableItem.addSource(item, observableItem::setValue);
         observableCategories.addSource(listCategory, observableCategories::setValue);
         observableCategoryWithItems.addSource(categoryWithItems, observableCategoryWithItems::setValue);
-        //observableItems.addSource(items, observableItems::setValue);
         observableNewItems.addSource(listNewItems, observableNewItems::setValue);
     }
 
@@ -94,19 +97,22 @@ public class ItemViewModel extends AndroidViewModel {
 
         private final CategoryRepository catRepository;
 
+        private final OrderRepository orderRepository;
+
         public Factory(@NonNull Application application, String itemId, String categoryId) {
             this.application = application;
             this.itemId = itemId;
             this.categoryId = categoryId;
             repository = ((BaseApp) application).getItemRepository();
             catRepository = ((BaseApp) application).getCategoryRepository();
+            orderRepository = ((BaseApp) application).getOrderRepository();
         }
 
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new ItemViewModel(application, itemId, categoryId, repository, catRepository);
+            return (T) new ItemViewModel(application, itemId, categoryId, repository, catRepository, orderRepository);
         }
     }
     public void modifyCategory(String idCategory){
@@ -117,10 +123,6 @@ public class ItemViewModel extends AndroidViewModel {
 
     public LiveData<ItemEntity> getItem() {
         return observableItem;
-    }
-
-    public LiveData<List<ItemEntity>> getItemsByCategory() {
-        return observableItems;
     }
 
     public LiveData<List<CategoryEntity>> getCategories() {
@@ -135,8 +137,10 @@ public class ItemViewModel extends AndroidViewModel {
 
 
     public void deleteItem(ItemEntity item, OnAsyncEventListener callback) {
+        //Delete the item
         repository.delete(item, callback);
-
+        //Delete all the orders containing this item too
+        orderRepository.deleteCorrespondingOrders(item,callback);
     }
 
     public void createItem(ItemEntity item, OnAsyncEventListener callback) {
@@ -145,8 +149,13 @@ public class ItemViewModel extends AndroidViewModel {
 
     public void updateItem(ItemEntity newItem, ItemEntity oldItem, OnAsyncEventListener callback) {
         repository.update(newItem, oldItem, callback);
+        //Check if the category has changed
+        if(!newItem.getIdCategory().equals(oldItem.getIdCategory())) {
+            //If it has changed, change the category in the orders too
+            orderRepository.changeCategory(newItem, callback);
+        }
     }
     public void createOrder(OrderEntity newOrder, OnAsyncEventListener callback) {
-        repository.insertOrder(newOrder, callback);
+        orderRepository.insert(newOrder, callback);
     }
 }

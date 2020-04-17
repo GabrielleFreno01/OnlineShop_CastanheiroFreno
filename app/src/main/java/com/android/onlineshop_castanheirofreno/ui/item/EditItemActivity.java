@@ -152,7 +152,13 @@ public class EditItemActivity extends BaseActivity {
         if (response) {
             toast = Toast.makeText(this, "Item edited", Toast.LENGTH_LONG);
             toast.show();
+            if (categoryChanged==true) {
+                setResult(RESULT_OK);
+            }else{
+                setResult(0);
+            }
             finish();
+
         }
     }
 

@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.room.FtsOptions;
 
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
@@ -43,13 +42,16 @@ public class OrderLiveData extends LiveData<OrderWithItem> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
             OrderWithItem entity = new OrderWithItem();
-            DataSnapshot orderSnapshot = dataSnapshot.child("orders").child(owner).child(idOrder);
-            entity.order = orderSnapshot.getValue(OrderEntity.class);
-            entity.order.setIdOrder(idOrder);
-            entity.order.setOwner(owner);
-            entity.item = toItem(dataSnapshot, entity.order.getIdItem(), entity.order.getIdCategory());
-            setValue(entity);
+            if(entity != null) {
+                DataSnapshot orderSnapshot = dataSnapshot.child("orders").child(owner).child(idOrder);
+                entity.order = orderSnapshot.getValue(OrderEntity.class);
+                entity.order.setIdOrder(idOrder);
+                entity.order.setOwner(owner);
+                entity.item = toItem(dataSnapshot, entity.order.getIdItem(), entity.order.getIdCategory());
+                setValue(entity);
+            }
         }
 
         @Override

@@ -1,7 +1,11 @@
 package com.android.onlineshop_castanheirofreno.ui.item;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -11,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
@@ -18,6 +24,7 @@ import com.android.onlineshop_castanheirofreno.adapter.MyListAdapter;
 import com.android.onlineshop_castanheirofreno.database.entity.CategoryEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
+import com.android.onlineshop_castanheirofreno.ui.mgmt.LoginActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
@@ -32,6 +39,8 @@ public class AddItemActivity extends BaseActivity {
     private EditText etproductName;
     private EditText etprice;
     private EditText etdescription;
+
+    private static final String CANAL = "MyNotifCanal";
 
     private String idCategory;
 
@@ -157,10 +166,51 @@ public class AddItemActivity extends BaseActivity {
                 idCategory=category.getIdCategory();
                 viewModel.createItem(newItem, new OnAsyncEventListener(){
 
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onSuccess() {
                         Log.d(TAG, "createItem: success");
                         setResponse(true);
+
+                        //Send notification
+                        String myMessage = "New product available !";
+
+                        Log.d("FirebaseMassage" , "Notification received");
+
+                        //action
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+
+                        //Vibration
+                        long[] vibrationPattern = {500, 1000};
+
+
+                        //create notif
+                        NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(getApplicationContext(), CANAL);
+                        notifBuilder.setContentTitle("News");
+                        notifBuilder.setContentText(myMessage);
+
+                        notifBuilder.setContentIntent(pendingIntent);
+                        notifBuilder.setVibrate(vibrationPattern);
+
+                        //icon
+                        notifBuilder.setSmallIcon(R.drawable.ic_notifications);
+
+
+                        //send notif
+                        NotificationManager notifManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BASE){
+                            String channelId = getString(R.string.notification_id);
+                            String channelTitle = getString(R.string.notification_title);
+                            String channelDescription = getString(R.string.notification_desc);
+                            NotificationChannel channel = new NotificationChannel(channelId, channelTitle, NotificationManager.IMPORTANCE_DEFAULT);
+                            channel.setDescription(channelDescription);
+                            notifManager.createNotificationChannel(channel);
+                            notifBuilder.setChannelId(channelId);
+
+
+                        }
+                        notifManager.notify(1, notifBuilder.build());
                     }
 
                     @Override

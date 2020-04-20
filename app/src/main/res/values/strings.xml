@@ -179,5 +179,8 @@
     <string name="empty_cart">Please add some item in your cart first</string>
     <string name="label_order_status">Order status</string>
     <string name="OrderNotEdited">Order not edited, please contact the administrator</string>
+    <string name="notification_id">myCanal</string>
+    <string name="notification_title">MyTitle</string>
+    <string name="notification_desc">MyDesc</string>
 
 </resources>

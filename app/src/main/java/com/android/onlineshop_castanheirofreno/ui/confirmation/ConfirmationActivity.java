@@ -13,12 +13,16 @@ public class ConfirmationActivity extends BaseActivity {
 
     private Button goShopping;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Confirmation");
         navigationView.setCheckedItem(position);
         getLayoutInflater().inflate(R.layout.activity_confirmation, frameLayout);
+
 
         goShopping = (Button) findViewById(R.id.btn_go);
         goShopping.setOnClickListener(new View.OnClickListener() {
@@ -28,6 +32,8 @@ public class ConfirmationActivity extends BaseActivity {
             }
         });
     }
+
+
 
 
     public void goShopping(View view) {

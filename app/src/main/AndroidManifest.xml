@@ -3,6 +3,9 @@
     package="com.android.onlineshop_castanheirofreno">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:name=".BaseApp"
@@ -88,6 +91,13 @@
             android:label="Cart"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.home.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="message/rfc822"/>
+            </intent-filter>
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.android.onlineshop_castanheirofreno.ui.home.HomeActivity" />
@@ -183,7 +193,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.onlineshop_castanheirofreno.ui.item.ItemDescriptionActivity" />
         </activity>
-
 
     </application>
 

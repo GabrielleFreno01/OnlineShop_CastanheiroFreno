@@ -1,19 +1,22 @@
 package com.android.onlineshop_castanheirofreno.ui.cart;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
-import androidx.core.view.GravityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.onlineshop_castanheirofreno.R;
@@ -22,6 +25,7 @@ import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.confirmation.ConfirmationActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
+import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
@@ -48,6 +52,8 @@ public class CartActivity extends BaseActivity {
     private SimpleDateFormat dateformatter;
 
     private String formattedDate;
+
+    private static final String CANAL = "MyNotifCanal";
 
     private static final String TAG = "AddOrder";
 
@@ -124,15 +130,54 @@ public class CartActivity extends BaseActivity {
     }
 
 
+
     private void saveChanges(double price, String creationDate, String deliveryDate, String idItem, String idCategory, String status, String owner) {
 
         OrderEntity newOrder = new OrderEntity(price, creationDate, deliveryDate, idItem, idCategory, status, owner);
 
         viewModel.createOrder(newOrder, new OnAsyncEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onSuccess() {
                 Log.d(TAG, "createOrder: success");
                 setResponse(true);
+
+                String myMessage = "Confirmation, your order passed successfully !";
+
+                //action
+                Intent intent = new Intent(getApplicationContext(), OrdersActivity.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+
+                //Vibration
+                long[] vibrationPattern = {500, 1000};
+
+
+                //create notif
+                NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(getApplicationContext(), CANAL);
+                notifBuilder.setContentTitle("Your order");
+                notifBuilder.setContentText(myMessage);
+
+                notifBuilder.setContentIntent(pendingIntent);
+                notifBuilder.setVibrate(vibrationPattern);
+
+                //icon
+                notifBuilder.setSmallIcon(R.drawable.ic_notifications);
+
+
+                //send notif
+                NotificationManager notifManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BASE){
+                    String channelId = getString(R.string.notification_id);
+                    String channelTitle = getString(R.string.notification_title);
+                    String channelDescription = getString(R.string.notification_desc);
+                    NotificationChannel channel = new NotificationChannel(channelId, channelTitle, NotificationManager.IMPORTANCE_DEFAULT);
+                    channel.setDescription(channelDescription);
+                    notifManager.createNotificationChannel(channel);
+                    notifBuilder.setChannelId(channelId);
+
+
+                }
+                notifManager.notify(1, notifBuilder.build());
             }
 
             @Override

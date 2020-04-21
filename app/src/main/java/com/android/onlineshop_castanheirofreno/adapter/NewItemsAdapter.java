@@ -62,6 +62,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.ItemsV
 
         Glide.with(context)
                 .load(imageRef)
+                .placeholder(R.drawable.ic_devices)
                 .signature(new ObjectKey(imageRef.getDownloadUrl()))
                 .error(R.drawable.ic_devices)
                 .into(holder.item_imageView);

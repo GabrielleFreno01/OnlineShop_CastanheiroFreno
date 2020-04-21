@@ -110,15 +110,7 @@ public class ItemListActivity extends BaseActivity {
 
     public void seeAddNewItem(View view) {
         Intent intent = new Intent(ItemListActivity.this, AddItemActivity.class);
-        Glide.get(this).clearMemory();
         startActivity(intent);
 
     }
-
-    @Override
-    public void onBackPressed() {
-        Glide.get(this).clearMemory();
-        super.onBackPressed();
-    }
-
 }

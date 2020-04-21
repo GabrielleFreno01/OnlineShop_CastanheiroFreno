@@ -324,10 +324,4 @@ public class AddItemActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        Glide.get(this).clearMemory();
-        super.onBackPressed();
-    }
-
 }

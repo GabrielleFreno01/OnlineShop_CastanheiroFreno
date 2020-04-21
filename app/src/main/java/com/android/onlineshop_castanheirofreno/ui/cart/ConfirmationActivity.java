@@ -1,4 +1,4 @@
-package com.android.onlineshop_castanheirofreno.ui.confirmation;
+package com.android.onlineshop_castanheirofreno.ui.cart;
 
 import android.content.Intent;
 import android.os.Bundle;

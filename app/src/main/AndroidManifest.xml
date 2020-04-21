@@ -110,7 +110,7 @@
 
 
         <activity
-            android:name=".ui.confirmation.ConfirmationActivity"
+            android:name=".ui.cart.ConfirmationActivity"
             android:label="Confirmation"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.cart.CartActivity">

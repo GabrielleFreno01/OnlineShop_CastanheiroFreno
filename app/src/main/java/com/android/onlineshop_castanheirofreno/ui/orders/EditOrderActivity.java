@@ -202,6 +202,7 @@ public class EditOrderActivity extends BaseActivity {
             Glide.with(this)
                     .load(imageRef)
                     .error(R.drawable.ic_devices)
+                    .placeholder(R.drawable.ic_devices)
                     .signature(new ObjectKey(imageRef.getDownloadUrl()))
                     .into(ivproductImage);
 

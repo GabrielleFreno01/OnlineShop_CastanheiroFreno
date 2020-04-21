@@ -23,7 +23,6 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.database.entity.OrderEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
-import com.android.onlineshop_castanheirofreno.ui.confirmation.ConfirmationActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
@@ -214,6 +213,7 @@ public class CartActivity extends BaseActivity {
             Glide.with(this)
                     .load(imageRef)
                     .error(R.drawable.ic_devices)
+                    .placeholder(R.drawable.ic_devices)
                     .signature(new ObjectKey(imageRef.getDownloadUrl()))
                     .into(ivproductImage);
 

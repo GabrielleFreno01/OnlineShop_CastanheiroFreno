@@ -116,6 +116,7 @@ public class ItemDescriptionActivity extends BaseActivity {
                     .load(imageRef)
                     .signature(new ObjectKey(imageRef.getDownloadUrl()))
                     .error(R.drawable.ic_devices)
+                    .placeholder(R.drawable.ic_devices)
                     .into(imageView);
         }
 
@@ -209,7 +210,6 @@ public class ItemDescriptionActivity extends BaseActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_NO_ANIMATION
         );
-        Glide.get(this).clearMemory();
         startActivity(intent);
 
         super.onNavigationItemSelected(options.findItem(R.id.nav_cart));
@@ -221,12 +221,10 @@ public class ItemDescriptionActivity extends BaseActivity {
         if (response) {
             toast = Toast.makeText(this, "Item deleted", Toast.LENGTH_LONG);
             toast.show();
-            Glide.get(this).clearMemory();
             onBackPressed();
         }else {
             toast = Toast.makeText(this, "Item not deleted, please contact the administrator", Toast.LENGTH_LONG);
             toast.show();
-            Glide.get(this).clearMemory();
             onBackPressed();
         }
     }
@@ -239,12 +237,6 @@ public class ItemDescriptionActivity extends BaseActivity {
                 this.finish();
             }
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        Glide.get(this).clearMemory();
-        super.onBackPressed();
     }
 }
 

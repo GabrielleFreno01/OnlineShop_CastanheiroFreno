@@ -62,6 +62,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
 
         Glide.with(context)
                 .load(imageRef)
+                .placeholder(R.drawable.ic_devices)
                 .error(R.drawable.ic_devices)
                 .signature(new ObjectKey(imageRef.getDownloadUrl()))
                 .into(holder.item_imageView);

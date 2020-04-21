@@ -153,6 +153,7 @@ public class EditItemActivity extends BaseActivity {
                 Glide.with(this)
                         .load(imageRef)
                         .error(R.drawable.ic_add_a_photo_blue_24dp)
+                        .placeholder(R.drawable.ic_devices)
                         .signature(new ObjectKey(imageRef.getDownloadUrl()))
                         .into(imageButton);
             }
@@ -293,7 +294,6 @@ public class EditItemActivity extends BaseActivity {
         if (response) {
             Toast toast = Toast.makeText(this, "Item edited", Toast.LENGTH_LONG);
             toast.show();
-            Glide.get(this).clearMemory();
             if (categoryChanged==true) {
                 setResult(RESULT_OK);
             }else{

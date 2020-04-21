@@ -2,17 +2,13 @@ package com.android.onlineshop_castanheirofreno.database.entity;
 
 import com.google.firebase.database.Exclude;
 
-//@Entity(tableName = "images")
 public class ImageEntity {
 
-    //@PrimaryKey(autoGenerate = true)
     private String idImage;
 
-    //@ColumnInfo(name = "lien")
     private String lien;
 
 
-    //@Ignore
     public ImageEntity() {
     }
 

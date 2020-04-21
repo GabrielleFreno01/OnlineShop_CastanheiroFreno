@@ -3,15 +3,14 @@ READ ME
 
 Technospot by Gabrielle Freno & Tiago Castanheiro
 
-Login : t@t.com 
-	56789
+Login :
 
-	g@g.com
-	12345
+t@t.com 123456
 
-GITHUB :
-https://github.com/GabrielleFreno01/OnlineShop_CastanheiroFreno.git
+g@g.com 123456
 
-You can add / delete / edit customer account
-	add / delete / edit an item
-	add / delete / edit an order
+GITHUB : https://github.com/GabrielleFreno01/OnlineShop_CastanheiroFreno.git
+
+FIREBASE : https://console.firebase.google.com/u/0/project/onlineshop-castanheiro-freno/overview
+
+You can : add / delete / edit customer account add / delete / edit an item add / delete / edit an order

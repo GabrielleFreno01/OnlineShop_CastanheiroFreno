@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,12 +21,20 @@ import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
+import com.android.onlineshop_castanheirofreno.util.GlideApp;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.Key;
+import com.bumptech.glide.signature.ObjectKey;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.security.MessageDigest;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class ItemDescriptionActivity extends BaseActivity {
@@ -41,6 +50,7 @@ public class ItemDescriptionActivity extends BaseActivity {
 
     private String catId;
 
+    private ImageView imageView;
     private TextView tvProductName;
     private TextView tvPriceProduct;
     private TextView tvDescription;
@@ -97,6 +107,16 @@ public class ItemDescriptionActivity extends BaseActivity {
             tvProductName.setText(item.getName());
             tvPriceProduct.setText("CHF " + defaultFormat.format(item.getPrice()));
             tvDescription.setText(item.getDescription());
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference imageRef = storage.getReference()
+                    .child("images")
+                    .child(item.getIdItem()+".jpg");
+
+            Glide.with(this)
+                    .load(imageRef)
+                    .signature(new ObjectKey(imageRef.getDownloadUrl()))
+                    .error(R.drawable.ic_devices)
+                    .into(imageView);
         }
 
     }
@@ -105,7 +125,7 @@ public class ItemDescriptionActivity extends BaseActivity {
         tvProductName = findViewById(R.id.new_item_name);
         tvPriceProduct = findViewById(R.id.new_item_price);
         tvDescription = findViewById(R.id.productDescription);
-        //ImageView productImage = (ImageView) this.findViewById(R.id.imageView);
+        imageView = findViewById(R.id.item_image);
     }
 
     @Override
@@ -141,6 +161,23 @@ public class ItemDescriptionActivity extends BaseActivity {
                     public void onSuccess() {
                         Log.d(TAG, "Delete item: success");
                         setResponse(true);
+
+                        FirebaseStorage storage = FirebaseStorage.getInstance();
+                        StorageReference imageRef = storage.getReference()
+                                .child("images")
+                                .child(item.getIdItem()+".jpg");
+
+                        imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "Delete image from Firebase Storage: success");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Log.d(TAG, "Delete image from Firebase Storage: Failed");
+                            }
+                        });
                     }
 
                     @Override
@@ -172,19 +209,24 @@ public class ItemDescriptionActivity extends BaseActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_NO_ANIMATION
         );
+        Glide.get(this).clearMemory();
         startActivity(intent);
 
         super.onNavigationItemSelected(options.findItem(R.id.nav_cart));
     }
 
+
+
     private void setResponse(Boolean response) {
         if (response) {
             toast = Toast.makeText(this, "Item deleted", Toast.LENGTH_LONG);
             toast.show();
+            Glide.get(this).clearMemory();
             onBackPressed();
         }else {
             toast = Toast.makeText(this, "Item not deleted, please contact the administrator", Toast.LENGTH_LONG);
             toast.show();
+            Glide.get(this).clearMemory();
             onBackPressed();
         }
     }
@@ -199,6 +241,11 @@ public class ItemDescriptionActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Glide.get(this).clearMemory();
+        super.onBackPressed();
+    }
 }
 
 

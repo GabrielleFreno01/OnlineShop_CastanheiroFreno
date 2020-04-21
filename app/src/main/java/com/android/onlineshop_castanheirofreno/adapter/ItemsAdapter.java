@@ -14,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.onlineshop_castanheirofreno.R;
 import com.android.onlineshop_castanheirofreno.database.entity.ItemEntity;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.ObjectKey;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -51,10 +55,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
     public void onBindViewHolder(@NonNull ItemsViewHolder holder, int position) {
         ItemEntity itemEntity = items.get(position);
 
-        /*String name = itemEntity.getTag();
-        int resId = context.getResources().getIdentifier(name, "drawable", context.getPackageName());
-        holder.imageView.setImageResource(resId);*/
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference imageRef = storage.getReference()
+                .child("images")
+                .child(itemEntity.getIdItem()+".jpg");
 
+        Glide.with(context)
+                .load(imageRef)
+                .error(R.drawable.ic_devices)
+                .signature(new ObjectKey(imageRef.getDownloadUrl()))
+                .into(holder.item_imageView);
         NumberFormat defaultFormat = new DecimalFormat("#0.00");
         holder.price_textView.setText("CHF " + defaultFormat.format(itemEntity.getPrice()));
         holder.name_textView.setText(itemEntity.getName());
@@ -67,16 +77,17 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
     }
 
     static class ItemsViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+
         TextView name_textView;
         TextView price_textView;
+        ImageView item_imageView;
 
         public ItemsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.item_image);
             name_textView = itemView.findViewById(R.id.item_name);
             price_textView = itemView.findViewById(R.id.item_price);
+            item_imageView = itemView.findViewById(R.id.item_image);
         }
     }
 

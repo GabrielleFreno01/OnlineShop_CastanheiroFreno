@@ -47,10 +47,12 @@ public class OrderLiveData extends LiveData<OrderWithItem> {
             if(entity != null) {
                 DataSnapshot orderSnapshot = dataSnapshot.child("orders").child(owner).child(idOrder);
                 entity.order = orderSnapshot.getValue(OrderEntity.class);
-                entity.order.setIdOrder(idOrder);
-                entity.order.setOwner(owner);
-                entity.item = toItem(dataSnapshot, entity.order.getIdItem(), entity.order.getIdCategory());
-                setValue(entity);
+                if(entity.order!=null) {
+                    entity.order.setIdOrder(idOrder);
+                    entity.order.setOwner(owner);
+                    entity.item = toItem(dataSnapshot, entity.order.getIdItem(), entity.order.getIdCategory());
+                    setValue(entity);
+                }
             }
         }
 

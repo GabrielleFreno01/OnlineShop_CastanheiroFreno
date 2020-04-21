@@ -20,6 +20,7 @@ import com.android.onlineshop_castanheirofreno.database.pojo.CategoryWithItems;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -109,8 +110,15 @@ public class ItemListActivity extends BaseActivity {
 
     public void seeAddNewItem(View view) {
         Intent intent = new Intent(ItemListActivity.this, AddItemActivity.class);
+        Glide.get(this).clearMemory();
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Glide.get(this).clearMemory();
+        super.onBackPressed();
     }
 
 }

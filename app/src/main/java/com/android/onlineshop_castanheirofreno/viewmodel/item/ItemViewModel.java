@@ -115,11 +115,6 @@ public class ItemViewModel extends AndroidViewModel {
             return (T) new ItemViewModel(application, itemId, categoryId, repository, catRepository, orderRepository);
         }
     }
-    public void modifyCategory(String idCategory){
-        LiveData<ItemEntity> item = repository.getItem(application, idItem, idCategory);
-        observableItem.setValue(null);
-        observableItem.addSource(item, observableItem::setValue);
-    }
 
     public LiveData<ItemEntity> getItem() {
         return observableItem;
@@ -143,8 +138,8 @@ public class ItemViewModel extends AndroidViewModel {
         orderRepository.deleteCorrespondingOrders(item,callback);
     }
 
-    public void createItem(ItemEntity item, OnAsyncEventListener callback) {
-        repository.insert(item, callback);
+    public String createItem(ItemEntity item, OnAsyncEventListener callback) {
+        return repository.insert(item, callback);
     }
 
     public void updateItem(ItemEntity newItem, ItemEntity oldItem, OnAsyncEventListener callback) {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -17,6 +18,10 @@ import androidx.lifecycle.ViewModelProviders;
 import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderViewModel;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.ObjectKey;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -37,6 +42,7 @@ public class OrderDetailActivity extends BaseActivity {
     private TextView tvOrderDate;
     private TextView tvDeliveryDate;
     private TableRow tableRow;
+    private ImageView ivproductImage;
 
     private NumberFormat defaultFormat;
 
@@ -100,6 +106,8 @@ public class OrderDetailActivity extends BaseActivity {
 
         tableRow = findViewById(R.id.tablerow_delivery_date);
 
+        ivproductImage = findViewById(R.id.item_image);
+
         defaultFormat = new DecimalFormat("#0.00");
     }
 
@@ -113,6 +121,18 @@ public class OrderDetailActivity extends BaseActivity {
             tvProductPrice.setText("CHF " + defaultFormat.format(orderWithItem.order.getPrice()));
             tvOrderDate.setText(orderWithItem.order.getCreationDate());
             tvDeliveryDate.setText(orderWithItem.order.getDeliveryDate());
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference imageRef = storage.getReference()
+                    .child("images")
+                    .child(orderWithItem.item.getIdItem()+".jpg");
+
+
+            Glide.with(this)
+                    .load(imageRef)
+                    .error(R.drawable.ic_devices)
+                    .signature(new ObjectKey(imageRef.getDownloadUrl()))
+                    .into(ivproductImage);
 
             if (orderWithItem.order.getStatus().equals("In progress")) {
                 tableRow.setVisibility(View.GONE);

@@ -28,6 +28,10 @@ import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.ObjectKey;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -39,6 +43,7 @@ public class CartActivity extends BaseActivity {
 
     private TextView etproductName;
     private TextView etproductPrice;
+    private ImageView ivproductImage;
     private Button buy;
     private Button goShopping;
     private TextView etEmptyCart;
@@ -201,6 +206,16 @@ public class CartActivity extends BaseActivity {
             NumberFormat defaultFormat = new DecimalFormat("#0.00");
             etproductName.setText(item.getName());
             etproductPrice.setText("CHF " + defaultFormat.format(item.getPrice()));
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference imageRef = storage.getReference()
+                    .child("images")
+                    .child(item.getIdItem()+".jpg");
+
+            Glide.with(this)
+                    .load(imageRef)
+                    .error(R.drawable.ic_devices)
+                    .signature(new ObjectKey(imageRef.getDownloadUrl()))
+                    .into(ivproductImage);
 
         }
     }
@@ -213,6 +228,7 @@ public class CartActivity extends BaseActivity {
         goShopping = findViewById(R.id.btn_go);
         buy = findViewById(R.id.btn_buy);
         cardView = findViewById(R.id.cart_item_cardview);
+        ivproductImage = findViewById(R.id.item_image);
     }
 
     public void seeConfirmation(View view) {

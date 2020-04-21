@@ -23,8 +23,8 @@ import com.android.onlineshop_castanheirofreno.ui.customer.CustomerActivity;
 import com.android.onlineshop_castanheirofreno.ui.item.ItemDescriptionActivity;
 import com.android.onlineshop_castanheirofreno.ui.mgmt.SettingsActivity;
 import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
-import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 import com.android.onlineshop_castanheirofreno.util.RecyclerViewItemClickListener;
+import com.android.onlineshop_castanheirofreno.viewmodel.item.ItemViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +71,8 @@ public class HomeActivity extends BaseActivity {
         autoScroll();
 
 
+
+
         newItems = new ArrayList<>();
 
         newItemsAdapter = new NewItemsAdapter(this, newItems, new RecyclerViewItemClickListener() {
@@ -107,6 +109,7 @@ public class HomeActivity extends BaseActivity {
             createActivityChoosed(menuId);
         }
     }
+
 
     private void createActivityChoosed(int menuId) {
         Intent intent = null;

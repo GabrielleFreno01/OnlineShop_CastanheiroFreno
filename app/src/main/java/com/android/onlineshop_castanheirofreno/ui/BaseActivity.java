@@ -16,13 +16,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.android.onlineshop_castanheirofreno.R;
-import com.android.onlineshop_castanheirofreno.ui.cart.CartActivity;
-import com.android.onlineshop_castanheirofreno.ui.category.CategoryActivity;
-import com.android.onlineshop_castanheirofreno.ui.customer.CustomerActivity;
 import com.android.onlineshop_castanheirofreno.ui.home.HomeActivity;
 import com.android.onlineshop_castanheirofreno.ui.mgmt.LoginActivity;
-import com.android.onlineshop_castanheirofreno.ui.mgmt.SettingsActivity;
-import com.android.onlineshop_castanheirofreno.ui.orders.OrdersActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -67,6 +62,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
+
+
 
     @Override
     public void onBackPressed() {

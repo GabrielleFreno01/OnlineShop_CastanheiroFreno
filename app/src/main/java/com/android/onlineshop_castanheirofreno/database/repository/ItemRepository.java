@@ -51,7 +51,7 @@ public class ItemRepository {
                 .getReference("categories");
         return new NewItemsLiveData(reference);
     }
-    public void insert(final ItemEntity item, final OnAsyncEventListener callback) {
+    public String insert(final ItemEntity item, final OnAsyncEventListener callback) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("categories")
                 .child(item.getIdCategory())
@@ -69,6 +69,8 @@ public class ItemRepository {
                         callback.onSuccess();
                     }
                 });
+        return key;
+
     }
     public void update(final ItemEntity newItem, final ItemEntity oldItem, final OnAsyncEventListener callback) {
         //Check if the category has changed

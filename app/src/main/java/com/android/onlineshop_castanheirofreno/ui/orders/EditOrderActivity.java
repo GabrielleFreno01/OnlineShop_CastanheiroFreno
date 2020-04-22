@@ -2,6 +2,7 @@ package com.android.onlineshop_castanheirofreno.ui.orders;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,6 +26,10 @@ import com.android.onlineshop_castanheirofreno.database.pojo.OrderWithItem;
 import com.android.onlineshop_castanheirofreno.ui.BaseActivity;
 import com.android.onlineshop_castanheirofreno.util.OnAsyncEventListener;
 import com.android.onlineshop_castanheirofreno.viewmodel.order.OrderViewModel;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.ObjectKey;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -46,6 +52,7 @@ public class EditOrderActivity extends BaseActivity {
     private TextView tvItemNumber;
     private TextView tvCreationDate;
     private TextView tvOrderId;
+    private ImageView ivproductImage;
 
 
     private OrderViewModel viewModel;
@@ -55,17 +62,24 @@ public class EditOrderActivity extends BaseActivity {
     private String orderId;
     private String categoryId;
 
+    private Context context;
+
+    private FirebaseStorage storage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_edit_order, frameLayout);
 
+        this.context = getApplicationContext();
+
         navigationView.setCheckedItem(R.id.nav_order);
 
         SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_USER, 0);
         owner = settings.getString(BaseActivity.PREFS_USER, null);
 
+        storage = FirebaseStorage.getInstance();
 
         orderId = getIntent().getStringExtra("orderId");
 
@@ -91,6 +105,7 @@ public class EditOrderActivity extends BaseActivity {
         tvItemName = findViewById(R.id.textView_product_name);
         tvCreationDate = findViewById(R.id.textView_order_date);
         tvItemNumber = findViewById(R.id.textView_product_id);
+        ivproductImage = findViewById(R.id.item_image);
         trDelivery.setVisibility(View.GONE);
 
         tvItemNumber.setOnClickListener(new View.OnClickListener() {
@@ -179,6 +194,18 @@ public class EditOrderActivity extends BaseActivity {
             tvCreationDate.setText(orderWithItem.order.getCreationDate());
             categoryId = orderWithItem.order.getIdCategory();
 
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference imageRef = storage.getReference()
+                    .child("images")
+                    .child(orderWithItem.item.getIdItem()+".jpg");
+
+            Glide.with(this)
+                    .load(imageRef)
+                    .error(R.drawable.ic_devices)
+                    .placeholder(R.drawable.ic_devices)
+                    .signature(new ObjectKey(imageRef.getDownloadUrl()))
+                    .into(ivproductImage);
+
         }
     }
 
@@ -253,6 +280,15 @@ public class EditOrderActivity extends BaseActivity {
                 etPrice.setHint(formatter.format(myItemsList.get(position).getPrice()));
                 categoryId = myItemsList.get(position).getIdCategory();
 
+                StorageReference imageRef = storage.getReference()
+                        .child("images")
+                        .child(myItemsList.get(position).getIdItem()+".jpg");
+
+                Glide.with(context)
+                        .load(imageRef)
+                        .error(R.drawable.ic_devices)
+                        .signature(new ObjectKey(imageRef.getDownloadUrl()))
+                        .into(ivproductImage);
             }
         });
     }

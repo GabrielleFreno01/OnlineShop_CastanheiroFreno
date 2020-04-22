@@ -48,9 +48,4 @@ public class CategoryRepository {
 
     }
 
-/*
-    public LiveData<CategoryEntity> getCategory(final String categoryId, Application application) {
-        return ((BaseApp) application).getDatabase().categoryDao().getById(categoryId);
-    }*/
-
 }

@@ -3,8 +3,7 @@ READ ME
 
 Technospot by Gabrielle Freno & Tiago Castanheiro
 
-Login : 
-  t@t.com 
+Login : t@t.com 
 	56789
 
 	g@g.com

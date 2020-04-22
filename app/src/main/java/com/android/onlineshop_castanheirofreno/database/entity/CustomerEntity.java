@@ -8,33 +8,22 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
-//@Entity(tableName = "customer", primaryKeys = {"email"})
 public class CustomerEntity implements Comparable {
 
     private String idCustomer;
 
-
-    // @NonNull
     private String email;
 
-    //@ColumnInfo(name = "first_name")
     private String firstname;
 
-    //@ColumnInfo(name = "last_name")
     private String lastname;
 
-    //@ColumnInfo(name = "city")
     private String city;
 
-    // @ColumnInfo(name = "city_code")
     private int city_code;
 
-    //@ColumnInfo(name = "telephone")
     private String telephone;
 
-    //private String password;
-
-    @Ignore
     public CustomerEntity() {
     }
 
@@ -80,10 +69,6 @@ public class CustomerEntity implements Comparable {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-
-    //public String getPassword() { return password;}
-
-    //public void setPassword(String password) { this.password = password; }
 
     public String getCity() {
         return city;

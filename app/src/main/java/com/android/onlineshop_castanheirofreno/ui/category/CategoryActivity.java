@@ -59,6 +59,7 @@ public class CategoryActivity extends BaseActivity {
             public void onItemClick(View v, int position) {
                 //get the details
                 Intent intent = new Intent(CategoryActivity.this, ItemListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("categoryId", categoryList.get(position).getIdCategory());
                 intent.putExtra("categoryName", categoryList.get(position).getName());
                 startActivity(intent);

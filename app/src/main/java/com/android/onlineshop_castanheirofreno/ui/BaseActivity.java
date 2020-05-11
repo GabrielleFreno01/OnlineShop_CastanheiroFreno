@@ -23,7 +23,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String PREFS_NAME = "SharedPrefs";
     public static final String PREFS_USER = "LoggedIn";
     public static final String PREFS_ITEM = "ItemId";
     public static final String PREFS_CATEGORYID = "CategoryId";
